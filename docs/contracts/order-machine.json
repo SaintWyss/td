@@ -1,0 +1,137 @@
+{
+  "states": [
+    "CREATED",
+    "RISK_APPROVED",
+    "PREPARED",
+    "SUBMITTING",
+    "PENDING",
+    "UNKNOWN",
+    "CONFIRMED",
+    "FINALIZED",
+    "RECONCILED",
+    "REJECTED",
+    "CANCELLED",
+    "FAILED_CONFIRMED",
+    "EXPIRED_VERIFIED"
+  ],
+  "initial": "CREATED",
+  "terminal": [
+    "RECONCILED",
+    "REJECTED",
+    "CANCELLED"
+  ],
+  "transitions": [
+    {
+      "source": "CREATED",
+      "target": "RISK_APPROVED",
+      "guard": "reservation accepted"
+    },
+    {
+      "source": "CREATED",
+      "target": "REJECTED",
+      "guard": "risk denied"
+    },
+    {
+      "source": "CREATED",
+      "target": "CANCELLED",
+      "guard": "operator before reserve"
+    },
+    {
+      "source": "RISK_APPROVED",
+      "target": "PREPARED",
+      "guard": "validated build"
+    },
+    {
+      "source": "RISK_APPROVED",
+      "target": "CANCELLED",
+      "guard": "no attempt signed"
+    },
+    {
+      "source": "PREPARED",
+      "target": "SUBMITTING",
+      "guard": "signed bytes persisted"
+    },
+    {
+      "source": "PREPARED",
+      "target": "CANCELLED",
+      "guard": "no possible submission"
+    },
+    {
+      "source": "PREPARED",
+      "target": "REJECTED",
+      "guard": "simulation or policy rejected"
+    },
+    {
+      "source": "SUBMITTING",
+      "target": "PENDING",
+      "guard": "accepted by provider"
+    },
+    {
+      "source": "SUBMITTING",
+      "target": "UNKNOWN",
+      "guard": "timeout or crash"
+    },
+    {
+      "source": "PENDING",
+      "target": "UNKNOWN",
+      "guard": "lost tracking"
+    },
+    {
+      "source": "PENDING",
+      "target": "CONFIRMED",
+      "guard": "observed confirmation"
+    },
+    {
+      "source": "UNKNOWN",
+      "target": "CONFIRMED",
+      "guard": "recovered confirmation"
+    },
+    {
+      "source": "CONFIRMED",
+      "target": "FINALIZED",
+      "guard": "finality evidence"
+    },
+    {
+      "source": "CONFIRMED",
+      "target": "UNKNOWN",
+      "guard": "reorg"
+    },
+    {
+      "source": "PENDING",
+      "target": "FAILED_CONFIRMED",
+      "guard": "finalized failure evidence"
+    },
+    {
+      "source": "UNKNOWN",
+      "target": "FAILED_CONFIRMED",
+      "guard": "finalized failure evidence"
+    },
+    {
+      "source": "PENDING",
+      "target": "EXPIRED_VERIFIED",
+      "guard": "expiry and reconciliation evidence"
+    },
+    {
+      "source": "UNKNOWN",
+      "target": "EXPIRED_VERIFIED",
+      "guard": "expiry and reconciliation evidence"
+    },
+    {
+      "source": "FINALIZED",
+      "target": "RECONCILED",
+      "guard": "balances and ledger reconciled"
+    },
+    {
+      "source": "FAILED_CONFIRMED",
+      "target": "RECONCILED",
+      "guard": "fee ledger reconciled"
+    },
+    {
+      "source": "EXPIRED_VERIFIED",
+      "target": "RECONCILED",
+      "guard": "absence and reservation release reconciled"
+    }
+  ],
+  "unknown_rule": "retain maximum reservation; no replacement signature",
+  "partial_fills": "venue-specific CEX suborders; Solana atomic attempts have no partial success"
+}

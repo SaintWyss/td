@@ -1,0 +1,125 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^T-[0-9]{3}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DONE",
+        "FAILED",
+        "BLOCKED",
+        "REJECTED",
+        "INCONCLUSIVE"
+      ]
+    },
+    "base_commit": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "final_commit": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "minItems": 1,
+      "maxItems": 1000
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "command": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "exit_code": {
+            "type": "integer"
+          },
+          "output_path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        },
+        "required": [
+          "command",
+          "exit_code",
+          "output_path"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 1000
+    },
+    "positive_case": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 8000
+    },
+    "negative_case": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 8000
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 8000
+      },
+      "minItems": 0,
+      "maxItems": 1000
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "minItems": 0,
+      "maxItems": 1000
+    },
+    "reviewer": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    }
+  },
+  "required": [
+    "task_id",
+    "status",
+    "base_commit",
+    "final_commit",
+    "files",
+    "commands",
+    "positive_case",
+    "negative_case",
+    "limitations",
+    "blockers",
+    "reviewer"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

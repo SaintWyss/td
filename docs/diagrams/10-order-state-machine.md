@@ -1,0 +1,34 @@
+# Máquina de órdenes
+
+```mermaid
+stateDiagram-v2
+  direction TB
+  [*] --> CREATED
+  CREATED --> RISK_APPROVED
+  CREATED --> REJECTED
+  CREATED --> CANCELLED
+  RISK_APPROVED --> PREPARED
+  RISK_APPROVED --> CANCELLED
+  PREPARED --> SUBMITTING
+  PREPARED --> REJECTED
+  PREPARED --> CANCELLED
+  SUBMITTING --> PENDING
+  SUBMITTING --> UNKNOWN
+  PENDING --> UNKNOWN
+  PENDING --> CONFIRMED
+  UNKNOWN --> CONFIRMED
+  CONFIRMED --> UNKNOWN
+  CONFIRMED --> FINALIZED
+  PENDING --> FAILED_CONFIRMED
+  UNKNOWN --> FAILED_CONFIRMED
+  PENDING --> EXPIRED_VERIFIED
+  UNKNOWN --> EXPIRED_VERIFIED
+  FINALIZED --> RECONCILED
+  FAILED_CONFIRMED --> RECONCILED
+  EXPIRED_VERIFIED --> RECONCILED
+  RECONCILED --> [*]
+  REJECTED --> [*]
+  CANCELLED --> [*]
+```
+
+Vista de diseño. Las relaciones financieras y estados normativos se detallan en los contratos y documentos de dominio. Ninguna flecha implica autorización live ni servicio ya desplegado.

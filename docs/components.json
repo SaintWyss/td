@@ -1,0 +1,177 @@
+[
+  {
+    "id": "C-CORE",
+    "responsibility": "Configuración, cantidades, identidad, permisos y auditoría",
+    "contracts": [
+      "Settings",
+      "Money",
+      "AuditRecord"
+    ],
+    "phase": "V0",
+    "path": "domain/core"
+  },
+  {
+    "id": "C-DATA",
+    "responsibility": "Conectores, ingesta, disponibilidad, calidad y cobertura",
+    "contracts": [
+      "Observation",
+      "SourceGrant",
+      "ConnectorStatus"
+    ],
+    "phase": "V1",
+    "path": "adapters/data"
+  },
+  {
+    "id": "C-SOLANA",
+    "responsibility": "Pools, mints, holders, extensiones y riesgo observable",
+    "contracts": [
+      "Asset",
+      "Pool",
+      "TokenAssessment"
+    ],
+    "phase": "V2",
+    "path": "domain/solana"
+  },
+  {
+    "id": "C-LAB",
+    "responsibility": "Datasets, splits, replay, métricas y validación",
+    "contracts": [
+      "DatasetManifest",
+      "Experiment",
+      "EvaluationReport"
+    ],
+    "phase": "V3",
+    "path": "application/lab"
+  },
+  {
+    "id": "C-ML",
+    "responsibility": "Features, entrenamiento, predicción y artefactos",
+    "contracts": [
+      "FeatureSnapshot",
+      "Prediction",
+      "ModelArtifact"
+    ],
+    "phase": "V4",
+    "path": "application/ml"
+  },
+  {
+    "id": "C-STRATEGY",
+    "responsibility": "Reglas intercambiables y capacidades",
+    "contracts": [
+      "StrategyConfig",
+      "Signal"
+    ],
+    "phase": "V5",
+    "path": "domain/strategies"
+  },
+  {
+    "id": "C-DECISION",
+    "responsibility": "Selección determinista y abstención",
+    "contracts": [
+      "Decision",
+      "Signal"
+    ],
+    "phase": "V5",
+    "path": "domain/decision"
+  },
+  {
+    "id": "C-RISK",
+    "responsibility": "Sizing, reservas, exposición, modos y control_epoch",
+    "contracts": [
+      "RiskAssessment",
+      "Reservation",
+      "ControlCommand"
+    ],
+    "phase": "V5",
+    "path": "domain/risk"
+  },
+  {
+    "id": "C-EXEC",
+    "responsibility": "Paper y futura preparación/conciliación de ejecución",
+    "contracts": [
+      "ExecutionIntent",
+      "Order",
+      "Attempt",
+      "ExecutionReport"
+    ],
+    "phase": "V6",
+    "path": "application/execution"
+  },
+  {
+    "id": "C-LEDGER",
+    "responsibility": "Fills, asientos por activo, posiciones y NAV",
+    "contracts": [
+      "Fill",
+      "JournalEntry",
+      "PortfolioView"
+    ],
+    "phase": "V3",
+    "path": "domain/ledger"
+  },
+  {
+    "id": "C-AI",
+    "responsibility": "Gateway LLM, fallback, schemas, coste y prompts",
+    "contracts": [
+      "ExtractionRequest",
+      "ExtractionResult",
+      "CostRecord"
+    ],
+    "phase": "V7",
+    "path": "adapters/ai"
+  },
+  {
+    "id": "C-RESEARCH",
+    "responsibility": "Fuentes, claims, hipótesis y jobs autorizados",
+    "contracts": [
+      "ResearchClaim",
+      "Hypothesis",
+      "SourceGrant"
+    ],
+    "phase": "V7",
+    "path": "application/research"
+  },
+  {
+    "id": "C-TRADERS",
+    "responsibility": "Historial de wallets, inventario y scores PIT",
+    "contracts": [
+      "TraderProfile",
+      "Observation"
+    ],
+    "phase": "V8",
+    "path": "application/traders"
+  },
+  {
+    "id": "C-LEARN",
+    "responsibility": "Outcomes, drift, promoción y assignments",
+    "contracts": [
+      "Outcome",
+      "Promotion",
+      "ModelArtifact"
+    ],
+    "phase": "V10",
+    "path": "application/learning"
+  },
+  {
+    "id": "C-API",
+    "responsibility": "HTTP, sesiones, dashboard y exportaciones",
+    "contracts": [
+      "Problem",
+      "Job",
+      "Page",
+      "Session"
+    ],
+    "phase": "V0",
+    "path": "entrypoints/api; web"
+  },
+  {
+    "id": "C-OPS",
+    "responsibility": "Backups, releases, alertas, incidentes y budget",
+    "contracts": [
+      "Alert",
+      "ReleaseManifest",
+      "CostRecord"
+    ],
+    "phase": "V0",
+    "path": "adapters/ops"
+  }
+]

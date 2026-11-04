@@ -1,0 +1,5295 @@
+[
+  {
+    "id": "T-001",
+    "phase": "V0",
+    "component": "C-CORE",
+    "title": "Bootstrap y comandos del repositorio",
+    "contract": "Settings",
+    "dependencies": [],
+    "behavior": "Crear estructura hexagonal, locks y targets verify-spec/lint/typecheck/test-unit; copiar este paquete sin implementar negocio",
+    "negative": "Comando de check ausente o lock no reproducible falla bootstrap",
+    "blocker": "NONE",
+    "requirement_id": "R-001",
+    "test_id": "Q-001",
+    "acceptance_id": "AC-001",
+    "priority": "P0",
+    "epic": "V0-CORE",
+    "feature": "Settings",
+    "status": "REVIEW",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "06-architecture-overview.md",
+      "08-domain-model.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-004"
+    ],
+    "files": [
+      "pyproject.toml",
+      "Makefile",
+      "web/package.json",
+      ".github/workflows/ci.yml",
+      "docs/00-index.md"
+    ]
+  },
+  {
+    "id": "T-002",
+    "phase": "V0",
+    "component": "C-CORE",
+    "title": "Cantidades y monedas exactas",
+    "contract": "Money",
+    "dependencies": [
+      "T-001"
+    ],
+    "behavior": "Value objects de átomos y decimal, conversión por decimals y redondeo hacia abajo",
+    "negative": "Overflow, float de entrada y átomos negativos son rechazados",
+    "blocker": "NONE",
+    "requirement_id": "R-002",
+    "test_id": "Q-002",
+    "acceptance_id": "AC-002",
+    "priority": "P0",
+    "epic": "V0-CORE",
+    "feature": "Money",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "06-architecture-overview.md",
+      "08-domain-model.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/domain/core/t_002.py",
+      "tests/unit/test_t_002.py",
+      "tests/integration/test_t_002.py"
+    ]
+  },
+  {
+    "id": "T-003",
+    "phase": "V0",
+    "component": "C-CORE",
+    "title": "Settings y catálogo inicial de permisos",
+    "contract": "Settings",
+    "dependencies": [
+      "T-001",
+      "T-002"
+    ],
+    "behavior": "Cargar config strict y grants sólo de fuentes documentadas aceptadas por operador; live siempre false en perfiles normales",
+    "negative": "Secreto en configuración pública o finalidad ausente impide arrancar conector",
+    "blocker": "ED-01",
+    "requirement_id": "R-003",
+    "test_id": "Q-003",
+    "acceptance_id": "AC-003",
+    "priority": "P0",
+    "epic": "V0-CORE",
+    "feature": "Settings",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "06-architecture-overview.md",
+      "08-domain-model.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/domain/core/t_003.py",
+      "tests/unit/test_t_003.py",
+      "tests/integration/test_t_003.py"
+    ]
+  },
+  {
+    "id": "T-004",
+    "phase": "V0",
+    "component": "C-API",
+    "title": "Validación de contratos y cliente tipado",
+    "contract": "Problem",
+    "dependencies": [
+      "T-001"
+    ],
+    "behavior": "Integrar schemas canónicos, validadores locales y generación TypeScript OpenAPI con diff de contratos",
+    "negative": "Campo extra, decimal numérico o respuesta incompatible falla CI",
+    "blocker": "NONE",
+    "requirement_id": "R-004",
+    "test_id": "Q-004",
+    "acceptance_id": "AC-004",
+    "priority": "P0",
+    "epic": "V0-API",
+    "feature": "Problem",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "backend/src/td/application/api/t_004.py",
+      "tests/unit/test_t_004.py",
+      "tests/integration/test_t_004.py"
+    ]
+  },
+  {
+    "id": "T-005",
+    "phase": "V0",
+    "component": "C-CORE",
+    "title": "Límites de importación",
+    "contract": "Settings",
+    "dependencies": [
+      "T-001"
+    ],
+    "behavior": "Regla automatizada impide imports de SDK, ORM y HTTP desde domain y strategies",
+    "negative": "Fixture con import prohibido hace fallar check",
+    "blocker": "NONE",
+    "requirement_id": "R-005",
+    "test_id": "Q-005",
+    "acceptance_id": "AC-005",
+    "priority": "P0",
+    "epic": "V0-CORE",
+    "feature": "Settings",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "06-architecture-overview.md",
+      "08-domain-model.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/domain/core/t_005.py",
+      "tests/unit/test_t_005.py",
+      "tests/integration/test_t_005.py"
+    ]
+  },
+  {
+    "id": "T-006",
+    "phase": "V0",
+    "component": "C-API",
+    "title": "Sesión local segura",
+    "contract": "Session",
+    "dependencies": [
+      "T-003",
+      "T-004"
+    ],
+    "behavior": "Bootstrap usuario local, Argon2id, login rate-limited y cookie opaca con expiración; logout revoca servidor",
+    "negative": "Cookie revocada, contraseña incorrecta y sesión vencida no autentican",
+    "blocker": "NONE",
+    "requirement_id": "R-006",
+    "test_id": "Q-006",
+    "acceptance_id": "AC-006",
+    "priority": "P0",
+    "epic": "V0-API",
+    "feature": "Session",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "backend/src/td/application/api/t_006.py",
+      "tests/unit/test_t_006.py",
+      "tests/integration/test_t_006.py"
+    ]
+  },
+  {
+    "id": "T-007",
+    "phase": "V0",
+    "component": "C-API",
+    "title": "Roles CSRF e idempotencia HTTP",
+    "contract": "ControlCommand",
+    "dependencies": [
+      "T-006"
+    ],
+    "behavior": "Middleware por rol, CSRF y clave de comando con huella actor/env/path/payload y conflicto409",
+    "negative": "Reader hace POST control, CSRF ausente o clave reciclada con otro payload se rechazan",
+    "blocker": "NONE",
+    "requirement_id": "R-007",
+    "test_id": "Q-007",
+    "acceptance_id": "AC-007",
+    "priority": "P0",
+    "epic": "V0-API",
+    "feature": "ControlCommand",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "backend/src/td/application/api/t_007.py",
+      "tests/unit/test_t_007.py",
+      "tests/integration/test_t_007.py"
+    ]
+  },
+  {
+    "id": "T-008",
+    "phase": "V0",
+    "component": "C-CORE",
+    "title": "Auditoría append-only",
+    "contract": "AuditRecord",
+    "dependencies": [
+      "T-003"
+    ],
+    "behavior": "Append con hash anterior, actor y resultado; permisos niegan UPDATE/DELETE a runtime",
+    "negative": "No poder persistir auditoría bloquea mutación sensible",
+    "blocker": "NONE",
+    "requirement_id": "R-008",
+    "test_id": "Q-008",
+    "acceptance_id": "AC-008",
+    "priority": "P0",
+    "epic": "V0-CORE",
+    "feature": "AuditRecord",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "06-architecture-overview.md",
+      "08-domain-model.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/domain/core/t_008.py",
+      "tests/unit/test_t_008.py",
+      "tests/integration/test_t_008.py"
+    ]
+  },
+  {
+    "id": "T-009",
+    "phase": "V0",
+    "component": "C-DATA",
+    "title": "Esquema SQL y migración fundacional",
+    "contract": "Observation",
+    "dependencies": [
+      "T-002",
+      "T-003",
+      "T-004"
+    ],
+    "behavior": "Crear tablas de identidad, observaciones, grants, jobs y outbox con claves únicas y migraciones expand",
+    "negative": "Duplicado de dedup_key/revision y rollback de migración conservan datos",
+    "blocker": "NONE",
+    "requirement_id": "R-009",
+    "test_id": "Q-009",
+    "acceptance_id": "AC-009",
+    "priority": "P0",
+    "epic": "V0-DATA",
+    "feature": "Observation",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "10-data-source-catalog.md",
+      "12-event-contracts.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-003",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/application/data/t_009.py",
+      "tests/unit/test_t_009.py",
+      "tests/integration/test_t_009.py"
+    ]
+  },
+  {
+    "id": "T-010",
+    "phase": "V1",
+    "component": "C-DATA",
+    "title": "Outbox receipts y leases",
+    "contract": "EventEnvelope",
+    "dependencies": [
+      "T-008",
+      "T-009"
+    ],
+    "behavior": "Escribir evento con agregado y consumir con receipt único; lease60s heartbeat15s y fencing",
+    "negative": "Crash después del efecto antes del ACK no duplica efecto",
+    "blocker": "NONE",
+    "requirement_id": "R-010",
+    "test_id": "Q-010",
+    "acceptance_id": "AC-010",
+    "priority": "P0",
+    "epic": "V1-DATA",
+    "feature": "EventEnvelope",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "10-data-source-catalog.md",
+      "12-event-contracts.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-003",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/application/data/t_010.py",
+      "tests/unit/test_t_010.py",
+      "tests/integration/test_t_010.py"
+    ]
+  },
+  {
+    "id": "T-011",
+    "phase": "V1",
+    "component": "C-OPS",
+    "title": "Reservas de presupuesto API",
+    "contract": "CostRecord",
+    "dependencies": [
+      "T-009",
+      "T-010"
+    ],
+    "behavior": "Reservar peor costo bajo transacción y reconciliar usage; contabilizar UNCERTAIN conservador",
+    "negative": "Dos jobs concurrentes al borde del cap no lo superan",
+    "blocker": "ED-02",
+    "requirement_id": "R-011",
+    "test_id": "Q-011",
+    "acceptance_id": "AC-011",
+    "priority": "P1",
+    "epic": "V1-OPS",
+    "feature": "CostRecord",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "27-infrastructure.md",
+      "28-deployment.md",
+      "29-observability.md",
+      "39-release-and-rollback.md"
+    ],
+    "adrs": [
+      "ADR-004",
+      "ADR-015"
+    ],
+    "files": [
+      "backend/src/td/application/ops/t_011.py",
+      "tests/unit/test_t_011.py",
+      "tests/integration/test_t_011.py"
+    ]
+  },
+  {
+    "id": "T-012",
+    "phase": "V1",
+    "component": "C-DATA",
+    "title": "Limitador retries y breaker de proveedores",
+    "contract": "ConnectorStatus",
+    "dependencies": [
+      "T-010",
+      "T-011"
+    ],
+    "behavior": "Limiter compartido por organización, timeouts y jitter acotados;401/403 bloquean y429 difiere",
+    "negative": "Crear más workers no aumenta cuota;5 fallos abre breaker",
+    "blocker": "ED-02",
+    "requirement_id": "R-012",
+    "test_id": "Q-012",
+    "acceptance_id": "AC-012",
+    "priority": "P1",
+    "epic": "V1-DATA",
+    "feature": "ConnectorStatus",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "10-data-source-catalog.md",
+      "12-event-contracts.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-003",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/application/data/t_012.py",
+      "tests/unit/test_t_012.py",
+      "tests/integration/test_t_012.py"
+    ]
+  },
+  {
+    "id": "T-013",
+    "phase": "V1",
+    "component": "C-DATA",
+    "title": "Raw store y manifests atómicos",
+    "contract": "ArtifactFile",
+    "dependencies": [
+      "T-009"
+    ],
+    "behavior": "Escribir tmp fsync hash rename y registrar evidencia; recuperación de huérfanos sin borrar referenciados",
+    "negative": "Crash antes del registro no expone dataset incompleto",
+    "blocker": "NONE",
+    "requirement_id": "R-013",
+    "test_id": "Q-013",
+    "acceptance_id": "AC-013",
+    "priority": "P1",
+    "epic": "V1-DATA",
+    "feature": "ArtifactFile",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "10-data-source-catalog.md",
+      "12-event-contracts.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-003",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/application/data/t_013.py",
+      "tests/unit/test_t_013.py",
+      "tests/integration/test_t_013.py"
+    ]
+  },
+  {
+    "id": "T-014",
+    "phase": "V1",
+    "component": "C-DATA",
+    "title": "Lecturas Solana RPC normalizadas",
+    "contract": "Observation",
+    "dependencies": [
+      "T-012",
+      "T-013"
+    ],
+    "behavior": "Adaptar getAccountInfo/getTransaction/getSignaturesForAddress con timestamp propio y versión admitida",
+    "negative": "RPC null o versión desconocida se marca desconocida; no fill ficticio",
+    "blocker": "ED-01",
+    "requirement_id": "R-014",
+    "test_id": "Q-014",
+    "acceptance_id": "AC-014",
+    "priority": "P1",
+    "epic": "V1-DATA",
+    "feature": "Observation",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "10-data-source-catalog.md",
+      "12-event-contracts.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-003",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/application/data/t_014.py",
+      "tests/unit/test_t_014.py",
+      "tests/integration/test_t_014.py"
+    ]
+  },
+  {
+    "id": "T-015",
+    "phase": "V1",
+    "component": "C-DATA",
+    "title": "Suscripción logs por programa",
+    "contract": "Observation",
+    "dependencies": [
+      "T-014"
+    ],
+    "behavior": "Abrir WSS con un mentions por suscripción, heartbeat y recepción durable por firma/slot",
+    "negative": "Mensaje repetido o disconnect no reinicia cursor sin evidencia",
+    "blocker": "ED-01",
+    "requirement_id": "R-015",
+    "test_id": "Q-015",
+    "acceptance_id": "AC-015",
+    "priority": "P1",
+    "epic": "V1-DATA",
+    "feature": "Observation",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "10-data-source-catalog.md",
+      "12-event-contracts.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-003",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/application/data/t_015.py",
+      "tests/unit/test_t_015.py",
+      "tests/integration/test_t_015.py"
+    ]
+  },
+  {
+    "id": "T-016",
+    "phase": "V1",
+    "component": "C-DATA",
+    "title": "Backfill y recuperación por cursor",
+    "contract": "CoverageInterval",
+    "dependencies": [
+      "T-014",
+      "T-015"
+    ],
+    "behavior": "Recuperar páginas before/until con solapamiento, dedup y watermark finalizado",
+    "negative": "Historial truncado produce GAP y no COMPLETE",
+    "blocker": "ED-03",
+    "requirement_id": "R-016",
+    "test_id": "Q-016",
+    "acceptance_id": "AC-016",
+    "priority": "P1",
+    "epic": "V1-DATA",
+    "feature": "CoverageInterval",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "10-data-source-catalog.md",
+      "12-event-contracts.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-003",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/application/data/t_016.py",
+      "tests/unit/test_t_016.py",
+      "tests/integration/test_t_016.py"
+    ]
+  },
+  {
+    "id": "T-017",
+    "phase": "V1",
+    "component": "C-DATA",
+    "title": "Enriquecimiento DEX Screener",
+    "contract": "Pool",
+    "dependencies": [
+      "T-012",
+      "T-013"
+    ],
+    "behavior": "Batch tokens máximo30 y mapear pairs con source/fecha; no generar universo desde populares",
+    "negative": "pairs null, ticker duplicado y campos nuevos no cambian identidad",
+    "blocker": "ED-01",
+    "requirement_id": "R-017",
+    "test_id": "Q-017",
+    "acceptance_id": "AC-017",
+    "priority": "P1",
+    "epic": "V1-DATA",
+    "feature": "Pool",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "10-data-source-catalog.md",
+      "12-event-contracts.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-003",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/application/data/t_017.py",
+      "tests/unit/test_t_017.py",
+      "tests/integration/test_t_017.py"
+    ]
+  },
+  {
+    "id": "T-018",
+    "phase": "V1",
+    "component": "C-EXEC",
+    "title": "Cotizaciones Jupiter V2",
+    "contract": "Quote",
+    "dependencies": [
+      "T-012",
+      "T-013"
+    ],
+    "behavior": "GET order de sólo cotización y mapping de cantidades,fees,route,timestamp; no firmar ni ejecutar",
+    "negative": "Ruta ausente, bytes inesperados y quote vencida no habilitan entrada",
+    "blocker": "ED-04",
+    "requirement_id": "R-018",
+    "test_id": "Q-018",
+    "acceptance_id": "AC-018",
+    "priority": "P1",
+    "epic": "V1-EXEC",
+    "feature": "Quote",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_018.py",
+      "tests/unit/test_t_018.py",
+      "tests/integration/test_t_018.py"
+    ]
+  },
+  {
+    "id": "T-019",
+    "phase": "V1",
+    "component": "C-DATA",
+    "title": "Reglas de calidad y cuarentena",
+    "contract": "Observation",
+    "dependencies": [
+      "T-014",
+      "T-017"
+    ],
+    "behavior": "Validar schemas, unidades, tiempos, duplicados y retractaciones con versión de parser",
+    "negative": "Payload malformado queda en cuarentena conservando hash",
+    "blocker": "NONE",
+    "requirement_id": "R-019",
+    "test_id": "Q-019",
+    "acceptance_id": "AC-019",
+    "priority": "P1",
+    "epic": "V1-DATA",
+    "feature": "Observation",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "10-data-source-catalog.md",
+      "12-event-contracts.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-003",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/application/data/t_019.py",
+      "tests/unit/test_t_019.py",
+      "tests/integration/test_t_019.py"
+    ]
+  },
+  {
+    "id": "T-020",
+    "phase": "V1",
+    "component": "C-DATA",
+    "title": "Cobertura y universo temporal",
+    "contract": "CoverageInterval",
+    "dependencies": [
+      "T-016",
+      "T-019"
+    ],
+    "behavior": "Materializar intervalos observados/gaps y membresía histórica sin borrar tokens muertos",
+    "negative": "Consulta as_of no incluye un asset descubierto posteriormente",
+    "blocker": "NONE",
+    "requirement_id": "R-020",
+    "test_id": "Q-020",
+    "acceptance_id": "AC-020",
+    "priority": "P1",
+    "epic": "V1-DATA",
+    "feature": "CoverageInterval",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "10-data-source-catalog.md",
+      "12-event-contracts.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-003",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/application/data/t_020.py",
+      "tests/unit/test_t_020.py",
+      "tests/integration/test_t_020.py"
+    ]
+  },
+  {
+    "id": "T-021",
+    "phase": "V2",
+    "component": "C-SOLANA",
+    "title": "Decoder creación de pools CPMM",
+    "contract": "Pool",
+    "dependencies": [
+      "T-015",
+      "T-019",
+      "T-020"
+    ],
+    "behavior": "Validar programa e instrucciones/cuentas de inicialización usando layout fijado; distinguir mint y pool",
+    "negative": "Log textual engañoso o upgrade no reconocido produce UNSUPPORTED",
+    "blocker": "ED-05",
+    "requirement_id": "R-021",
+    "test_id": "Q-021",
+    "acceptance_id": "AC-021",
+    "priority": "P1",
+    "epic": "V2-SOLANA",
+    "feature": "Pool",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "16-solana-intelligence.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-013"
+    ],
+    "files": [
+      "backend/src/td/application/solana/t_021.py",
+      "tests/unit/test_t_021.py",
+      "tests/integration/test_t_021.py"
+    ]
+  },
+  {
+    "id": "T-022",
+    "phase": "V2",
+    "component": "C-SOLANA",
+    "title": "Decoder swaps y reservas CPMM",
+    "contract": "Trade",
+    "dependencies": [
+      "T-021"
+    ],
+    "behavior": "Reconstruir swaps y cambios de vault con cantidades atómicas y fees por versión",
+    "negative": "Multihop y transacción fallida no se cuentan dos veces como volumen",
+    "blocker": "ED-05",
+    "requirement_id": "R-022",
+    "test_id": "Q-022",
+    "acceptance_id": "AC-022",
+    "priority": "P1",
+    "epic": "V2-SOLANA",
+    "feature": "Trade",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "16-solana-intelligence.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-013"
+    ],
+    "files": [
+      "backend/src/td/application/solana/t_022.py",
+      "tests/unit/test_t_022.py",
+      "tests/integration/test_t_022.py"
+    ]
+  },
+  {
+    "id": "T-023",
+    "phase": "V2",
+    "component": "C-SOLANA",
+    "title": "Mint y autoridades SPL",
+    "contract": "MintSnapshot",
+    "dependencies": [
+      "T-014",
+      "T-021"
+    ],
+    "behavior": "Decodificar owner,decimals,supply,mint/freeze authority con evidencia de slot",
+    "negative": "Owner desconocido o null crítico impide elegibilidad",
+    "blocker": "ED-05",
+    "requirement_id": "R-023",
+    "test_id": "Q-023",
+    "acceptance_id": "AC-023",
+    "priority": "P1",
+    "epic": "V2-SOLANA",
+    "feature": "MintSnapshot",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "16-solana-intelligence.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-013"
+    ],
+    "files": [
+      "backend/src/td/application/solana/t_023.py",
+      "tests/unit/test_t_023.py",
+      "tests/integration/test_t_023.py"
+    ]
+  },
+  {
+    "id": "T-024",
+    "phase": "V2",
+    "component": "C-SOLANA",
+    "title": "Extensiones Token-2022",
+    "contract": "TokenAssessment",
+    "dependencies": [
+      "T-023"
+    ],
+    "behavior": "Enumerar TLV/extensiones y cambios de fees/epoch; observar pero bloquear entradas MVP",
+    "negative": "TransferHook/PermanentDelegate/desconocida no aparece como seguro",
+    "blocker": "ED-05",
+    "requirement_id": "R-024",
+    "test_id": "Q-024",
+    "acceptance_id": "AC-024",
+    "priority": "P1",
+    "epic": "V2-SOLANA",
+    "feature": "TokenAssessment",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "16-solana-intelligence.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-013"
+    ],
+    "files": [
+      "backend/src/td/application/solana/t_024.py",
+      "tests/unit/test_t_024.py",
+      "tests/integration/test_t_024.py"
+    ]
+  },
+  {
+    "id": "T-025",
+    "phase": "V2",
+    "component": "C-SOLANA",
+    "title": "Concentración de holders",
+    "contract": "TokenAssessment",
+    "dependencies": [
+      "T-023"
+    ],
+    "behavior": "Agrupar token accounts por owner, separar vaults identificados y reportar cobertura",
+    "negative": "Top accounts incompleto no produce Gini o top10 poblacional ficticios",
+    "blocker": "ED-03",
+    "requirement_id": "R-025",
+    "test_id": "Q-025",
+    "acceptance_id": "AC-025",
+    "priority": "P1",
+    "epic": "V2-SOLANA",
+    "feature": "TokenAssessment",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "16-solana-intelligence.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-013"
+    ],
+    "files": [
+      "backend/src/td/application/solana/t_025.py",
+      "tests/unit/test_t_025.py",
+      "tests/integration/test_t_025.py"
+    ]
+  },
+  {
+    "id": "T-026",
+    "phase": "V2",
+    "component": "C-SOLANA",
+    "title": "Liquidez elegibilidad y ruta inversa",
+    "contract": "TokenAssessment",
+    "dependencies": [
+      "T-018",
+      "T-022",
+      "T-024",
+      "T-025"
+    ],
+    "behavior": "Aplicar policy temporal y tamaños cotizables, concentración y edad; persistir causas",
+    "negative": "Sin ruta de venta o retiro súbito revoca elegibilidad aun con alto TVL",
+    "blocker": "ED-04",
+    "requirement_id": "R-026",
+    "test_id": "Q-026",
+    "acceptance_id": "AC-026",
+    "priority": "P1",
+    "epic": "V2-SOLANA",
+    "feature": "TokenAssessment",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "16-solana-intelligence.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-013"
+    ],
+    "files": [
+      "backend/src/td/application/solana/t_026.py",
+      "tests/unit/test_t_026.py",
+      "tests/integration/test_t_026.py"
+    ]
+  },
+  {
+    "id": "T-027",
+    "phase": "V2",
+    "component": "C-SOLANA",
+    "title": "Anomalías observables básicas",
+    "contract": "ResearchClaim",
+    "dependencies": [
+      "T-022",
+      "T-025"
+    ],
+    "behavior": "Detectar concentración de flujo,ciclos y retiro abrupto con reglas versionadas y evidencia",
+    "negative": "Patrón raro no etiqueta fraude ni identidad personal",
+    "blocker": "NONE",
+    "requirement_id": "R-027",
+    "test_id": "Q-027",
+    "acceptance_id": "AC-027",
+    "priority": "P1",
+    "epic": "V2-SOLANA",
+    "feature": "ResearchClaim",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "16-solana-intelligence.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-013"
+    ],
+    "files": [
+      "backend/src/td/application/solana/t_027.py",
+      "tests/unit/test_t_027.py",
+      "tests/integration/test_t_027.py"
+    ]
+  },
+  {
+    "id": "T-028",
+    "phase": "V3",
+    "component": "C-ML",
+    "title": "Features temporales deterministas",
+    "contract": "FeatureSnapshot",
+    "dependencies": [
+      "T-020",
+      "T-022"
+    ],
+    "behavior": "Calcular retornos,volumen,volatilidad,compradores y missingness sólo con available_at pasado",
+    "negative": "Una observación tardía no cambia snapshot de decisión histórica",
+    "blocker": "NONE",
+    "requirement_id": "R-028",
+    "test_id": "Q-028",
+    "acceptance_id": "AC-028",
+    "priority": "P1",
+    "epic": "V3-ML",
+    "feature": "FeatureSnapshot",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_028.py",
+      "tests/unit/test_t_028.py",
+      "tests/integration/test_t_028.py"
+    ]
+  },
+  {
+    "id": "T-029",
+    "phase": "V3",
+    "component": "C-LAB",
+    "title": "Dataset congelado y manifiesto",
+    "contract": "DatasetManifest",
+    "dependencies": [
+      "T-013",
+      "T-020",
+      "T-028"
+    ],
+    "behavior": "Exportar Parquet con hashes,universo,cobertura y permisos; incluir fallidos y censura",
+    "negative": "Archivo cambiado o permiso revocado invalida consumo",
+    "blocker": "ED-03",
+    "requirement_id": "R-029",
+    "test_id": "Q-029",
+    "acceptance_id": "AC-029",
+    "priority": "P1",
+    "epic": "V3-LAB",
+    "feature": "DatasetManifest",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_029.py",
+      "tests/unit/test_t_029.py",
+      "tests/integration/test_t_029.py"
+    ]
+  },
+  {
+    "id": "T-030",
+    "phase": "V3",
+    "component": "C-LAB",
+    "title": "Splits purging embargo y holdout",
+    "contract": "Experiment",
+    "dependencies": [
+      "T-029"
+    ],
+    "behavior": "Generar folds temporales y eliminar solapamientos de etiquetas; registrar acceso al holdout",
+    "negative": "Random split o label que cruza frontera falla check",
+    "blocker": "NONE",
+    "requirement_id": "R-030",
+    "test_id": "Q-030",
+    "acceptance_id": "AC-030",
+    "priority": "P1",
+    "epic": "V3-LAB",
+    "feature": "Experiment",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_030.py",
+      "tests/unit/test_t_030.py",
+      "tests/integration/test_t_030.py"
+    ]
+  },
+  {
+    "id": "T-031",
+    "phase": "V3",
+    "component": "C-LEDGER",
+    "title": "Asientos balanceados por activo",
+    "contract": "JournalEntry",
+    "dependencies": [
+      "T-002",
+      "T-009"
+    ],
+    "behavior": "Postear fills/fees con effect_key único y suma cero por activo en una transacción",
+    "negative": "Duplicado o asiento desbalanceado no cambia saldo",
+    "blocker": "NONE",
+    "requirement_id": "R-031",
+    "test_id": "Q-031",
+    "acceptance_id": "AC-031",
+    "priority": "P0",
+    "epic": "V3-LEDGER",
+    "feature": "JournalEntry",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-004",
+      "ADR-016"
+    ],
+    "files": [
+      "backend/src/td/domain/ledger/t_031.py",
+      "tests/unit/test_t_031.py",
+      "tests/integration/test_t_031.py"
+    ]
+  },
+  {
+    "id": "T-032",
+    "phase": "V3",
+    "component": "C-LEDGER",
+    "title": "FIFO posiciones y NAV",
+    "contract": "PortfolioView",
+    "dependencies": [
+      "T-031"
+    ],
+    "behavior": "Reconstruir lotes,costo,realizado,no realizado y marca liquidable; separar flujos externos",
+    "negative": "Token sin liquidez no conserva mark ficticio; depósito no cuenta como ganancia",
+    "blocker": "NONE",
+    "requirement_id": "R-032",
+    "test_id": "Q-032",
+    "acceptance_id": "AC-032",
+    "priority": "P0",
+    "epic": "V3-LEDGER",
+    "feature": "PortfolioView",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-004",
+      "ADR-016"
+    ],
+    "files": [
+      "backend/src/td/domain/ledger/t_032.py",
+      "tests/unit/test_t_032.py",
+      "tests/integration/test_t_032.py"
+    ]
+  },
+  {
+    "id": "T-033",
+    "phase": "V3",
+    "component": "C-LAB",
+    "title": "Replay con reloj inyectado",
+    "contract": "Experiment",
+    "dependencies": [
+      "T-028",
+      "T-029",
+      "T-030",
+      "T-031"
+    ],
+    "behavior": "Ordenar eventos por disponibilidad y ejecutar mismas interfaces de señales/riesgo con seed",
+    "negative": "Repetir dataset/config produce misma secuencia; datos futuros no se entregan",
+    "blocker": "NONE",
+    "requirement_id": "R-033",
+    "test_id": "Q-033",
+    "acceptance_id": "AC-033",
+    "priority": "P1",
+    "epic": "V3-LAB",
+    "feature": "Experiment",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_033.py",
+      "tests/unit/test_t_033.py",
+      "tests/integration/test_t_033.py"
+    ]
+  },
+  {
+    "id": "T-034",
+    "phase": "V3",
+    "component": "C-LAB",
+    "title": "Fill model CPMM y fee ledger",
+    "contract": "Fill",
+    "dependencies": [
+      "T-018",
+      "T-022",
+      "T-033"
+    ],
+    "behavior": "Simular reservas por evento,fees y latencia; no usar cierre de vela ni descontar fee dos veces",
+    "negative": "Profundidad insuficiente o pool no soportado produce no fill",
+    "blocker": "ED-05",
+    "requirement_id": "R-034",
+    "test_id": "Q-034",
+    "acceptance_id": "AC-034",
+    "priority": "P1",
+    "epic": "V3-LAB",
+    "feature": "Fill",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_034.py",
+      "tests/unit/test_t_034.py",
+      "tests/integration/test_t_034.py"
+    ]
+  },
+  {
+    "id": "T-035",
+    "phase": "V3",
+    "component": "C-LAB",
+    "title": "Escenarios de costo latencia y liquidez",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-034"
+    ],
+    "behavior": "Reejecutar con slippage2x,fees1.5x,latencia y pérdida total; versionar escenario",
+    "negative": "Una estrategia positiva bruto puede quedar REJECTED neta",
+    "blocker": "NONE",
+    "requirement_id": "R-035",
+    "test_id": "Q-035",
+    "acceptance_id": "AC-035",
+    "priority": "P1",
+    "epic": "V3-LAB",
+    "feature": "EvaluationReport",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_035.py",
+      "tests/unit/test_t_035.py",
+      "tests/integration/test_t_035.py"
+    ]
+  },
+  {
+    "id": "T-036",
+    "phase": "V3",
+    "component": "C-LAB",
+    "title": "Métricas intervalos y multiplicidad",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-030",
+      "T-032",
+      "T-035"
+    ],
+    "behavior": "Calcular métricas doc23,bootstrap por bloques,comparación emparejada y Holm; exportar supuestos",
+    "negative": "Profit factor sin pérdidas queda indefinido; ticks correlacionados no inflan n",
+    "blocker": "NONE",
+    "requirement_id": "R-036",
+    "test_id": "Q-036",
+    "acceptance_id": "AC-036",
+    "priority": "P1",
+    "epic": "V3-LAB",
+    "feature": "EvaluationReport",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_036.py",
+      "tests/unit/test_t_036.py",
+      "tests/integration/test_t_036.py"
+    ]
+  },
+  {
+    "id": "T-037",
+    "phase": "V3",
+    "component": "C-LAB",
+    "title": "Preregistro y registro de ensayos",
+    "contract": "Experiment",
+    "dependencies": [
+      "T-030",
+      "T-036"
+    ],
+    "behavior": "Congelar hipótesis,trial_family,max_trials y criterios antes de acceso holdout",
+    "negative": "Ensayo extra o cambio tras holdout requiere nueva versión y no se oculta",
+    "blocker": "NONE",
+    "requirement_id": "R-037",
+    "test_id": "Q-037",
+    "acceptance_id": "AC-037",
+    "priority": "P1",
+    "epic": "V3-LAB",
+    "feature": "Experiment",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_037.py",
+      "tests/unit/test_t_037.py",
+      "tests/integration/test_t_037.py"
+    ]
+  },
+  {
+    "id": "T-038",
+    "phase": "V4",
+    "component": "C-ML",
+    "title": "Baseline logístico temporal",
+    "contract": "ModelArtifact",
+    "dependencies": [
+      "T-028",
+      "T-030",
+      "T-037"
+    ],
+    "behavior": "Entrenar logística regularizada con scaler train-only y artefacto reproducible",
+    "negative": "Imputador entrenado en test es detectado por fixture temporal",
+    "blocker": "NONE",
+    "requirement_id": "R-038",
+    "test_id": "Q-038",
+    "acceptance_id": "AC-038",
+    "priority": "P1",
+    "epic": "V4-ML",
+    "feature": "ModelArtifact",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_038.py",
+      "tests/unit/test_t_038.py",
+      "tests/integration/test_t_038.py"
+    ]
+  },
+  {
+    "id": "T-039",
+    "phase": "V4",
+    "component": "C-ML",
+    "title": "LightGBM CPU acotado",
+    "contract": "ModelArtifact",
+    "dependencies": [
+      "T-038"
+    ],
+    "behavior": "Entrenar12 configs preregistradas como máximo,8 hilos4GiB y early stopping interno",
+    "negative": "OOM marca FAILED sin reemplazar modelo existente",
+    "blocker": "ED-07",
+    "requirement_id": "R-039",
+    "test_id": "Q-039",
+    "acceptance_id": "AC-039",
+    "priority": "P1",
+    "epic": "V4-ML",
+    "feature": "ModelArtifact",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_039.py",
+      "tests/unit/test_t_039.py",
+      "tests/integration/test_t_039.py"
+    ]
+  },
+  {
+    "id": "T-040",
+    "phase": "V4",
+    "component": "C-ML",
+    "title": "Calibración y predicción tipada",
+    "contract": "Prediction",
+    "dependencies": [
+      "T-039"
+    ],
+    "behavior": "Ajustar Platt en validación temporal separada y emitir cuantiles ordenados con TTL",
+    "negative": "Cuantiles cruzados o calibración sobre test son rechazados",
+    "blocker": "NONE",
+    "requirement_id": "R-040",
+    "test_id": "Q-040",
+    "acceptance_id": "AC-040",
+    "priority": "P1",
+    "epic": "V4-ML",
+    "feature": "Prediction",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_040.py",
+      "tests/unit/test_t_040.py",
+      "tests/integration/test_t_040.py"
+    ]
+  },
+  {
+    "id": "T-041",
+    "phase": "V4",
+    "component": "C-ML",
+    "title": "Registro de modelos y lineage",
+    "contract": "ModelArtifact",
+    "dependencies": [
+      "T-038",
+      "T-040"
+    ],
+    "behavior": "Registrar hashes,licencias,cutoff,feature schema y estado sin autopromoción",
+    "negative": "Hash de pesos alterado o licencia ausente bloquea carga",
+    "blocker": "ED-07",
+    "requirement_id": "R-041",
+    "test_id": "Q-041",
+    "acceptance_id": "AC-041",
+    "priority": "P1",
+    "epic": "V4-ML",
+    "feature": "ModelArtifact",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_041.py",
+      "tests/unit/test_t_041.py",
+      "tests/integration/test_t_041.py"
+    ]
+  },
+  {
+    "id": "T-042",
+    "phase": "V4",
+    "component": "C-ML",
+    "title": "Challenger XGBoost",
+    "contract": "ModelArtifact",
+    "dependencies": [
+      "T-041"
+    ],
+    "behavior": "Comparar mismo target,folds y presupuesto contra LightGBM sin cambiar champion",
+    "negative": "Mejor accuracy con peor PnL no promueve",
+    "blocker": "ED-07",
+    "requirement_id": "R-042",
+    "test_id": "Q-042",
+    "acceptance_id": "AC-042",
+    "priority": "P1",
+    "epic": "V4-ML",
+    "feature": "ModelArtifact",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_042.py",
+      "tests/unit/test_t_042.py",
+      "tests/integration/test_t_042.py"
+    ]
+  },
+  {
+    "id": "T-043",
+    "phase": "V4",
+    "component": "C-ML",
+    "title": "Benchmark Kronos compacto",
+    "contract": "ModelArtifact",
+    "dependencies": [
+      "T-041"
+    ],
+    "behavior": "Adaptador mini/small con contexto permitido y medición RAM/VRAM; metadata de pretraining",
+    "negative": "Corte de pretraining desconocido etiqueta histórico como no ciego",
+    "blocker": "ED-07",
+    "requirement_id": "R-043",
+    "test_id": "Q-043",
+    "acceptance_id": "AC-043",
+    "priority": "P1",
+    "epic": "V4-ML",
+    "feature": "ModelArtifact",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_043.py",
+      "tests/unit/test_t_043.py",
+      "tests/integration/test_t_043.py"
+    ]
+  },
+  {
+    "id": "T-044",
+    "phase": "V4",
+    "component": "C-ML",
+    "title": "Benchmark Chronos-Bolt tiny",
+    "contract": "ModelArtifact",
+    "dependencies": [
+      "T-041"
+    ],
+    "behavior": "Adapter forecast a target común y cuantiles con datos pasados; medir costo local",
+    "negative": "Covariable futura o calendario incorrecto invalida ensayo",
+    "blocker": "ED-07",
+    "requirement_id": "R-044",
+    "test_id": "Q-044",
+    "acceptance_id": "AC-044",
+    "priority": "P1",
+    "epic": "V4-ML",
+    "feature": "ModelArtifact",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_044.py",
+      "tests/unit/test_t_044.py",
+      "tests/integration/test_t_044.py"
+    ]
+  },
+  {
+    "id": "T-045",
+    "phase": "V4",
+    "component": "C-ML",
+    "title": "Admisión y benchmark TimesFM",
+    "contract": "ModelArtifact",
+    "dependencies": [
+      "T-041"
+    ],
+    "behavior": "Verificar checkpoint/licencia; sólo benchmark autorizado;3.0 no productivo por aviso consultado",
+    "negative": "Confundir licencia de código con pesos bloquea registro",
+    "blocker": "ED-07",
+    "requirement_id": "R-045",
+    "test_id": "Q-045",
+    "acceptance_id": "AC-045",
+    "priority": "P1",
+    "epic": "V4-ML",
+    "feature": "ModelArtifact",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_045.py",
+      "tests/unit/test_t_045.py",
+      "tests/integration/test_t_045.py"
+    ]
+  },
+  {
+    "id": "T-046",
+    "phase": "V7",
+    "component": "C-AI",
+    "title": "Admisión FinBERT",
+    "contract": "ExtractionResult",
+    "dependencies": [
+      "T-041"
+    ],
+    "behavior": "Evaluar checkpoint autorizado en corpus humano de dominio, con evidencia de licencia de pesos/datos",
+    "negative": "Licencia no acreditada o bajo recall de entidades deja adapter disabled",
+    "blocker": "ED-07",
+    "requirement_id": "R-046",
+    "test_id": "Q-046",
+    "acceptance_id": "AC-046",
+    "priority": "P2",
+    "epic": "V7-AI",
+    "feature": "ExtractionResult",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "15-autonomous-research.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-010"
+    ],
+    "files": [
+      "backend/src/td/application/ai/t_046.py",
+      "tests/unit/test_t_046.py",
+      "tests/integration/test_t_046.py"
+    ]
+  },
+  {
+    "id": "T-047",
+    "phase": "V7",
+    "component": "C-AI",
+    "title": "Admisión FinGPT",
+    "contract": "ModelArtifact",
+    "dependencies": [
+      "T-041"
+    ],
+    "behavior": "Comparar artefacto específico/base/LoRA autorizado contra extracción API con budget fijo",
+    "negative": "Código MIT no acredita corpus o modelo base",
+    "blocker": "ED-07",
+    "requirement_id": "R-047",
+    "test_id": "Q-047",
+    "acceptance_id": "AC-047",
+    "priority": "P2",
+    "epic": "V7-AI",
+    "feature": "ModelArtifact",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "15-autonomous-research.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-010"
+    ],
+    "files": [
+      "backend/src/td/application/ai/t_047.py",
+      "tests/unit/test_t_047.py",
+      "tests/integration/test_t_047.py"
+    ]
+  },
+  {
+    "id": "T-048",
+    "phase": "V9",
+    "component": "C-ML",
+    "title": "Benchmark L2 DeepLOB-like",
+    "contract": "Prediction",
+    "dependencies": [
+      "T-041",
+      "T-100"
+    ],
+    "behavior": "Entrenar red acotada sólo con L2 íntegro y folds por tiempo/instrumento",
+    "negative": "Datos AMM sin libro no se adaptan fingiendo bids/asks",
+    "blocker": "ED-08",
+    "requirement_id": "R-048",
+    "test_id": "Q-048",
+    "acceptance_id": "AC-048",
+    "priority": "P2",
+    "epic": "V9-ML",
+    "feature": "Prediction",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_048.py",
+      "tests/unit/test_t_048.py",
+      "tests/integration/test_t_048.py"
+    ]
+  },
+  {
+    "id": "T-049",
+    "phase": "V5",
+    "component": "C-DECISION",
+    "title": "Decisión y NO_TRADE",
+    "contract": "Decision",
+    "dependencies": [
+      "T-026",
+      "T-040",
+      "T-041",
+      "T-028"
+    ],
+    "behavior": "Aplicar secuencia determinista,TTL,edge neto y desempate; persistir abstenciones",
+    "negative": "Dos señales correlacionadas no generan doble candidato; costo mata edge",
+    "blocker": "NONE",
+    "requirement_id": "R-049",
+    "test_id": "Q-049",
+    "acceptance_id": "AC-049",
+    "priority": "P1",
+    "epic": "V5-DECISION",
+    "feature": "Decision",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007"
+    ],
+    "files": [
+      "backend/src/td/domain/decision/t_049.py",
+      "tests/unit/test_t_049.py",
+      "tests/integration/test_t_049.py"
+    ]
+  },
+  {
+    "id": "T-050",
+    "phase": "V5",
+    "component": "C-RISK",
+    "title": "Sizing y límites deterministas",
+    "contract": "RiskAssessment",
+    "dependencies": [
+      "T-026",
+      "T-032",
+      "T-049"
+    ],
+    "behavior": "Implementar caps de policy,full-loss memecoin y rounding down; desconocido deniega",
+    "negative": "Stop5% no reduce riesgo100%; NAV desconocido impide entrada",
+    "blocker": "NONE",
+    "requirement_id": "R-050",
+    "test_id": "Q-050",
+    "acceptance_id": "AC-050",
+    "priority": "P0",
+    "epic": "V5-RISK",
+    "feature": "RiskAssessment",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "20-risk-engine.md",
+      "21-execution-engine.md"
+    ],
+    "adrs": [
+      "ADR-007",
+      "ADR-009",
+      "ADR-016"
+    ],
+    "files": [
+      "backend/src/td/domain/risk/t_050.py",
+      "tests/unit/test_t_050.py",
+      "tests/integration/test_t_050.py"
+    ]
+  },
+  {
+    "id": "T-051",
+    "phase": "V5",
+    "component": "C-RISK",
+    "title": "Reservas concurrentes y fencing",
+    "contract": "Reservation",
+    "dependencies": [
+      "T-009",
+      "T-050"
+    ],
+    "behavior": "Bloqueo de portfolio,exposición pending,expiry segura y unique decision con outbox",
+    "negative": "Carrera de dos compras no excede cap ni libera UNKNOWN por lease",
+    "blocker": "NONE",
+    "requirement_id": "R-051",
+    "test_id": "Q-051",
+    "acceptance_id": "AC-051",
+    "priority": "P0",
+    "epic": "V5-RISK",
+    "feature": "Reservation",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "20-risk-engine.md",
+      "21-execution-engine.md"
+    ],
+    "adrs": [
+      "ADR-007",
+      "ADR-009",
+      "ADR-016"
+    ],
+    "files": [
+      "backend/src/td/domain/risk/t_051.py",
+      "tests/unit/test_t_051.py",
+      "tests/integration/test_t_051.py"
+    ]
+  },
+  {
+    "id": "T-052",
+    "phase": "V5",
+    "component": "C-RISK",
+    "title": "Modos kill switch y close-only",
+    "contract": "ControlCommand",
+    "dependencies": [
+      "T-007",
+      "T-008",
+      "T-051"
+    ],
+    "behavior": "Control durable con epoch; HALT inmediato,RESUME sólo paper reautenticado",
+    "negative": "Restart no borra pérdidas; halt no finge cancelar on-chain",
+    "blocker": "NONE",
+    "requirement_id": "R-052",
+    "test_id": "Q-052",
+    "acceptance_id": "AC-052",
+    "priority": "P0",
+    "epic": "V5-RISK",
+    "feature": "ControlCommand",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "20-risk-engine.md",
+      "21-execution-engine.md"
+    ],
+    "adrs": [
+      "ADR-007",
+      "ADR-009",
+      "ADR-016"
+    ],
+    "files": [
+      "backend/src/td/domain/risk/t_052.py",
+      "tests/unit/test_t_052.py",
+      "tests/integration/test_t_052.py"
+    ]
+  },
+  {
+    "id": "T-053",
+    "phase": "V6",
+    "component": "C-EXEC",
+    "title": "Máquina de órdenes paper",
+    "contract": "Order",
+    "dependencies": [
+      "T-051",
+      "T-052"
+    ],
+    "behavior": "Implementar transiciones normativas y guards con versiones; efecto durable por paso",
+    "negative": "PREPARED inválido no salta a fill; transición prohibida devuelve conflicto",
+    "blocker": "NONE",
+    "requirement_id": "R-053",
+    "test_id": "Q-053",
+    "acceptance_id": "AC-053",
+    "priority": "P1",
+    "epic": "V6-EXEC",
+    "feature": "Order",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_053.py",
+      "tests/unit/test_t_053.py",
+      "tests/integration/test_t_053.py"
+    ]
+  },
+  {
+    "id": "T-054",
+    "phase": "V6",
+    "component": "C-EXEC",
+    "title": "Paper fills y costos prospectivos",
+    "contract": "ExecutionReport",
+    "dependencies": [
+      "T-034",
+      "T-053",
+      "T-107",
+      "T-141"
+    ],
+    "behavior": "Crear fill simulado con quote disponible,latencia y failure model; conservar simulated true",
+    "negative": "Datos futuros o quote inexistente no se convierten en precio de cierre",
+    "blocker": "ED-04",
+    "requirement_id": "R-054",
+    "test_id": "Q-054",
+    "acceptance_id": "AC-054",
+    "priority": "P1",
+    "epic": "V6-EXEC",
+    "feature": "ExecutionReport",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_054.py",
+      "tests/unit/test_t_054.py",
+      "tests/integration/test_t_054.py"
+    ]
+  },
+  {
+    "id": "T-055",
+    "phase": "V6",
+    "component": "C-EXEC",
+    "title": "Reconciliación paper y ledger",
+    "contract": "PortfolioView",
+    "dependencies": [
+      "T-031",
+      "T-032",
+      "T-054"
+    ],
+    "behavior": "Conciliar órdenes,fills,reservas y balances reconstruidos antes de liberar exposición",
+    "negative": "Crash entre fill y journal se recupera sin doble asiento",
+    "blocker": "NONE",
+    "requirement_id": "R-055",
+    "test_id": "Q-055",
+    "acceptance_id": "AC-055",
+    "priority": "P1",
+    "epic": "V6-EXEC",
+    "feature": "PortfolioView",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_055.py",
+      "tests/unit/test_t_055.py",
+      "tests/integration/test_t_055.py"
+    ]
+  },
+  {
+    "id": "T-056",
+    "phase": "V6",
+    "component": "C-EXEC",
+    "title": "Sesiones paper y recuperación",
+    "contract": "Job",
+    "dependencies": [
+      "T-020",
+      "T-055",
+      "T-108",
+      "T-140"
+    ],
+    "behavior": "Persistir start/end,config,coverage,checkpoint y estado paused al reiniciar",
+    "negative": "Apagado no genera fills inexistentes y baja cobertura",
+    "blocker": "NONE",
+    "requirement_id": "R-056",
+    "test_id": "Q-056",
+    "acceptance_id": "AC-056",
+    "priority": "P1",
+    "epic": "V6-EXEC",
+    "feature": "Job",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_056.py",
+      "tests/unit/test_t_056.py",
+      "tests/integration/test_t_056.py"
+    ]
+  },
+  {
+    "id": "T-057",
+    "phase": "V6",
+    "component": "C-API",
+    "title": "Panel mínimo de control",
+    "contract": "SystemView",
+    "dependencies": [
+      "T-007",
+      "T-052",
+      "T-056"
+    ],
+    "behavior": "Mostrar entorno,modo,decisiones,órdenes,stale y HALT; polling5s y permisos",
+    "negative": "Offline o401 deja acciones bloqueadas; reader no puede mutar",
+    "blocker": "NONE",
+    "requirement_id": "R-057",
+    "test_id": "Q-057",
+    "acceptance_id": "AC-057",
+    "priority": "P1",
+    "epic": "V6-API",
+    "feature": "SystemView",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "web/src/features/t_057/index.tsx",
+      "web/tests/t_057.spec.ts"
+    ]
+  },
+  {
+    "id": "T-058",
+    "phase": "V7",
+    "component": "C-RESEARCH",
+    "title": "Grants revocación y derivados",
+    "contract": "SourceGrant",
+    "dependencies": [
+      "T-003",
+      "T-009",
+      "T-041"
+    ],
+    "behavior": "Aprobar/revocar finalidades con evidencia y propagar expiración a caches/datasets/modelos",
+    "negative": "Permiso inference no permite training; revocación interrumpe jobs afectados",
+    "blocker": "ED-06",
+    "requirement_id": "R-058",
+    "test_id": "Q-058",
+    "acceptance_id": "AC-058",
+    "priority": "P2",
+    "epic": "V7-RESEARCH",
+    "feature": "SourceGrant",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "10-data-source-catalog.md",
+      "15-autonomous-research.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-010"
+    ],
+    "files": [
+      "backend/src/td/application/research/t_058.py",
+      "tests/unit/test_t_058.py",
+      "tests/integration/test_t_058.py"
+    ]
+  },
+  {
+    "id": "T-059",
+    "phase": "V7",
+    "component": "C-RESEARCH",
+    "title": "Fetcher con allowlist y SSRF",
+    "contract": "NewsItem",
+    "dependencies": [
+      "T-012",
+      "T-013",
+      "T-058"
+    ],
+    "behavior": "HTTPS limitado,validación DNS/redirecciones,MIME/tamaño y evidencia; sin shell",
+    "negative": "Redirect a metadata olocalhost y archivo ejecutable se rechazan",
+    "blocker": "ED-06",
+    "requirement_id": "R-059",
+    "test_id": "Q-059",
+    "acceptance_id": "AC-059",
+    "priority": "P2",
+    "epic": "V7-RESEARCH",
+    "feature": "NewsItem",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "10-data-source-catalog.md",
+      "15-autonomous-research.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-010"
+    ],
+    "files": [
+      "backend/src/td/application/research/t_059.py",
+      "tests/unit/test_t_059.py",
+      "tests/integration/test_t_059.py"
+    ]
+  },
+  {
+    "id": "T-060",
+    "phase": "V7",
+    "component": "C-AI",
+    "title": "Adapter OpenAI estructurado",
+    "contract": "ExtractionResult",
+    "dependencies": [
+      "T-011",
+      "T-012",
+      "T-041",
+      "T-058"
+    ],
+    "behavior": "Mapear request/schema al SDK oficial,validar localmente,usage/deadline y abstención",
+    "negative": "Refusal,truncamiento oJSON válido con fuente inventada falla seguro",
+    "blocker": "ED-09",
+    "requirement_id": "R-060",
+    "test_id": "Q-060",
+    "acceptance_id": "AC-060",
+    "priority": "P2",
+    "epic": "V7-AI",
+    "feature": "ExtractionResult",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "15-autonomous-research.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-010"
+    ],
+    "files": [
+      "backend/src/td/application/ai/t_060.py",
+      "tests/unit/test_t_060.py",
+      "tests/integration/test_t_060.py"
+    ]
+  },
+  {
+    "id": "T-061",
+    "phase": "V7",
+    "component": "C-AI",
+    "title": "Adapter Anthropic y fallback",
+    "contract": "ExtractionResult",
+    "dependencies": [
+      "T-060"
+    ],
+    "behavior": "Certificar contrato con Haiku y permitir fallback sólo con misma evaluación/costo",
+    "negative": "Fallback fuera de deadline o a modelo no certificado se rechaza",
+    "blocker": "ED-09",
+    "requirement_id": "R-061",
+    "test_id": "Q-061",
+    "acceptance_id": "AC-061",
+    "priority": "P2",
+    "epic": "V7-AI",
+    "feature": "ExtractionResult",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "15-autonomous-research.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-010"
+    ],
+    "files": [
+      "backend/src/td/application/ai/t_061.py",
+      "tests/unit/test_t_061.py",
+      "tests/integration/test_t_061.py"
+    ]
+  },
+  {
+    "id": "T-062",
+    "phase": "V7",
+    "component": "C-AI",
+    "title": "Adapter Gemini y fallback",
+    "contract": "ExtractionResult",
+    "dependencies": [
+      "T-060"
+    ],
+    "behavior": "Certificar Flash-Lite con esquema compatible y tratamiento de datos elegido",
+    "negative": "Free tier sin autorización de contenido no se usa por ahorro",
+    "blocker": "ED-09",
+    "requirement_id": "R-062",
+    "test_id": "Q-062",
+    "acceptance_id": "AC-062",
+    "priority": "P2",
+    "epic": "V7-AI",
+    "feature": "ExtractionResult",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "15-autonomous-research.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-010"
+    ],
+    "files": [
+      "backend/src/td/application/ai/t_062.py",
+      "tests/unit/test_t_062.py",
+      "tests/integration/test_t_062.py"
+    ]
+  },
+  {
+    "id": "T-063",
+    "phase": "V7",
+    "component": "C-AI",
+    "title": "Extracción entidades y sentimiento",
+    "contract": "ExtractionResult",
+    "dependencies": [
+      "T-059",
+      "T-060"
+    ],
+    "behavior": "Prompt versionado identifica mint/contexto,claims,evidencia y abstención con corpus humano",
+    "negative": "Ticker ambiguo o instrucción incrustada no produce entidad segura ni herramienta",
+    "blocker": "ED-06",
+    "requirement_id": "R-063",
+    "test_id": "Q-063",
+    "acceptance_id": "AC-063",
+    "priority": "P2",
+    "epic": "V7-AI",
+    "feature": "ExtractionResult",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "15-autonomous-research.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-010"
+    ],
+    "files": [
+      "backend/src/td/application/ai/t_063.py",
+      "tests/unit/test_t_063.py",
+      "tests/integration/test_t_063.py"
+    ]
+  },
+  {
+    "id": "T-064",
+    "phase": "V7",
+    "component": "C-RESEARCH",
+    "title": "Deduplicación y orígenes",
+    "contract": "ResearchClaim",
+    "dependencies": [
+      "T-063"
+    ],
+    "behavior": "Canonical URL/hash/similitud y cluster de sindicación; revisiones append-only",
+    "negative": "Cinco copias no cuentan cinco fuentes independientes",
+    "blocker": "NONE",
+    "requirement_id": "R-064",
+    "test_id": "Q-064",
+    "acceptance_id": "AC-064",
+    "priority": "P2",
+    "epic": "V7-RESEARCH",
+    "feature": "ResearchClaim",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "10-data-source-catalog.md",
+      "15-autonomous-research.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-010"
+    ],
+    "files": [
+      "backend/src/td/application/research/t_064.py",
+      "tests/unit/test_t_064.py",
+      "tests/integration/test_t_064.py"
+    ]
+  },
+  {
+    "id": "T-065",
+    "phase": "V7",
+    "component": "C-RESEARCH",
+    "title": "Hipótesis y jobs limitados",
+    "contract": "Hypothesis",
+    "dependencies": [
+      "T-037",
+      "T-064"
+    ],
+    "behavior": "Proponer mecanismo,target,placebo/rechazo y ejecutar sólo plantillas admitidas con2 jobs/día",
+    "negative": "Texto externo pide código/shell oautoaprobación y no obtiene permisos",
+    "blocker": "NONE",
+    "requirement_id": "R-065",
+    "test_id": "Q-065",
+    "acceptance_id": "AC-065",
+    "priority": "P2",
+    "epic": "V7-RESEARCH",
+    "feature": "Hypothesis",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "10-data-source-catalog.md",
+      "15-autonomous-research.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-010"
+    ],
+    "files": [
+      "backend/src/td/application/research/t_065.py",
+      "tests/unit/test_t_065.py",
+      "tests/integration/test_t_065.py"
+    ]
+  },
+  {
+    "id": "T-066",
+    "phase": "V7",
+    "component": "C-RESEARCH",
+    "title": "Conocimiento versionado",
+    "contract": "ResearchClaim",
+    "dependencies": [
+      "T-064",
+      "T-065"
+    ],
+    "behavior": "Guardar claims,relaciones,contradicciones y conclusiones negativas con búsqueda textual",
+    "negative": "Corrección no borra evidencia previa; permiso vencido limita lectura",
+    "blocker": "NONE",
+    "requirement_id": "R-066",
+    "test_id": "Q-066",
+    "acceptance_id": "AC-066",
+    "priority": "P2",
+    "epic": "V7-RESEARCH",
+    "feature": "ResearchClaim",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "10-data-source-catalog.md",
+      "15-autonomous-research.md",
+      "25-security.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-010"
+    ],
+    "files": [
+      "backend/src/td/application/research/t_066.py",
+      "tests/unit/test_t_066.py",
+      "tests/integration/test_t_066.py"
+    ]
+  },
+  {
+    "id": "T-067",
+    "phase": "V8",
+    "component": "C-TRADERS",
+    "title": "Historial de wallets y tipos de flujos",
+    "contract": "WalletTransaction",
+    "dependencies": [
+      "T-014",
+      "T-016",
+      "T-022"
+    ],
+    "behavior": "Reconstruir swaps,transferencias,wraps,fees y ownership sin inferir persona",
+    "negative": "Transferencia no se trata como compra; cuenta cerrada conserva historia",
+    "blocker": "ED-03",
+    "requirement_id": "R-067",
+    "test_id": "Q-067",
+    "acceptance_id": "AC-067",
+    "priority": "P2",
+    "epic": "V8-TRADERS",
+    "feature": "WalletTransaction",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "16-solana-intelligence.md",
+      "17-trader-intelligence.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/traders/t_067.py",
+      "tests/unit/test_t_067.py",
+      "tests/integration/test_t_067.py"
+    ]
+  },
+  {
+    "id": "T-068",
+    "phase": "V8",
+    "component": "C-TRADERS",
+    "title": "Inventario PnL observable y cobertura",
+    "contract": "TraderProfile",
+    "dependencies": [
+      "T-031",
+      "T-032",
+      "T-067"
+    ],
+    "behavior": "FIFO por wallet con lotes UNKNOWN_COST y TWR sólo con flujos/capital observables",
+    "negative": "Airdrop/desconocido no infla ROI; falta historia deja null",
+    "blocker": "ED-03",
+    "requirement_id": "R-068",
+    "test_id": "Q-068",
+    "acceptance_id": "AC-068",
+    "priority": "P2",
+    "epic": "V8-TRADERS",
+    "feature": "TraderProfile",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "16-solana-intelligence.md",
+      "17-trader-intelligence.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/traders/t_068.py",
+      "tests/unit/test_t_068.py",
+      "tests/integration/test_t_068.py"
+    ]
+  },
+  {
+    "id": "T-069",
+    "phase": "V8",
+    "component": "C-TRADERS",
+    "title": "Cohortes y selección ex ante",
+    "contract": "TraderProfile",
+    "dependencies": [
+      "T-030",
+      "T-036",
+      "T-068"
+    ],
+    "behavior": "Score por train con cobertura>=95%/90 días,clusters y selección congelada",
+    "negative": "Ranking test no se infiltra al pasado; wallets correlacionadas no son n independientes",
+    "blocker": "ED-03",
+    "requirement_id": "R-069",
+    "test_id": "Q-069",
+    "acceptance_id": "AC-069",
+    "priority": "P2",
+    "epic": "V8-TRADERS",
+    "feature": "TraderProfile",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "16-solana-intelligence.md",
+      "17-trader-intelligence.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/traders/t_069.py",
+      "tests/unit/test_t_069.py",
+      "tests/integration/test_t_069.py"
+    ]
+  },
+  {
+    "id": "T-070",
+    "phase": "V9",
+    "component": "C-ML",
+    "title": "Fusión temporal OOF",
+    "contract": "Prediction",
+    "dependencies": [
+      "T-040",
+      "T-063",
+      "T-069"
+    ],
+    "behavior": "Meta-modelo logístico con señales OOF disponibles y ablaciones completas",
+    "negative": "In-sample predicciones de bases en train del ensemble son bloqueadas",
+    "blocker": "ED-06",
+    "requirement_id": "R-070",
+    "test_id": "Q-070",
+    "acceptance_id": "AC-070",
+    "priority": "P2",
+    "epic": "V9-ML",
+    "feature": "Prediction",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_070.py",
+      "tests/unit/test_t_070.py",
+      "tests/integration/test_t_070.py"
+    ]
+  },
+  {
+    "id": "T-071",
+    "phase": "V9",
+    "component": "C-ML",
+    "title": "Features de régimen",
+    "contract": "FeatureSnapshot",
+    "dependencies": [
+      "T-028",
+      "T-030"
+    ],
+    "behavior": "Calcular volatilidad/tendencia/liquidez y thresholds train-only con histéresis",
+    "negative": "Regímenes definidos usando futuro del test invalidan experimento",
+    "blocker": "NONE",
+    "requirement_id": "R-071",
+    "test_id": "Q-071",
+    "acceptance_id": "AC-071",
+    "priority": "P2",
+    "epic": "V9-ML",
+    "feature": "FeatureSnapshot",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_071.py",
+      "tests/unit/test_t_071.py",
+      "tests/integration/test_t_071.py"
+    ]
+  },
+  {
+    "id": "T-072",
+    "phase": "V10",
+    "component": "C-LEARN",
+    "title": "Outcomes maduros y censura",
+    "contract": "Outcome",
+    "dependencies": [
+      "T-040",
+      "T-055"
+    ],
+    "behavior": "Unir predicción con resultado observable sólo al vencer horizonte y conservar censura/correcciones",
+    "negative": "Token sin salida no se elimina de evaluación",
+    "blocker": "NONE",
+    "requirement_id": "R-072",
+    "test_id": "Q-072",
+    "acceptance_id": "AC-072",
+    "priority": "P2",
+    "epic": "V10-LEARN",
+    "feature": "Outcome",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "14-ml-models.md",
+      "24-continuous-learning.md"
+    ],
+    "adrs": [
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/learn/t_072.py",
+      "tests/unit/test_t_072.py",
+      "tests/integration/test_t_072.py"
+    ]
+  },
+  {
+    "id": "T-073",
+    "phase": "V10",
+    "component": "C-LEARN",
+    "title": "Drift y retirada segura",
+    "contract": "Alert",
+    "dependencies": [
+      "T-072"
+    ],
+    "behavior": "Medir missingness/calibración/costos y deshabilitar entradas del modelo según política",
+    "negative": "Una alerta no cambia champion ni liquida a precio inexistente",
+    "blocker": "NONE",
+    "requirement_id": "R-073",
+    "test_id": "Q-073",
+    "acceptance_id": "AC-073",
+    "priority": "P2",
+    "epic": "V10-LEARN",
+    "feature": "Alert",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "14-ml-models.md",
+      "24-continuous-learning.md"
+    ],
+    "adrs": [
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/learn/t_073.py",
+      "tests/unit/test_t_073.py",
+      "tests/integration/test_t_073.py"
+    ]
+  },
+  {
+    "id": "T-074",
+    "phase": "V10",
+    "component": "C-LEARN",
+    "title": "Promoción CAS con evidencia",
+    "contract": "Promotion",
+    "dependencies": [
+      "T-007",
+      "T-008",
+      "T-036",
+      "T-041",
+      "T-072"
+    ],
+    "behavior": "Revisar gates/reportes y asignar champion en paper con compare-and-swap humano",
+    "negative": "Job trainer no puede aprobarse; revisión concurrente produce409",
+    "blocker": "NONE",
+    "requirement_id": "R-074",
+    "test_id": "Q-074",
+    "acceptance_id": "AC-074",
+    "priority": "P2",
+    "epic": "V10-LEARN",
+    "feature": "Promotion",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "14-ml-models.md",
+      "24-continuous-learning.md"
+    ],
+    "adrs": [
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/learn/t_074.py",
+      "tests/unit/test_t_074.py",
+      "tests/integration/test_t_074.py"
+    ]
+  },
+  {
+    "id": "T-075",
+    "phase": "V10",
+    "component": "C-LEARN",
+    "title": "Rollback de artefacto",
+    "contract": "Promotion",
+    "dependencies": [
+      "T-074"
+    ],
+    "behavior": "Reasignar anterior compatible conservando predicciones y política de posiciones",
+    "negative": "Feature schema distinto impide cargar incluso con hash válido",
+    "blocker": "NONE",
+    "requirement_id": "R-075",
+    "test_id": "Q-075",
+    "acceptance_id": "AC-075",
+    "priority": "P2",
+    "epic": "V10-LEARN",
+    "feature": "Promotion",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "14-ml-models.md",
+      "24-continuous-learning.md"
+    ],
+    "adrs": [
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/learn/t_075.py",
+      "tests/unit/test_t_075.py",
+      "tests/integration/test_t_075.py"
+    ]
+  },
+  {
+    "id": "T-076",
+    "phase": "V10",
+    "component": "C-ML",
+    "title": "Sandbox RL condicionado",
+    "contract": "ModelArtifact",
+    "dependencies": [
+      "T-035",
+      "T-041",
+      "T-072"
+    ],
+    "behavior": "Experimento FinRL con simulador validado,recompensa neta/caps y benchmark fijo",
+    "negative": "Explotar fallo del simulador produce REJECTED,no promoción",
+    "blocker": "ED-07",
+    "requirement_id": "R-076",
+    "test_id": "Q-076",
+    "acceptance_id": "AC-076",
+    "priority": "P2",
+    "epic": "V10-ML",
+    "feature": "ModelArtifact",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "13-ai-architecture.md",
+      "14-ml-models.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011",
+      "ADR-012"
+    ],
+    "files": [
+      "backend/src/td/application/ml/t_076.py",
+      "tests/unit/test_t_076.py",
+      "tests/integration/test_t_076.py"
+    ]
+  },
+  {
+    "id": "T-077",
+    "phase": "V11",
+    "component": "C-API",
+    "title": "Vista estado conectores y alertas",
+    "contract": "SystemView",
+    "dependencies": [
+      "T-057",
+      "T-089"
+    ],
+    "behavior": "Pantalla inicio/fuentes conlag,cobertura,permisos y errores saneados",
+    "negative": "ACK no resuelve incidente ni habilita operaciones",
+    "blocker": "NONE",
+    "requirement_id": "R-077",
+    "test_id": "Q-077",
+    "acceptance_id": "AC-077",
+    "priority": "P2",
+    "epic": "V11-API",
+    "feature": "SystemView",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "web/src/features/t_077/index.tsx",
+      "web/tests/t_077.spec.ts"
+    ]
+  },
+  {
+    "id": "T-078",
+    "phase": "V11",
+    "component": "C-API",
+    "title": "Vista tokens y evidencia",
+    "contract": "Asset",
+    "dependencies": [
+      "T-026",
+      "T-057"
+    ],
+    "behavior": "Tabla filtros/as_of y drawer de mint/pool/assessment con desconocidos visibles",
+    "negative": "Ticker repetido odata stale no se muestra como seguro",
+    "blocker": "NONE",
+    "requirement_id": "R-078",
+    "test_id": "Q-078",
+    "acceptance_id": "AC-078",
+    "priority": "P2",
+    "epic": "V11-API",
+    "feature": "Asset",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "web/src/features/t_078/index.tsx",
+      "web/tests/t_078.spec.ts"
+    ]
+  },
+  {
+    "id": "T-079",
+    "phase": "V11",
+    "component": "C-API",
+    "title": "Vista traders y cobertura",
+    "contract": "TraderProfile",
+    "dependencies": [
+      "T-057",
+      "T-069"
+    ],
+    "behavior": "Mostrar PnL observable,unknown_cost,cohortes y selección temporal",
+    "negative": "Null no se renderiza como0 oROI garantizado",
+    "blocker": "NONE",
+    "requirement_id": "R-079",
+    "test_id": "Q-079",
+    "acceptance_id": "AC-079",
+    "priority": "P2",
+    "epic": "V11-API",
+    "feature": "TraderProfile",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "web/src/features/t_079/index.tsx",
+      "web/tests/t_079.spec.ts"
+    ]
+  },
+  {
+    "id": "T-080",
+    "phase": "V11",
+    "component": "C-API",
+    "title": "Vista investigación e hipótesis",
+    "contract": "ResearchClaim",
+    "dependencies": [
+      "T-057",
+      "T-066"
+    ],
+    "behavior": "Fuentes,claims,contradicciones y jobs con permisos de visualización",
+    "negative": "HTML de fuente se escapa y texto no autorizado no llega al cliente",
+    "blocker": "NONE",
+    "requirement_id": "R-080",
+    "test_id": "Q-080",
+    "acceptance_id": "AC-080",
+    "priority": "P2",
+    "epic": "V11-API",
+    "feature": "ResearchClaim",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "web/src/features/t_080/index.tsx",
+      "web/tests/t_080.spec.ts"
+    ]
+  },
+  {
+    "id": "T-081",
+    "phase": "V11",
+    "component": "C-API",
+    "title": "Vista estrategias decisiones y paper",
+    "contract": "Decision",
+    "dependencies": [
+      "T-055",
+      "T-057"
+    ],
+    "behavior": "Timeline evidencia→señal→riesgo→orden→ledger y rechazo visible",
+    "negative": "Fallo RPC no aparece como trade exitoso",
+    "blocker": "NONE",
+    "requirement_id": "R-081",
+    "test_id": "Q-081",
+    "acceptance_id": "AC-081",
+    "priority": "P2",
+    "epic": "V11-API",
+    "feature": "Decision",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "web/src/features/t_081/index.tsx",
+      "web/tests/t_081.spec.ts"
+    ]
+  },
+  {
+    "id": "T-082",
+    "phase": "V11",
+    "component": "C-API",
+    "title": "Vista experimentos y holdout",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-037",
+      "T-057"
+    ],
+    "behavior": "Mostrar folds,trials negativos,baselines,CI y consumo del holdout; crear job typed",
+    "negative": "Ver sólo mejor trial no oculta multiplicidad;412/409 se explica",
+    "blocker": "NONE",
+    "requirement_id": "R-082",
+    "test_id": "Q-082",
+    "acceptance_id": "AC-082",
+    "priority": "P2",
+    "epic": "V11-API",
+    "feature": "EvaluationReport",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "web/src/features/t_082/index.tsx",
+      "web/tests/t_082.spec.ts"
+    ]
+  },
+  {
+    "id": "T-083",
+    "phase": "V11",
+    "component": "C-API",
+    "title": "Vista modelos y promociones",
+    "contract": "ModelArtifact",
+    "dependencies": [
+      "T-057",
+      "T-074"
+    ],
+    "behavior": "Comparación champion/challenger,licencias,drift y reautenticación para promover",
+    "negative": "Accuracy alta no permite saltar gates ni permisos",
+    "blocker": "NONE",
+    "requirement_id": "R-083",
+    "test_id": "Q-083",
+    "acceptance_id": "AC-083",
+    "priority": "P2",
+    "epic": "V11-API",
+    "feature": "ModelArtifact",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "web/src/features/t_083/index.tsx",
+      "web/tests/t_083.spec.ts"
+    ]
+  },
+  {
+    "id": "T-084",
+    "phase": "V11",
+    "component": "C-API",
+    "title": "Vista costos y límites",
+    "contract": "CostRecord",
+    "dependencies": [
+      "T-011",
+      "T-057"
+    ],
+    "behavior": "Reservado/real/estimado por proveedor y tarifa con alerts80/100%",
+    "negative": "Uso incierto no se presenta como gratuito",
+    "blocker": "NONE",
+    "requirement_id": "R-084",
+    "test_id": "Q-084",
+    "acceptance_id": "AC-084",
+    "priority": "P2",
+    "epic": "V11-API",
+    "feature": "CostRecord",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "web/src/features/t_084/index.tsx",
+      "web/tests/t_084.spec.ts"
+    ]
+  },
+  {
+    "id": "T-085",
+    "phase": "V11",
+    "component": "C-API",
+    "title": "Auditoría exportación y configuración",
+    "contract": "AuditRecord",
+    "dependencies": [
+      "T-008",
+      "T-057"
+    ],
+    "behavior": "Lectura paginada y jobs export con rango/rol/expiry; config sólo lectura",
+    "negative": "Export sin permiso oURL reutilizada/vencida falla",
+    "blocker": "NONE",
+    "requirement_id": "R-085",
+    "test_id": "Q-085",
+    "acceptance_id": "AC-085",
+    "priority": "P2",
+    "epic": "V11-API",
+    "feature": "AuditRecord",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "11-api-contracts.md",
+      "26-dashboard.md"
+    ],
+    "adrs": [
+      "ADR-001",
+      "ADR-009"
+    ],
+    "files": [
+      "web/src/features/t_085/index.tsx",
+      "web/tests/t_085.spec.ts"
+    ]
+  },
+  {
+    "id": "T-086",
+    "phase": "V11",
+    "component": "C-OPS",
+    "title": "Compose perfiles y aislamiento",
+    "contract": "ReleaseManifest",
+    "dependencies": [
+      "T-003",
+      "T-007",
+      "T-052"
+    ],
+    "behavior": "Servicios no root,puertos privados,volúmenes separados,limits y arranque paused",
+    "negative": "Perfil paper con seed/signer oDB pública falla preflight",
+    "blocker": "ED-10",
+    "requirement_id": "R-086",
+    "test_id": "Q-086",
+    "acceptance_id": "AC-086",
+    "priority": "P2",
+    "epic": "V11-OPS",
+    "feature": "ReleaseManifest",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "27-infrastructure.md",
+      "28-deployment.md",
+      "29-observability.md",
+      "39-release-and-rollback.md"
+    ],
+    "adrs": [
+      "ADR-004",
+      "ADR-015"
+    ],
+    "files": [
+      "infra/t_086.yaml",
+      "tests/integration/test_t_086.py",
+      "docs/runbooks/t_086.md"
+    ]
+  },
+  {
+    "id": "T-087",
+    "phase": "V11",
+    "component": "C-OPS",
+    "title": "Backup cifrado consistente",
+    "contract": "DatasetManifest",
+    "dependencies": [
+      "T-013",
+      "T-031",
+      "T-086"
+    ],
+    "behavior": "SnapshotDB+manifests+archivos referenciados con hashes/retención y clave separada",
+    "negative": "Backup sin archivo referenciado es inválido,no éxito",
+    "blocker": "ED-10",
+    "requirement_id": "R-087",
+    "test_id": "Q-087",
+    "acceptance_id": "AC-087",
+    "priority": "P2",
+    "epic": "V11-OPS",
+    "feature": "DatasetManifest",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "27-infrastructure.md",
+      "28-deployment.md",
+      "29-observability.md",
+      "39-release-and-rollback.md"
+    ],
+    "adrs": [
+      "ADR-004",
+      "ADR-015"
+    ],
+    "files": [
+      "infra/t_087.yaml",
+      "tests/integration/test_t_087.py",
+      "docs/runbooks/t_087.md"
+    ]
+  },
+  {
+    "id": "T-088",
+    "phase": "V11",
+    "component": "C-OPS",
+    "title": "Restore aislado y conciliación",
+    "contract": "PortfolioView",
+    "dependencies": [
+      "T-055",
+      "T-087"
+    ],
+    "behavior": "Restaurar en entorno aislado,verificar hashes/journal/receipts y nuevo control_epoch",
+    "negative": "Backup viejo nunca reanuda RUNNING ni duplica efecto",
+    "blocker": "ED-10",
+    "requirement_id": "R-088",
+    "test_id": "Q-088",
+    "acceptance_id": "AC-088",
+    "priority": "P2",
+    "epic": "V11-OPS",
+    "feature": "PortfolioView",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "27-infrastructure.md",
+      "28-deployment.md",
+      "29-observability.md",
+      "39-release-and-rollback.md"
+    ],
+    "adrs": [
+      "ADR-004",
+      "ADR-015"
+    ],
+    "files": [
+      "infra/t_088.yaml",
+      "tests/integration/test_t_088.py",
+      "docs/runbooks/t_088.md"
+    ]
+  },
+  {
+    "id": "T-089",
+    "phase": "V11",
+    "component": "C-OPS",
+    "title": "Métricas logs y correlación",
+    "contract": "Alert",
+    "dependencies": [
+      "T-008",
+      "T-010",
+      "T-012"
+    ],
+    "behavior": "Instrumentar lag,deadlines,budget,pending,leases y redacción de secretos;alertas dedup",
+    "negative": "Secreto señuelo no aparece en logs; métrica stale no queda verde",
+    "blocker": "NONE",
+    "requirement_id": "R-089",
+    "test_id": "Q-089",
+    "acceptance_id": "AC-089",
+    "priority": "P2",
+    "epic": "V11-OPS",
+    "feature": "Alert",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "27-infrastructure.md",
+      "28-deployment.md",
+      "29-observability.md",
+      "39-release-and-rollback.md"
+    ],
+    "adrs": [
+      "ADR-004",
+      "ADR-015"
+    ],
+    "files": [
+      "backend/src/td/application/ops/t_089.py",
+      "tests/unit/test_t_089.py",
+      "tests/integration/test_t_089.py"
+    ]
+  },
+  {
+    "id": "T-090",
+    "phase": "V11",
+    "component": "C-OPS",
+    "title": "Runbooks e incidentes probados",
+    "contract": "Alert",
+    "dependencies": [
+      "T-052",
+      "T-088",
+      "T-089"
+    ],
+    "behavior": "Ejecutar drillsRPC caída,DB caída,disco lleno,clock drift y restart con reporte",
+    "negative": "Healthy de contenedor no basta si ledger no concilia",
+    "blocker": "ED-10",
+    "requirement_id": "R-090",
+    "test_id": "Q-090",
+    "acceptance_id": "AC-090",
+    "priority": "P2",
+    "epic": "V11-OPS",
+    "feature": "Alert",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "27-infrastructure.md",
+      "28-deployment.md",
+      "29-observability.md",
+      "39-release-and-rollback.md"
+    ],
+    "adrs": [
+      "ADR-004",
+      "ADR-015"
+    ],
+    "files": [
+      "infra/t_090.yaml",
+      "tests/integration/test_t_090.py",
+      "docs/runbooks/t_090.md"
+    ]
+  },
+  {
+    "id": "T-091",
+    "phase": "V11",
+    "component": "C-OPS",
+    "title": "SBOM dependencia y secret gates",
+    "contract": "ReleaseManifest",
+    "dependencies": [
+      "T-001",
+      "T-086"
+    ],
+    "behavior": "Generar SBOM,scan CVE/secrets,locks y excepción con expiración sólo si admisible",
+    "negative": "Dependencia crítica explotable osecret encontrado bloquea release",
+    "blocker": "ED-07",
+    "requirement_id": "R-091",
+    "test_id": "Q-091",
+    "acceptance_id": "AC-091",
+    "priority": "P2",
+    "epic": "V11-OPS",
+    "feature": "ReleaseManifest",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "27-infrastructure.md",
+      "28-deployment.md",
+      "29-observability.md",
+      "39-release-and-rollback.md"
+    ],
+    "adrs": [
+      "ADR-004",
+      "ADR-015"
+    ],
+    "files": [
+      "infra/t_091.yaml",
+      "tests/integration/test_t_091.py",
+      "docs/runbooks/t_091.md"
+    ]
+  },
+  {
+    "id": "T-092",
+    "phase": "V11",
+    "component": "C-OPS",
+    "title": "Release y rollback compatible",
+    "contract": "ReleaseManifest",
+    "dependencies": [
+      "T-075",
+      "T-088",
+      "T-091"
+    ],
+    "behavior": "Manifest código/config/modelo/contrato y expand-contract con prueba de rollback",
+    "negative": "Downgrade de esquema incompatible falla antes de mutarDB",
+    "blocker": "NONE",
+    "requirement_id": "R-092",
+    "test_id": "Q-092",
+    "acceptance_id": "AC-092",
+    "priority": "P2",
+    "epic": "V11-OPS",
+    "feature": "ReleaseManifest",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "27-infrastructure.md",
+      "28-deployment.md",
+      "29-observability.md",
+      "39-release-and-rollback.md"
+    ],
+    "adrs": [
+      "ADR-004",
+      "ADR-015"
+    ],
+    "files": [
+      "infra/t_092.yaml",
+      "tests/integration/test_t_092.py",
+      "docs/runbooks/t_092.md"
+    ]
+  },
+  {
+    "id": "T-093",
+    "phase": "V12",
+    "component": "C-EXEC",
+    "title": "Política del signer aislado",
+    "contract": "SigningRequest",
+    "dependencies": [
+      "T-051",
+      "T-052",
+      "T-086"
+    ],
+    "behavior": "Daemon sin acceso LLM valida aprobación/binding/epoch/expiry y claves sólo devnet",
+    "negative": "Solicitud con wallet,mint,cantidad oprograma distinto se rechaza",
+    "blocker": "ED-11",
+    "requirement_id": "R-093",
+    "test_id": "Q-093",
+    "acceptance_id": "AC-093",
+    "priority": "P2",
+    "epic": "V12-EXEC",
+    "feature": "SigningRequest",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_093.py",
+      "tests/unit/test_t_093.py",
+      "tests/integration/test_t_093.py"
+    ]
+  },
+  {
+    "id": "T-094",
+    "phase": "V12",
+    "component": "C-EXEC",
+    "title": "Decoder de transacción y lookup tables",
+    "contract": "SigningRequest",
+    "dependencies": [
+      "T-024",
+      "T-093"
+    ],
+    "behavior": "Resolver cuentas e instrucciones y verificar efectos permitidos/fees antes de firma",
+    "negative": "Transferencia escondida,lookup cambiado oinstruction desconocida bloquea",
+    "blocker": "ED-05",
+    "requirement_id": "R-094",
+    "test_id": "Q-094",
+    "acceptance_id": "AC-094",
+    "priority": "P2",
+    "epic": "V12-EXEC",
+    "feature": "SigningRequest",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_094.py",
+      "tests/unit/test_t_094.py",
+      "tests/integration/test_t_094.py"
+    ]
+  },
+  {
+    "id": "T-095",
+    "phase": "V12",
+    "component": "C-EXEC",
+    "title": "Build Jupiter restringido",
+    "contract": "SigningRequest",
+    "dependencies": [
+      "T-018",
+      "T-094"
+    ],
+    "behavior": "Adaptar build documentado con fixtures y permitir sólo rutas inspeccionadas",
+    "negative": "Cambio de schema oprograma de ruta no se firma por fallback",
+    "blocker": "ED-04",
+    "requirement_id": "R-095",
+    "test_id": "Q-095",
+    "acceptance_id": "AC-095",
+    "priority": "P2",
+    "epic": "V12-EXEC",
+    "feature": "SigningRequest",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_095.py",
+      "tests/unit/test_t_095.py",
+      "tests/integration/test_t_095.py"
+    ]
+  },
+  {
+    "id": "T-096",
+    "phase": "V12",
+    "component": "C-EXEC",
+    "title": "Simulación preflight y validez",
+    "contract": "Attempt",
+    "dependencies": [
+      "T-095"
+    ],
+    "behavior": "Simular commitment consistente,verificar balances/fees y lastValidBlockHeight; invalidar build viejo",
+    "negative": "Simulación exitosa no se marca fill; bloque vencido descarta intento",
+    "blocker": "ED-11",
+    "requirement_id": "R-096",
+    "test_id": "Q-096",
+    "acceptance_id": "AC-096",
+    "priority": "P2",
+    "epic": "V12-EXEC",
+    "feature": "Attempt",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_096.py",
+      "tests/unit/test_t_096.py",
+      "tests/integration/test_t_096.py"
+    ]
+  },
+  {
+    "id": "T-097",
+    "phase": "V12",
+    "component": "C-EXEC",
+    "title": "Envío durable y UNKNOWN",
+    "contract": "ExecutionReport",
+    "dependencies": [
+      "T-053",
+      "T-093",
+      "T-096"
+    ],
+    "behavior": "Persistir bytes/signature antes de enviar;timeout conserva UNKNOWN y mismo payload",
+    "negative": "Crash tras envío no crea firma nueva ni libera reserva",
+    "blocker": "ED-11",
+    "requirement_id": "R-097",
+    "test_id": "Q-097",
+    "acceptance_id": "AC-097",
+    "priority": "P2",
+    "epic": "V12-EXEC",
+    "feature": "ExecutionReport",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_097.py",
+      "tests/unit/test_t_097.py",
+      "tests/integration/test_t_097.py"
+    ]
+  },
+  {
+    "id": "T-098",
+    "phase": "V12",
+    "component": "C-EXEC",
+    "title": "Confirmación finality y reorg",
+    "contract": "ExecutionReport",
+    "dependencies": [
+      "T-055",
+      "T-097"
+    ],
+    "behavior": "Consultar status/tx,balance y fee;finalizar/reconciliar;contrasteRPC para incertidumbre",
+    "negative": "Null en unRPC oreorg no prueba no ejecución",
+    "blocker": "ED-11",
+    "requirement_id": "R-098",
+    "test_id": "Q-098",
+    "acceptance_id": "AC-098",
+    "priority": "P2",
+    "epic": "V12-EXEC",
+    "feature": "ExecutionReport",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_098.py",
+      "tests/unit/test_t_098.py",
+      "tests/integration/test_t_098.py"
+    ]
+  },
+  {
+    "id": "T-099",
+    "phase": "V12",
+    "component": "C-EXEC",
+    "title": "Fencing y kill switch en firma",
+    "contract": "ExecutionIntent",
+    "dependencies": [
+      "T-052",
+      "T-098"
+    ],
+    "behavior": "Invalidar writers viejos con epoch y comprobar modo justo antes de firma",
+    "negative": "Worker conlease vencido no firma;transacción ya emitida sigue conciliación",
+    "blocker": "ED-11",
+    "requirement_id": "R-099",
+    "test_id": "Q-099",
+    "acceptance_id": "AC-099",
+    "priority": "P2",
+    "epic": "V12-EXEC",
+    "feature": "ExecutionIntent",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_099.py",
+      "tests/unit/test_t_099.py",
+      "tests/integration/test_t_099.py"
+    ]
+  },
+  {
+    "id": "T-100",
+    "phase": "V9",
+    "component": "C-DATA",
+    "title": "L2 Kraken y certificación de CLOB",
+    "contract": "L2Snapshot",
+    "dependencies": [
+      "T-012",
+      "T-013",
+      "T-019"
+    ],
+    "behavior": "Snapshot+deltas y checksum,orden preciso y capability para replay;referencia pública documentada",
+    "negative": "Checksum roto pide snapshot y bloquea señales; no inventar continuidad",
+    "blocker": "ED-08",
+    "requirement_id": "R-100",
+    "test_id": "Q-100",
+    "acceptance_id": "AC-100",
+    "priority": "P2",
+    "epic": "V9-DATA",
+    "feature": "L2Snapshot",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "10-data-source-catalog.md",
+      "12-event-contracts.md"
+    ],
+    "adrs": [
+      "ADR-002",
+      "ADR-003",
+      "ADR-004"
+    ],
+    "files": [
+      "backend/src/td/application/data/t_100.py",
+      "tests/unit/test_t_100.py",
+      "tests/integration/test_t_100.py"
+    ]
+  },
+  {
+    "id": "T-101",
+    "phase": "V9",
+    "component": "C-EXEC",
+    "title": "Órdenes CEX y cancel races en sandbox",
+    "contract": "Order",
+    "dependencies": [
+      "T-053",
+      "T-100"
+    ],
+    "behavior": "Modelo child orders conpartial fills/cancel/replace y reserva compartida;sin endpoint real",
+    "negative": "Fill posterior a cancel request actualiza ledger y exposición correctamente",
+    "blocker": "ED-08",
+    "requirement_id": "R-101",
+    "test_id": "Q-101",
+    "acceptance_id": "AC-101",
+    "priority": "P2",
+    "epic": "V9-EXEC",
+    "feature": "Order",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_101.py",
+      "tests/unit/test_t_101.py",
+      "tests/integration/test_t_101.py"
+    ]
+  },
+  {
+    "id": "T-102",
+    "phase": "V9",
+    "component": "C-RISK",
+    "title": "Margen y riesgo de piernas derivados sandbox",
+    "contract": "RiskAssessment",
+    "dependencies": [
+      "T-050",
+      "T-101"
+    ],
+    "behavior": "Contrato de tiers/mark/index/funding conocido y escenario peor pierna;instrumento no certificado denegado",
+    "negative": "Funding realizado futuro ohedge fallido no produce delta cero ficticio",
+    "blocker": "ED-12",
+    "requirement_id": "R-102",
+    "test_id": "Q-102",
+    "acceptance_id": "AC-102",
+    "priority": "P0",
+    "epic": "V9-RISK",
+    "feature": "RiskAssessment",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "08-domain-model.md",
+      "20-risk-engine.md",
+      "21-execution-engine.md"
+    ],
+    "adrs": [
+      "ADR-007",
+      "ADR-009",
+      "ADR-016"
+    ],
+    "files": [
+      "backend/src/td/domain/risk/t_102.py",
+      "tests/unit/test_t_102.py",
+      "tests/integration/test_t_102.py"
+    ]
+  },
+  {
+    "id": "T-103",
+    "phase": "V9",
+    "component": "C-EXEC",
+    "title": "Arbitraje multi-leg atómico sandbox",
+    "contract": "ExecutionIntent",
+    "dependencies": [
+      "T-034",
+      "T-051",
+      "T-101"
+    ],
+    "behavior": "Reservar todas piernas y probar atomicidad declarada;cross-venue no atómico sólo simulación",
+    "negative": "Pierna residual conserva exposición/costo y activa recuperación",
+    "blocker": "ED-08",
+    "requirement_id": "R-103",
+    "test_id": "Q-103",
+    "acceptance_id": "AC-103",
+    "priority": "P2",
+    "epic": "V9-EXEC",
+    "feature": "ExecutionIntent",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "20-risk-engine.md",
+      "21-execution-engine.md",
+      "22-backtesting.md"
+    ],
+    "adrs": [
+      "ADR-008",
+      "ADR-009",
+      "ADR-014"
+    ],
+    "files": [
+      "backend/src/td/application/exec/t_103.py",
+      "tests/unit/test_t_103.py",
+      "tests/integration/test_t_103.py"
+    ]
+  },
+  {
+    "id": "T-104",
+    "phase": "V12",
+    "component": "C-OPS",
+    "title": "Expediente de preparación operativa",
+    "contract": "ReleaseManifest",
+    "dependencies": [
+      "T-036",
+      "T-074",
+      "T-090",
+      "T-092",
+      "T-099"
+    ],
+    "behavior": "Compilar gates,evidencia jurídica/costos/auditoría y disponibilidad;dejar live false",
+    "negative": "Software terminado sinalpha/consentimiento/continuidad no aprueba live",
+    "blocker": "ED-11",
+    "requirement_id": "R-104",
+    "test_id": "Q-104",
+    "acceptance_id": "AC-104",
+    "priority": "P2",
+    "epic": "V12-OPS",
+    "feature": "ReleaseManifest",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "27-infrastructure.md",
+      "28-deployment.md",
+      "29-observability.md",
+      "39-release-and-rollback.md"
+    ],
+    "adrs": [
+      "ADR-004",
+      "ADR-015"
+    ],
+    "files": [
+      "infra/t_104.yaml",
+      "tests/integration/test_t_104.py",
+      "docs/runbooks/t_104.md"
+    ]
+  },
+  {
+    "id": "T-105",
+    "phase": "V2",
+    "component": "C-STRATEGY",
+    "title": "S01 — evaluador puro: Descubrimiento temprano",
+    "contract": "Signal",
+    "dependencies": [
+      "T-021",
+      "T-026"
+    ],
+    "behavior": "Registrar toda creación validada; observar30 min; comparar cohortes por actividad inicial. No genera entrada MVP. En fase experimental sólo pasar a S02 si cumple elegibilidad.",
+    "negative": "Censura por gaps, mint sin pool, actividad artificial y latencia de descubrimiento.",
+    "blocker": "NONE",
+    "strategy": "S01",
+    "requirement_id": "R-105",
+    "test_id": "Q-105",
+    "acceptance_id": "AC-105",
+    "priority": "P1",
+    "epic": "V2-STRATEGY",
+    "feature": "S01",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_105.py",
+      "tests/unit/test_t_105.py",
+      "tests/integration/test_t_105.py"
+    ]
+  },
+  {
+    "id": "T-106",
+    "phase": "V3",
+    "component": "C-LAB",
+    "title": "S01 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-105",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Comparar cohorte completa contra lista retrospectiva popular; medir recall en intervalo auditado, no en toda cadena.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S01",
+    "requirement_id": "R-106",
+    "test_id": "Q-106",
+    "acceptance_id": "AC-106",
+    "priority": "P1",
+    "epic": "V3-LAB",
+    "feature": "S01",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_106.py",
+      "tests/unit/test_t_106.py",
+      "tests/integration/test_t_106.py"
+    ]
+  },
+  {
+    "id": "T-107",
+    "phase": "V5",
+    "component": "C-STRATEGY",
+    "title": "S02 — evaluador puro: Momentum",
+    "contract": "Signal",
+    "dependencies": [
+      "T-028",
+      "T-049",
+      "T-050"
+    ],
+    "behavior": "Con barra cerrada, r5m>0 y volumen1m/mediana20 barras previas>=2; breakout del máximo5 barras previas y compradores únicos no decrecientes. Requiere30 min de historia y filtros. Comprar sólo al siguiente estado ejecutable.",
+    "negative": "Selección de pumps, impacto y desaparición de salida; riesgo100% notional.",
+    "blocker": "NONE",
+    "strategy": "S02",
+    "requirement_id": "R-107",
+    "test_id": "Q-107",
+    "acceptance_id": "AC-107",
+    "priority": "P1",
+    "epic": "V5-STRATEGY",
+    "feature": "S02",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_107.py",
+      "tests/unit/test_t_107.py",
+      "tests/integration/test_t_107.py"
+    ]
+  },
+  {
+    "id": "T-108",
+    "phase": "V5",
+    "component": "C-LAB",
+    "title": "S02 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-107",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Golden cruce de umbral; baseline sin compradores; fees+50% y slippage×2; placebo de timestamps.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S02",
+    "requirement_id": "R-108",
+    "test_id": "Q-108",
+    "acceptance_id": "AC-108",
+    "priority": "P1",
+    "epic": "V5-LAB",
+    "feature": "S02",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_108.py",
+      "tests/unit/test_t_108.py",
+      "tests/integration/test_t_108.py"
+    ]
+  },
+  {
+    "id": "T-109",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S03 — evaluador puro: Scalping",
+    "contract": "Signal",
+    "dependencies": [
+      "T-034",
+      "T-100",
+      "T-101"
+    ],
+    "behavior": "Cada segundo, desequilibrio de volumen comprador/vendedor10 s>0,3 y microretorno positivo; entrada sólo si edge neto inferior95%>0 y delay p99<horizonte/5.",
+    "negative": "Competencia/MEV; datos agregados minuto son inadmisibles.",
+    "blocker": "NONE",
+    "strategy": "S03",
+    "requirement_id": "R-109",
+    "test_id": "Q-109",
+    "acceptance_id": "AC-109",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S03",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_109.py",
+      "tests/unit/test_t_109.py",
+      "tests/integration/test_t_109.py"
+    ]
+  },
+  {
+    "id": "T-110",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S03 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-109",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Replay por evento con latencias1×/2×/5×; rechazar si no conserva ventaja estresada.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S03",
+    "requirement_id": "R-110",
+    "test_id": "Q-110",
+    "acceptance_id": "AC-110",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S03",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_110.py",
+      "tests/unit/test_t_110.py",
+      "tests/integration/test_t_110.py"
+    ]
+  },
+  {
+    "id": "T-111",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S04 — evaluador puro: Mean reversion",
+    "contract": "Signal",
+    "dependencies": [
+      "T-028",
+      "T-071"
+    ],
+    "behavior": "z=(price−VWAP60)/std60; long si z<=−2 y régimen no tendencial; sin short en spot. VWAP/std sólo pasado.",
+    "negative": "Caída estructural confundida con sobreventa.",
+    "blocker": "NONE",
+    "strategy": "S04",
+    "requirement_id": "R-111",
+    "test_id": "Q-111",
+    "acceptance_id": "AC-111",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S04",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_111.py",
+      "tests/unit/test_t_111.py",
+      "tests/integration/test_t_111.py"
+    ]
+  },
+  {
+    "id": "T-112",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S04 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-111",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Serie con salto permanente y reversión; no martingala; comparar compra aleatoria emparejada.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S04",
+    "requirement_id": "R-112",
+    "test_id": "Q-112",
+    "acceptance_id": "AC-112",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S04",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_112.py",
+      "tests/unit/test_t_112.py",
+      "tests/integration/test_t_112.py"
+    ]
+  },
+  {
+    "id": "T-113",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S05 — evaluador puro: Breakout",
+    "contract": "Signal",
+    "dependencies": [
+      "T-028",
+      "T-050"
+    ],
+    "behavior": "close_t>max(high de20 barras anteriores) y volume_t>1,5×mediana previa; excluir la barra actual del canal.",
+    "negative": "Falso breakout, gaps y costo de perseguir movimiento.",
+    "blocker": "NONE",
+    "strategy": "S05",
+    "requirement_id": "R-113",
+    "test_id": "Q-113",
+    "acceptance_id": "AC-113",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S05",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_113.py",
+      "tests/unit/test_t_113.py",
+      "tests/integration/test_t_113.py"
+    ]
+  },
+  {
+    "id": "T-114",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S05 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-113",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Fixture que detecta leakage de incluir high actual; comparar breakout sin volumen.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S05",
+    "requirement_id": "R-114",
+    "test_id": "Q-114",
+    "acceptance_id": "AC-114",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S05",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_114.py",
+      "tests/unit/test_t_114.py",
+      "tests/integration/test_t_114.py"
+    ]
+  },
+  {
+    "id": "T-115",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S06 — evaluador puro: False breakout",
+    "contract": "Signal",
+    "dependencies": [
+      "T-028",
+      "T-050"
+    ],
+    "behavior": "Marcar low por debajo del mínimo20; long sólo si una barra posterior dentro de3 min cierra otra vez encima del nivel, con spread admisible. No conocer cierre futuro al marcar.",
+    "negative": "Cuchillo cayendo y ambigüedad intrabar.",
+    "blocker": "NONE",
+    "strategy": "S06",
+    "requirement_id": "R-115",
+    "test_id": "Q-115",
+    "acceptance_id": "AC-115",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S06",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_115.py",
+      "tests/unit/test_t_115.py",
+      "tests/integration/test_t_115.py"
+    ]
+  },
+  {
+    "id": "T-116",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S06 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-115",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Secuencia paso a paso; mismo low/high con orden distinto; prueba en régimen tendencial.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S06",
+    "requirement_id": "R-116",
+    "test_id": "Q-116",
+    "acceptance_id": "AC-116",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S06",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_116.py",
+      "tests/unit/test_t_116.py",
+      "tests/integration/test_t_116.py"
+    ]
+  },
+  {
+    "id": "T-117",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S07 — evaluador puro: Order-flow imbalance",
+    "contract": "Signal",
+    "dependencies": [
+      "T-100",
+      "T-101"
+    ],
+    "behavior": "I=(sum bidqty top5−sum askqty top5)/(suma total); long si I>0,6 durante3 updates y flujo comprador neto5 s>0; bloquear checksum inválido.",
+    "negative": "Spoofing/cancelaciones; qty agregada no garantiza fill pasivo.",
+    "blocker": "NONE",
+    "strategy": "S07",
+    "requirement_id": "R-117",
+    "test_id": "Q-117",
+    "acceptance_id": "AC-117",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S07",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_117.py",
+      "tests/unit/test_t_117.py",
+      "tests/integration/test_t_117.py"
+    ]
+  },
+  {
+    "id": "T-118",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S07 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-117",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Deltas fuera de orden, cola conservadora, spoof-like cancel; DeepLOB opcional sólo challenger.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S07",
+    "requirement_id": "R-118",
+    "test_id": "Q-118",
+    "acceptance_id": "AC-118",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S07",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_118.py",
+      "tests/unit/test_t_118.py",
+      "tests/integration/test_t_118.py"
+    ]
+  },
+  {
+    "id": "T-119",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S08 — evaluador puro: Noticias",
+    "contract": "Signal",
+    "dependencies": [
+      "T-063",
+      "T-064",
+      "T-065"
+    ],
+    "behavior": "Clasificar evento predefinido, dos orígenes independientes o comunicado primario; dirección positiva y entidad inequívoca; ejecutar después deavailable_at con decay exponencial60 min.",
+    "negative": "Rumor, duplicación, timestamp editado, prompt injection.",
+    "blocker": "NONE",
+    "strategy": "S08",
+    "requirement_id": "R-119",
+    "test_id": "Q-119",
+    "acceptance_id": "AC-119",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S08",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_119.py",
+      "tests/unit/test_t_119.py",
+      "tests/integration/test_t_119.py"
+    ]
+  },
+  {
+    "id": "T-120",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S08 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-119",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Ablación sin noticia y timestamps desplazados; corpus evaluado por humanos; impedir rumor sin contraste.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S08",
+    "requirement_id": "R-120",
+    "test_id": "Q-120",
+    "acceptance_id": "AC-120",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S08",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_120.py",
+      "tests/unit/test_t_120.py",
+      "tests/integration/test_t_120.py"
+    ]
+  },
+  {
+    "id": "T-121",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S09 — evaluador puro: Sentimiento",
+    "contract": "Signal",
+    "dependencies": [
+      "T-063",
+      "T-064",
+      "T-070"
+    ],
+    "behavior": "z de menciones1 h respecto7 días, ponderado por diversidad de autores; long si z>2 y sentimiento>0,6, sólo con100 mensajes autorizados y al menos5 orígenes.",
+    "negative": "Bots, selección de comunidades, permisos y drift lingüístico.",
+    "blocker": "NONE",
+    "strategy": "S09",
+    "requirement_id": "R-121",
+    "test_id": "Q-121",
+    "acceptance_id": "AC-121",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S09",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_121.py",
+      "tests/unit/test_t_121.py",
+      "tests/integration/test_t_121.py"
+    ]
+  },
+  {
+    "id": "T-122",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S09 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-121",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Remover fuentes duplicadas, control atención sin sentimiento y placebo por bloques.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S09",
+    "requirement_id": "R-122",
+    "test_id": "Q-122",
+    "acceptance_id": "AC-122",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S09",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_122.py",
+      "tests/unit/test_t_122.py",
+      "tests/integration/test_t_122.py"
+    ]
+  },
+  {
+    "id": "T-123",
+    "phase": "V8",
+    "component": "C-STRATEGY",
+    "title": "S10 — evaluador puro: Copy trading filtrado",
+    "contract": "Signal",
+    "dependencies": [
+      "T-069",
+      "T-055"
+    ],
+    "behavior": "Wallet previamente elegida y coverage>=0,95; señal de compra recibida; nueva quote; rechazar si precio ya avanzó>2% o edge no cubre costos. Tamaño del follower lo fija Risk.",
+    "negative": "No observar hedge, inventario inicial o acceso privilegiado; latencia adversa.",
+    "blocker": "NONE",
+    "strategy": "S10",
+    "requirement_id": "R-123",
+    "test_id": "Q-123",
+    "acceptance_id": "AC-123",
+    "priority": "P2",
+    "epic": "V8-STRATEGY",
+    "feature": "S10",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_123.py",
+      "tests/unit/test_t_123.py",
+      "tests/integration/test_t_123.py"
+    ]
+  },
+  {
+    "id": "T-124",
+    "phase": "V8",
+    "component": "C-LAB",
+    "title": "S10 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-123",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Follower no usa precio líder; wallets aleatorias emparejadas y cohortes ganadoras/perdedoras.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S10",
+    "requirement_id": "R-124",
+    "test_id": "Q-124",
+    "acceptance_id": "AC-124",
+    "priority": "P2",
+    "epic": "V8-LAB",
+    "feature": "S10",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_124.py",
+      "tests/unit/test_t_124.py",
+      "tests/integration/test_t_124.py"
+    ]
+  },
+  {
+    "id": "T-125",
+    "phase": "V8",
+    "component": "C-STRATEGY",
+    "title": "S11 — evaluador puro: Smart-money agregado",
+    "contract": "Signal",
+    "dependencies": [
+      "T-069",
+      "T-036"
+    ],
+    "behavior": "Tres clusters independientes seleccionados en train con entradas netas en5 min; long sólo si score de cohortes>percentil80 train y quote apta.",
+    "negative": "Clusters pueden ser mismo operador; score no prueba intención.",
+    "blocker": "NONE",
+    "strategy": "S11",
+    "requirement_id": "R-125",
+    "test_id": "Q-125",
+    "acceptance_id": "AC-125",
+    "priority": "P2",
+    "epic": "V8-STRATEGY",
+    "feature": "S11",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_125.py",
+      "tests/unit/test_t_125.py",
+      "tests/integration/test_t_125.py"
+    ]
+  },
+  {
+    "id": "T-126",
+    "phase": "V8",
+    "component": "C-LAB",
+    "title": "S11 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-125",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Ablación de wallet-score, selección aleatoria y exclusión de cluster dominante.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S11",
+    "requirement_id": "R-126",
+    "test_id": "Q-126",
+    "acceptance_id": "AC-126",
+    "priority": "P2",
+    "epic": "V8-LAB",
+    "feature": "S11",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_126.py",
+      "tests/unit/test_t_126.py",
+      "tests/integration/test_t_126.py"
+    ]
+  },
+  {
+    "id": "T-127",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S12 — evaluador puro: Liquidez",
+    "contract": "Signal",
+    "dependencies": [
+      "T-026",
+      "T-034"
+    ],
+    "behavior": "Liquidez ejecutable a impacto1% crece>20% en10 min y persiste3 snapshots; flujo comprador positivo; long sólo si riesgo de retiro evaluado.",
+    "negative": "TVL engañoso, capital temporal y concentración del LP.",
+    "blocker": "NONE",
+    "strategy": "S12",
+    "requirement_id": "R-127",
+    "test_id": "Q-127",
+    "acceptance_id": "AC-127",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S12",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_127.py",
+      "tests/unit/test_t_127.py",
+      "tests/integration/test_t_127.py"
+    ]
+  },
+  {
+    "id": "T-128",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S12 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-127",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Retiro súbito, liquidez unilateral y ruta que desaparece; no usar TVL como depth.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S12",
+    "requirement_id": "R-128",
+    "test_id": "Q-128",
+    "acceptance_id": "AC-128",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S12",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_128.py",
+      "tests/unit/test_t_128.py",
+      "tests/integration/test_t_128.py"
+    ]
+  },
+  {
+    "id": "T-129",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S13 — evaluador puro: Grid",
+    "contract": "Signal",
+    "dependencies": [
+      "T-101",
+      "T-071"
+    ],
+    "behavior": "Cinco niveles simétricos alrededor de mid congelado, spacing=max(50bps,2×costo roundtrip); cotizar compras/ventas sólo con inventario propio y reserva por orden. Sin aumentar tamaño tras pérdida.",
+    "negative": "Inventario en tendencia, cancel race, fees y cola.",
+    "blocker": "NONE",
+    "strategy": "S13",
+    "requirement_id": "R-129",
+    "test_id": "Q-129",
+    "acceptance_id": "AC-129",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S13",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_129.py",
+      "tests/unit/test_t_129.py",
+      "tests/integration/test_t_129.py"
+    ]
+  },
+  {
+    "id": "T-130",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S13 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-129",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Trayectoria monotónica debe perder/controlar y parar; fills conservadores y cancel parcial.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S13",
+    "requirement_id": "R-130",
+    "test_id": "Q-130",
+    "acceptance_id": "AC-130",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S13",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_130.py",
+      "tests/unit/test_t_130.py",
+      "tests/integration/test_t_130.py"
+    ]
+  },
+  {
+    "id": "T-131",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S14 — evaluador puro: Market making",
+    "contract": "Signal",
+    "dependencies": [
+      "T-101",
+      "T-100"
+    ],
+    "behavior": "Cotizar bid/ask a mid±max(2 ticks,1,5×fee_equiv), skew alejando lado que aumenta inventario; post-only cuando capability certificada.",
+    "negative": "Toxic flow, cola, cancel/replace, doble fill y exchange outage.",
+    "blocker": "NONE",
+    "strategy": "S14",
+    "requirement_id": "R-131",
+    "test_id": "Q-131",
+    "acceptance_id": "AC-131",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S14",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_131.py",
+      "tests/unit/test_t_131.py",
+      "tests/integration/test_t_131.py"
+    ]
+  },
+  {
+    "id": "T-132",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S14 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-131",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Modelo de cola independiente y worst-case doble fill; comparar no cotizar en volatilidad.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S14",
+    "requirement_id": "R-132",
+    "test_id": "Q-132",
+    "acceptance_id": "AC-132",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S14",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_132.py",
+      "tests/unit/test_t_132.py",
+      "tests/integration/test_t_132.py"
+    ]
+  },
+  {
+    "id": "T-133",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S15 — evaluador puro: Arbitraje",
+    "contract": "Signal",
+    "dependencies": [
+      "T-103"
+    ],
+    "behavior": "Comparar ida/vuelta para mismo tamaño; enviar sólo bundle de transacción atómica decodificada con min_profit>cost+buffer. Cross-venue no atómico sólo paper y exposición de leg explícita.",
+    "negative": "Quotes asincrónicas, MEV, bridge/counterparty y capital inmovilizado.",
+    "blocker": "NONE",
+    "strategy": "S15",
+    "requirement_id": "R-133",
+    "test_id": "Q-133",
+    "acceptance_id": "AC-133",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S15",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_133.py",
+      "tests/unit/test_t_133.py",
+      "tests/integration/test_t_133.py"
+    ]
+  },
+  {
+    "id": "T-134",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S15 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-133",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Simular una pierna falla, expira quote y cambio de reservas; rechazar sin atomicidad certificada.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S15",
+    "requirement_id": "R-134",
+    "test_id": "Q-134",
+    "acceptance_id": "AC-134",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S15",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_134.py",
+      "tests/unit/test_t_134.py",
+      "tests/integration/test_t_134.py"
+    ]
+  },
+  {
+    "id": "T-135",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S16 — evaluador puro: Funding-rate arbitrage",
+    "contract": "Signal",
+    "dependencies": [
+      "T-102"
+    ],
+    "behavior": "Long spot/short perp igual delta sólo si funding esperado conservador24 h supera todos los costos+buffer; no asumir funding futuro fijo.",
+    "negative": "Liquidación, exchange, basis y riesgo stablecoin; apalancamiento prohibido en MVP.",
+    "blocker": "ED-12",
+    "strategy": "S16",
+    "requirement_id": "R-135",
+    "test_id": "Q-135",
+    "acceptance_id": "AC-135",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S16",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_135.py",
+      "tests/unit/test_t_135.py",
+      "tests/integration/test_t_135.py"
+    ]
+  },
+  {
+    "id": "T-136",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S16 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-135",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Funding revierte, mark diverge, leg falla y retiro suspendido; no usar tasa realizada futura.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S16",
+    "requirement_id": "R-136",
+    "test_id": "Q-136",
+    "acceptance_id": "AC-136",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S16",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_136.py",
+      "tests/unit/test_t_136.py",
+      "tests/integration/test_t_136.py"
+    ]
+  },
+  {
+    "id": "T-137",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S17 — evaluador puro: Delta-neutral",
+    "contract": "Signal",
+    "dependencies": [
+      "T-102"
+    ],
+    "behavior": "Portfolio objetivo delta0; rebalance si abs(delta_notional)/NAV>0,02; respetar margen/counterparty y reservar piernas conjuntamente. No introducir opciones sin capability/modelo nuevo.",
+    "negative": "Delta no elimina basis/gamma/counterparty; hedge puede fallar.",
+    "blocker": "ED-12",
+    "strategy": "S17",
+    "requirement_id": "R-137",
+    "test_id": "Q-137",
+    "acceptance_id": "AC-137",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S17",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_137.py",
+      "tests/unit/test_t_137.py",
+      "tests/integration/test_t_137.py"
+    ]
+  },
+  {
+    "id": "T-138",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S17 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-137",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Shock de precio, margin-call y hedge unavailable; validar exposición residual por peor leg.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S17",
+    "requirement_id": "R-138",
+    "test_id": "Q-138",
+    "acceptance_id": "AC-138",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S17",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_138.py",
+      "tests/unit/test_t_138.py",
+      "tests/integration/test_t_138.py"
+    ]
+  },
+  {
+    "id": "T-139",
+    "phase": "V3",
+    "component": "C-STRATEGY",
+    "title": "S18 — evaluador puro: Seguimiento de tendencias",
+    "contract": "Signal",
+    "dependencies": [
+      "T-028",
+      "T-033"
+    ],
+    "behavior": "Long si EMA20 cruza sobreEMA60 con60 barras completas; efectivo si cruce contrario. Sin look-ahead ni short.",
+    "negative": "Whipsaw, costos acumulados y comparabilidad de capital.",
+    "blocker": "NONE",
+    "strategy": "S18",
+    "requirement_id": "R-139",
+    "test_id": "Q-139",
+    "acceptance_id": "AC-139",
+    "priority": "P1",
+    "epic": "V3-STRATEGY",
+    "feature": "S18",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_139.py",
+      "tests/unit/test_t_139.py",
+      "tests/integration/test_t_139.py"
+    ]
+  },
+  {
+    "id": "T-140",
+    "phase": "V3",
+    "component": "C-LAB",
+    "title": "S18 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-139",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Golden de EMA/crossover, mercado lateral, monotónico y misma asignación que benchmark.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S18",
+    "requirement_id": "R-140",
+    "test_id": "Q-140",
+    "acceptance_id": "AC-140",
+    "priority": "P1",
+    "epic": "V3-LAB",
+    "feature": "S18",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_140.py",
+      "tests/unit/test_t_140.py",
+      "tests/integration/test_t_140.py"
+    ]
+  },
+  {
+    "id": "T-141",
+    "phase": "V5",
+    "component": "C-STRATEGY",
+    "title": "S19 — evaluador puro: Gestión dinámica de salida",
+    "contract": "Signal",
+    "dependencies": [
+      "T-051",
+      "T-049",
+      "T-032"
+    ],
+    "behavior": "No abre. Prioridad: riesgo crítico→intentar cierre seguro; luego tiempo máximo, stop observado, trailing, reversión. Reduce-only verdadero, nunca vende más que balance disponible.",
+    "negative": "Gap salta stop; datos de alpha viejos no reemplazan quote válida; fee SOL insuficiente.",
+    "blocker": "NONE",
+    "strategy": "S19",
+    "requirement_id": "R-141",
+    "test_id": "Q-141",
+    "acceptance_id": "AC-141",
+    "priority": "P1",
+    "epic": "V5-STRATEGY",
+    "feature": "S19",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_141.py",
+      "tests/unit/test_t_141.py",
+      "tests/integration/test_t_141.py"
+    ]
+  },
+  {
+    "id": "T-142",
+    "phase": "V5",
+    "component": "C-LAB",
+    "title": "S19 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-141",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Quote desaparece, doble evento de cierre, pending previo y balance menor al solicitado.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S19",
+    "requirement_id": "R-142",
+    "test_id": "Q-142",
+    "acceptance_id": "AC-142",
+    "priority": "P1",
+    "epic": "V5-LAB",
+    "feature": "S19",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_142.py",
+      "tests/unit/test_t_142.py",
+      "tests/integration/test_t_142.py"
+    ]
+  },
+  {
+    "id": "T-143",
+    "phase": "V9",
+    "component": "C-STRATEGY",
+    "title": "S20 — evaluador puro: Selección por regímenes",
+    "contract": "Signal",
+    "dependencies": [
+      "T-070",
+      "T-071"
+    ],
+    "behavior": "Clasificar con umbrales train congelados de volatilidad/tendencia; seleccionar estrategia aprobada con mayor utilidad conservadora por régimen; si ninguna cumple NO_TRADE. Histeresis2 ventanas.",
+    "negative": "Leakage del selector, alta rotación y sobreajuste de regímenes.",
+    "blocker": "NONE",
+    "strategy": "S20",
+    "requirement_id": "R-143",
+    "test_id": "Q-143",
+    "acceptance_id": "AC-143",
+    "priority": "P2",
+    "epic": "V9-STRATEGY",
+    "feature": "S20",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "18-strategy-engine.md",
+      "19-decision-engine.md"
+    ],
+    "adrs": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/domain/strategy/t_143.py",
+      "tests/unit/test_t_143.py",
+      "tests/integration/test_t_143.py"
+    ]
+  },
+  {
+    "id": "T-144",
+    "phase": "V9",
+    "component": "C-LAB",
+    "title": "S20 — experimento y falsación",
+    "contract": "EvaluationReport",
+    "dependencies": [
+      "T-143",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "behavior": "Comparar pesos fijos, selector aleatorio y simple siempre-momentum; contar todos los trials.",
+    "negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocker": "ED-03",
+    "strategy": "S20",
+    "requirement_id": "R-144",
+    "test_id": "Q-144",
+    "acceptance_id": "AC-144",
+    "priority": "P2",
+    "epic": "V9-LAB",
+    "feature": "S20",
+    "status": "TODO",
+    "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
+    "docs": [
+      "09-data-architecture.md",
+      "22-backtesting.md",
+      "23-statistical-validation.md"
+    ],
+    "adrs": [
+      "ADR-006",
+      "ADR-011"
+    ],
+    "files": [
+      "backend/src/td/application/lab/t_144.py",
+      "tests/unit/test_t_144.py",
+      "tests/integration/test_t_144.py"
+    ]
+  }
+]

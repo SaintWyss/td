@@ -1,0 +1,362 @@
+[
+  {
+    "id": "S01",
+    "title": "Helius pricing",
+    "url": "https://www.helius.dev/pricing",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Planes, créditos y cuotas; no extrapolar beta vencida",
+    "account_tested": false
+  },
+  {
+    "id": "S02",
+    "title": "Helius RPC",
+    "url": "https://www.helius.dev/docs/rpc/guides/overview",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "RPC y herramientas de lectura; benchmark propio pendiente",
+    "account_tested": false
+  },
+  {
+    "id": "S03",
+    "title": "Solana sendTransaction",
+    "url": "https://solana.com/docs/rpc/http/sendtransaction",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Aceptación RPC no implica confirmación",
+    "account_tested": false
+  },
+  {
+    "id": "S04",
+    "title": "Solana logsSubscribe",
+    "url": "https://solana.com/docs/rpc/websocket/logssubscribe",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Filtro mentions de una dirección",
+    "account_tested": false
+  },
+  {
+    "id": "S05",
+    "title": "Solana getSignaturesForAddress",
+    "url": "https://solana.com/docs/rpc/http/getsignaturesforaddress",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Paginación por before/until; blockTime nullable",
+    "account_tested": false
+  },
+  {
+    "id": "S06",
+    "title": "Solana getTransaction",
+    "url": "https://solana.com/docs/rpc/http/gettransaction",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Consulta de transacción con versión/commitment; null posible",
+    "account_tested": false
+  },
+  {
+    "id": "S07",
+    "title": "DEX Screener API",
+    "url": "https://docs.dexscreener.com/api/reference",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Rutas de pairs/tokens y cuotas publicadas",
+    "account_tested": false
+  },
+  {
+    "id": "S08",
+    "title": "Birdeye precios",
+    "url": "https://docs.birdeye.so/docs/pricing",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Planes/CU y límites; derechos de uso se revisan aparte",
+    "account_tested": false
+  },
+  {
+    "id": "S09",
+    "title": "Birdeye tipos de datos",
+    "url": "https://birdeye.so/data-api/types-of-data",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Catálogo de OHLCV/trades/holders/security",
+    "account_tested": false
+  },
+  {
+    "id": "S10",
+    "title": "Jupiter Order & Execute",
+    "url": "https://developers.jup.ag/docs/swap/order-and-execute",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Swap V2 con orden, firma y ejecución; existe ruta build según índice oficial",
+    "account_tested": false
+  },
+  {
+    "id": "S11",
+    "title": "Jupiter rate limits",
+    "url": "https://developers.jup.ag/docs/portal/rate-limits",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Cuotas por organización y buckets",
+    "account_tested": false
+  },
+  {
+    "id": "S12",
+    "title": "Raydium program addresses",
+    "url": "https://docs.raydium.io/reference/program-addresses",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Identidad de CPMM; cotejo on-chain requerido",
+    "account_tested": false
+  },
+  {
+    "id": "S13",
+    "title": "Kraken L2",
+    "url": "https://docs-legacy.kraken.com/api/docs/websocket-v2/book/",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Book agregado y checksum",
+    "account_tested": false
+  },
+  {
+    "id": "S14",
+    "title": "Telegram Content Licensing",
+    "url": "https://telegram.org/tos/content-licensing",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Restricciones IA y excepciones contextuales",
+    "account_tested": false
+  },
+  {
+    "id": "S15",
+    "title": "Reddit Data API Terms",
+    "url": "https://redditinc.com/policies/data-api-terms",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Se consultó la página; licencia suficiente para TD no establecida",
+    "account_tested": false
+  },
+  {
+    "id": "S16",
+    "title": "X Developer Policy",
+    "url": "https://docs.x.com/developer-terms/policy",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Política contractual; licencia IA suficiente no establecida",
+    "account_tested": false
+  },
+  {
+    "id": "S17",
+    "title": "OpenAI API pricing",
+    "url": "https://developers.openai.com/api/docs/pricing",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Precios estándar de modelos elegidos, no suscripción ChatGPT",
+    "account_tested": false
+  },
+  {
+    "id": "S18",
+    "title": "OpenAI Structured Outputs",
+    "url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Subconjunto JSON Schema, validación local necesaria",
+    "account_tested": false
+  },
+  {
+    "id": "S19",
+    "title": "Anthropic pricing",
+    "url": "https://claude.com/pricing",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Tarifas de API y diferencia contexto corto/largo",
+    "account_tested": false
+  },
+  {
+    "id": "S20",
+    "title": "Claude Haiku 5.5",
+    "url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "ID de API y capacidades documentadas",
+    "account_tested": false
+  },
+  {
+    "id": "S21",
+    "title": "Gemini API pricing",
+    "url": "https://ai.google.dev/gemini-api/docs/pricing.md",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "ID y tarifa Flash-Lite; tratamiento free/paid distinto",
+    "account_tested": false
+  },
+  {
+    "id": "S22",
+    "title": "LightGBM",
+    "url": "https://github.com/lightgbm-org/LightGBM",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Biblioteca de gradient boosting, repositorio oficial",
+    "account_tested": false
+  },
+  {
+    "id": "S23",
+    "title": "XGBoost",
+    "url": "https://github.com/dmlc/xgboost",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Gradient boosting, Apache-2.0 del código",
+    "account_tested": false
+  },
+  {
+    "id": "S24",
+    "title": "Kronos",
+    "url": "https://github.com/shiyu-coder/Kronos",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Modelos mini/small y ventanas; no evidencia de PnL de TD",
+    "account_tested": false
+  },
+  {
+    "id": "S25",
+    "title": "Chronos",
+    "url": "https://github.com/amazon-science/chronos-forecasting",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Familias Bolt y checkpoints compactos",
+    "account_tested": false
+  },
+  {
+    "id": "S26",
+    "title": "TimesFM",
+    "url": "https://github.com/google-research/timesfm",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Código Apache; aviso de pesos3.0 no comerciales/no producción",
+    "account_tested": false
+  },
+  {
+    "id": "S27",
+    "title": "FinBERT",
+    "url": "https://github.com/ProsusAI/finBERT",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Aviso 2026-10-12 distingue código/pesos/dataset",
+    "account_tested": false
+  },
+  {
+    "id": "S28",
+    "title": "FinGPT",
+    "url": "https://github.com/AI4Finance-Foundation/FinGPT",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Framework NLP financiero; licencias por artefacto necesarias",
+    "account_tested": false
+  },
+  {
+    "id": "S29",
+    "title": "DeepLOB",
+    "url": "https://arxiv.org/abs/1808.03668",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Predicción LOB de acciones; no validación directa en AMM",
+    "account_tested": false
+  },
+  {
+    "id": "S30",
+    "title": "FinRL",
+    "url": "https://github.com/AI4Finance-Foundation/FinRL",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Framework RL; no justifica promoción sin simulador validado",
+    "account_tested": false
+  },
+  {
+    "id": "S31",
+    "title": "Deflated Sharpe Ratio",
+    "url": "https://www.davidhbailey.com/dhbpapers/deflated-sharpe.pdf",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Corrección de selección múltiple/no normalidad; supuestos siguen importando",
+    "account_tested": false
+  },
+  {
+    "id": "S32",
+    "title": "CNV RG1058/2025",
+    "url": "https://www.argentina.gob.ar/normativa/nacional/resoluci%C3%B3n-1058-2025-410635/texto",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Texto oficial con delimitación de actividad por cuenta propia",
+    "account_tested": false
+  },
+  {
+    "id": "S33",
+    "title": "CNV RG1172/2026",
+    "url": "https://www.argentina.gob.ar/normativa/nacional/norma-431259/texto",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Modifica régimen PSAV; requiere revisión aplicada al producto",
+    "account_tested": false
+  },
+  {
+    "id": "S34",
+    "title": "FreqAI",
+    "url": "https://www.freqtrade.io/en/stable/freqai/",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Entrenamiento adaptativo y sandbox de modelos",
+    "account_tested": false
+  },
+  {
+    "id": "S35",
+    "title": "Hummingbot Condor",
+    "url": "https://hummingbot.org/condor/",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Separación de razonamiento y ejecución",
+    "account_tested": false
+  },
+  {
+    "id": "S36",
+    "title": "LEAN",
+    "url": "https://github.com/QuantConnect/Lean",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Motor algorítmico modular; no se adopta como núcleo inicial",
+    "account_tested": false
+  },
+  {
+    "id": "S37",
+    "title": "Lo, Mamaysky y Wang",
+    "url": "https://www.nber.org/papers/w7613",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Información incremental de patrones en muestra histórica, no garantía neta actual",
+    "account_tested": false
+  },
+  {
+    "id": "S38",
+    "title": "PostgreSQL version policy",
+    "url": "https://www.postgresql.org/support/versioning/",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Política de soporte/migraciones",
+    "account_tested": false
+  },
+  {
+    "id": "S39",
+    "title": "Pydantic",
+    "url": "https://pydantic.dev/docs/validation/latest/get-started/",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Validación tipada y JSON Schema",
+    "account_tested": false
+  },
+  {
+    "id": "S40",
+    "title": "FastAPI",
+    "url": "https://fastapi.tiangolo.com/",
+    "consulted_on": "2026-11-03",
+    "status": "VERIFIED_DOC",
+    "supports": "Framework API y validación/OpenAPI",
+    "account_tested": false
+  }
+]

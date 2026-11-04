@@ -1,0 +1,12 @@
+flowchart TD
+  F["FeatureSnapshot"] --> ST["Strategy evaluator"]
+  ST --> DEC["Decision / abstención"]
+  DEC --> R["Risk / reserva atómica"]
+  R --> EX["Execution coordinator"]
+  EX --> P["Paper adapter"]
+  EX -.-> LIVE["Signer futuro aislado"]
+  P --> REC["Reconciler"]
+  LIVE -.-> REC
+  REC --> LED["Ledger"]
+  LED --> PV["Portfolio projection"]
+  PV --> R

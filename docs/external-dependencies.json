@@ -1,0 +1,172 @@
+[
+  {
+    "id": "ED-01",
+    "name": "Acceso de datos",
+    "owner": "C-DATA",
+    "tasks": [
+      "T-003",
+      "T-014",
+      "T-017"
+    ],
+    "status": "Doc pública disponible; cuenta no probada",
+    "verification": "Crear credenciales read-only fuera del repo; aceptar términos; consultar muestra con cuota y permisos; guardar resultado saneado y fecha",
+    "blocked_scope": "Colectores autenticados; fixtures siguen disponibles"
+  },
+  {
+    "id": "ED-02",
+    "name": "Cuotas y facturación",
+    "owner": "C-OPS",
+    "tasks": [
+      "T-011",
+      "T-012"
+    ],
+    "status": "Tarifas documentales; contrato/factura no comprobados",
+    "verification": "Registrar plan,unidad,CUs por método,overage y alertas; comparar100 requests autorizados con consumo del panel",
+    "blocked_scope": "Carga continua y jobs que excedan presupuesto"
+  },
+  {
+    "id": "ED-03",
+    "name": "Historia y cohortes",
+    "owner": "C-LAB",
+    "tasks": [
+      "T-016",
+      "T-025",
+      "T-029",
+      "T-067",
+      "T-069"
+    ],
+    "status": "No hay dataset entregado",
+    "verification": "Recolectar prospectivamente; auditar ventanas/mints muertos y gaps; verificar archivo por cuenta y permisos; si no alcanza, esperar o reducir horizonte",
+    "blocked_scope": "Evaluación confirmatoria y scores de wallets; no bloquea motor local"
+  },
+  {
+    "id": "ED-04",
+    "name": "Cotización/rutas Jupiter",
+    "owner": "C-EXEC",
+    "tasks": [
+      "T-018",
+      "T-026",
+      "T-095"
+    ],
+    "status": "Order/rate limits verificados; build detallado/fixtures pendientes",
+    "verification": "Revisar spec vigente de build; capturar quote/build sin firma autorizados; validar parser,route fees,tamaños,programas y TTL",
+    "blocked_scope": "Quotes reales y preparación de transacciones; no bloquea paper fixture"
+  },
+  {
+    "id": "ED-05",
+    "name": "Programas/layouts/upgrades Solana",
+    "owner": "C-SOLANA",
+    "tasks": [
+      "T-021",
+      "T-022",
+      "T-023",
+      "T-024",
+      "T-034",
+      "T-094"
+    ],
+    "status": "Programa documentado; bytecode/IDL no cotejado en red",
+    "verification": "Cotejar owner,program ID,upgrade authority,IDL/commit y fixtures; fijar decoders; desactivar en upgrade desconocido",
+    "blocked_scope": "Decoder de producción y firma de rutas nuevas"
+  },
+  {
+    "id": "ED-06",
+    "name": "Permisos sociales/noticias",
+    "owner": "C-RESEARCH",
+    "tasks": [
+      "T-058",
+      "T-059",
+      "T-063",
+      "T-070"
+    ],
+    "status": "Sin grant concreto",
+    "verification": "Obtener texto contractual/consentimiento aplicable por contexto y finalidad; revisar retención/revocación/envío a LLM y registrar evidencia",
+    "blocked_scope": "Fuente individual y derivados; mercado-only continúa"
+  },
+  {
+    "id": "ED-07",
+    "name": "Licencias y compatibilidad de modelos",
+    "owner": "C-ML",
+    "tasks": [
+      "T-039",
+      "T-042",
+      "T-043",
+      "T-044",
+      "T-045",
+      "T-046",
+      "T-047",
+      "T-076",
+      "T-091"
+    ],
+    "status": "Repos oficiales leídos; checkpoint exacto/lock sin instalar",
+    "verification": "Resolver versión,hash y licencia de código/pesos/datos/modelo base; probar carga aislada y recursos; rechazar si restricciones no permiten propósito",
+    "blocked_scope": "Modelo específico; LightGBM baseline no depende de FinBERT/TimesFM"
+  },
+  {
+    "id": "ED-08",
+    "name": "Capacidades CLOB/venues",
+    "owner": "C-EXEC",
+    "tasks": [
+      "T-048",
+      "T-100",
+      "T-101",
+      "T-103"
+    ],
+    "status": "Kraken L2 documentado; venue execution no elegido para live",
+    "verification": "Certificar tick/lot,fees,checksum,partial fills,cancel,rate limits y derechos; crear sandbox del adapter; no inventar endpoints",
+    "blocked_scope": "Scalp/OFI/making/grid/cross-venue reales"
+  },
+  {
+    "id": "ED-09",
+    "name": "Cuentas LLM y formatos",
+    "owner": "C-AI",
+    "tasks": [
+      "T-060",
+      "T-061",
+      "T-062"
+    ],
+    "status": "IDs/tarifas documentados; acceso no probado",
+    "verification": "Canary autorizado con texto sintético;validar schema,refusal,usage,deadline,datos/retención y budget; congelar config",
+    "blocked_scope": "Proveedor individual; fallback sólo certificado"
+  },
+  {
+    "id": "ED-10",
+    "name": "Hardware/backup/continuidad",
+    "owner": "C-OPS",
+    "tasks": [
+      "T-086",
+      "T-087",
+      "T-088",
+      "T-090"
+    ],
+    "status": "Hardware provisto por consigna, no medido",
+    "verification": "Inventariar RAM/VRAM/disco/red; benchmark de carga; restore cronometrado; cotizar VPS sólo si hace falta continuidad",
+    "blocked_scope": "SLO y readiness; no obliga compra"
+  },
+  {
+    "id": "ED-11",
+    "name": "Preparación para ejecución futura",
+    "owner": "C-EXEC",
+    "tasks": [
+      "T-093",
+      "T-096",
+      "T-097",
+      "T-098",
+      "T-099",
+      "T-104"
+    ],
+    "status": "No autorizado live",
+    "verification": "Usar devnet/claves de prueba;auditoría independiente y review jurídica;demostrar gates;si propietario decide, nueva aprobación limitada y con expiración",
+    "blocked_scope": "Toda operación live; ninguna fase libera este bloqueo sola"
+  },
+  {
+    "id": "ED-12",
+    "name": "Derivados y margen",
+    "owner": "C-RISK",
+    "tasks": [
+      "T-102"
+    ],
+    "status": "Sólo diseño/sandbox",
+    "verification": "Elegir venue permitido,consultar spec de contrato/funding/tiers y disponibilidad jurisdiccional;certificar risk adapter y obtener autorización específica",
+    "blocked_scope": "Funding/delta-neutral reales y cualquier apalancamiento"
+  }
+]

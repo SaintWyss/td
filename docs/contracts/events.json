@@ -1,0 +1,145 @@
+[
+  {
+    "type": "observation.recorded.v1",
+    "producer": "C-DATA",
+    "consumers": [
+      "C-SOLANA",
+      "C-LAB"
+    ],
+    "payload_schema": "Observation",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "token.assessed.v1",
+    "producer": "C-SOLANA",
+    "consumers": [
+      "C-DECISION"
+    ],
+    "payload_schema": "TokenAssessment",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "features.ready.v1",
+    "producer": "C-ML",
+    "consumers": [
+      "C-STRATEGY"
+    ],
+    "payload_schema": "FeatureSnapshot",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "signal.proposed.v1",
+    "producer": "C-STRATEGY",
+    "consumers": [
+      "C-DECISION"
+    ],
+    "payload_schema": "Signal",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "decision.recorded.v1",
+    "producer": "C-DECISION",
+    "consumers": [
+      "C-RISK",
+      "C-API"
+    ],
+    "payload_schema": "Decision",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "risk.assessed.v1",
+    "producer": "C-RISK",
+    "consumers": [
+      "C-EXEC"
+    ],
+    "payload_schema": "RiskAssessment",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "execution.intent.v1",
+    "producer": "C-RISK",
+    "consumers": [
+      "C-EXEC"
+    ],
+    "payload_schema": "ExecutionIntent",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "execution.reported.v1",
+    "producer": "C-EXEC",
+    "consumers": [
+      "C-LEDGER"
+    ],
+    "payload_schema": "ExecutionReport",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "fill.finalized.v1",
+    "producer": "C-EXEC",
+    "consumers": [
+      "C-LEDGER"
+    ],
+    "payload_schema": "Fill",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "journal.recorded.v1",
+    "producer": "C-LEDGER",
+    "consumers": [
+      "C-RISK",
+      "C-API"
+    ],
+    "payload_schema": "JournalEntry",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "claim.extracted.v1",
+    "producer": "C-RESEARCH",
+    "consumers": [
+      "C-LAB"
+    ],
+    "payload_schema": "ResearchClaim",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "model.promoted.v1",
+    "producer": "C-LEARN",
+    "consumers": [
+      "C-ML"
+    ],
+    "payload_schema": "Promotion",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "outcome.matured.v1",
+    "producer": "C-LEARN",
+    "consumers": [
+      "C-LAB"
+    ],
+    "payload_schema": "Outcome",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  },
+  {
+    "type": "alert.raised.v1",
+    "producer": "C-OPS",
+    "consumers": [
+      "C-API"
+    ],
+    "payload_schema": "Alert",
+    "delivery": "AT_LEAST_ONCE",
+    "ordering": "AGGREGATE_REVISION"
+  }
+]

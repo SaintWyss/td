@@ -1,0 +1,10 @@
+flowchart TD
+  C["Fuente candidata"] --> P{"Permiso por finalidad"}
+  P -->|"no"| B["Bloqueada"]
+  P -->|"sí"| D["Fetch y deduplicación"]
+  D --> E["Extracción tipada"]
+  E --> X{"Evidencia y contraste"}
+  X -->|"insuficiente"| AB["Abstención / rumor"]
+  X -->|"suficiente"| H["Hipótesis preregistrada"]
+  H --> J["Experimento autorizado"]
+  J --> K["Conocimiento con veredicto"]

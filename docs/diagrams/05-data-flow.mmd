@@ -1,0 +1,12 @@
+flowchart TD
+  SRC["Proveedor"] --> RAW["Raw con hash y recepción"]
+  RAW --> V{"Schema y permisos"}
+  V -->|"válido"| CAN["Canonical versionado"]
+  V -->|"inválido"| Q["Cuarentena"]
+  CAN --> PIT["Join por disponibilidad"]
+  PIT --> DS["Dataset manifest"]
+  PIT --> F["Snapshot online"]
+  DS --> REP["Replay"]
+  F --> DEC["Decisión"]
+  REP --> EV["Evaluación"]
+  DEC --> EV

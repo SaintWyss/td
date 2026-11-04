@@ -1,0 +1,12 @@
+flowchart TD
+  WEB["Web privada"] --> API["API / sesiones"]
+  API --> DB["PostgreSQL / outbox"]
+  COL["Collector"] --> DB
+  COL --> RAW["Raw / Parquet"]
+  WORK["Worker / paper"] --> DB
+  WORK --> RAW
+  TRAIN["Trainer por lotes"] --> RAW
+  TRAIN --> DB
+  RES["Researcher sin claves financieras"] --> DB
+  API --> OPS["Observabilidad"]
+  WORK --> OPS

@@ -1,0 +1,26 @@
+# Despliegue
+
+```mermaid
+flowchart TD
+  subgraph LAP["saint-acer"]
+    IDE["IDE / navegador"]
+  end
+  subgraph DESK["Santiago-PC"]
+    API["API privada"]
+    DB["PostgreSQL"]
+    W["Collector / worker"]
+    T["Trainer limitado"]
+    SSD["NVMe: datos calientes"]
+    HDD["HDD: archivo y backup"]
+    API --> DB
+    W --> DB
+    W --> SSD
+    T --> SSD
+    SSD --> HDD
+  end
+  IDE -->|"túnel SSH"| API
+  W --> EXT["APIs externas"]
+  HDD -.-> OFF["Copia fuera del host: futura"]
+```
+
+Vista de diseño. Las relaciones financieras y estados normativos se detallan en los contratos y documentos de dominio. Ninguna flecha implica autorización live ni servicio ya desplegado.

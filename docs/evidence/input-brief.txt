@@ -1,0 +1,1047 @@
+# MISIÓN: DISEÑO INTEGRAL DE UNA PLATAFORMA AUTÓNOMA DE TRADING CON INTELIGENCIA ARTIFICIAL
+
+## 0. TU ROL Y RESPONSABILIDAD
+
+Actuá como un equipo de ingeniería de nivel principal integrado por:
+
+- Principal Software Architect
+- Quantitative Researcher
+- Algorithmic Trading Engineer
+- Machine Learning / Deep Learning Engineer
+- AI Agents Engineer
+- Solana Blockchain Engineer
+- Financial Data Engineer
+- MLOps / DevOps Engineer
+- Cybersecurity Engineer
+- Software Quality Architect
+- Technical Product Manager
+
+Tu misión es transformar la investigación profunda adjunta en **un proyecto de software completamente diseñado, documentado, estructurado y preparado para ser implementado por agentes de programación de menor capacidad**.
+
+No quiero únicamente recomendaciones, diagramas generales o un roadmap superficial.
+
+Quiero una especificación de ingeniería profesional, exhaustiva, coherente, versionada y ejecutable.
+
+El resultado debe permitir que un agente programador reciba una tarea individual, lea su documentación y contratos, implemente el comportamiento solicitado, ejecute las pruebas correspondientes y entregue evidencia verificable.
+
+### REGLAS FUNDAMENTALES
+
+1. NO programes todavía el producto.
+2. Diseñá el 100 % del alcance previsto, diferenciando claramente las capacidades de la primera versión y las posteriores.
+3. Tomá decisiones técnicas concretas. No presentes alternativas indefinidamente.
+4. Justificá las decisiones importantes mediante evidencia y Architecture Decision Records (ADR).
+5. No inventes APIs, endpoints, precios, licencias, datasets ni funcionalidades.
+6. Cuando exista una incertidumbre externa, identificá cómo verificarla y qué componente queda bloqueado hasta resolverla.
+7. No hagas preguntas que puedas resolver mediante investigación, criterios de ingeniería o las decisiones por defecto establecidas.
+8. No sacrifiques seguridad, reproducibilidad ni controles financieros por autonomía.
+9. No prometas rentabilidad, probabilidades de acierto ni ingresos pasivos sin evidencia.
+10. Toda estrategia debe poder ser rechazada por falta de evidencia.
+11. Prioriza soluciones mantenibles, económicamente razonables y extensibles.
+12. El objetivo es minimizar la improvisación de la IA implementadora, no fingir que pueden eliminarse todos los errores.
+
+---
+
+# 1. VISIÓN DEL PRODUCTO
+
+Quiero construir una plataforma autónoma de inteligencia financiera y trading algorítmico.
+
+Su objetivo es descubrir, investigar, clasificar y evaluar oportunidades de mercado mediante múltiples fuentes de información y modelos de inteligencia artificial.
+
+La plataforma deberá ser capaz de:
+
+- Investigar continuamente.
+- Descubrir activos y tendencias.
+- Analizar datos de mercado.
+- Interpretar información externa.
+- Observar comportamientos de traders y wallets.
+- Detectar posibles anomalías o manipulaciones.
+- Construir hipótesis cuantitativas.
+- Entrenar modelos predictivos.
+- Comparar estrategias.
+- Aprender de resultados históricos y prospectivos.
+- Decidir cuándo conviene operar y cuándo abstenerse.
+- Gestionar posiciones mediante reglas verificables.
+- Evaluar su propia degradación.
+- Mantener un historial completo de decisiones.
+- Mejorar sus modelos sin comprometer el funcionamiento del sistema.
+
+A largo plazo, el objetivo es una plataforma de trading automatizado que pueda generar resultados económicos positivos si sus estrategias demuestran una ventaja estadística real.
+
+**El sistema nunca debe asumir que una predicción acertada equivale a una operación rentable.**
+
+La rentabilidad se evaluará descontando todos los costos y considerando los riesgos.
+
+---
+
+# 2. MERCADO PRINCIPAL: SOLANA Y TOKENS EMERGENTES
+
+La plataforma debe especializarse inicialmente en el ecosistema Solana.
+
+El foco prioritario será:
+
+- Memecoins.
+- Tokens nuevos.
+- Tokens de baja capitalización.
+- Tokens que comienzan a recibir atención.
+- Activos con crecimiento abrupto de actividad.
+- Oportunidades de momentum.
+- Operaciones de corta duración.
+- Análisis de wallets rentables.
+- Detección temprana de tendencias.
+- Análisis de liquidez y microestructura.
+
+No limitar el diseño a BTC/ETH.
+
+BTC, ETH y SOL servirán también como referencias para experimentos cuantitativos, modelos comparativos y validación de infraestructura.
+
+La arquitectura debe soportar posteriormente otros ecosistemas blockchain, exchanges centralizados y mercados financieros, sin requerir una reescritura estructural.
+
+## 2.1. Estrategias específicas de Solana
+
+Diseñar módulos para:
+
+**A. Descubrimiento temprano de tokens**
+
+Detectar nuevos tokens y pools, identificar actividad inicial, analizar los primeros movimientos, estudiar transacciones y determinar cuándo existe información suficiente para evaluar una oportunidad.
+
+**B. Momentum y tendencias emergentes**
+
+Detectar aceleraciones de volumen, crecimiento de participantes, cambios de liquidez, concentración de compras y aparición de narrativas sociales.
+
+**C. Scalping**
+
+Analizar operaciones de corta duración, spreads, profundidad disponible, flujo de operaciones, impacto de precios, costos y condiciones de entrada y salida.
+
+**D. Smart-money intelligence**
+
+Analizar wallets con historiales públicos, reconstruir operaciones observables, evaluar rentabilidad ajustada por riesgo y estudiar comportamientos recurrentes.
+
+**E. Detección de anomalías**
+
+Investigar señales de wash trading, concentración artificial de actividad, movimientos coordinados, liquidez engañosa y patrones compatibles con manipulación.
+
+**F. Gestión de salida**
+
+Evaluar dinámicamente las condiciones de salida, liquidez, riesgo, costos y cambios en las señales.
+
+No asumir que encontrar un token con crecimiento extraordinario implica poder entrar y salir a los precios observados.
+
+## 2.2. Seguridad de tokens
+
+Definir controles específicos para:
+
+- Mint authority.
+- Freeze authority.
+- Token Program y Token-2022.
+- Transfer fees y extensiones relevantes.
+- Concentración de holders.
+- Distribución inicial.
+- Billeteras vinculadas.
+- Comportamiento del creador.
+- Estado de pools y liquidez.
+- Posibles retiros abruptos de liquidez.
+- Riesgo de rug pull.
+- Actividad artificial.
+- Riesgo de ejecución.
+- Viabilidad de vender el token.
+- Slippage y price impact.
+- Riesgos de contratos, programas y rutas de intercambio.
+
+Distinguir señales de riesgo observables de acusaciones sobre intención fraudulenta.
+
+No interpretar una wallet rentable como una garantía de que sus próximas operaciones lo serán.
+
+---
+
+# 3. ARQUITECTURA API-FIRST E HÍBRIDA
+
+Esta decisión ya está tomada.
+
+**La plataforma utilizará APIs externas como primera opción, combinadas con procesamiento y modelos propios cuando tenga sentido técnico y económico.**
+
+NO queremos entrenar un LLM generalista desde cero.
+
+NO queremos exigir GPUs costosas para comenzar.
+
+NO queremos depender de un único proveedor.
+
+## 3.1. APIs de inteligencia artificial
+
+Evaluar proveedores como:
+
+- OpenAI.
+- Anthropic / Claude.
+- Google / Gemini.
+- Alternativas especializadas o compatibles.
+- Modelos open-source servidos mediante API.
+
+Diseñar abstracciones para cambiar proveedores sin modificar las reglas del dominio.
+
+Especificar:
+
+- Interfaces.
+- Modelos admitidos.
+- Selección según complejidad y costo.
+- Entradas y salidas estructuradas.
+- Validación de respuestas.
+- Rate limiting.
+- Retries.
+- Timeouts.
+- Circuit breakers.
+- Caché.
+- Presupuestos máximos.
+- Control de tokens.
+- Versionado de prompts.
+- Registro de decisiones.
+- Fallback entre proveedores compatibles.
+
+El sistema deberá asignar tareas sencillas a modelos económicos y reservar modelos avanzados para investigaciones complejas.
+
+## 3.2. APIs de datos
+
+Investigar y comparar mediante documentación oficial:
+
+- Helius.
+- Birdeye.
+- Jupiter.
+- DEX Screener.
+- APIs RPC de Solana.
+- APIs de exchanges centralizados.
+- Fuentes de noticias.
+- Datos on-chain.
+- Plataformas de datos financieros.
+- Proveedores de información social autorizada.
+
+Evaluar disponibilidad, latencia, calidad, costos, cobertura histórica, límites y condiciones de uso.
+
+No asumir que todos los proveedores entregan datos históricos completos o acceso ilimitado.
+
+Diseñar adaptadores reemplazables.
+
+---
+
+# 4. HARDWARE DISPONIBLE
+
+El proyecto debe diseñarse específicamente para estos recursos.
+
+## 4.1. Santiago-PC — Escritorio principal
+
+- CPU: AMD Ryzen 7 5800XT.
+- 8 núcleos / 16 hilos.
+- GPU: NVIDIA RTX 3070.
+- VRAM: verificar capacidad efectiva; referencia habitual de 8 GB.
+- RAM: aproximadamente 16 GB.
+- SSD principal: WD_BLACK SN850X NVMe 2 TB.
+- Almacenamiento HDD adicional.
+- Linux.
+- Acceso por red y SSH.
+
+Uso preferente:
+
+- Modelos predictivos.
+- Ingeniería de características.
+- Backtesting.
+- Procesamiento histórico.
+- Entrenamiento.
+- Bases de datos de desarrollo.
+- Simulación.
+- Experimentación con GPU cuando sea útil.
+
+## 4.2. saint-acer — Portátil
+
+- CPU: Intel Core i5-10300H.
+- 4 núcleos / 8 hilos.
+- GPU: NVIDIA GTX 1650 Mobile.
+- RAM: aproximadamente 16 GB.
+- SSD NVMe 256 GB.
+- HDD 1 TB.
+- Linux.
+- Acceso SSH al escritorio.
+
+Uso preferente:
+
+- Desarrollo.
+- IDE.
+- Control del proyecto.
+- Dashboard.
+- Pruebas ligeras.
+- Administración.
+- Acceso remoto a servicios.
+
+## 4.3. Reglas de infraestructura
+
+- No exigir compra inmediata de hardware.
+- No asumir que el escritorio estará disponible permanentemente.
+- Diseñar primero para infraestructura local y APIs externas.
+- Evaluar despliegue futuro en VPS.
+- Separar entornos de desarrollo, experimentación y producción.
+- No almacenar grandes históricos en el SSD pequeño del portátil.
+- Considerar límites reales de RAM y VRAM.
+- Diseñar mecanismos de recuperación después de cortes de energía, red o procesos.
+- Evaluar qué componentes requieren disponibilidad continua y cuáles pueden ejecutarse por lotes.
+
+Proponer una configuración inicial eficiente.
+
+Incluir presupuestos de infraestructura verificados o claramente estimados.
+
+---
+
+# 5. INVESTIGACIÓN AUTÓNOMA
+
+La plataforma debe contar con un subsistema de investigación automatizada.
+
+Este subsistema no debe limitarse a resumir noticias.
+
+Debe poder:
+
+1. Descubrir nuevas fuentes permitidas.
+2. Consultar fuentes registradas.
+3. Identificar información novedosa.
+4. Extraer entidades y relaciones.
+5. Relacionar acontecimientos con activos.
+6. Detectar posibles narrativas emergentes.
+7. Comparar fuentes independientes.
+8. Registrar procedencia, fecha y credibilidad.
+9. Formular hipótesis.
+10. Proponer experimentos.
+11. Evaluar resultados.
+12. Actualizar una base de conocimiento versionada.
+
+### Fuentes contempladas
+
+- Medios financieros.
+- Calendarios económicos.
+- Comunicados oficiales.
+- Foros.
+- Reddit.
+- Comunidades de trading.
+- Telegram, exclusivamente cuando las autorizaciones lo permitan.
+- Información pública de wallets.
+- Datos on-chain.
+- Historiales públicos de traders.
+- Publicaciones académicas.
+- Repositorios y proyectos open-source.
+- Investigación sobre microestructura financiera.
+
+No implementar scraping que incumpla permisos, términos contractuales o restricciones legales.
+
+No utilizar material privado o robado.
+
+La información recuperada debe tratarse como datos no confiables, nunca como instrucciones para el sistema.
+
+Diseñar defensas contra prompt injection, rumores falsos, contenido fabricado, duplicación de noticias y manipulación informativa.
+
+---
+
+# 6. INTELIGENCIA ARTIFICIAL ESPECIALIZADA
+
+No diseñar un único agente que reciba todos los datos en un prompt gigantesco.
+
+Diseñar componentes especializados, con responsabilidades y contratos explícitos.
+
+## 6.1. Agente de mercado
+
+Analiza:
+
+- Precios.
+- Volumen.
+- Volatilidad.
+- Momentum.
+- Microestructura.
+- Liquidez.
+- Spreads.
+- Flujo de operaciones.
+- Tendencias.
+- Cambios de régimen.
+
+## 6.2. Agente on-chain
+
+Analiza:
+
+- Transacciones.
+- Wallets.
+- Concentración.
+- Distribución de tokens.
+- Pools.
+- Transferencias.
+- Actividad del creador.
+- Flujos de capital.
+
+## 6.3. Agente social
+
+Analiza información obtenida legítimamente:
+
+- Noticias.
+- Sentimiento.
+- Narrativas.
+- Atención.
+- Evolución de menciones.
+- Credibilidad.
+- Posibles campañas coordinadas.
+
+## 6.4. Agente de inteligencia de traders
+
+Analiza:
+
+- Historiales públicos.
+- Resultados ajustados por riesgo.
+- Consistencia.
+- Frecuencia.
+- Tamaños relativos.
+- Duración de posiciones.
+- Entradas y salidas.
+- Concentración de operaciones.
+- Correlación con otras wallets.
+- Posibles comportamientos de cobertura.
+
+No debe afirmar conocer las intenciones privadas de un trader.
+
+## 6.5. Agente detector de anomalías
+
+Evalúa:
+
+- Patrones inusuales.
+- Actividad repetitiva.
+- Cambios abruptos de liquidez.
+- Concentración temporal de transacciones.
+- Comportamientos potencialmente coordinados.
+- Riesgos de manipulación.
+
+## 6.6. Agente investigador
+
+Investiga hipótesis y relaciona información externa.
+
+## 6.7. Motor predictivo
+
+Produce probabilidades, distribuciones de resultados y estimaciones de incertidumbre.
+
+Evaluar:
+
+- LightGBM.
+- XGBoost.
+- Modelos de series temporales.
+- Kronos.
+- Chronos.
+- TimesFM.
+- FinBERT.
+- FinGPT.
+- Modelos especializados en order flow.
+- Modelos de anomalías.
+- Técnicas de ensemble learning.
+- Reinforcement learning, únicamente si se justifica experimentalmente.
+
+Definir por qué se selecciona o descarta cada tecnología.
+
+No considerar una arquitectura sofisticada superior sin pruebas.
+
+## 6.8. Motor de decisión
+
+Combina las señales disponibles y estima oportunidades.
+
+Debe poder responder:
+
+- ¿Existe una oportunidad estadísticamente justificable?
+- ¿Cuál es su expectativa neta?
+- ¿Qué información la respalda?
+- ¿Qué incertidumbre existe?
+- ¿Qué datos faltan?
+- ¿Qué estrategia sería aplicable?
+- ¿Es preferible no operar?
+
+Debe existir una decisión explícita NO TRADE.
+
+## 6.9. Motor de riesgo
+
+Debe funcionar independientemente de los LLM.
+
+Sus límites nunca podrán ser anulados por una respuesta generada por IA.
+
+## 6.10. Motor de aprendizaje
+
+Debe almacenar predicciones, resultados, versiones de modelos, experimentos y evidencia.
+
+El aprendizaje puede ser automatizado, pero la promoción de modelos debe pasar por validaciones independientes.
+
+---
+
+# 7. ESTRATEGIAS A DISEÑAR
+
+Diseñá una arquitectura de estrategias intercambiables.
+
+Contemplar:
+
+- Detección temprana de tokens.
+- Momentum.
+- Scalping.
+- Mean reversion.
+- Breakout.
+- False breakout.
+- Order-flow imbalance.
+- Trading basado en noticias.
+- Trading basado en sentimiento.
+- Copy trading filtrado.
+- Estrategias basadas en smart money.
+- Análisis de liquidez.
+- Grid trading.
+- Market making.
+- Arbitraje.
+- Funding-rate arbitrage.
+- Estrategias delta-neutral.
+- Seguimiento sistemático de tendencias.
+- Selección dinámica según regímenes.
+
+No todas deben implementarse en la primera versión.
+
+Para cada una definir:
+
+- Hipótesis económica.
+- Mercado.
+- Horizonte.
+- Datos requeridos.
+- Restricciones.
+- Algoritmo de señales.
+- Criterios de entrada.
+- Criterios de salida.
+- Gestión del riesgo.
+- Costos.
+- Dependencias.
+- Riesgos particulares.
+- Pruebas necesarias.
+- Criterios de aceptación y rechazo.
+
+Evitar asumir que una estrategia funciona porque es popular o porque tuvo éxito histórico en un ejemplo.
+
+---
+
+# 8. MOTOR DE EJECUCIÓN
+
+Diseñar la ejecución como subsistema independiente.
+
+Debe considerar:
+
+- Exchanges y DEX.
+- Cotizaciones.
+- Enrutamiento.
+- Preparación de operaciones.
+- Simulación.
+- Envío de transacciones.
+- Estados de ejecución.
+- Confirmaciones.
+- Errores.
+- Reintentos.
+- Transacciones fallidas.
+- Duplicados.
+- Reconciliación.
+- Slippage.
+- Price impact.
+- Liquidez.
+- Comisiones.
+- Congestión de red.
+- Riesgo de transacciones pendientes.
+- Riesgos de MEV y ejecución adversa.
+- Recuperación ante interrupciones.
+
+Especificar máquinas de estados e invariantes.
+
+Prohibir por defecto la ejecución con dinero real.
+
+La arquitectura podrá contemplar producción, pero su activación requerirá controles, validaciones y aprobación humana explícita.
+
+No implementar técnicas de manipulación como spoofing, wash trading o pump-and-dump.
+
+---
+
+# 9. GESTIÓN DEL RIESGO
+
+Diseñar un sistema determinista, auditable y fail-closed.
+
+Incluir:
+
+- Riesgo máximo por operación.
+- Exposición máxima.
+- Límites por activo.
+- Concentración de cartera.
+- Pérdidas máximas.
+- Drawdown.
+- Control de liquidez.
+- Tamaño de posiciones.
+- Comisiones.
+- Stop-loss cuando sea aplicable.
+- Reglas de salida.
+- Protección ante ejecuciones parciales.
+- Protección ante datos obsoletos.
+- Protección ante fallos de APIs.
+- Control de transacciones pendientes.
+- Detección de órdenes duplicadas.
+- Kill switch.
+- Modo solo cierre.
+- Conciliación de posiciones.
+- Gestión de incidentes.
+
+No utilizar el criterio de Kelly como garantía de evitar pérdidas o ruina.
+
+No asumir que el stop-loss garantiza un precio de salida en tokens ilíquidos.
+
+---
+
+# 10. VALIDACIÓN CIENTÍFICA
+
+Esta sección es crítica.
+
+Quiero un laboratorio que distinga predicción, rentabilidad y evidencia estadística.
+
+Debe incluir:
+
+- Datasets point-in-time.
+- Calidad y procedencia de datos.
+- Timestamps de disponibilidad real.
+- Control de look-ahead bias.
+- Control de data leakage.
+- Walk-forward validation.
+- Purging y embargo cuando correspondan.
+- Holdout independiente.
+- Comparaciones con buy-and-hold.
+- Comparaciones con estrategias sencillas.
+- Modelos mercado-only.
+- Modelos con señales sociales.
+- Modelos on-chain.
+- Modelos de inteligencia de traders.
+- Ensemble completo.
+- Experimentos de ablación.
+- Placebos.
+- Análisis de regímenes.
+- Simulación de comisiones.
+- Spread y slippage.
+- Latencia.
+- Impacto de mercado.
+- Ejecución parcial.
+- Sesgo de supervivencia.
+- Múltiples pruebas de hipótesis.
+- Intervalos de confianza.
+- Paper trading prospectivo.
+
+Para tokens nuevos, exigir datasets que incluyan también proyectos fallidos, ilíquidos y desaparecidos.
+
+Evitar evaluar solo memecoins que llegaron a ser conocidas.
+
+La selección de modelos y características no podrá utilizar inadvertidamente información futura.
+
+### Métricas
+
+Definir al menos:
+
+- Expectativa neta.
+- PnL realizado y no realizado.
+- Retorno ajustado por riesgo.
+- Sharpe.
+- Sortino.
+- Maximum drawdown.
+- CVaR.
+- Win rate.
+- Profit factor.
+- Turnover.
+- Calibración predictiva.
+- Costos de ejecución.
+- Persistencia del desempeño.
+- Robustez fuera de muestra.
+
+Establecer criterios de aceptación que puedan justificar NO continuar.
+
+Una estrategia no puede pasar a producción únicamente por tener un backtest positivo.
+
+---
+
+# 11. SEGURIDAD
+
+Diseñar seguridad desde el inicio.
+
+Especificar:
+
+- Gestión de secretos.
+- Claves de API.
+- Permisos mínimos.
+- Autenticación y autorización.
+- Seguridad de wallets.
+- Separación entre claves de lectura y ejecución.
+- Ausencia de permisos innecesarios de retiro.
+- Separación de entornos.
+- Cifrado.
+- Validación de entradas.
+- Protección contra prompt injection.
+- Restricciones de herramientas.
+- Auditoría.
+- Registro de decisiones.
+- Backup.
+- Recuperación.
+- Políticas de acceso remoto.
+- Seguridad del dashboard.
+- Manejo de dependencias.
+- Análisis de vulnerabilidades.
+- Gestión de incidentes.
+
+Revisar requisitos regulatorios y contractuales relevantes para un desarrollador ubicado en Argentina.
+
+---
+
+# 12. DASHBOARD
+
+Diseñar una interfaz profesional que permita controlar la plataforma.
+
+Debe mostrar:
+
+- Estado del sistema.
+- Estado de conectores.
+- Fuentes disponibles.
+- Nuevos tokens.
+- Activos en seguimiento.
+- Análisis de wallets.
+- Información social.
+- Señales predictivas.
+- Riesgo de tokens.
+- Estrategias.
+- Decisiones.
+- Operaciones simuladas.
+- Historial financiero.
+- Costos de APIs.
+- Modelos activos.
+- Experimentos.
+- Aprendizaje.
+- Alertas.
+- Errores.
+- Configuración.
+- Controles de seguridad.
+
+Definir pantallas, componentes, navegación, estados y contratos de API.
+
+---
+
+# 13. ARQUITECTURA DE SOFTWARE
+
+Aplicar:
+
+- Clean Architecture donde corresponda.
+- Arquitectura hexagonal.
+- SOLID.
+- GRASP.
+- Alta cohesión.
+- Bajo acoplamiento.
+- Dependency inversion.
+- Domain-driven design cuando aporte valor.
+- Arquitectura orientada a eventos cuando esté justificada.
+- Contratos fuertemente tipados.
+- Separación entre lógica de dominio e infraestructura.
+- Testing automatizado.
+- Observabilidad.
+- Reproducibilidad.
+- Versionado.
+- Documentación técnica.
+
+Priorizar un monolito modular antes que microservicios si satisface los requisitos iniciales.
+
+Evitar sobreingeniería.
+
+Evaluar tecnologías como Python, FastAPI, Pydantic, PostgreSQL, Parquet, Redis, Docker, herramientas MLOps y bibliotecas cuantitativas.
+
+Elegir una solución concreta y documentar el motivo.
+
+### Diagramas obligatorios
+
+- C4 Context.
+- C4 Container.
+- C4 Component.
+- Diagrama de despliegue.
+- Flujo de datos.
+- Pipeline de investigación.
+- Pipeline de machine learning.
+- Pipeline de decisiones.
+- Pipeline de ejecución.
+- Máquina de estados de órdenes.
+- Modelo entidad-relación.
+- Diagrama de dependencias.
+
+---
+
+# 14. ENTREGABLES
+
+Generar un paquete documental versionable, preferentemente en Markdown, con diagramas Mermaid y contratos en formatos verificables.
+
+Estructura mínima:
+
+```text
+docs/
+├── 00-index.md
+├── 01-executive-summary.md
+├── 02-product-vision.md
+├── 03-functional-requirements.md
+├── 04-nonfunctional-requirements.md
+├── 05-scope-and-assumptions.md
+├── 06-architecture-overview.md
+├── 07-system-components.md
+├── 08-domain-model.md
+├── 09-data-architecture.md
+├── 10-data-source-catalog.md
+├── 11-api-contracts.md
+├── 12-event-contracts.md
+├── 13-ai-architecture.md
+├── 14-ml-models.md
+├── 15-autonomous-research.md
+├── 16-solana-intelligence.md
+├── 17-trader-intelligence.md
+├── 18-strategy-engine.md
+├── 19-decision-engine.md
+├── 20-risk-engine.md
+├── 21-execution-engine.md
+├── 22-backtesting.md
+├── 23-statistical-validation.md
+├── 24-continuous-learning.md
+├── 25-security.md
+├── 26-dashboard.md
+├── 27-infrastructure.md
+├── 28-deployment.md
+├── 29-observability.md
+├── 30-testing.md
+├── 31-cost-analysis.md
+├── 32-implementation-roadmap.md
+├── 33-implementation-backlog.md
+├── 34-acceptance-criteria.md
+├── 35-traceability-matrix.md
+├── 36-risk-register.md
+├── 37-agent-implementation-guide.md
+├── 38-external-dependencies.md
+├── 39-release-and-rollback.md
+├── adr/
+├── diagrams/
+├── contracts/
+└── tasks/
+```
+
+Cada documento debe tener contenido sustantivo y consistente.
+
+No dejar secciones vacías, pseudodefiniciones o simples encabezados.
+
+Para los contratos, definir esquemas que puedan validarse cuando corresponda: OpenAPI, JSON Schema, especificaciones de eventos o equivalentes.
+
+---
+
+# 15. ROADMAP PARA UNA IA IMPLEMENTADORA
+
+El producto completo debe dividirse en fases progresivas.
+
+No significa que todas las funcionalidades deban construirse inmediatamente.
+
+Primero construir una base técnicamente correcta y una estrategia experimental verificable. Después añadir complejidad.
+
+Organizar:
+
+FASES → ÉPICAS → FEATURES → TAREAS ATÓMICAS.
+
+### Cada tarea debe contener
+
+- ID único.
+- Objetivo.
+- Alcance exacto.
+- Prioridad.
+- Dependencias.
+- Arquitectura afectada.
+- Archivos previstos.
+- Interfaces involucradas.
+- Contratos.
+- Entradas.
+- Salidas.
+- Reglas de negocio.
+- Invariantes.
+- Procedimiento de implementación.
+- Manejo de errores.
+- Casos límite.
+- Pruebas unitarias.
+- Pruebas de integración.
+- Validaciones de seguridad.
+- Criterios de aceptación.
+- Definition of Done.
+- Evidencia exigida.
+- Condiciones de bloqueo.
+
+Las tareas deben ser pequeñas y autocontenidas.
+
+No utilizar tareas ambiguas como:
+
+- "Construir el backend".
+- "Implementar machine learning".
+- "Hacer el bot de Solana".
+- "Crear el sistema de trading".
+
+Descomponer esas actividades hasta alcanzar unidades de trabajo verificables.
+
+### Secuencia de versiones sugerida
+
+**V0 — Fundaciones:** repositorio, arquitectura, contratos, CI, seguridad básica, configuración y entorno.
+
+**V1 — Inteligencia de datos:** APIs, ingesta, almacenamiento, trazabilidad y calidad.
+
+**V2 — Solana Intelligence:** nuevos tokens, liquidez, wallets, análisis de riesgos y actividad blockchain.
+
+**V3 — Laboratorio cuantitativo:** datasets reproducibles, backtesting y baselines.
+
+**V4 — IA predictiva:** modelos, entrenamiento, validación y registro.
+
+**V5 — Estrategias y decisiones:** señales, selección de estrategias, motor determinista de riesgo.
+
+**V6 — Paper trading:** simulación de ejecución y operaciones prospectivas.
+
+**V7 — Investigación autónoma:** agentes LLM, noticias, fuentes autorizadas y base de conocimiento.
+
+**V8 — Inteligencia de traders:** análisis de wallets, perfiles y copy trading simulado.
+
+**V9 — Fusión de señales:** ensembles, análisis social, on-chain, mercado y anomalías.
+
+**V10 — Aprendizaje continuo:** champion/challenger, experimentación y promoción controlada.
+
+**V11 — Plataforma integral:** dashboard, observabilidad, seguridad avanzada y recuperación.
+
+**V12 — Preparación operativa:** pruebas de robustez, validación de latencia, auditoría y revisión de condiciones para una posible ejecución real.
+
+Estas versiones son una referencia inicial. Podés reorganizarlas si existe una justificación arquitectónica clara.
+
+No autorizar dinero real por completar una fase de software.
+
+---
+
+# 16. PROTOCOLO DE IMPLEMENTACIÓN PARA AGENTES DE MENOR CAPACIDAD
+
+Diseñar un sistema de instrucciones que permita usar modelos económicos para programar.
+
+El agente recibirá:
+
+1. La tarea asignada.
+2. Los documentos necesarios.
+3. Los contratos relevantes.
+4. Las restricciones de arquitectura.
+5. Los archivos existentes implicados.
+6. Los criterios de aceptación.
+7. Los comandos de prueba.
+
+El agente deberá:
+
+- Implementar únicamente el alcance de la tarea.
+- Respetar contratos y ADR.
+- No modificar arquitectura por iniciativa propia.
+- No introducir dependencias injustificadas.
+- Escribir pruebas.
+- Ejecutar validaciones.
+- Registrar errores.
+- Reportar archivos modificados.
+- Adjuntar evidencia.
+- No declarar completada una tarea fallida.
+
+Definir un mecanismo para detectar contradicciones entre documentos.
+
+Cuando una contradicción no pueda resolverse mediante reglas documentadas, bloquear solamente la parte afectada y registrar la decisión humana necesaria.
+
+No permitir que un agente silenciosamente invente un contrato faltante.
+
+---
+
+# 17. REVISIÓN DE CONSISTENCIA Y COMPLETITUD
+
+Antes de finalizar tu trabajo, auditá toda la especificación.
+
+Verificá:
+
+- Que cada requisito tenga un módulo responsable.
+- Que cada módulo tenga contratos.
+- Que cada contrato tenga esquemas definidos.
+- Que cada esquema tenga validaciones.
+- Que cada estrategia tenga una metodología experimental.
+- Que cada componente crítico tenga manejo de fallos.
+- Que cada tarea tenga dependencias claras.
+- Que cada tarea tenga criterios de aceptación.
+- Que las tareas cubran el alcance completo.
+- Que no existan contradicciones de nombres.
+- Que no existan dependencias circulares no justificadas.
+- Que la infraestructura sea compatible con el hardware disponible.
+- Que los costos sean viables o estén explícitamente condicionados.
+- Que las APIs seleccionadas existan y sus condiciones estén verificadas.
+- Que ninguna fuente social se utilice sin base legítima.
+- Que ningún componente pueda saltarse el motor de riesgo.
+- Que el sistema pueda recuperarse de interrupciones.
+- Que los resultados cuantitativos sean reproducibles.
+- Que la ejecución con dinero real permanezca bloqueada por defecto.
+
+Crear una matriz de trazabilidad:
+
+REQUISITO → COMPONENTE → CONTRATO → TAREA → PRUEBA → CRITERIO DE ACEPTACIÓN.
+
+Identificar todos los huecos encontrados y corregirlos antes de declarar completo el diseño.
+
+Los elementos que dependan de proveedores, permisos o investigación empírica deben figurar explícitamente como dependencias externas, con un procedimiento para resolverlas.
+
+---
+
+# 18. FORMATO Y ORDEN DE ENTREGA
+
+Trabajá con esta secuencia:
+
+**ETAPA A — Análisis de investigación**
+
+Procesá el informe adjunto.
+
+Extraé evidencia, hipótesis, limitaciones y decisiones pendientes.
+
+No des por válidas afirmaciones no verificadas.
+
+**ETAPA B — Arquitectura y ADR**
+
+Definí tecnologías, límites de componentes, datos, interfaces y decisiones arquitectónicas.
+
+**ETAPA C — Especificación completa**
+
+Producí todos los documentos de dominio, APIs, ML, estrategias, ejecución, riesgo, seguridad y operaciones.
+
+**ETAPA D — Roadmap**
+
+Descomponé el diseño en fases, épicas y tareas implementables.
+
+**ETAPA E — Auditoría**
+
+Comprobá consistencia, trazabilidad y completitud.
+
+**ETAPA F — Paquete para implementación**
+
+Entregá el índice, las especificaciones y una guía para que un agente programador comience por la primera tarea.
+
+Si el entorno permite generar archivos, producí los documentos reales.
+
+Si existen límites de contexto o salida, dividí la entrega en lotes coherentes, manteniendo un manifiesto de archivos, IDs, decisiones y dependencias. No reduzcas la profundidad del diseño para forzarlo en una sola respuesta.
+
+No declares finalizado el proyecto documental mientras existan archivos obligatorios sin desarrollar.
+
+No afirmes haber verificado, probado o creado algo que no hayas ejecutado realmente.
+
+---
+
+# 19. CRITERIO FINAL DE ÉXITO
+
+Consideraré satisfactorio tu trabajo cuando pueda entregar esta especificación a una IA de programación de menor capacidad y esta pueda:
+
+1. Identificar la siguiente tarea.
+2. Comprender sus requisitos.
+3. Localizar los contratos correspondientes.
+4. Implementar el comportamiento solicitado.
+5. Escribir y ejecutar las pruebas.
+6. Verificar los criterios de aceptación.
+7. Integrar el cambio.
+8. Continuar con la siguiente tarea sin rediseñar el sistema.
+
+La solución debe estar preparada para evolucionar desde un laboratorio experimental de Solana hasta una plataforma autónoma de investigación y trading.
+
+El criterio financiero final no es lograr una cantidad arbitraria de operaciones, aciertos o ganancias históricas.
+
+Es demostrar, con datos y validación independiente, que las estrategias tienen expectativa neta positiva y riesgos compatibles con los límites establecidos.
+
+**El resultado que quiero de vos es el BLUEPRINT COMPLETO DEL PRODUCTO y su ROADMAP DE IMPLEMENTACIÓN, no el software implementado.**
+
+Comenzá analizando exhaustivamente el informe de investigación adjunto y verificando que disponés de su contenido completo.
+
+Si el informe no está disponible, indicá esa dependencia y no inventes sus conclusiones.
+
+Una vez analizado, generá la documentación técnica integral siguiendo estas instrucciones.

@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "td-research"
+version = "0.1.0.dev0"
+description = "Fundamentos de TD: investigación cuantitativa y Solana, paper-only"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "jsonschema[format]==4.25.1",
+    "openapi-spec-validator==0.7.2",
+    "pytest==8.4.2",
+    "ruff==0.14.3",
+    "mypy==1.18.2",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["backend/src/td"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+include = ["backend/**/*.py", "tools/**/*.py", "tests/**/*.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["backend/src/td"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unit"]
+addopts = "-ra"
+pythonpath = ["backend/src", "."]

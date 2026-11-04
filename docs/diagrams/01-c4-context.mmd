@@ -1,0 +1,7 @@
+flowchart TD
+  U["Santiago / operador"] -->|"consulta y control"| TD["TD: laboratorio privado"]
+  TD -->|"lectura autorizada"| DATA["APIs de mercado y Solana"]
+  TD -->|"extracción acotada"| AI["APIs LLM"]
+  TD -->|"evidencia y resultados"| U
+  NEWS["Fuentes con permiso"] -->|"datos no confiables"| TD
+  TD -.->|"futuro con aprobación"| CHAIN["Red / venue de ejecución"]

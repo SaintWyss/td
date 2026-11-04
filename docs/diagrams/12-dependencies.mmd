@@ -1,0 +1,12 @@
+flowchart TD
+  ENTRY["Entrypoints / API"] --> APP["Application cases"]
+  ADAPT["Adapters: SQL / HTTP / ML"] --> PORT["Ports"]
+  APP --> PORT
+  APP --> DOMAIN["Domain"]
+  PORT --> DOMAIN
+  ROOT["Composition root"] --> ENTRY
+  ROOT --> ADAPT
+  WEB["Web TypeScript"] --> CLIENT["Generated API client"]
+  CLIENT --> ENTRY
+  TEST["Tests / fixtures"] --> APP
+  TEST --> ADAPT

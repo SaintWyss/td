@@ -1,0 +1,164 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": "1.0.0"
+    },
+    "environment": {
+      "const": "paper"
+    },
+    "live_enabled": {
+      "const": false
+    },
+    "initial_cash_usdc": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "max_trade_stressed_loss_fraction": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "max_asset_exposure_fraction": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "max_total_exposure_fraction": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "max_positions": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "max_pending_per_asset": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "daily_loss_fraction": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "weekly_loss_fraction": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "max_drawdown_fraction": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "market_max_age_s": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "assessment_max_age_s": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "quote_max_age_s": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "reservation_lease_s": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "max_slippage_bps": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "max_impact_bps": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "max_roundtrip_cost_bps": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "min_liquidity_usd": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "min_pool_age_s": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "max_top1_share": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "max_top10_share": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "allow_token2022": {
+      "type": "boolean"
+    },
+    "monthly_total_budget_usd": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "monthly_llm_budget_usd": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "daily_llm_budget_usd": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
+      "maxLength": 60
+    },
+    "max_active_assets": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "timezone_accounting": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    }
+  },
+  "required": [
+    "version",
+    "environment",
+    "live_enabled",
+    "initial_cash_usdc",
+    "max_trade_stressed_loss_fraction",
+    "max_asset_exposure_fraction",
+    "max_total_exposure_fraction",
+    "max_positions",
+    "max_pending_per_asset",
+    "daily_loss_fraction",
+    "weekly_loss_fraction",
+    "max_drawdown_fraction",
+    "market_max_age_s",
+    "assessment_max_age_s",
+    "quote_max_age_s",
+    "reservation_lease_s",
+    "max_slippage_bps",
+    "max_impact_bps",
+    "max_roundtrip_cost_bps",
+    "min_liquidity_usd",
+    "min_pool_age_s",
+    "max_top1_share",
+    "max_top10_share",
+    "allow_token2022",
+    "monthly_total_budget_usd",
+    "monthly_llm_budget_usd",
+    "daily_llm_budget_usd",
+    "max_active_assets",
+    "timezone_accounting"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

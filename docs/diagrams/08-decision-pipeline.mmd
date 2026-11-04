@@ -1,0 +1,10 @@
+flowchart TD
+  I["Señales y contexto"] --> V{"Calidad y vigencia"}
+  V -->|"falla"| NO["NO_TRADE con motivos"]
+  V -->|"pasa"| E{"Edge neto conservador"}
+  E -->|"no"| NO
+  E -->|"sí"| R{"Riesgo y reserva"}
+  R -->|"deniega"| NO
+  R -->|"aprueba"| INT["Intent vinculado"]
+  INT --> A["Auditoría durable"]
+  NO --> A

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "SEM-01",
+    "schema": "Observation",
+    "rule": "available_at >= received_at; recorded_at >= received_at; event_time may be null or clock-skewed",
+    "negative_case": "future availability blocks decision",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-02",
+    "schema": "FeatureSnapshot",
+    "rule": "every feature.available_at <= snapshot.available_at <= decision time",
+    "negative_case": "one future feature rejects whole critical snapshot",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-03",
+    "schema": "RiskAssessment",
+    "rule": "APPROVED requires approved_atoms>0 and reservation_id; DENIED requires0 and null",
+    "negative_case": "denied with amount is invalid",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-04",
+    "schema": "Reservation",
+    "rule": "unique active decision and exposure includes pending; expired attempted reservation is not released blindly",
+    "negative_case": "concurrent limit conflict must deny one",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-05",
+    "schema": "Prediction",
+    "rule": "q05<=q50<=q95; issued_at<expires_at; cost_basis explicit",
+    "negative_case": "unordered quantiles invalid",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-06",
+    "schema": "Order",
+    "rule": "filled_atoms<=requested_atoms; all transitions in order-machine",
+    "negative_case": "PENDING to CANCELLED forbidden for Solana",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-07",
+    "schema": "JournalEntry",
+    "rule": "sum signed_atoms per asset=0; effect key unique",
+    "negative_case": "unbalanced entry rollback",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-08",
+    "schema": "SourceGrant",
+    "rule": "purpose requested is allowed and status approved and not expired; evidence verified",
+    "negative_case": "public URL without grant denied",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-09",
+    "schema": "ExtractionResult",
+    "rule": "every evidence_id belongs to authorized request; abstain cannot emit actionable claims",
+    "negative_case": "fabricated reference quarantined",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-10",
+    "schema": "ExecutionIntent",
+    "rule": "reservation/policy/epoch/wallet chain binding and quote expiry checked before signing",
+    "negative_case": "stale permission rejected",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-11",
+    "schema": "SigningRequest",
+    "rule": "transaction message, accounts, programs, amounts and fees match intent; no unknown instruction",
+    "negative_case": "hidden transfer rejected",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-12",
+    "schema": "DatasetManifest",
+    "rule": "all files hash match; point-in-time join; failed tokens and gaps represented",
+    "negative_case": "revised file invalidates run",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-13",
+    "schema": "Promotion",
+    "rule": "human authorized actor, reports pass, model compatible, assignment CAS",
+    "negative_case": "self-approval by training job rejected",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-14",
+    "schema": "CostRecord",
+    "rule": "reserve >= worst-case price*usage; sum reserved+actual <=cap under lock",
+    "negative_case": "two near-cap calls cannot overspend",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-15",
+    "schema": "TraderProfile",
+    "rule": "unknown cost or incomplete flows => PnL/score limitations; selection_window_end<=as_of",
+    "negative_case": "ranking uses no future winners",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-16",
+    "schema": "TokenAssessment",
+    "rule": "unknown authority/extension/coverage critical => ineligible; route inverse not guarantee",
+    "negative_case": "unknown cannot be mapped to false",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-17",
+    "schema": "Quote",
+    "rule": "min_output_atoms<=output_atoms; input/output positive; fees accounted once; ttl valid",
+    "negative_case": "zero output or stale quote denied",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-18",
+    "schema": "Outcome",
+    "rule": "observed_at>=matured_at; censored => net_return null",
+    "negative_case": "future outcome withheld",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-19",
+    "schema": "StrategyConfig",
+    "rule": "only parameters of selected strategy; numeric domain/ordered windows as catalog",
+    "negative_case": "fast_bars>=slow_bars rejected",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  },
+  {
+    "id": "SEM-20",
+    "schema": "PoolSnapshot",
+    "rule": "reserves positive for eligibility; decimals from mint; fee current",
+    "negative_case": "missing reserve not zero liquidity claim",
+    "verification": "PRODUCT_TEST_REQUIRED"
+  }
+]

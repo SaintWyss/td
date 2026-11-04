@@ -1,0 +1,10 @@
+{
+  "TRADE": "Trade",
+  "PRICE": "Price",
+  "POOL": "PoolSnapshot",
+  "MINT": "MintSnapshot",
+  "WALLET": "WalletTransaction",
+  "L2": "L2Snapshot",
+  "NEWS": "NewsItem",
+  "COVERAGE": "CoverageInterval"
+}

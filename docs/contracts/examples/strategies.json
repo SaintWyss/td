@@ -1,0 +1,270 @@
+[
+  {
+    "strategy_id": "S01",
+    "version": "1.0.0",
+    "parameters": {
+      "observe_s": 1800,
+      "cohort_h": 4
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "CPMM"
+    ]
+  },
+  {
+    "strategy_id": "S02",
+    "version": "1.0.0",
+    "parameters": {
+      "lookback_bars": 20,
+      "volume_ratio": 2.0,
+      "breakout_bars": 5,
+      "hold_s": 300,
+      "stop_bps": 500,
+      "target_bps": 800
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "CPMM"
+    ]
+  },
+  {
+    "strategy_id": "S03",
+    "version": "1.0.0",
+    "parameters": {
+      "window_s": 10,
+      "imbalance_min": 0.3,
+      "hold_s": 10
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "CPMM"
+    ]
+  },
+  {
+    "strategy_id": "S04",
+    "version": "1.0.0",
+    "parameters": {
+      "window_min": 60,
+      "entry_z": -2.0,
+      "hold_s": 1800
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S05",
+    "version": "1.0.0",
+    "parameters": {
+      "channel_bars": 20,
+      "volume_ratio": 1.5,
+      "atr_mult": 2.0,
+      "hold_s": 1800
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "CPMM"
+    ]
+  },
+  {
+    "strategy_id": "S06",
+    "version": "1.0.0",
+    "parameters": {
+      "channel_bars": 20,
+      "reentry_s": 180,
+      "hold_s": 900
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S07",
+    "version": "1.0.0",
+    "parameters": {
+      "depth_levels": 5,
+      "imbalance_min": 0.6,
+      "confirm_updates": 3,
+      "hold_s": 10
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S08",
+    "version": "1.0.0",
+    "parameters": {
+      "decay_s": 3600,
+      "hold_s": 3600,
+      "min_independent_sources": 2
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S09",
+    "version": "1.0.0",
+    "parameters": {
+      "window_s": 3600,
+      "baseline_days": 7,
+      "attention_z": 2.0,
+      "sentiment_min": 0.6,
+      "min_messages": 100,
+      "min_origins": 5,
+      "hold_s": 14400
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S10",
+    "version": "1.0.0",
+    "parameters": {
+      "coverage_min": 0.95,
+      "max_chase_bps": 200,
+      "hold_s": 1800
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "CPMM"
+    ]
+  },
+  {
+    "strategy_id": "S11",
+    "version": "1.0.0",
+    "parameters": {
+      "window_s": 300,
+      "min_clusters": 3,
+      "score_percentile": 80,
+      "hold_s": 3600
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "CPMM"
+    ]
+  },
+  {
+    "strategy_id": "S12",
+    "version": "1.0.0",
+    "parameters": {
+      "window_s": 600,
+      "growth_min": 0.2,
+      "confirm_snapshots": 3,
+      "withdrawal_max": 0.2,
+      "hold_s": 1800
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "CPMM"
+    ]
+  },
+  {
+    "strategy_id": "S13",
+    "version": "1.0.0",
+    "parameters": {
+      "levels": 5,
+      "spacing_bps": 50,
+      "hold_s": 86400
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S14",
+    "version": "1.0.0",
+    "parameters": {
+      "min_ticks": 2,
+      "fee_mult": 1.5,
+      "requote_ms": 2000
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S15",
+    "version": "1.0.0",
+    "parameters": {
+      "quote_skew_ms": 200,
+      "buffer_bps": 20
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S16",
+    "version": "1.0.0",
+    "parameters": {
+      "forecast_h": 24,
+      "max_hold_h": 72,
+      "buffer_bps": 20
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S17",
+    "version": "1.0.0",
+    "parameters": {
+      "delta_band": 0.02,
+      "hold_s": 86400
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S18",
+    "version": "1.0.0",
+    "parameters": {
+      "fast_bars": 20,
+      "slow_bars": 60,
+      "bar_s": 300,
+      "hold_s": 86400
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S19",
+    "version": "1.0.0",
+    "parameters": {
+      "trailing_bps": 500,
+      "max_hold_s": 1800
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  },
+  {
+    "strategy_id": "S20",
+    "version": "1.0.0",
+    "parameters": {
+      "interval_s": 900,
+      "hysteresis_windows": 2
+    },
+    "enabled": false,
+    "required_capabilities": [
+      "RESEARCH"
+    ]
+  }
+]

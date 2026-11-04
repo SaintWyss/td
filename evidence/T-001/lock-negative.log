@@ -1,0 +1,11 @@
+Caso adversarial: cambiar versión del proyecto sin regenerar uv.lock.
+Comando: uv lock --check --project <temporal>
+Using CPython 3.12.14 interpreter at: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3
+WARN Fixing invalid version specifier by removing trailing comma (before: `>=3.5,`; after: `>=3.5`)
+Resolved 39 packages in 12.72s
+error: The lockfile at `uv.lock` needs to be updated, but `--check` was provided.
+
+hint: To update the lockfile, run `uv lock`.
+
+Exit code: 1
+Esperado: rechazo por lock desactualizado.

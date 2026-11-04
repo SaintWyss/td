@@ -1,0 +1,146 @@
+[
+  {
+    "name": "MarketDataPort",
+    "method": "poll",
+    "input_schema": "QuoteRequest",
+    "output_schema": "Observation",
+    "owner": "C-DATA",
+    "effect": "READ",
+    "errors": "429/timeout => retry with budget; schema drift quarantine"
+  },
+  {
+    "name": "ChainReader",
+    "method": "read_transaction",
+    "input_schema": "Attempt",
+    "output_schema": "Observation",
+    "owner": "C-DATA",
+    "effect": "READ",
+    "errors": "null => unknown, not proof of failure"
+  },
+  {
+    "name": "QuotePort",
+    "method": "quote",
+    "input_schema": "QuoteRequest",
+    "output_schema": "Quote",
+    "owner": "C-EXEC",
+    "effect": "READ",
+    "errors": "no route => abstention"
+  },
+  {
+    "name": "ArtifactStore",
+    "method": "read_manifest",
+    "input_schema": "DatasetManifest",
+    "output_schema": "DatasetManifest",
+    "owner": "C-LAB",
+    "effect": "READ",
+    "errors": "hash mismatch => block"
+  },
+  {
+    "name": "RiskAuthorizer",
+    "method": "authorize",
+    "input_schema": "RiskRequest",
+    "output_schema": "RiskAssessment",
+    "owner": "C-RISK",
+    "effect": "TRANSACTION",
+    "errors": "deny on any unknown"
+  },
+  {
+    "name": "ExecutionPort",
+    "method": "submit",
+    "input_schema": "ExecutionIntent",
+    "output_schema": "ExecutionReport",
+    "owner": "C-EXEC",
+    "effect": "EXTERNAL_EFFECT",
+    "errors": "timeout => UNKNOWN"
+  },
+  {
+    "name": "SignerPort",
+    "method": "sign",
+    "input_schema": "SigningRequest",
+    "output_schema": "SignatureResult",
+    "owner": "C-EXEC",
+    "effect": "SECRET_BOUNDARY",
+    "errors": "policy/binding mismatch => deny"
+  },
+  {
+    "name": "LedgerWriter",
+    "method": "post",
+    "input_schema": "Fill",
+    "output_schema": "JournalEntry",
+    "owner": "C-LEDGER",
+    "effect": "TRANSACTION",
+    "errors": "duplicate effect => original journal"
+  },
+  {
+    "name": "LlmGateway",
+    "method": "extract",
+    "input_schema": "ExtractionRequest",
+    "output_schema": "ExtractionResult",
+    "owner": "C-AI",
+    "effect": "EXTERNAL_READ",
+    "errors": "refusal/schema/budget => abstain"
+  },
+  {
+    "name": "ResearchPlanner",
+    "method": "propose",
+    "input_schema": "ExtractionResult",
+    "output_schema": "Hypothesis",
+    "owner": "C-RESEARCH",
+    "effect": "PURE",
+    "errors": "unsupported claims => reject"
+  },
+  {
+    "name": "Trainer",
+    "method": "train",
+    "input_schema": "Experiment",
+    "output_schema": "ModelArtifact",
+    "owner": "C-ML",
+    "effect": "JOB",
+    "errors": "OOM => failed without champion change"
+  },
+  {
+    "name": "PromotionService",
+    "method": "approve",
+    "input_schema": "PromotionRequest",
+    "output_schema": "Promotion",
+    "owner": "C-LEARN",
+    "effect": "TRANSACTION",
+    "errors": "revision mismatch => conflict"
+  },
+  {
+    "name": "TraderProfiler",
+    "method": "profile",
+    "input_schema": "Observation",
+    "output_schema": "TraderProfile",
+    "owner": "C-TRADERS",
+    "effect": "JOB",
+    "errors": "incomplete cost => null PnL"
+  },
+  {
+    "name": "Strategy",
+    "method": "evaluate",
+    "input_schema": "StrategyInput",
+    "output_schema": "Signal",
+    "owner": "C-STRATEGY",
+    "effect": "PURE",
+    "errors": "missing features => abstain"
+  },
+  {
+    "name": "BudgetLedger",
+    "method": "reserve",
+    "input_schema": "CostRecord",
+    "output_schema": "CostRecord",
+    "owner": "C-OPS",
+    "effect": "TRANSACTION",
+    "errors": "cap exceeded => denied"
+  },
+  {
+    "name": "LedgerFeeWriter",
+    "method": "post_fee",
+    "input_schema": "FeeEvent",
+    "output_schema": "JournalEntry",
+    "owner": "C-LEDGER",
+    "effect": "TRANSACTION",
+    "errors": "duplicate effect => existing entry"
+  }
+]
