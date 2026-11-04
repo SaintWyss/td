@@ -1,0 +1,16 @@
+{
+  "repository": "SaintWyss/td",
+  "visibility": "private",
+  "commit": "2594a2bb1cca31f245d502d7e074aca81c4e9549",
+  "git_tree": "cc6c903d0c39d68b7b8bc5cdb9758e8acd8bdd56",
+  "run_id": 41832903531,
+  "job_id": 126584319637,
+  "url": "https://github.com/SaintWyss/td/actions/runs/41832903531",
+  "conclusion": "success",
+  "runner": "Ubuntu 26.04.1",
+  "python": "3.12.15",
+  "node": "24.22.1",
+  "tests_passed": 6,
+  "scope": "Bootstrap y validación estructural; no producto ni lógica financiera",
+  "verification": "Tree SHA remoto coincide con git write-tree local; job y pasos confirmados por GitHub API."
+}

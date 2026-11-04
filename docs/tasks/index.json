@@ -15,7 +15,7 @@
     "priority": "P0",
     "epic": "V0-CORE",
     "feature": "Settings",
-    "status": "REVIEW",
+    "status": "DONE",
     "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
     "docs": [
       "06-architecture-overview.md",
@@ -52,7 +52,7 @@
     "priority": "P0",
     "epic": "V0-CORE",
     "feature": "Money",
-    "status": "TODO",
+    "status": "READY",
     "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
     "docs": [
       "06-architecture-overview.md",
@@ -123,7 +123,7 @@
     "priority": "P0",
     "epic": "V0-API",
     "feature": "Problem",
-    "status": "TODO",
+    "status": "READY",
     "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
     "docs": [
       "11-api-contracts.md",
@@ -157,7 +157,7 @@
     "priority": "P0",
     "epic": "V0-CORE",
     "feature": "Settings",
-    "status": "TODO",
+    "status": "READY",
     "estimated_effort": "0.5–2 días de implementación; datos/ensayos prospectivos aparte",
     "docs": [
       "06-architecture-overview.md",

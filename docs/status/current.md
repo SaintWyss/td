@@ -18,6 +18,8 @@ Los resultados estructurales están en [audit/validation.json](../../audit/valid
 Los logs de bootstrap y su alcance están en [evidence/T-001](../../evidence/T-001/README.md).
 La existencia de una ficha o esquema no equivale a implementación.
 
+Bootstrap T-001 cerrado con [CI aprobada](https://github.com/SaintWyss/td/actions/runs/41832903531) para el commit `2594a2bb1cca31f245d502d7e074aca81c4e9549`. T-002, T-004 y T-005 quedan READY; las restantes tareas siguen pendientes.
+
 ## Pendiente, en orden recomendado
 
 1. Revisar el detalle semántico de contratos y fichas: unidades, relaciones entre

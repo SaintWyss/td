@@ -1,8 +1,8 @@
 {
   "task_id": "T-001",
-  "status": "INCONCLUSIVE",
+  "status": "DONE",
   "base_commit": "28d60a237dc0b6944f2cfacc9bbdbb2b8a650a06",
-  "final_commit": null,
+  "final_commit": "2594a2bb1cca31f245d502d7e074aca81c4e9549",
   "files": [
     ".editorconfig",
     ".env.example",
@@ -315,7 +315,10 @@
     "web/package.json",
     "web/pnpm-lock.yaml",
     "web/src/index.ts",
-    "web/tsconfig.json"
+    "web/tsconfig.json",
+    "evidence/T-001/evidence.json",
+    "evidence/T-001/remote-ci.json",
+    "evidence/T-001/repository.jpg"
   ],
   "commands": [
     {
@@ -332,17 +335,19 @@
       "command": "uv lock --check --project <temporary modified project>",
       "exit_code": 1,
       "output_path": "evidence/T-001/lock-negative.log"
+    },
+    {
+      "command": "GitHub Actions Foundation checks: make setup && make check",
+      "exit_code": 0,
+      "output_path": "evidence/T-001/remote-ci.json"
     }
   ],
   "positive_case": "Locked installation, structural spec validation, Ruff, mypy, TypeScript and 6 adversarial tests pass locally.",
   "negative_case": "Modified project version with unchanged uv.lock rejected by uv lock --check; tests also reject bad references, cycles, examples and table drift.",
   "limitations": [
     "No product or financial logic implemented.",
-    "CI remote and repository upload pending at this evidence snapshot.",
     "Security scanning, visual diagram checks and semantic review pending."
   ],
-  "blockers": [
-    "Remote verification pending"
-  ],
+  "blockers": [],
   "reviewer": "Automated bootstrap checks; no independent human review claimed"
 }
