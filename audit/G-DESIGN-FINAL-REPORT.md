@@ -9,10 +9,13 @@ Este es el cierre de la revisión y sus correcciones verificadas; no una aprobac
 - SHA base de main: `155f8064417f4d62541d247abe56024cb6b9e165`.
 - Árbol base: `40afc8a3754e3fcc583d82f8a1409960cf806ef4`.
 - Rama: `audit/g-design-blueprint-finalization`; main se conserva sin merge.
-- SHA final del contenido auditado: se registra en `g-design/delivery.json` al publicar el commit
-  de correcciones. El commit posterior sólo consolida evidencia y este informe. El SHA del propio
-  informe se obtiene con `git log -1 --format=%H -- audit/G-DESIGN-FINAL-REPORT.md`; no se inventa
-  un hash autorreferencial. El PR identifica inequívocamente el tip de entrega.
+- **SHA final del contenido auditado: `49267ab031239525382ece105444e3dee038f0b1`**.
+- Árbol auditado: `6d555d968d7de924af3e441e530373cde42c3d68` (442 archivos versionados al cierre).
+- Commit posterior de entrega: sólo este informe, delivery.json y evidencia de CI. Su SHA se
+  obtiene con `git log -1 --format=%H -- audit/g-design/delivery.json` y coincide con el tip del
+  [PR #1](https://github.com/SaintWyss/td/pull/1). No se inventa un hash autorreferencial.
+- [CI del contenido auditado: SUCCESS](https://github.com/SaintWyss/td/actions/runs/41944958851).
+  `g-design/ci-content.json` registra el SHA exacto y todos los pasos; logs completos preservados.
 
 El inventario base contiene **315 archivos** con hashes y tamaños. Se revisaron los **40 documentos
 principales, 16 ADR originales, 20 estrategias y 144 fichas** (220 documentos), además de los
@@ -168,7 +171,7 @@ No hay ventaja estadística demostrada ni autorización financiera. **LIVE_NOT_A
 
 ## Git y continuación
 
-El [PR de revisión](https://github.com/SaintWyss/td/pulls) y `g-design/delivery.json` identifican
+El [PR #1 en borrador](https://github.com/SaintWyss/td/pull/1) y `g-design/delivery.json` identifican
 commits exactos, estado de CI y alcance de entrega. No se hizo merge ni force push. La CI del PR
 valida herramientas/documentación, no concede aprobación G-DESIGN.
 
