@@ -1,6 +1,6 @@
 # Modelo de dominio e invariantes
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
 ## Identidad y agregados
 
@@ -32,3 +32,38 @@ Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD*
 ## Reglas semánticas
 
 La API valida sintaxis; la aplicación valida relaciones y autorización. Por ejemplo, `filled_atoms <= requested_atoms`, `q05 <= q50 <= q95`, origen de evidencia, balance de journal por activo, expiración y finalidad de grants necesitan validadores semánticos además de JSON Schema. Los tests negativos están catalogados en `contracts/semantic-rules.json`. El versionado de una entidad no permite reemplazar el historial: cada transición incrementa `revision` y produce evento.
+
+## Aritmética normativa del draft 1.1 (ADR-017)
+
+`Money.atoms` es entero decimal no negativo de hasta 78 dígitos; cero es conocido,
+null es desconocido sólo donde el schema lo permite. `asset_id` resuelve un registro
+inmutable de cadena+dirección canónica; validar su coincidencia con `decimals`.
+Un ticker jamás es clave financiera. SPL supply y balances se comprueban además contra
+u64 en el adaptador; 78 dígitos es capacidad interna, no autorización de rango on-chain.
+
+Asset/MintSnapshot conservan decimals u8 (0–255) observados. El motor Money soporta
+0–38: un mint superior se observa pero se marca UNSUPPORTED_PRECISION y no se negocia.
+No reducir decimals ni truncar supply para hacerlo elegible. MintSnapshot sólo representa
+una decodificación completa: authority=null significa ausencia comprobada de autoridad;
+lectura ausente/incompleta produce Observation UNKNOWN, nunca un MintSnapshot inventado.
+PoolSnapshot permite reservas null; null o reserva cero impide elegibilidad, con motivos distintos.
+
+Los decimales derivados usan máximo 20 dígitos enteros y 18 fraccionarios, compatibles
+con NUMERIC(38,18). Sin exponentes, NaN, infinity, separadores, ceros iniciales o -0.
+Exactitud de atoms no depende de NUMERIC(38,18): almacenamiento NUMERIC(78,0).
+Python: enteros arbitrarios para productos/división euclídea; no usar Decimal con contexto
+por defecto de 28 dígitos. Conversión humana = atoms / 10**decimals exacta; si no cabe en
+el tipo derivado, error NUMERIC_OVERFLOW, sin saturar. La presentación puede mostrar más
+decimales mediante string exacto sin persistirlo como decimal derivado.
+
+Redondeo por finalidad: gasto/tamaño de entrada hacia abajo; fees y exposición reservada
+hacia arriba; precio límite de compra hacia abajo y de venta hacia arriba al tick del venue;
+PnL firmado con ROUND_HALF_EVEN a escala declarada sólo al presentar/agregar, conservar
+asientos atómicos originales. Underflow de una cantidad positiva a cero devuelve
+BELOW_MIN_UNIT y abstención. Nunca convertir float a Decimal para recuperar precisión perdida.
+
+Enteros JSON no monetarios están acotados a 2**53-1 para transporte TypeScript seguro.
+Un slot/contador externo mayor se rechaza como UNSUPPORTED_RANGE conservando raw;
+no se redondea. Extenderlos a string exige nueva versión. Porcentajes de holders usados
+por Risk son strings decimales [0,1], leídos exactamente desde el texto. Probabilidades
+ML y métricas no monetarias pueden ser float finito; no son balances ni caps financieros.

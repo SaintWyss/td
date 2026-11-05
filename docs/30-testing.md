@@ -1,6 +1,6 @@
 # Plan de pruebas y evidencia
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
 ## Niveles
 
@@ -23,3 +23,13 @@ El bootstrap T-001 incorpora `make verify-spec`, `make lint`, `make typecheck`, 
 Cada tarea entrega commit base/final, diff, archivos, comandos exactos, salida/exit code, versiones, duración, fixtures y limitaciones. No se aceptan capturas como única prueba de backend ni «tests deberían pasar». Si un comando falla, estado FAILED/BLOCKED, causa y alcance. Si el test de red no puede ejecutarse, marcarlo pendiente; el fixture local no se presenta como prueba de cuenta.
 
 Matriz de amenazas y fallos críticos: prompt injection, SSRF, XSS de fuente, IDOR/roles, doble reserva, replay, timeout de envío, reorg, fee desconocida, inventario negativo, pérdida total token, consumo simultáneo de budget y restauración obsoleta. Cada uno tiene caso en el backlog y en semantic-rules.
+
+## Evidencia G-DESIGN
+
+`tools/validate_design.py` comprueba el motivo exacto de los negativos (omisión única),
+24 casos de frontera con keyword/path, bindings de intención, guards/reachability y rutas.
+Las 12 pruebas actuales incluyen mutaciones adversariales del validador. No ejecutan riesgo,
+ledger ni estrategias. Los ejemplos positivos son fixtures de forma; GD-17 conserva el trabajo
+pendiente de escenarios financieros enlazados. `tools/render_diagrams.py` genera SVG con un
+renderer y Chromium suministrados; revisión visual separada en audit/g-design/visual-review.json.
+Comandos, versiones y códigos reales: audit/g-design/validation.json y logs asociados.

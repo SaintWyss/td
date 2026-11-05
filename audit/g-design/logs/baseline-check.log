@@ -1,0 +1,57 @@
+uv run --frozen python tools/validate_spec.py --report audit/latest.json
+{
+  "generated_at": "2026-11-04T19:37:59.758028+00:00",
+  "scope": "offline structural specification validation",
+  "status": "PASS",
+  "counts": {
+    "json_files": 22,
+    "domain_definitions": 102,
+    "positive_examples": 102,
+    "negative_examples": 102,
+    "api_paths": 31,
+    "tasks": 144,
+    "requirements": 144,
+    "components": 16,
+    "event_types": 14,
+    "local_link_targets": 203
+  },
+  "errors": [],
+  "not_verified": [
+    "semantic rules and cross-field financial invariants",
+    "runtime product, providers, permissions, data quality or profitability",
+    "Mermaid rendering and Markdown anchors",
+    "external URL freshness, licenses and legal requirements",
+    "full editorial consistency of prose and task implementation paths"
+  ]
+}
+uv run --frozen ruff check backend tools tests
+All checks passed!
+uv run --frozen ruff format --check backend tools tests
+10 files already formatted
+uv run --frozen mypy
+Success: no issues found in 6 source files
+pnpm --dir web typecheck
+uv run --frozen pytest
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-8.4.2, pluggy-1.7.0
+rootdir: /workspace/scratch/5cb089c0fa23/td
+configfile: pyproject.toml
+testpaths: tests/unit
+collected 6 items
+
+tests/unit/test_spec_tools.py ......                                     [100%]
+
+============================== 6 passed in 5.64s ===============================
+Using CPython 3.12.14 interpreter at: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12
+Removed virtual environment at: .venv
+Creating virtual environment at: .venv
+   Building td-research @ file:///workspace/scratch/5cb089c0fa23/td
+Downloading pygments (1.2MiB)
+Downloading mypy (12.7MiB)
+Downloading ruff (12.7MiB)
+ Downloaded pygments
+ Downloaded ruff
+ Downloaded mypy
+      Built td-research @ file:///workspace/scratch/5cb089c0fa23/td
+Installed 38 packages in 60ms
+$ tsc --noEmit

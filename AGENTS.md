@@ -3,8 +3,9 @@
 ## Alcance y evidencia
 
 - Leer README, docs/status/current.md, docs/37-agent-implementation-guide.md y la ficha de tarea.
+- G-DESIGN está NOT_READY: leer audit/G-DESIGN-FINAL-REPORT.md y la matriz de delegabilidad antes de implementar.
 - El blueprint es un borrador de diseño. No interpretar una ficha o contrato como código existente.
-- Trabajar una tarea coherente por cambio. Sustituir paths provisionales `t_NNN.py` por nombres de dominio y documentar el mapping.
+- Trabajar una tarea coherente por cambio. Usar los paths de dominio ya registrados en audit/g-design/path-migrations.json; cualquier cambio necesita mapping actualizado.
 - No activar live, firmar transacciones, manejar claves privadas, contratar proveedores ni desplegar como efecto lateral.
 - No modificar límites o criterios estadísticos para hacer pasar un resultado.
 - No guardar secretos, datasets privados, logs sin sanear ni credenciales en Git.

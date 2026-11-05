@@ -2,7 +2,7 @@
   {
     "name": "MarketDataPort",
     "method": "poll",
-    "input_schema": "QuoteRequest",
+    "input_schema": "MarketReadRequest",
     "output_schema": "Observation",
     "owner": "C-DATA",
     "effect": "READ",
@@ -11,7 +11,7 @@
   {
     "name": "ChainReader",
     "method": "read_transaction",
-    "input_schema": "Attempt",
+    "input_schema": "TransactionReadRequest",
     "output_schema": "Observation",
     "owner": "C-DATA",
     "effect": "READ",
@@ -29,7 +29,7 @@
   {
     "name": "ArtifactStore",
     "method": "read_manifest",
-    "input_schema": "DatasetManifest",
+    "input_schema": "ManifestReadRequest",
     "output_schema": "DatasetManifest",
     "owner": "C-LAB",
     "effect": "READ",
@@ -128,7 +128,7 @@
   {
     "name": "BudgetLedger",
     "method": "reserve",
-    "input_schema": "CostRecord",
+    "input_schema": "BudgetReserveRequest",
     "output_schema": "CostRecord",
     "owner": "C-OPS",
     "effect": "TRANSACTION",

@@ -1,0 +1,15 @@
+Generating single mermaid chart
+
+Error: Failed to launch the browser process:  spawn /workspace/scratch/5cb089c0fa23/chromium-runtime/chromium EACCES
+
+stderr:
+
+
+TROUBLESHOOTING: https://pptr.dev/troubleshooting
+
+    at ChildProcess.onClose (file:///workspace/scratch/5cb089c0fa23/.qa_node/node_modules/@puppeteer/browsers/lib/launch.js:346:24)
+    at ChildProcess.emit (node:events:514:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:322:12)
+    at onErrorNT (node:internal/child_process:554:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+

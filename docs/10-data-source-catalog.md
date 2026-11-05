@@ -1,8 +1,8 @@
 # Catálogo de fuentes y adaptadores
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
-Consulta documental: 2026-11-03. Las rutas de este apartado son externas verificadas por documentación; las de OpenAPI son propuestas de TD. No se hizo una llamada autenticada ni una prueba de latencia. Los precios son referencias USD antes de impuestos, sujetos al checkout y a condiciones de cuenta.
+Consulta documental: 2026-11-04. Las rutas de este apartado son externas verificadas por documentación; las de OpenAPI son propuestas de TD. No se hizo una llamada autenticada ni una prueba de latencia. Los precios son referencias USD antes de impuestos, sujetos al checkout y a condiciones de cuenta.
 
 | Fuente | Uso y acceso documentado | Límite/costo observado | Decisión y verificación pendiente |
 |---|---|---|---|
@@ -27,3 +27,5 @@ Lecturas: timeout connect 3 s, total 10 s; hasta 3 intentos con backoff exponenc
 Latencia, completitud y derechos son dimensiones distintas. Ningún fallback reemplaza un precio por otro silenciosamente: cambia source_id, registra el evento y exige equivalencia de unidad, reloj, finalidad y frescura. Cuando falta equivalencia, NO_TRADE. En Solana, un segundo RPC sirve para contraste; no garantiza independencia si ambos usan la misma infraestructura.
 
 Los enlaces oficiales y sus afirmaciones verificadas se registran una sola vez en `evidence/sources.json` y `evidence/research-review.md`. Cada adaptador exige fixtures obtenidos legalmente, mínimos y sin credenciales.
+
+V1 requiere RPC Solana contratado/permitido (Helius es reemplazable) y permisos T-003. DEX Screener es enriquecimiento prescindible. V2 exige layout CPMM/SPL certificado y quote inversa Jupiter para elegibilidad; sin ello se conserva observación, no entrada paper basada en datos reales. Birdeye, noticias, LLM y CLOB pueden posponerse. Quedan fuera del descubrimiento inicial Pump.fun/bonding curves, LaunchLab, AMM v4, CLMM, DLMM, otros programas y ventanas sin cobertura: no son falsos negativos medidos sobre toda Solana.

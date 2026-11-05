@@ -1,6 +1,6 @@
 # Matriz de trazabilidad
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
 Cadena verificable REQUISITO → COMPONENTE → CONTRATO → TAREA → PRUEBA → ACEPTACIÓN. Los identificadores Q son especificaciones de pruebas futuras, no suites ya ejecutadas. El validador documental comprueba resolución y cobertura; la implementación aportará resultados reales.
 
@@ -150,3 +150,13 @@ Cadena verificable REQUISITO → COMPONENTE → CONTRATO → TAREA → PRUEBA �
 | R-142 §10; §7/S19 | C-LAB | EvaluationReport | T-142 | Q-142 | AC-142 |
 | R-143 §7; §7/S20 | C-STRATEGY | Signal | T-143 | Q-143 | AC-143 |
 | R-144 §10; §7/S20 | C-LAB | EvaluationReport | T-144 | Q-144 | AC-144 |
+
+## Resultado G-DESIGN
+
+La cadena de IDs y tablas se mantiene sincronizada; no acredita que las 144 pruebas estén
+suficientemente especificadas. [Delegabilidad](../audit/g-design/delegability.json) distingue
+T-001 DONE, T-002/T-004/T-005 DESIGN_READY local y 140 NEEDS_SPEC. TASK_READY permanece false.
+Los IDs históricos T-054/T-056/T-106/T-123/T-125/T-141 siguen sincronizados por el generador.
+`contract_usage` de T-004/T-005 aclara que Problem/Settings son referencias históricas de
+trazabilidad, no el alcance exclusivo ni el I/O de esas herramientas. Los cuatro requests
+nuevos son consumidos por puertos y figuran en contract-review.json y contract-migrations.json.

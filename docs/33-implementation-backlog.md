@@ -1,8 +1,8 @@
 # Backlog de implementación
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
-Cada tarea tiene ficha completa en `tasks/`, metadatos en `tasks/index.json` y prueba/criterio en la matriz. Seleccionar READY con dependencias DONE; la numeración no reemplaza el orden topológico. Las tareas de benchmark pueden quedar REJECTED científicamente aunque el adaptador sea correcto.
+Cada tarea tiene una ficha en `tasks/`, metadatos en `tasks/index.json` y prueba/criterio en la matriz. G-DESIGN está NOT_READY: consultar [delegabilidad](../audit/g-design/delegability.md). Hay 140 fichas NEEDS_SPEC. Sólo tras cerrar el gate seleccionar TASK_READY con dependencias DONE; la numeración no reemplaza el orden topológico. Las tareas de benchmark pueden quedar REJECTED científicamente aunque el adaptador sea correcto.
 
 | Tarea | Fase / prioridad | Feature y objetivo | Dependencias |
 |---|---|---|---|
@@ -11,9 +11,9 @@ Cada tarea tiene ficha completa en `tasks/`, metadatos en `tasks/index.json` y p
 | [T-003](tasks/T-003.md) | V0 / P0 | Settings y catálogo inicial de permisos | T-001, T-002 |
 | [T-004](tasks/T-004.md) | V0 / P0 | Validación de contratos y cliente tipado | T-001 |
 | [T-005](tasks/T-005.md) | V0 / P0 | Límites de importación | T-001 |
-| [T-006](tasks/T-006.md) | V0 / P0 | Sesión local segura | T-003, T-004 |
+| [T-006](tasks/T-006.md) | V0 / P0 | Sesión local segura | T-003, T-004, T-009 |
 | [T-007](tasks/T-007.md) | V0 / P0 | Roles CSRF e idempotencia HTTP | T-006 |
-| [T-008](tasks/T-008.md) | V0 / P0 | Auditoría append-only | T-003 |
+| [T-008](tasks/T-008.md) | V0 / P0 | Auditoría append-only | T-003, T-009 |
 | [T-009](tasks/T-009.md) | V0 / P0 | Esquema SQL y migración fundacional | T-002, T-003, T-004 |
 | [T-010](tasks/T-010.md) | V1 / P0 | Outbox receipts y leases | T-008, T-009 |
 | [T-011](tasks/T-011.md) | V1 / P1 | Reservas de presupuesto API | T-009, T-010 |

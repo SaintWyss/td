@@ -1,0 +1,154 @@
+{
+  "generated_at": "2026-11-05T00:53:54.463498+00:00",
+  "scope": "Blueprint and bootstrap only; no product runtime or financial validation",
+  "versions": [
+    {
+      "command": [
+        "uv",
+        "--version"
+      ],
+      "exit_code": 0,
+      "output": "uv 0.13.5 (x86_64-unknown-linux-gnu)"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "--version"
+      ],
+      "exit_code": 0,
+      "output": "Python 3.12.14"
+    },
+    {
+      "command": [
+        "node",
+        "--version"
+      ],
+      "exit_code": 0,
+      "output": "v24.22.1"
+    },
+    {
+      "command": [
+        "pnpm",
+        "--version"
+      ],
+      "exit_code": 0,
+      "output": "11.25.0"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "--version"
+      ],
+      "exit_code": 0,
+      "output": "ruff 0.14.3"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "mypy",
+        "--version"
+      ],
+      "exit_code": 0,
+      "output": "mypy 1.18.2 (compiled: yes)"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "--version"
+      ],
+      "exit_code": 0,
+      "output": "pytest 8.4.2"
+    },
+    {
+      "command": [
+        "pnpm",
+        "--dir",
+        "web",
+        "exec",
+        "tsc",
+        "--version"
+      ],
+      "exit_code": 0,
+      "output": "Version 5.9.3"
+    }
+  ],
+  "results": [
+    {
+      "command": [
+        "make",
+        "check"
+      ],
+      "started_at": "2026-11-05T00:53:43.503621+00:00",
+      "ended_at": "2026-11-05T00:53:54.379753+00:00",
+      "exit_code": 0,
+      "log": "audit/g-design/logs/final-make-check.log",
+      "log_sha256": "7ab6471a0aac4819cda3e4810a713676b7bb6631a8218af438bb1d8cece3e754"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "tools/sync_docs.py",
+        "--check"
+      ],
+      "started_at": "2026-11-05T00:53:54.379979+00:00",
+      "ended_at": "2026-11-05T00:53:54.419776+00:00",
+      "exit_code": 0,
+      "log": "audit/g-design/logs/final-docs-sync-check.log",
+      "log_sha256": "1e3549649b55ff74401c9bb7649d27685f323fc0d7d15c932f0700c6e49859a7"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_at": "2026-11-05T00:53:54.419953+00:00",
+      "ended_at": "2026-11-05T00:53:54.463125+00:00",
+      "exit_code": 0,
+      "log": "audit/g-design/logs/final-diff-check.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 2,
+      "scope": "Raw captured logs retain trailing blank lines; expected format-only warnings",
+      "log": "audit/g-design/logs/staged-diff-raw.log",
+      "log_sha256": "ea7baf14d4fb16292d0fe76a3ad35534fac9166fe500c897760fea828b426ed6"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.whitespace=-blank-at-eof",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "scope": "Preserve exact captured logs; ignore blank EOF only, check other whitespace",
+      "log": "audit/g-design/logs/staged-diff-check.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "status": "PASS",
+  "design_gate": "NOT_READY"
+}

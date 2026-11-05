@@ -36,7 +36,15 @@
     ],
     "retention_days": 1,
     "expires_at": "2026-11-03T14:05:00Z",
-    "reviewer_id": "fixture"
+    "reviewer_id": "fixture",
+    "allowed_methods": [
+      "GET"
+    ],
+    "allowed_url_prefixes": [
+      "https://example.invalid/"
+    ],
+    "allowed_processor_ids": [],
+    "storage_allowed": false
   },
   "ConnectorStatus": {
     "source_id": "fixture",
@@ -101,9 +109,9 @@
     "mint_authority_active": false,
     "freeze_authority_active": false,
     "extensions": [],
-    "top1_share": 1,
-    "top10_share": 1,
-    "holder_coverage": 1,
+    "top1_share": "0.1",
+    "top10_share": "0.2",
+    "holder_coverage": "0.95",
     "liquidation_quote_id": "fixture",
     "reasons": [],
     "evidence_ids": [
@@ -305,16 +313,18 @@
     "revision": 1,
     "decision_id": "fixture",
     "portfolio_id": "fixture",
-    "verdict": "APPROVED",
+    "verdict": "DENIED",
     "reason_codes": [
       "fixture"
     ],
-    "approved_atoms": "1",
-    "max_fee_atoms": "1",
-    "reservation_id": "fixture",
+    "approved_atoms": "0",
+    "max_fee_atoms": "0",
+    "reservation_id": null,
     "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "assessed_at": "2026-11-03T14:00:00Z",
-    "expires_at": "2026-11-03T14:05:00Z"
+    "expires_at": "2026-11-03T14:05:00Z",
+    "input_asset_id": "solana:fixture-input",
+    "fee_asset_id": "solana:native"
   },
   "Reservation": {
     "id": "fixture",
@@ -332,7 +342,16 @@
     "fencing_token": 1,
     "quote_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "chain_id": "fixture",
-    "wallet_id": "fixture"
+    "wallet_id": "fixture",
+    "output_asset_id": "solana:fixture-output",
+    "fee_asset_id": "solana:native",
+    "min_output_atoms": "1",
+    "mode": "PAPER",
+    "reduce_only": false,
+    "allowed_program_ids": [
+      "fixture-program"
+    ],
+    "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
   },
   "Quote": {
     "id": "fixture",
@@ -380,7 +399,8 @@
       "fixture"
     ],
     "chain_id": "fixture",
-    "wallet_id": "fixture"
+    "wallet_id": "fixture",
+    "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
   },
   "Order": {
     "id": "fixture",
@@ -408,7 +428,8 @@
     "state": "PREPARED",
     "submitted_at": "2026-11-03T14:00:00Z",
     "simulated": false,
-    "fencing_token": 1
+    "fencing_token": 1,
+    "signed_artifact_id": null
   },
   "ExecutionReport": {
     "id": "fixture",
@@ -489,7 +510,11 @@
     "positions": [],
     "control_mode": "RUNNING",
     "control_epoch": 1,
-    "reconciled": false
+    "reconciled": false,
+    "wallet_id": "fixture-wallet",
+    "chain_id": "solana:devnet",
+    "active_reservation_ids": [],
+    "uncertain_order_ids": []
   },
   "ControlCommand": {
     "action": "HALT",
@@ -524,12 +549,14 @@
     "model_id": "fixture",
     "prompt_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "schema_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "abstain": false,
+    "abstain": true,
     "claims": [],
     "input_tokens": 1,
     "output_tokens": 1,
     "cost_usd": "1",
-    "reason_codes": []
+    "reason_codes": [
+      "FIXTURE_ABSTENTION"
+    ]
   },
   "ResearchClaim": {
     "id": "fixture",
@@ -679,7 +706,11 @@
       "mime_type": "fixture",
       "download_ticket": "fixture",
       "ticket_expires_at": "2026-11-03T14:05:00Z"
-    }
+    },
+    "fencing_token": 1,
+    "cancel_requested": false,
+    "created_at": "2026-11-03T14:00:00Z",
+    "updated_at": "2026-11-03T14:00:00Z"
   },
   "Problem": {
     "code": "fixture",
@@ -758,7 +789,15 @@
     "expires_at": "2026-11-03T14:05:00Z",
     "retention_days": 1,
     "expected_revision": 1,
-    "action": "APPROVE"
+    "action": "APPROVE",
+    "allowed_methods": [
+      "GET"
+    ],
+    "allowed_url_prefixes": [
+      "https://example.invalid/"
+    ],
+    "allowed_processor_ids": [],
+    "storage_allowed": false
   },
   "Page": {
     "items": [],
@@ -872,7 +911,11 @@
       "positions": [],
       "control_mode": "RUNNING",
       "control_epoch": 1,
-      "reconciled": false
+      "reconciled": false,
+      "wallet_id": "fixture-wallet",
+      "chain_id": "solana:devnet",
+      "active_reservation_ids": [],
+      "uncertain_order_ids": []
     },
     "quote": {
       "id": "fixture",
@@ -906,9 +949,9 @@
       "mint_authority_active": false,
       "freeze_authority_active": false,
       "extensions": [],
-      "top1_share": 1,
-      "top10_share": 1,
-      "holder_coverage": 1,
+      "top1_share": "0.1",
+      "top10_share": "0.2",
+      "holder_coverage": "0.95",
       "liquidation_quote_id": "fixture",
       "reasons": [],
       "evidence_ids": [
@@ -920,7 +963,8 @@
   "SignatureResult": {
     "attempt_id": "fixture",
     "signature": "fixture",
-    "bytes_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "bytes_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "signed_transaction_b64": "AQID"
   },
   "VenueCapabilities": {
     "venue_id": "fixture",
@@ -1086,7 +1130,11 @@
       "positions": [],
       "control_mode": "RUNNING",
       "control_epoch": 1,
-      "reconciled": false
+      "reconciled": false,
+      "wallet_id": "fixture-wallet",
+      "chain_id": "solana:devnet",
+      "active_reservation_ids": [],
+      "uncertain_order_ids": []
     },
     "config": {
       "strategy_id": "S01",
@@ -1135,9 +1183,9 @@
       "mint_authority_active": false,
       "freeze_authority_active": false,
       "extensions": [],
-      "top1_share": 1,
-      "top10_share": 1,
-      "holder_coverage": 1,
+      "top1_share": "0.1",
+      "top10_share": "0.2",
+      "holder_coverage": "0.95",
       "liquidation_quote_id": "fixture",
       "reasons": [],
       "evidence_ids": [
@@ -1157,7 +1205,11 @@
       "positions": [],
       "control_mode": "RUNNING",
       "control_epoch": 1,
-      "reconciled": false
+      "reconciled": false,
+      "wallet_id": "fixture-wallet",
+      "chain_id": "solana:devnet",
+      "active_reservation_ids": [],
+      "uncertain_order_ids": []
     },
     "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
   },
@@ -1186,7 +1238,8 @@
         "fixture"
       ],
       "chain_id": "fixture",
-      "wallet_id": "fixture"
+      "wallet_id": "fixture",
+      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
     "attempt_id": "fixture",
     "unsigned_transaction_b64": "AQ==",
@@ -1236,9 +1289,9 @@
       "mint_authority_active": false,
       "freeze_authority_active": false,
       "extensions": [],
-      "top1_share": 1,
-      "top10_share": 1,
-      "holder_coverage": 1,
+      "top1_share": "0.1",
+      "top10_share": "0.2",
+      "holder_coverage": "0.95",
       "liquidation_quote_id": "fixture",
       "reasons": [],
       "evidence_ids": [
@@ -1292,16 +1345,18 @@
       "revision": 1,
       "decision_id": "fixture",
       "portfolio_id": "fixture",
-      "verdict": "APPROVED",
+      "verdict": "DENIED",
       "reason_codes": [
         "fixture"
       ],
-      "approved_atoms": "1",
-      "max_fee_atoms": "1",
-      "reservation_id": "fixture",
+      "approved_atoms": "0",
+      "max_fee_atoms": "0",
+      "reservation_id": null,
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "assessed_at": "2026-11-03T14:00:00Z",
-      "expires_at": "2026-11-03T14:05:00Z"
+      "expires_at": "2026-11-03T14:05:00Z",
+      "input_asset_id": "solana:fixture-input",
+      "fee_asset_id": "solana:native"
     },
     "orders": [],
     "evidence_ids": []
@@ -1440,7 +1495,9 @@
     "legal_review_id": "fixture",
     "issued_at": "2026-11-03T14:00:00Z",
     "expires_at": "2026-11-03T14:05:00Z",
-    "revoked": false
+    "revoked": false,
+    "mode": "DEVNET",
+    "capital_asset_id": "solana:devnet:native"
   },
   "CexChildOrder": {
     "id": "fixture",
@@ -1485,5 +1542,32 @@
     "mime_type": "fixture",
     "download_ticket": "fixture",
     "ticket_expires_at": "2026-11-03T14:05:00Z"
+  },
+  "MarketReadRequest": {
+    "source_id": "fixture",
+    "asset_ids": [
+      "fixture"
+    ],
+    "cursor": null,
+    "as_of": "2026-11-03T14:00:00Z",
+    "grant_id": "fixture"
+  },
+  "TransactionReadRequest": {
+    "chain_id": "fixture",
+    "signature": "fixture",
+    "commitment": "confirmed",
+    "max_supported_version": 0,
+    "grant_id": "fixture"
+  },
+  "ManifestReadRequest": {
+    "artifact_id": "fixture",
+    "expected_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "BudgetReserveRequest": {
+    "provider_id": "fixture",
+    "job_id": "fixture",
+    "tariff_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "worst_case_usd": "1",
+    "idempotency_key": "fixture"
   }
 }

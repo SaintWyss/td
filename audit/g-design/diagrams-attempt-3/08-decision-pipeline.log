@@ -1,0 +1,9 @@
+Generating single mermaid chart
+
+Error: Browser was not found at the configured executablePath (/tmp/td-chromium/chromium)
+    at ChromeLauncher.launch (file:///workspace/scratch/5cb089c0fa23/.qa_node/node_modules/puppeteer-core/lib/puppeteer/node/BrowserLauncher.js:104:19)
+    at async ChromeLauncher.launch (file:///workspace/scratch/5cb089c0fa23/.qa_node/node_modules/puppeteer-core/lib/puppeteer/node/ChromeLauncher.js:39:16)
+    at async PuppeteerNode.launch (file:///workspace/scratch/5cb089c0fa23/.qa_node/node_modules/puppeteer-core/lib/puppeteer/node/PuppeteerNode.js:124:16)
+    at async run (file:///workspace/scratch/5cb089c0fa23/.qa_node/node_modules/@mermaid-js/mermaid-cli/src/index.js:1091:19)
+    at async cli (file:///workspace/scratch/5cb089c0fa23/.qa_node/node_modules/@mermaid-js/mermaid-cli/src/index.js:494:3)
+

@@ -1,0 +1,222 @@
+{
+  "renderer_version": "12.2.0",
+  "records": [
+    {
+      "source": "docs/diagrams/01-c4-context.mmd",
+      "source_sha256": "9a8f7e48b9356601c21751b59b08333242d8fd865d37f8d36abe7113438d5ff2",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/01-c4-context.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/01-c4-context.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    },
+    {
+      "source": "docs/diagrams/02-c4-container.mmd",
+      "source_sha256": "47bd0876833b8e53841f9bd0cb4fe65437e90f7018712bf58421894625e3fc50",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/02-c4-container.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/02-c4-container.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    },
+    {
+      "source": "docs/diagrams/03-c4-component.mmd",
+      "source_sha256": "b70b7d525115c0fa8aeb368b09bd9b11e0833d8fd1bf643186b4ddd7ebc55714",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/03-c4-component.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/03-c4-component.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    },
+    {
+      "source": "docs/diagrams/04-deployment.mmd",
+      "source_sha256": "b206f3fde7fa25db609992ed2b7c67ff9291009b9c862e93babb2d48ea83bb32",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/04-deployment.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/04-deployment.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    },
+    {
+      "source": "docs/diagrams/05-data-flow.mmd",
+      "source_sha256": "b8ea7fbe7d75da1c8a26b5cfdac68642167ffcb3dd2f5b488f6653c089da1911",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/05-data-flow.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/05-data-flow.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    },
+    {
+      "source": "docs/diagrams/06-research-pipeline.mmd",
+      "source_sha256": "a12264302e71938ad7217fe6bfaa1602898851f07c231e646e869ab62b847461",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/06-research-pipeline.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/06-research-pipeline.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    },
+    {
+      "source": "docs/diagrams/07-ml-pipeline.mmd",
+      "source_sha256": "3db404242d06b7ce5062b2837c7bc7c876bf9890b1ee35fb56d9c5f792ef256b",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/07-ml-pipeline.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/07-ml-pipeline.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    },
+    {
+      "source": "docs/diagrams/08-decision-pipeline.mmd",
+      "source_sha256": "4db7b0245ef9ca2d868af981aaf6601db835116029a05460afc2b2e5bb5012a7",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/08-decision-pipeline.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/08-decision-pipeline.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    },
+    {
+      "source": "docs/diagrams/09-execution-pipeline.mmd",
+      "source_sha256": "cb345221e8576c5f5ac92babfeb89d5c86b75e68489d29cd2ae10190cb057e12",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/09-execution-pipeline.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/09-execution-pipeline.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    },
+    {
+      "source": "docs/diagrams/10-order-state-machine.mmd",
+      "source_sha256": "aac07fbae5020563d77c180c472e5be5b8fa6000d5e56deab50b86fdee23c059",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/10-order-state-machine.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/10-order-state-machine.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    },
+    {
+      "source": "docs/diagrams/11-entity-relationship.mmd",
+      "source_sha256": "163f62c7c62e08c14b75881c1e6c544374857a421bb70f91e7a8a72cd535c01b",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/11-entity-relationship.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/11-entity-relationship.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    },
+    {
+      "source": "docs/diagrams/12-dependencies.mmd",
+      "source_sha256": "be8c627c77b2edce511a874a3466f6962545136ee34a180b8757b50e7d6719af",
+      "command": [
+        "/workspace/scratch/5cb089c0fa23/.qa_node/node_modules/.bin/mmdc",
+        "-p",
+        "audit/g-design/diagrams-final/puppeteer.json",
+        "-i",
+        "/workspace/scratch/5cb089c0fa23/td/docs/diagrams/12-dependencies.mmd",
+        "-o",
+        "audit/g-design/diagrams-final/12-dependencies.svg",
+        "--size",
+        "1800",
+        "--no-font-embed"
+      ],
+      "exit_code": 1,
+      "svg_sha256": null
+    }
+  ],
+  "scope": "syntax/render only; visual review recorded separately"
+}

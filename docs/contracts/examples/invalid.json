@@ -6,7 +6,12 @@
       "decimals": 1
     },
     "expect": "INVALID",
-    "reason": "missing required asset_id"
+    "reason": "missing required asset_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
   },
   {
     "schema": "Settings",
@@ -17,7 +22,12 @@
       "max_active_assets": 1
     },
     "expect": "INVALID",
-    "reason": "missing required environment"
+    "reason": "missing required environment",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "environment"
+    }
   },
   {
     "schema": "AuditRecord",
@@ -32,7 +42,12 @@
       "correlation_id": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "SourceGrant",
@@ -49,10 +64,23 @@
       ],
       "retention_days": 1,
       "expires_at": "2026-11-03T14:05:00Z",
-      "reviewer_id": "fixture"
+      "reviewer_id": "fixture",
+      "allowed_methods": [
+        "GET"
+      ],
+      "allowed_url_prefixes": [
+        "https://example.invalid/"
+      ],
+      "allowed_processor_ids": [],
+      "storage_allowed": false
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ConnectorStatus",
@@ -65,7 +93,12 @@
       "error_code": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required source_id"
+    "reason": "missing required source_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_id"
+    }
   },
   {
     "schema": "Observation",
@@ -88,7 +121,12 @@
       "parser_version": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Asset",
@@ -103,7 +141,12 @@
       "created_at": "2026-11-03T14:00:00Z"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Pool",
@@ -121,7 +164,12 @@
       "slot": 1
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "TokenAssessment",
@@ -134,9 +182,9 @@
       "mint_authority_active": false,
       "freeze_authority_active": false,
       "extensions": [],
-      "top1_share": 1,
-      "top10_share": 1,
-      "holder_coverage": 1,
+      "top1_share": "0.1",
+      "top10_share": "0.2",
+      "holder_coverage": "0.95",
       "liquidation_quote_id": "fixture",
       "reasons": [],
       "evidence_ids": [
@@ -145,7 +193,12 @@
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "FeatureValue",
@@ -156,7 +209,12 @@
       "quality": "VALID"
     },
     "expect": "INVALID",
-    "reason": "missing required name"
+    "reason": "missing required name",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "name"
+    }
   },
   {
     "schema": "FeatureSnapshot",
@@ -182,7 +240,12 @@
       "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ArtifactFile",
@@ -192,7 +255,12 @@
       "rows": 1
     },
     "expect": "INVALID",
-    "reason": "missing required path"
+    "reason": "missing required path",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "path"
+    }
   },
   {
     "schema": "DatasetManifest",
@@ -221,7 +289,12 @@
       "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Experiment",
@@ -239,7 +312,12 @@
       "created_at": "2026-11-03T14:00:00Z"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Metric",
@@ -251,7 +329,12 @@
       "sample_count": 1
     },
     "expect": "INVALID",
-    "reason": "missing required name"
+    "reason": "missing required name",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "name"
+    }
   },
   {
     "schema": "EvaluationReport",
@@ -280,7 +363,12 @@
       "created_at": "2026-11-03T14:00:00Z"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Prediction",
@@ -301,7 +389,12 @@
       "uncertainty": "0.02"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ModelArtifact",
@@ -322,7 +415,12 @@
       "created_at": "2026-11-03T14:00:00Z"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "StrategyConfig",
@@ -338,7 +436,12 @@
       ]
     },
     "expect": "INVALID",
-    "reason": "missing required strategy_id"
+    "reason": "missing required strategy_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "strategy_id"
+    }
   },
   {
     "schema": "Signal",
@@ -363,7 +466,12 @@
       ]
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Decision",
@@ -382,7 +490,12 @@
       "risk_assessment_id": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "RiskAssessment",
@@ -390,19 +503,26 @@
       "revision": 1,
       "decision_id": "fixture",
       "portfolio_id": "fixture",
-      "verdict": "APPROVED",
+      "verdict": "DENIED",
       "reason_codes": [
         "fixture"
       ],
-      "approved_atoms": "1",
-      "max_fee_atoms": "1",
-      "reservation_id": "fixture",
+      "approved_atoms": "0",
+      "max_fee_atoms": "0",
+      "reservation_id": null,
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "assessed_at": "2026-11-03T14:00:00Z",
-      "expires_at": "2026-11-03T14:05:00Z"
+      "expires_at": "2026-11-03T14:05:00Z",
+      "input_asset_id": "solana:fixture-input",
+      "fee_asset_id": "solana:native"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Reservation",
@@ -421,10 +541,24 @@
       "fencing_token": 1,
       "quote_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "chain_id": "fixture",
-      "wallet_id": "fixture"
+      "wallet_id": "fixture",
+      "output_asset_id": "solana:fixture-output",
+      "fee_asset_id": "solana:native",
+      "min_output_atoms": "1",
+      "mode": "PAPER",
+      "reduce_only": false,
+      "allowed_program_ids": [
+        "fixture-program"
+      ],
+      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Quote",
@@ -450,7 +584,12 @@
       "raw_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ExecutionIntent",
@@ -477,10 +616,16 @@
         "fixture"
       ],
       "chain_id": "fixture",
-      "wallet_id": "fixture"
+      "wallet_id": "fixture",
+      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Order",
@@ -499,7 +644,12 @@
       "updated_at": "2026-11-03T14:00:00Z"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Attempt",
@@ -513,10 +663,16 @@
       "state": "PREPARED",
       "submitted_at": "2026-11-03T14:00:00Z",
       "simulated": false,
-      "fencing_token": 1
+      "fencing_token": 1,
+      "signed_artifact_id": null
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ExecutionReport",
@@ -535,7 +691,12 @@
       "simulated": false
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Fill",
@@ -555,7 +716,12 @@
       "simulated": false
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "JournalLine",
@@ -564,7 +730,12 @@
       "signed_atoms": "1"
     },
     "expect": "INVALID",
-    "reason": "missing required account_id"
+    "reason": "missing required account_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "account_id"
+    }
   },
   {
     "schema": "JournalEntry",
@@ -591,7 +762,12 @@
       ]
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Position",
@@ -603,7 +779,12 @@
       "status": "OPEN"
     },
     "expect": "INVALID",
-    "reason": "missing required asset_id"
+    "reason": "missing required asset_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
   },
   {
     "schema": "PortfolioView",
@@ -618,10 +799,19 @@
       "positions": [],
       "control_mode": "RUNNING",
       "control_epoch": 1,
-      "reconciled": false
+      "reconciled": false,
+      "wallet_id": "fixture-wallet",
+      "chain_id": "solana:devnet",
+      "active_reservation_ids": [],
+      "uncertain_order_ids": []
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ControlCommand",
@@ -630,7 +820,12 @@
       "expected_revision": 1
     },
     "expect": "INVALID",
-    "reason": "missing required action"
+    "reason": "missing required action",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "action"
+    }
   },
   {
     "schema": "ExtractionRequest",
@@ -648,7 +843,12 @@
       "deadline": "2026-11-03T14:05:00Z"
     },
     "expect": "INVALID",
-    "reason": "missing required source_grant_id"
+    "reason": "missing required source_grant_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_grant_id"
+    }
   },
   {
     "schema": "ExtractedClaim",
@@ -661,7 +861,12 @@
       "confidence": 1
     },
     "expect": "INVALID",
-    "reason": "missing required text"
+    "reason": "missing required text",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "text"
+    }
   },
   {
     "schema": "ExtractionResult",
@@ -669,15 +874,22 @@
       "model_id": "fixture",
       "prompt_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "schema_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "abstain": false,
+      "abstain": true,
       "claims": [],
       "input_tokens": 1,
       "output_tokens": 1,
       "cost_usd": "1",
-      "reason_codes": []
+      "reason_codes": [
+        "FIXTURE_ABSTENTION"
+      ]
     },
     "expect": "INVALID",
-    "reason": "missing required request_id"
+    "reason": "missing required request_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "request_id"
+    }
   },
   {
     "schema": "ResearchClaim",
@@ -700,7 +912,12 @@
       "supersedes_id": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Hypothesis",
@@ -723,7 +940,12 @@
       ]
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "TraderProfile",
@@ -746,7 +968,12 @@
       ]
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Outcome",
@@ -762,7 +989,12 @@
       ]
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Promotion",
@@ -781,7 +1013,12 @@
       "environment": "SHADOW"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "CostRecord",
@@ -796,7 +1033,12 @@
       "occurred_at": "2026-11-03T14:00:00Z"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Alert",
@@ -812,7 +1054,12 @@
       "count": 1
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ReleaseManifest",
@@ -836,7 +1083,12 @@
       "live_authorized": false
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Job",
@@ -860,10 +1112,19 @@
         "mime_type": "fixture",
         "download_ticket": "fixture",
         "ticket_expires_at": "2026-11-03T14:05:00Z"
-      }
+      },
+      "fencing_token": 1,
+      "cancel_requested": false,
+      "created_at": "2026-11-03T14:00:00Z",
+      "updated_at": "2026-11-03T14:00:00Z"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Problem",
@@ -874,7 +1135,12 @@
       "retryable": false
     },
     "expect": "INVALID",
-    "reason": "missing required code"
+    "reason": "missing required code",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "code"
+    }
   },
   {
     "schema": "Session",
@@ -886,7 +1152,12 @@
       "csrf_token": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required user_id"
+    "reason": "missing required user_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "user_id"
+    }
   },
   {
     "schema": "LoginRequest",
@@ -894,7 +1165,12 @@
       "password": "synthetic-test-only"
     },
     "expect": "INVALID",
-    "reason": "missing required username"
+    "reason": "missing required username",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "username"
+    }
   },
   {
     "schema": "SystemView",
@@ -907,7 +1183,12 @@
       "live_enabled": false
     },
     "expect": "INVALID",
-    "reason": "missing required environment"
+    "reason": "missing required environment",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "environment"
+    }
   },
   {
     "schema": "ExperimentRequest",
@@ -918,7 +1199,12 @@
       "seed": 1
     },
     "expect": "INVALID",
-    "reason": "missing required hypothesis_id"
+    "reason": "missing required hypothesis_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "hypothesis_id"
+    }
   },
   {
     "schema": "ResearchRequest",
@@ -927,7 +1213,12 @@
       "budget_usd": "1"
     },
     "expect": "INVALID",
-    "reason": "missing required source_grant_ids"
+    "reason": "missing required source_grant_ids",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_grant_ids"
+    }
   },
   {
     "schema": "PaperRequest",
@@ -937,7 +1228,12 @@
       "initial_cash_usdc": "1"
     },
     "expect": "INVALID",
-    "reason": "missing required strategy_ids"
+    "reason": "missing required strategy_ids",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "strategy_ids"
+    }
   },
   {
     "schema": "ExportRequest",
@@ -948,7 +1244,12 @@
       "environment": "paper"
     },
     "expect": "INVALID",
-    "reason": "missing required resource"
+    "reason": "missing required resource",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "resource"
+    }
   },
   {
     "schema": "PromotionRequest",
@@ -961,7 +1262,12 @@
       "reason": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required strategy_id"
+    "reason": "missing required strategy_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "strategy_id"
+    }
   },
   {
     "schema": "GrantRequest",
@@ -975,10 +1281,23 @@
       "expires_at": "2026-11-03T14:05:00Z",
       "retention_days": 1,
       "expected_revision": 1,
-      "action": "APPROVE"
+      "action": "APPROVE",
+      "allowed_methods": [
+        "GET"
+      ],
+      "allowed_url_prefixes": [
+        "https://example.invalid/"
+      ],
+      "allowed_processor_ids": [],
+      "storage_allowed": false
     },
     "expect": "INVALID",
-    "reason": "missing required source_id"
+    "reason": "missing required source_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_id"
+    }
   },
   {
     "schema": "Page",
@@ -988,7 +1307,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageAsset",
@@ -998,7 +1322,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageTraderProfile",
@@ -1008,7 +1337,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageResearchClaim",
@@ -1018,7 +1352,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageStrategyConfig",
@@ -1028,7 +1367,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageDecision",
@@ -1038,7 +1382,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageOrder",
@@ -1048,7 +1397,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageExperiment",
@@ -1058,7 +1412,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageModelArtifact",
@@ -1068,7 +1427,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageCostRecord",
@@ -1078,7 +1442,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageAuditRecord",
@@ -1088,7 +1457,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageAlert",
@@ -1098,7 +1472,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageConnectorStatus",
@@ -1108,7 +1487,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "QuoteRequest",
@@ -1118,7 +1502,12 @@
       "slippage_bps": 1
     },
     "expect": "INVALID",
-    "reason": "missing required input_asset_id"
+    "reason": "missing required input_asset_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "input_asset_id"
+    }
   },
   {
     "schema": "RiskRequest",
@@ -1135,7 +1524,11 @@
         "positions": [],
         "control_mode": "RUNNING",
         "control_epoch": 1,
-        "reconciled": false
+        "reconciled": false,
+        "wallet_id": "fixture-wallet",
+        "chain_id": "solana:devnet",
+        "active_reservation_ids": [],
+        "uncertain_order_ids": []
       },
       "quote": {
         "id": "fixture",
@@ -1169,9 +1562,9 @@
         "mint_authority_active": false,
         "freeze_authority_active": false,
         "extensions": [],
-        "top1_share": 1,
-        "top10_share": 1,
-        "holder_coverage": 1,
+        "top1_share": "0.1",
+        "top10_share": "0.2",
+        "holder_coverage": "0.95",
         "liquidation_quote_id": "fixture",
         "reasons": [],
         "evidence_ids": [
@@ -1181,16 +1574,27 @@
       }
     },
     "expect": "INVALID",
-    "reason": "missing required decision"
+    "reason": "missing required decision",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "decision"
+    }
   },
   {
     "schema": "SignatureResult",
     "value": {
       "signature": "fixture",
-      "bytes_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "bytes_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "signed_transaction_b64": "AQID"
     },
     "expect": "INVALID",
-    "reason": "missing required attempt_id"
+    "reason": "missing required attempt_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "attempt_id"
+    }
   },
   {
     "schema": "VenueCapabilities",
@@ -1205,7 +1609,12 @@
       "evidence_ids": []
     },
     "expect": "INVALID",
-    "reason": "missing required venue_id"
+    "reason": "missing required venue_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "venue_id"
+    }
   },
   {
     "schema": "EventEnvelope",
@@ -1240,7 +1649,12 @@
       }
     },
     "expect": "INVALID",
-    "reason": "missing required event_id"
+    "reason": "missing required event_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "event_id"
+    }
   },
   {
     "schema": "Trade",
@@ -1256,7 +1670,12 @@
       "slot": 1
     },
     "expect": "INVALID",
-    "reason": "missing required asset_id"
+    "reason": "missing required asset_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
   },
   {
     "schema": "Price",
@@ -1267,7 +1686,12 @@
       "size_atoms": "1"
     },
     "expect": "INVALID",
-    "reason": "missing required asset_id"
+    "reason": "missing required asset_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
   },
   {
     "schema": "PoolSnapshot",
@@ -1279,7 +1703,12 @@
       "depth_complete": false
     },
     "expect": "INVALID",
-    "reason": "missing required pool_id"
+    "reason": "missing required pool_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "pool_id"
+    }
   },
   {
     "schema": "MintSnapshot",
@@ -1293,7 +1722,12 @@
       "slot": 1
     },
     "expect": "INVALID",
-    "reason": "missing required asset_id"
+    "reason": "missing required asset_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
   },
   {
     "schema": "BookLevel",
@@ -1301,7 +1735,12 @@
       "quantity": "1"
     },
     "expect": "INVALID",
-    "reason": "missing required price"
+    "reason": "missing required price",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "price"
+    }
   },
   {
     "schema": "L2Snapshot",
@@ -1314,7 +1753,12 @@
       "valid": false
     },
     "expect": "INVALID",
-    "reason": "missing required instrument_id"
+    "reason": "missing required instrument_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
   },
   {
     "schema": "WalletTransaction",
@@ -1339,7 +1783,12 @@
       "slot": 1
     },
     "expect": "INVALID",
-    "reason": "missing required wallet_address"
+    "reason": "missing required wallet_address",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "wallet_address"
+    }
   },
   {
     "schema": "NewsItem",
@@ -1352,7 +1801,12 @@
       "origin_cluster_id": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required source_grant_id"
+    "reason": "missing required source_grant_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_grant_id"
+    }
   },
   {
     "schema": "CoverageInterval",
@@ -1363,7 +1817,12 @@
       "reason": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required source_id"
+    "reason": "missing required source_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_id"
+    }
   },
   {
     "schema": "StrategyInput",
@@ -1380,7 +1839,11 @@
         "positions": [],
         "control_mode": "RUNNING",
         "control_epoch": 1,
-        "reconciled": false
+        "reconciled": false,
+        "wallet_id": "fixture-wallet",
+        "chain_id": "solana:devnet",
+        "active_reservation_ids": [],
+        "uncertain_order_ids": []
       },
       "config": {
         "strategy_id": "S01",
@@ -1396,7 +1859,12 @@
       }
     },
     "expect": "INVALID",
-    "reason": "missing required snapshot"
+    "reason": "missing required snapshot",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "snapshot"
+    }
   },
   {
     "schema": "DecisionContext",
@@ -1412,9 +1880,9 @@
         "mint_authority_active": false,
         "freeze_authority_active": false,
         "extensions": [],
-        "top1_share": 1,
-        "top10_share": 1,
-        "holder_coverage": 1,
+        "top1_share": "0.1",
+        "top10_share": "0.2",
+        "holder_coverage": "0.95",
         "liquidation_quote_id": "fixture",
         "reasons": [],
         "evidence_ids": [
@@ -1434,12 +1902,21 @@
         "positions": [],
         "control_mode": "RUNNING",
         "control_epoch": 1,
-        "reconciled": false
+        "reconciled": false,
+        "wallet_id": "fixture-wallet",
+        "chain_id": "solana:devnet",
+        "active_reservation_ids": [],
+        "uncertain_order_ids": []
       },
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
     "expect": "INVALID",
-    "reason": "missing required snapshot"
+    "reason": "missing required snapshot",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "snapshot"
+    }
   },
   {
     "schema": "SigningRequest",
@@ -1452,7 +1929,12 @@
       "approval_id": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required intent"
+    "reason": "missing required intent",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "intent"
+    }
   },
   {
     "schema": "FeeEvent",
@@ -1471,13 +1953,23 @@
       ]
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "LogoutResult",
     "value": {},
     "expect": "INVALID",
-    "reason": "missing required logged_out"
+    "reason": "missing required logged_out",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "logged_out"
+    }
   },
   {
     "schema": "AssetDetail",
@@ -1493,9 +1985,9 @@
         "mint_authority_active": false,
         "freeze_authority_active": false,
         "extensions": [],
-        "top1_share": 1,
-        "top10_share": 1,
-        "holder_coverage": 1,
+        "top1_share": "0.1",
+        "top10_share": "0.2",
+        "holder_coverage": "0.95",
         "liquidation_quote_id": "fixture",
         "reasons": [],
         "evidence_ids": [
@@ -1528,7 +2020,12 @@
       "quotes": []
     },
     "expect": "INVALID",
-    "reason": "missing required asset"
+    "reason": "missing required asset",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset"
+    }
   },
   {
     "schema": "DecisionDetail",
@@ -1539,22 +2036,29 @@
         "revision": 1,
         "decision_id": "fixture",
         "portfolio_id": "fixture",
-        "verdict": "APPROVED",
+        "verdict": "DENIED",
         "reason_codes": [
           "fixture"
         ],
-        "approved_atoms": "1",
-        "max_fee_atoms": "1",
-        "reservation_id": "fixture",
+        "approved_atoms": "0",
+        "max_fee_atoms": "0",
+        "reservation_id": null,
         "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "assessed_at": "2026-11-03T14:00:00Z",
-        "expires_at": "2026-11-03T14:05:00Z"
+        "expires_at": "2026-11-03T14:05:00Z",
+        "input_asset_id": "solana:fixture-input",
+        "fee_asset_id": "solana:native"
       },
       "orders": [],
       "evidence_ids": []
     },
     "expect": "INVALID",
-    "reason": "missing required decision"
+    "reason": "missing required decision",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "decision"
+    }
   },
   {
     "schema": "OrderDetail",
@@ -1564,7 +2068,12 @@
       "journal_entries": []
     },
     "expect": "INVALID",
-    "reason": "missing required order"
+    "reason": "missing required order",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "order"
+    }
   },
   {
     "schema": "ExperimentDetail",
@@ -1597,7 +2106,12 @@
       }
     },
     "expect": "INVALID",
-    "reason": "missing required experiment"
+    "reason": "missing required experiment",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "experiment"
+    }
   },
   {
     "schema": "ModelDetail",
@@ -1606,7 +2120,12 @@
       "promotions": []
     },
     "expect": "INVALID",
-    "reason": "missing required model"
+    "reason": "missing required model",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "model"
+    }
   },
   {
     "schema": "StrategyView",
@@ -1616,7 +2135,12 @@
       "metrics": []
     },
     "expect": "INVALID",
-    "reason": "missing required config"
+    "reason": "missing required config",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "config"
+    }
   },
   {
     "schema": "EquityPoint",
@@ -1626,7 +2150,12 @@
       "data_status": "VALID"
     },
     "expect": "INVALID",
-    "reason": "missing required as_of"
+    "reason": "missing required as_of",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "as_of"
+    }
   },
   {
     "schema": "PageStrategyView",
@@ -1636,7 +2165,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageEquityPoint",
@@ -1646,7 +2180,12 @@
       "data_status": "FRESH"
     },
     "expect": "INVALID",
-    "reason": "missing required items"
+    "reason": "missing required items",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "LiveApproval",
@@ -1665,10 +2204,17 @@
       "legal_review_id": "fixture",
       "issued_at": "2026-11-03T14:00:00Z",
       "expires_at": "2026-11-03T14:05:00Z",
-      "revoked": false
+      "revoked": false,
+      "mode": "DEVNET",
+      "capital_asset_id": "solana:devnet:native"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "CexChildOrder",
@@ -1683,7 +2229,12 @@
       "last_exchange_update": "2026-11-03T14:00:00Z"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "MarginSnapshot",
@@ -1700,7 +2251,12 @@
       "tier_evidence_id": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required venue_id"
+    "reason": "missing required venue_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "venue_id"
+    }
   },
   {
     "schema": "LegPlan",
@@ -1716,7 +2272,12 @@
       "capability_evidence_id": "fixture"
     },
     "expect": "INVALID",
-    "reason": "missing required id"
+    "reason": "missing required id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ExportResult",
@@ -1728,6 +2289,74 @@
       "ticket_expires_at": "2026-11-03T14:05:00Z"
     },
     "expect": "INVALID",
-    "reason": "missing required job_id"
+    "reason": "missing required job_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "job_id"
+    }
+  },
+  {
+    "schema": "MarketReadRequest",
+    "value": {
+      "asset_ids": [
+        "fixture"
+      ],
+      "cursor": null,
+      "as_of": "2026-11-03T14:00:00Z",
+      "grant_id": "fixture"
+    },
+    "expect": "INVALID",
+    "reason": "missing required source_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_id"
+    }
+  },
+  {
+    "schema": "TransactionReadRequest",
+    "value": {
+      "signature": "fixture",
+      "commitment": "confirmed",
+      "max_supported_version": 0,
+      "grant_id": "fixture"
+    },
+    "expect": "INVALID",
+    "reason": "missing required chain_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "chain_id"
+    }
+  },
+  {
+    "schema": "ManifestReadRequest",
+    "value": {
+      "expected_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "expect": "INVALID",
+    "reason": "missing required artifact_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "artifact_id"
+    }
+  },
+  {
+    "schema": "BudgetReserveRequest",
+    "value": {
+      "job_id": "fixture",
+      "tariff_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "worst_case_usd": "1",
+      "idempotency_key": "fixture"
+    },
+    "expect": "INVALID",
+    "reason": "missing required provider_id",
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "provider_id"
+    }
   }
 ]

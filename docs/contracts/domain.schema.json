@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:td:domain:1.0.0",
-  "title": "TD contracts 1.0.0",
+  "$id": "urn:td:domain:1.1.0",
+  "title": "TD domain contracts 1.1.0-draft",
   "$defs": {
     "Money": {
       "type": "object",
@@ -133,7 +133,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "source_id": {
           "type": "string",
@@ -177,7 +178,8 @@
         },
         "retention_days": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "expires_at": {
           "type": "string",
@@ -193,6 +195,40 @@
               "type": "null"
             }
           ]
+        },
+        "allowed_methods": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "GET",
+              "POST"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "allowed_url_prefixes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "minItems": 1,
+          "maxItems": 1000,
+          "uniqueItems": true
+        },
+        "allowed_processor_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000,
+          "uniqueItems": true
+        },
+        "storage_allowed": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -205,7 +241,30 @@
         "evidence_ids",
         "retention_days",
         "expires_at",
-        "reviewer_id"
+        "reviewer_id",
+        "allowed_methods",
+        "allowed_url_prefixes",
+        "allowed_processor_ids",
+        "storage_allowed"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "APPROVED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "reviewer_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              }
+            }
+          }
+        }
       ]
     },
     "ConnectorStatus": {
@@ -240,7 +299,8 @@
           "anyOf": [
             {
               "type": "integer",
-              "minimum": 0
+              "minimum": 0,
+              "maximum": 9007199254740991
             },
             {
               "type": "null"
@@ -260,8 +320,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -301,7 +364,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "source_id": {
           "type": "string",
@@ -351,7 +415,8 @@
           "anyOf": [
             {
               "type": "integer",
-              "minimum": 0
+              "minimum": 0,
+              "maximum": 9007199254740991
             },
             {
               "type": "null"
@@ -435,7 +500,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "chain_id": {
           "type": "string",
@@ -461,7 +527,7 @@
         "decimals": {
           "type": "integer",
           "minimum": 0,
-          "maximum": 38
+          "maximum": 255
         },
         "token_program": {
           "type": "string",
@@ -510,7 +576,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "chain_id": {
           "type": "string",
@@ -567,7 +634,8 @@
         },
         "slot": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -595,7 +663,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "asset_id": {
           "type": "string",
@@ -645,9 +714,8 @@
         "top1_share": {
           "anyOf": [
             {
-              "type": "number",
-              "minimum": 0,
-              "maximum": 1
+              "type": "string",
+              "pattern": "^(0(\\.[0-9]{1,18})?|1(\\.0{1,18})?)$"
             },
             {
               "type": "null"
@@ -657,9 +725,8 @@
         "top10_share": {
           "anyOf": [
             {
-              "type": "number",
-              "minimum": 0,
-              "maximum": 1
+              "type": "string",
+              "pattern": "^(0(\\.[0-9]{1,18})?|1(\\.0{1,18})?)$"
             },
             {
               "type": "null"
@@ -667,9 +734,8 @@
           ]
         },
         "holder_coverage": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1
+          "type": "string",
+          "pattern": "^(0(\\.[0-9]{1,18})?|1(\\.0{1,18})?)$"
         },
         "liquidation_quote_id": {
           "anyOf": [
@@ -723,6 +789,39 @@
         "reasons",
         "evidence_ids",
         "policy_hash"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "eligible": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "mint_authority_active": {
+                "const": false
+              },
+              "freeze_authority_active": {
+                "const": false
+              },
+              "top1_share": {
+                "type": "string",
+                "pattern": "^(0(\\.[0-9]{1,18})?|1(\\.0{1,18})?)$"
+              },
+              "top10_share": {
+                "type": "string",
+                "pattern": "^(0(\\.[0-9]{1,18})?|1(\\.0{1,18})?)$"
+              },
+              "liquidation_quote_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              }
+            }
+          }
+        }
       ]
     },
     "FeatureValue": {
@@ -738,8 +837,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -782,7 +884,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "asset_id": {
           "type": "string",
@@ -859,11 +962,13 @@
         },
         "size_bytes": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "rows": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -883,7 +988,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "created_at": {
           "type": "string",
@@ -939,7 +1045,8 @@
         },
         "seed": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "hash": {
           "type": "string",
@@ -973,7 +1080,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "hypothesis_id": {
           "type": "string",
@@ -993,7 +1101,8 @@
         },
         "seed": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "trial_family_id": {
           "type": "string",
@@ -1001,7 +1110,8 @@
         },
         "trial_index": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "status": {
           "type": "string",
@@ -1050,8 +1160,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -1067,8 +1180,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -1079,8 +1195,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -1089,7 +1208,8 @@
         },
         "sample_count": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -1111,7 +1231,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "experiment_id": {
           "type": "string",
@@ -1199,7 +1320,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "asset_id": {
           "type": "string",
@@ -1223,7 +1345,8 @@
         },
         "horizon_s": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "probability_net_positive": {
           "type": "number",
@@ -1232,23 +1355,35 @@
         },
         "q05": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "q50": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "q95": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "expected_net_return": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "cost_basis": {
           "type": "string",
@@ -1259,8 +1394,11 @@
         },
         "uncertainty": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         }
       },
       "required": [
@@ -1291,7 +1429,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "family": {
           "type": "string",
@@ -1320,7 +1459,8 @@
         },
         "seed": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "license_evidence_ids": {
           "type": "array",
@@ -1394,12 +1534,12 @@
               "properties": {
                 "observe_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "cohort_h": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -1448,33 +1588,33 @@
               "properties": {
                 "lookback_bars": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "volume_ratio": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1000000,
+                  "exclusiveMinimum": 0
                 },
                 "breakout_bars": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "stop_bps": {
                   "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000000
+                  "minimum": 1,
+                  "maximum": 10000
                 },
                 "target_bps": {
                   "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000000
+                  "minimum": 1,
+                  "maximum": 10000
                 }
               },
               "required": [
@@ -1526,17 +1666,17 @@
               "properties": {
                 "window_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "imbalance_min": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1,
+                  "exclusiveMinimum": 0
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -1586,17 +1726,16 @@
               "properties": {
                 "window_min": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "entry_z": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "exclusiveMaximum": 0
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -1646,22 +1785,22 @@
               "properties": {
                 "channel_bars": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "volume_ratio": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1000000,
+                  "exclusiveMinimum": 0
                 },
                 "atr_mult": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1000000,
+                  "exclusiveMinimum": 0
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -1712,17 +1851,17 @@
               "properties": {
                 "channel_bars": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "reentry_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -1772,22 +1911,22 @@
               "properties": {
                 "depth_levels": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "imbalance_min": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1,
+                  "exclusiveMinimum": 0
                 },
                 "confirm_updates": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -1838,17 +1977,17 @@
               "properties": {
                 "decay_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "min_independent_sources": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -1898,37 +2037,37 @@
               "properties": {
                 "window_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "baseline_days": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "attention_z": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1000000,
+                  "exclusiveMinimum": 0
                 },
                 "sentiment_min": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1,
+                  "exclusiveMinimum": 0
                 },
                 "min_messages": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "min_origins": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -1982,17 +2121,17 @@
               "properties": {
                 "coverage_min": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1,
+                  "exclusiveMinimum": 0
                 },
                 "max_chase_bps": {
                   "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000000
+                  "minimum": 1,
+                  "maximum": 10000
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -2042,22 +2181,22 @@
               "properties": {
                 "window_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "min_clusters": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "score_percentile": {
                   "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000000
+                  "minimum": 1,
+                  "maximum": 100
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -2108,27 +2247,27 @@
               "properties": {
                 "window_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "growth_min": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1,
+                  "exclusiveMinimum": 0
                 },
                 "confirm_snapshots": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "withdrawal_max": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1,
+                  "exclusiveMinimum": 0
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -2180,17 +2319,17 @@
               "properties": {
                 "levels": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "spacing_bps": {
                   "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000000
+                  "minimum": 1,
+                  "maximum": 10000
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -2240,17 +2379,17 @@
               "properties": {
                 "min_ticks": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "fee_mult": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1000000,
+                  "exclusiveMinimum": 0
                 },
                 "requote_ms": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -2300,13 +2439,13 @@
               "properties": {
                 "quote_skew_ms": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "buffer_bps": {
                   "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000000
+                  "minimum": 1,
+                  "maximum": 10000
                 }
               },
               "required": [
@@ -2354,18 +2493,18 @@
               "properties": {
                 "forecast_h": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "max_hold_h": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "buffer_bps": {
                   "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000000
+                  "minimum": 1,
+                  "maximum": 10000
                 }
               },
               "required": [
@@ -2414,12 +2553,12 @@
               "properties": {
                 "delta_band": {
                   "type": "number",
-                  "minimum": -1000000,
-                  "maximum": 1000000
+                  "maximum": 1,
+                  "exclusiveMinimum": 0
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -2468,22 +2607,22 @@
               "properties": {
                 "fast_bars": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "slow_bars": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "bar_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -2534,12 +2673,12 @@
               "properties": {
                 "trailing_bps": {
                   "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000000
+                  "minimum": 1,
+                  "maximum": 10000
                 },
                 "max_hold_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -2588,12 +2727,12 @@
               "properties": {
                 "interval_s": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 },
                 "hysteresis_windows": {
                   "type": "integer",
-                  "minimum": 0,
+                  "minimum": 1,
                   "maximum": 1000000
                 }
               },
@@ -2636,7 +2775,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "strategy_id": {
           "type": "string",
@@ -2669,14 +2809,18 @@
         },
         "horizon_s": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "expected_net_return": {
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -2687,8 +2831,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -2754,7 +2901,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "asset_id": {
           "type": "string",
@@ -2844,7 +2992,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "decision_id": {
           "type": "string",
@@ -2901,6 +3050,14 @@
         "expires_at": {
           "type": "string",
           "format": "date-time"
+        },
+        "input_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "fee_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
         }
       },
       "required": [
@@ -2915,7 +3072,45 @@
         "reservation_id",
         "policy_hash",
         "assessed_at",
-        "expires_at"
+        "expires_at",
+        "input_asset_id",
+        "fee_asset_id"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "verdict": {
+                "const": "APPROVED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "approved_atoms": {
+                "type": "string",
+                "pattern": "^[1-9][0-9]{0,77}$"
+              },
+              "reservation_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "approved_atoms": {
+                "const": "0"
+              },
+              "max_fee_atoms": {
+                "const": "0"
+              },
+              "reservation_id": {
+                "type": "null"
+              }
+            }
+          }
+        }
       ]
     },
     "Reservation": {
@@ -2928,7 +3123,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "decision_id": {
           "type": "string",
@@ -2973,11 +3169,13 @@
         },
         "control_epoch": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "fencing_token": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "quote_hash": {
           "type": "string",
@@ -2990,6 +3188,43 @@
         "wallet_id": {
           "type": "string",
           "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "output_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "fee_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE"
+          ]
+        },
+        "reduce_only": {
+          "type": "boolean"
+        },
+        "allowed_program_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "min_output_atoms": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,77}$"
+        },
+        "intent_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
         }
       },
       "required": [
@@ -3008,7 +3243,14 @@
         "fencing_token",
         "quote_hash",
         "chain_id",
-        "wallet_id"
+        "wallet_id",
+        "output_asset_id",
+        "fee_asset_id",
+        "mode",
+        "reduce_only",
+        "allowed_program_ids",
+        "min_output_atoms",
+        "intent_hash"
       ]
     },
     "Quote": {
@@ -3021,7 +3263,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "venue_id": {
           "type": "string",
@@ -3037,23 +3280,25 @@
         },
         "input_atoms": {
           "type": "string",
-          "pattern": "^(0|[1-9][0-9]{0,77})$"
+          "pattern": "^[1-9][0-9]{0,77}$"
         },
         "output_atoms": {
           "type": "string",
-          "pattern": "^(0|[1-9][0-9]{0,77})$"
+          "pattern": "^[1-9][0-9]{0,77}$"
         },
         "min_output_atoms": {
           "type": "string",
-          "pattern": "^(0|[1-9][0-9]{0,77})$"
+          "pattern": "^[1-9][0-9]{0,77}$"
         },
         "impact_bps": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "slippage_bps": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "fees_included": {
           "type": "boolean"
@@ -3124,7 +3369,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "order_id": {
           "type": "string",
@@ -3160,11 +3406,11 @@
         },
         "input_atoms": {
           "type": "string",
-          "pattern": "^(0|[1-9][0-9]{0,77})$"
+          "pattern": "^[1-9][0-9]{0,77}$"
         },
         "min_output_atoms": {
           "type": "string",
-          "pattern": "^(0|[1-9][0-9]{0,77})$"
+          "pattern": "^[1-9][0-9]{0,77}$"
         },
         "max_fee_atoms": {
           "type": "string",
@@ -3187,11 +3433,13 @@
         },
         "control_epoch": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "fencing_token": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "quote_hash": {
           "type": "string",
@@ -3214,6 +3462,10 @@
         "wallet_id": {
           "type": "string",
           "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "intent_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
         }
       },
       "required": [
@@ -3238,7 +3490,8 @@
         "quote_hash",
         "allowed_program_ids",
         "chain_id",
-        "wallet_id"
+        "wallet_id",
+        "intent_hash"
       ]
     },
     "Order": {
@@ -3251,7 +3504,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "portfolio_id": {
           "type": "string",
@@ -3352,15 +3606,23 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "order_id": {
           "type": "string",
           "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
         },
         "bytes_hash": {
-          "type": "string",
-          "pattern": "^[a-f0-9]{64}$"
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "signature": {
           "anyOf": [
@@ -3390,7 +3652,8 @@
           "anyOf": [
             {
               "type": "integer",
-              "minimum": 0
+              "minimum": 0,
+              "maximum": 9007199254740991
             },
             {
               "type": "null"
@@ -3427,7 +3690,19 @@
         },
         "fencing_token": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "signed_artifact_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
@@ -3441,7 +3716,57 @@
         "state",
         "submitted_at",
         "simulated",
-        "fencing_token"
+        "fencing_token",
+        "signed_artifact_id"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "simulated": {
+                "const": false
+              },
+              "state": {
+                "enum": [
+                  "SIGNED",
+                  "SUBMITTING",
+                  "PENDING",
+                  "UNKNOWN",
+                  "CONFIRMED",
+                  "FINALIZED",
+                  "FAILED_CONFIRMED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "bytes_hash": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "signature": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "signed_artifact_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              },
+              "recent_blockhash": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "last_valid_block_height": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            }
+          }
+        }
       ]
     },
     "ExecutionReport": {
@@ -3454,7 +3779,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "order_id": {
           "type": "string",
@@ -3549,7 +3875,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "order_id": {
           "type": "string",
@@ -3573,11 +3900,11 @@
         },
         "input_atoms": {
           "type": "string",
-          "pattern": "^(0|[1-9][0-9]{0,77})$"
+          "pattern": "^[1-9][0-9]{0,77}$"
         },
         "output_atoms": {
           "type": "string",
-          "pattern": "^(0|[1-9][0-9]{0,77})$"
+          "pattern": "^[1-9][0-9]{0,77}$"
         },
         "fee_asset_id": {
           "type": "string",
@@ -3649,7 +3976,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "external_effect_key": {
           "type": "string",
@@ -3730,8 +4058,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -3742,8 +4073,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -3779,7 +4113,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "mode": {
           "type": "string",
@@ -3797,8 +4132,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -3807,18 +4145,27 @@
         },
         "high_water_mark_usdc": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "daily_pnl_usdc": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "weekly_pnl_usdc": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "positions": {
           "type": "array",
@@ -3838,10 +4185,39 @@
         },
         "control_epoch": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "reconciled": {
           "type": "boolean"
+        },
+        "wallet_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "chain_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "active_reservation_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000,
+          "uniqueItems": true
+        },
+        "uncertain_order_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000,
+          "uniqueItems": true
         }
       },
       "required": [
@@ -3856,7 +4232,11 @@
         "positions",
         "control_mode",
         "control_epoch",
-        "reconciled"
+        "reconciled",
+        "wallet_id",
+        "chain_id",
+        "active_reservation_ids",
+        "uncertain_order_ids"
       ]
     },
     "ControlCommand": {
@@ -3878,7 +4258,8 @@
         },
         "expected_revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -3937,8 +4318,11 @@
         },
         "budget_usd": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "deadline": {
           "type": "string",
@@ -4041,16 +4425,21 @@
         },
         "input_tokens": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "output_tokens": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "cost_usd": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "reason_codes": {
           "type": "array",
@@ -4074,6 +4463,27 @@
         "output_tokens",
         "cost_usd",
         "reason_codes"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "abstain": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "claims": {
+                "maxItems": 0
+              },
+              "reason_codes": {
+                "minItems": 1
+              }
+            }
+          }
+        }
       ]
     },
     "ResearchClaim": {
@@ -4086,7 +4496,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "claim": {
           "$ref": "#/$defs/ExtractedClaim"
@@ -4152,7 +4563,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "mechanism": {
           "type": "string",
@@ -4170,7 +4582,8 @@
         },
         "horizon_s": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "feature_names": {
           "type": "array",
@@ -4203,8 +4616,11 @@
         },
         "budget_usd": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "evidence_ids": {
           "type": "array",
@@ -4242,7 +4658,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "wallet_address": {
           "type": "string",
@@ -4260,14 +4677,18 @@
         },
         "observed_days": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "realized_pnl_usdc": {
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -4278,8 +4699,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -4290,8 +4714,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -4302,8 +4729,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -4312,14 +4742,18 @@
         },
         "unknown_cost_lots": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "score": {
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -4379,7 +4813,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "prediction_id": {
           "type": "string",
@@ -4397,8 +4832,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -4433,6 +4871,27 @@
         "net_return",
         "state",
         "evidence_ids"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "enum": [
+                  "CENSORED",
+                  "UNLIQUIDATABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "net_return": {
+                "type": "null"
+              }
+            }
+          }
+        }
       ]
     },
     "Promotion": {
@@ -4445,7 +4904,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "strategy_id": {
           "type": "string",
@@ -4485,7 +4945,8 @@
         },
         "expected_assignment_revision": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "state": {
           "type": "string",
@@ -4527,7 +4988,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "provider_id": {
           "type": "string",
@@ -4543,15 +5005,21 @@
         },
         "reserved_usd": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "actual_usd": {
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -4594,7 +5062,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "fingerprint": {
           "type": "string",
@@ -4636,7 +5105,8 @@
         },
         "count": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -4662,7 +5132,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "version": {
           "type": "string",
@@ -4671,7 +5142,7 @@
         },
         "commit": {
           "type": "string",
-          "pattern": "^[a-f0-9]{64}$"
+          "pattern": "^([a-f0-9]{40}|[a-f0-9]{64})$"
         },
         "lock_hashes": {
           "type": "array",
@@ -4701,11 +5172,13 @@
         },
         "min_db_revision": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "max_db_revision": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "gate_report_ids": {
           "type": "array",
@@ -4745,7 +5218,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "kind": {
           "type": "string",
@@ -4779,11 +5253,13 @@
         },
         "seed": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "attempts": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "lease_owner": {
           "anyOf": [
@@ -4844,6 +5320,22 @@
               "type": "null"
             }
           ]
+        },
+        "fencing_token": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "cancel_requested": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
         }
       },
       "required": [
@@ -4860,7 +5352,11 @@
         "progress",
         "result_artifact_id",
         "error_code",
-        "export_result"
+        "export_result",
+        "fencing_token",
+        "cancel_requested",
+        "created_at",
+        "updated_at"
       ]
     },
     "Problem": {
@@ -4979,7 +5475,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "as_of": {
           "type": "string",
@@ -4995,7 +5492,8 @@
         },
         "alerts_open": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "live_enabled": {
           "const": false
@@ -5033,7 +5531,8 @@
         },
         "seed": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -5064,8 +5563,11 @@
         },
         "budget_usd": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         }
       },
       "required": [
@@ -5097,8 +5599,11 @@
         },
         "initial_cash_usdc": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         }
       },
       "required": [
@@ -5171,7 +5676,8 @@
         },
         "expected_assignment_revision": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "reason": {
           "type": "string",
@@ -5224,11 +5730,13 @@
         },
         "retention_days": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "expected_revision": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "action": {
           "type": "string",
@@ -5236,6 +5744,40 @@
             "APPROVE",
             "REVOKE"
           ]
+        },
+        "allowed_methods": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "GET",
+              "POST"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "allowed_url_prefixes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "minItems": 1,
+          "maxItems": 1000,
+          "uniqueItems": true
+        },
+        "allowed_processor_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000,
+          "uniqueItems": true
+        },
+        "storage_allowed": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -5245,7 +5787,11 @@
         "expires_at",
         "retention_days",
         "expected_revision",
-        "action"
+        "action",
+        "allowed_methods",
+        "allowed_url_prefixes",
+        "allowed_processor_ids",
+        "storage_allowed"
       ]
     },
     "Page": {
@@ -5875,7 +6421,8 @@
         },
         "slippage_bps": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -5925,12 +6472,19 @@
         "bytes_hash": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
+        },
+        "signed_transaction_b64": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32768,
+          "pattern": "^[A-Za-z0-9+/]+={0,2}$"
         }
       },
       "required": [
         "attempt_id",
         "signature",
-        "bytes_hash"
+        "bytes_hash",
+        "signed_transaction_b64"
       ]
     },
     "VenueCapabilities": {
@@ -6055,7 +6609,8 @@
         },
         "aggregate_revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "dedup_key": {
           "type": "string",
@@ -6409,7 +6964,8 @@
         },
         "instruction_index": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "base_atoms": {
           "type": "string",
@@ -6437,7 +6993,8 @@
         },
         "slot": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -6467,8 +7024,11 @@
         },
         "price": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "mark_kind": {
           "type": "string",
@@ -6507,20 +7067,36 @@
           "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
         },
         "base_reserve_atoms": {
-          "type": "string",
-          "pattern": "^(0|[1-9][0-9]{0,77})$"
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]{0,77})$"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "quote_reserve_atoms": {
-          "type": "string",
-          "pattern": "^(0|[1-9][0-9]{0,77})$"
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]{0,77})$"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "fee_bps": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 10000
         },
         "slot": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "depth_complete": {
           "type": "boolean"
@@ -6555,7 +7131,7 @@
         "decimals": {
           "type": "integer",
           "minimum": 0,
-          "maximum": 38
+          "maximum": 255
         },
         "mint_authority": {
           "anyOf": [
@@ -6593,7 +7169,8 @@
         },
         "slot": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -6613,13 +7190,19 @@
       "properties": {
         "price": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "quantity": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         }
       },
       "required": [
@@ -6644,7 +7227,8 @@
         },
         "sequence": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "bids": {
           "type": "array",
@@ -6739,7 +7323,8 @@
         },
         "slot": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -6951,7 +7536,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "attempt_id": {
           "type": "string",
@@ -7257,8 +7843,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -7269,8 +7858,11 @@
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -7391,7 +7983,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "approver_id": {
           "type": "string",
@@ -7444,6 +8037,17 @@
         },
         "revoked": {
           "type": "boolean"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "DEVNET",
+            "LIVE"
+          ]
+        },
+        "capital_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
         }
       },
       "required": [
@@ -7460,7 +8064,9 @@
         "legal_review_id",
         "issued_at",
         "expires_at",
-        "revoked"
+        "revoked",
+        "mode",
+        "capital_asset_id"
       ]
     },
     "CexChildOrder": {
@@ -7473,7 +8079,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "parent_order_id": {
           "type": "string",
@@ -7550,35 +8157,53 @@
         },
         "mark_price": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "index_price": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "position_notional": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "collateral": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "maintenance_margin": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "funding_known_rate": {
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-              "maxLength": 60
+              "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
             },
             {
               "type": "null"
@@ -7625,7 +8250,8 @@
         },
         "revision": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 9007199254740991
         },
         "intent_ids": {
           "type": "array",
@@ -7641,8 +8267,11 @@
         },
         "worst_unhedged_loss": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$",
-          "maxLength": 60
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
         },
         "abort_rule": {
           "type": "string",
@@ -7702,6 +8331,145 @@
         "mime_type",
         "download_ticket",
         "ticket_expires_at"
+      ]
+    },
+    "MarketReadRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "asset_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 1000,
+          "uniqueItems": true
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "grant_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "source_id",
+        "asset_ids",
+        "cursor",
+        "as_of",
+        "grant_id"
+      ]
+    },
+    "TransactionReadRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "chain_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "signature": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "commitment": {
+          "enum": [
+            "confirmed",
+            "finalized"
+          ]
+        },
+        "max_supported_version": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "grant_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "chain_id",
+        "signature",
+        "commitment",
+        "max_supported_version",
+        "grant_id"
+      ]
+    },
+    "ManifestReadRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "expected_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "expected_hash"
+      ]
+    },
+    "BudgetReserveRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "job_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "tariff_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "worst_case_usd": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
+        },
+        "idempotency_key": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "provider_id",
+        "job_id",
+        "tariff_hash",
+        "worst_case_usd",
+        "idempotency_key"
       ]
     }
   }

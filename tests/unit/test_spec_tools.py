@@ -74,3 +74,63 @@ def test_gate_rejects_valid_negative_example(spec_copy: Path) -> None:
     path.write_text(json.dumps(examples))
     result = validate(spec_copy)
     assert any("unexpectedly accepted" in e for e in result["errors"])
+
+
+def test_negative_rejected_for_incidental_error_is_not_evidence(spec_copy: Path) -> None:
+    path = spec_copy / "docs/contracts/examples/invalid.json"
+    examples = json.loads(path.read_text())
+    money = next(e for e in examples if e["schema"] == "Money")
+    money["value"]["atoms"] = 0.5
+    path.write_text(json.dumps(examples))
+    result = validate(spec_copy)
+    assert any("incidental mutation" in e for e in result["errors"])
+
+
+def test_unknown_cannot_release_through_cancel(spec_copy: Path) -> None:
+    path = spec_copy / "docs/contracts/order-machine.json"
+    machine = json.loads(path.read_text())
+    machine["transitions"].append({"source": "UNKNOWN", "target": "CANCELLED", "guard": "timeout"})
+    path.write_text(json.dumps(machine))
+    assert any("UNKNOWN has unsafe" in e for e in validate(spec_copy)["errors"])
+
+
+def test_attempted_reservation_requires_reconciliation(spec_copy: Path) -> None:
+    path = spec_copy / "docs/contracts/lifecycle-machines.json"
+    machines = json.loads(path.read_text())
+    for edge in machines["reservation"]["transitions"]:
+        if edge["source"] == "ATTEMPTED" and edge["target"] == "RELEASED":
+            edge["guard"] = "deadline expired"
+    path.write_text(json.dumps(machines))
+    assert any("release without reconciliation" in e for e in validate(spec_copy)["errors"])
+
+
+def test_missing_binding_is_detected_even_when_examples_still_validate(spec_copy: Path) -> None:
+    path = spec_copy / "docs/contracts/domain.schema.json"
+    schema = json.loads(path.read_text())
+    schema["$defs"]["Reservation"]["required"].remove("intent_hash")
+    path.write_text(json.dumps(schema))
+    assert any(
+        "incomplete required authorization binding" in e for e in validate(spec_copy)["errors"]
+    )
+
+
+def test_reintroduced_task_production_path_fails(spec_copy: Path) -> None:
+    path = spec_copy / "docs/tasks/index.json"
+    tasks = json.loads(path.read_text())
+    tasks[1]["files"][0] = "backend/src/td/domain/core/t_002.py"
+    path.write_text(json.dumps(tasks))
+    assert any("provisional production path" in e for e in validate(spec_copy)["errors"])
+
+
+def test_valid_schema_does_not_imply_financial_runtime() -> None:
+    from tools.validate_design import machine_errors
+
+    assert machine_errors(
+        "isolated",
+        {
+            "states": ["START", "UNREACHABLE"],
+            "initial": "START",
+            "terminal": [],
+            "transitions": [],
+        },
+    ) == ["isolated: unreachable states ['UNREACHABLE']"]

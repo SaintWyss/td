@@ -13,8 +13,10 @@ from openapi_spec_validator import validate as validate_openapi
 
 try:
     from tools.sync_docs import sync
+    from tools.validate_design import validate_design
 except ModuleNotFoundError:
     from sync_docs import sync
+    from validate_design import validate_design
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -114,6 +116,7 @@ def validate(root: Path) -> dict:
     for example in negatives:
         check_example(example["schema"], example["value"], valid=False)
     counts.update(positive_examples=len(positives), negative_examples=len(negatives))
+    errors.extend(validate_design(root, schema, positives, negatives))
 
     policy_validator = Draft202012Validator(
         load("contracts/policy.schema.json"), format_checker=FormatChecker()
@@ -245,7 +248,7 @@ def report(counts: dict, errors: list[str]) -> dict:
         "counts": counts,
         "errors": errors,
         "not_verified": [
-            "semantic rules and cross-field financial invariants",
+            "runtime enforcement of semantic rules; cross-record financial and temporal invariants",
             "runtime product, providers, permissions, data quality or profitability",
             "Mermaid rendering and Markdown anchors",
             "external URL freshness, licenses and legal requirements",

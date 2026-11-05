@@ -1,0 +1,1487 @@
+[
+  {
+    "definition": "Money",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [
+      "T-002"
+    ],
+    "referenced_by_definitions": [
+      "WalletTransaction",
+      "FeeEvent"
+    ],
+    "finding": "GD-01",
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Settings",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [
+      "T-001",
+      "T-003",
+      "T-005"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "AuditRecord",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [
+      "T-008",
+      "T-085"
+    ],
+    "referenced_by_definitions": [
+      "Page",
+      "PageAuditRecord"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "SourceGrant",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-058"
+    ],
+    "referenced_by_definitions": [],
+    "finding": "GD-06",
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ConnectorStatus",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-012"
+    ],
+    "referenced_by_definitions": [
+      "SystemView",
+      "Page",
+      "PageConnectorStatus"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Observation",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-009",
+      "T-014",
+      "T-015",
+      "T-019"
+    ],
+    "referenced_by_definitions": [
+      "EventEnvelope"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Asset",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-078"
+    ],
+    "referenced_by_definitions": [
+      "Page",
+      "PageAsset",
+      "AssetDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Pool",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-017",
+      "T-021"
+    ],
+    "referenced_by_definitions": [
+      "AssetDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "TokenAssessment",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-024",
+      "T-025",
+      "T-026"
+    ],
+    "referenced_by_definitions": [
+      "RiskRequest",
+      "EventEnvelope",
+      "DecisionContext",
+      "AssetDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "FeatureValue",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [
+      "FeatureSnapshot"
+    ],
+    "finding": "GD-11",
+    "status": "OPEN_SEMANTIC",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "FeatureSnapshot",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-028",
+      "T-071"
+    ],
+    "referenced_by_definitions": [
+      "EventEnvelope",
+      "StrategyInput",
+      "DecisionContext",
+      "AssetDetail"
+    ],
+    "finding": "GD-11",
+    "status": "OPEN_SEMANTIC",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ArtifactFile",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-013"
+    ],
+    "referenced_by_definitions": [
+      "DatasetManifest"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "DatasetManifest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-029",
+      "T-087"
+    ],
+    "referenced_by_definitions": [
+      "ExperimentDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Experiment",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-030",
+      "T-033",
+      "T-037"
+    ],
+    "referenced_by_definitions": [
+      "Page",
+      "PageExperiment",
+      "ExperimentDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Metric",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [
+      "EvaluationReport",
+      "StrategyView"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "EvaluationReport",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-035",
+      "T-036",
+      "T-082",
+      "T-106",
+      "T-108",
+      "T-110",
+      "T-112",
+      "T-114",
+      "T-116",
+      "T-118",
+      "T-120",
+      "T-122",
+      "T-124",
+      "T-126",
+      "T-128",
+      "T-130",
+      "T-132",
+      "T-134",
+      "T-136",
+      "T-138",
+      "T-140",
+      "T-142",
+      "T-144"
+    ],
+    "referenced_by_definitions": [
+      "ExperimentDetail",
+      "ModelDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Prediction",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-040",
+      "T-048",
+      "T-070"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ModelArtifact",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-038",
+      "T-039",
+      "T-041",
+      "T-042",
+      "T-043",
+      "T-044",
+      "T-045",
+      "T-047",
+      "T-076",
+      "T-083"
+    ],
+    "referenced_by_definitions": [
+      "Page",
+      "PageModelArtifact",
+      "ModelDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "StrategyConfig",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [
+      "Page",
+      "PageStrategyConfig",
+      "StrategyInput",
+      "StrategyView"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Signal",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-105",
+      "T-107",
+      "T-109",
+      "T-111",
+      "T-113",
+      "T-115",
+      "T-117",
+      "T-119",
+      "T-121",
+      "T-123",
+      "T-125",
+      "T-127",
+      "T-129",
+      "T-131",
+      "T-133",
+      "T-135",
+      "T-137",
+      "T-139",
+      "T-141",
+      "T-143"
+    ],
+    "referenced_by_definitions": [
+      "EventEnvelope",
+      "DecisionContext",
+      "DecisionDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Decision",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-049",
+      "T-081"
+    ],
+    "referenced_by_definitions": [
+      "Page",
+      "PageDecision",
+      "RiskRequest",
+      "EventEnvelope",
+      "DecisionDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "RiskAssessment",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-050",
+      "T-102"
+    ],
+    "referenced_by_definitions": [
+      "EventEnvelope",
+      "DecisionDetail"
+    ],
+    "finding": "GD-02",
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Reservation",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-051"
+    ],
+    "referenced_by_definitions": [],
+    "finding": "GD-02",
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Quote",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-018"
+    ],
+    "referenced_by_definitions": [
+      "RiskRequest",
+      "AssetDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ExecutionIntent",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-099",
+      "T-103"
+    ],
+    "referenced_by_definitions": [
+      "EventEnvelope",
+      "SigningRequest"
+    ],
+    "finding": "GD-02",
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Order",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-053",
+      "T-101"
+    ],
+    "referenced_by_definitions": [
+      "Page",
+      "PageOrder",
+      "DecisionDetail",
+      "OrderDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Attempt",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-096"
+    ],
+    "referenced_by_definitions": [
+      "OrderDetail"
+    ],
+    "finding": "GD-03",
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ExecutionReport",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-054",
+      "T-097",
+      "T-098"
+    ],
+    "referenced_by_definitions": [
+      "EventEnvelope"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Fill",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-034"
+    ],
+    "referenced_by_definitions": [
+      "EventEnvelope",
+      "OrderDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "JournalLine",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [
+      "JournalEntry"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "JournalEntry",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-031"
+    ],
+    "referenced_by_definitions": [
+      "EventEnvelope",
+      "OrderDetail"
+    ],
+    "finding": "GD-09",
+    "status": "OPEN_SEMANTIC",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Position",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [
+      "PortfolioView"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PortfolioView",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-032",
+      "T-055",
+      "T-088"
+    ],
+    "referenced_by_definitions": [
+      "RiskRequest",
+      "StrategyInput",
+      "DecisionContext"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ControlCommand",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-007",
+      "T-052"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ExtractionRequest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ExtractedClaim",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [
+      "ExtractionResult",
+      "ResearchClaim"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ExtractionResult",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-046",
+      "T-060",
+      "T-061",
+      "T-062",
+      "T-063"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ResearchClaim",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-027",
+      "T-064",
+      "T-066",
+      "T-080"
+    ],
+    "referenced_by_definitions": [
+      "Page",
+      "PageResearchClaim",
+      "EventEnvelope"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Hypothesis",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-065"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "TraderProfile",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-068",
+      "T-069",
+      "T-079"
+    ],
+    "referenced_by_definitions": [
+      "Page",
+      "PageTraderProfile"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Outcome",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-072"
+    ],
+    "referenced_by_definitions": [
+      "EventEnvelope"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Promotion",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-074",
+      "T-075"
+    ],
+    "referenced_by_definitions": [
+      "EventEnvelope",
+      "ModelDetail"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "CostRecord",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-011",
+      "T-084"
+    ],
+    "referenced_by_definitions": [
+      "Page",
+      "PageCostRecord"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Alert",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-073",
+      "T-089",
+      "T-090"
+    ],
+    "referenced_by_definitions": [
+      "Page",
+      "PageAlert",
+      "EventEnvelope"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ReleaseManifest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-086",
+      "T-091",
+      "T-092",
+      "T-104"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Job",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-056"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Problem",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [
+      "T-004"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Session",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [
+      "T-006"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "LoginRequest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "SystemView",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-057",
+      "T-077"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ExperimentRequest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ResearchRequest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PaperRequest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ExportRequest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PromotionRequest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "GrantRequest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": "GD-06",
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Page",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageAsset",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageTraderProfile",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageResearchClaim",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageStrategyConfig",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageDecision",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageOrder",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageExperiment",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageModelArtifact",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageCostRecord",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageAuditRecord",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageAlert",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageConnectorStatus",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "QuoteRequest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "RiskRequest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "SignatureResult",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": "GD-03",
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "VenueCapabilities",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "EventEnvelope",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-010"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Trade",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-022"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "Price",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PoolSnapshot",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "MintSnapshot",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-023"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "BookLevel",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [
+      "L2Snapshot"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "L2Snapshot",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-100"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "WalletTransaction",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [
+      "T-067"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "NewsItem",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [
+      "T-059"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "CoverageInterval",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [
+      "T-016",
+      "T-020"
+    ],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "StrategyInput",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": "GD-11",
+    "status": "OPEN_SEMANTIC",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "DecisionContext",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": "GD-11",
+    "status": "OPEN_SEMANTIC",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "SigningRequest",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [
+      "T-093",
+      "T-094",
+      "T-095"
+    ],
+    "referenced_by_definitions": [],
+    "finding": "GD-03",
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "FeeEvent",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "LogoutResult",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "AssetDetail",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "DecisionDetail",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "OrderDetail",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ExperimentDetail",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ModelDetail",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "StrategyView",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [
+      "PageStrategyView"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "EquityPoint",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [
+      "PageEquityPoint"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageStrategyView",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "PageEquityPoint",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "LiveApproval",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "CexChildOrder",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": "GD-09",
+    "status": "OPEN_SEMANTIC",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "MarginSnapshot",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": "GD-09",
+    "status": "OPEN_SEMANTIC",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "LegPlan",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": "GD-09",
+    "status": "OPEN_SEMANTIC",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ExportResult",
+    "baseline": true,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": false,
+    "primary_tasks": [],
+    "referenced_by_definitions": [
+      "Job"
+    ],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "MarketReadRequest",
+    "baseline": false,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "TransactionReadRequest",
+    "baseline": false,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "ManifestReadRequest",
+    "baseline": false,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  },
+  {
+    "definition": "BudgetReserveRequest",
+    "baseline": false,
+    "review": "fields/types/required/nullability/ranges/relations and consumer references",
+    "changed": true,
+    "primary_tasks": [],
+    "referenced_by_definitions": [],
+    "finding": null,
+    "status": "STRUCTURAL_REVIEWED_RUNTIME_UNPROVEN",
+    "limitation": "Positive example checks shape only; cross-record scenarios remain GD-17."
+  }
+]

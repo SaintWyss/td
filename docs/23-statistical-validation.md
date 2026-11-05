@@ -1,12 +1,12 @@
 # Validación estadística y falsación
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
 ## Diseño antes de observar resultados
 
 Preregistrar mecanismo, universo, disponibilidad, target, horizonte, costos, métrica primaria, comparación, tamaño mínimo detectable y máximo de ensayos. Separar desarrollo, validación interna, tests walk-forward y holdout final. Folds iniciales: train 60 días, validación 14, test 14; expandir o rodar según preregistro. Sin 120 días de cobertura, ejecutar sólo exploración o esperar recolección, sin inventar historia.
 
-Purging elimina observaciones de train cuyos intervalos de etiqueta se solapan con validación/test. Embargo mínimo=max horizonte etiqueta y duración prevista de operación; si esquema de folds incorpora datos posteriores al test, aplicar además separación al reinicio de train. Features con ventana retrospectiva sólo usan pasado disponible; escaladores, imputación, selección de features y calibración se ajustan en train. Mantener grupos de token/pool para evitar duplicados cruzados; evaluar generalización a tokens no vistos separadamente.
+Purging elimina observaciones de train cuyos intervalos de etiqueta se solapan con validación/test. Embargo mínimo=max horizonte etiqueta y duración prevista de operación; si esquema de folds incorpora datos posteriores al test, aplicar además separación al reinicio de train. Features con ventana retrospectiva sólo usan pasado disponible; escaladores, imputación y selección de features se ajustan en train; la calibración usa exclusivamente el bloque temporal reservado de validación, separado de selección y anterior a test/holdout. Mantener grupos de token/pool para evitar duplicados cruzados; evaluar generalización a tokens no vistos separadamente.
 
 Holdout: últimos 30 días independientes, acceso único tras congelar propuesta y artefactos. Accesos quedan auditados; cualquier inspección lo convierte en test consumido. Reutilizarlo para tuning exige nueva evaluación prospectiva. Pretraining con corte desconocido impide llamar ciego al histórico de un modelo fundacional.
 
@@ -27,3 +27,12 @@ Paper prospectivo mínimo 90 días calendario con cobertura ≥95% de sesiones d
 Expectativa=promedio PnL neto por trade y por notional; win rate=ganadores/trades cerrados; profit factor=ganancias/pérdidas absolutas (sin pérdidas: indefinido, no infinito probatorio). Sharpe sobre retornos diarios netos con anualización sqrt(365) cripto y autocorrelación informada; Sortino usa downside a MAR=0. Drawdown desde máximo de NAV ajustado por flujos; CVaR95 promedio de pérdidas del peor 5% con advertencia de muestra. Turnover=notional negociado/NAV medio. Calibración: Brier, reliability bins y cobertura de cuantiles. Retorno, PnL realizado/no realizado, costos, latencia y persistencia por régimen siempre acompañan estos ratios.
 
 Ablaciones mercado-only, +on-chain, +social, +traders, conjunto completo; placebos con desplazamiento temporal en bloques y señales aleatorias emparejadas. No confundir una asociación social con causalidad. Resultado negativo es conocimiento y motivo válido para no continuar.
+
+## Precisión del protocolo
+
+«Calibración sólo train» significa no usar test/holdout: el bloque de calibración es
+la segunda mitad de validación temporal descrita en doc14 y queda fuera de fit/selección.
+La distribución predictiva no se reconstruye desde una probabilidad binaria. En estrategias
+S01 de observación y S19 de salida, aceptación científica evalúa cobertura/efecto incremental
+pareado, respectivamente; no exige que un observador o una salida aislada tenga PnL positivo.
+Un holdout consumido queda marcado aunque el ensayo falle; nunca se restaura como virgen.

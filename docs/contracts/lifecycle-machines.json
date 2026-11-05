@@ -1,0 +1,231 @@
+{
+  "reservation": {
+    "states": [
+      "ACTIVE",
+      "ATTEMPTED",
+      "RELEASED",
+      "CONSUMED"
+    ],
+    "initial": "ACTIVE",
+    "terminal": [
+      "RELEASED",
+      "CONSUMED"
+    ],
+    "transitions": [
+      {
+        "source": "ACTIVE",
+        "target": "ATTEMPTED",
+        "guard": "durable claim before signer or paper execution"
+      },
+      {
+        "source": "ACTIVE",
+        "target": "RELEASED",
+        "guard": "expiry/cancel AND no signed or possible attempt under same lock"
+      },
+      {
+        "source": "ATTEMPTED",
+        "target": "CONSUMED",
+        "guard": "finalized effects posted with reservation settlement atomically"
+      },
+      {
+        "source": "ATTEMPTED",
+        "target": "RELEASED",
+        "guard": "verified no remaining economic effect; all fees posted; reconciliation atomic"
+      }
+    ]
+  },
+  "attempt": {
+    "states": [
+      "PREPARED",
+      "SIGNED",
+      "SUBMITTING",
+      "PENDING",
+      "UNKNOWN",
+      "CONFIRMED",
+      "FINALIZED",
+      "FAILED_CONFIRMED",
+      "EXPIRED_VERIFIED"
+    ],
+    "initial": "PREPARED",
+    "terminal": [
+      "FINALIZED",
+      "FAILED_CONFIRMED",
+      "EXPIRED_VERIFIED"
+    ],
+    "transitions": [
+      {
+        "source": "PREPARED",
+        "target": "SIGNED",
+        "guard": "signed bytes durable and verified"
+      },
+      {
+        "source": "SIGNED",
+        "target": "SUBMITTING",
+        "guard": "active epoch/fence; submit exact durable bytes"
+      },
+      {
+        "source": "PREPARED",
+        "target": "SUBMITTING",
+        "guard": "paper only; durable simulation input"
+      },
+      {
+        "source": "SUBMITTING",
+        "target": "PENDING",
+        "guard": "provider acceptance only"
+      },
+      {
+        "source": "SUBMITTING",
+        "target": "UNKNOWN",
+        "guard": "timeout/crash"
+      },
+      {
+        "source": "SIGNED",
+        "target": "UNKNOWN",
+        "guard": "uncertain send or signer result"
+      },
+      {
+        "source": "PENDING",
+        "target": "UNKNOWN",
+        "guard": "tracking lost"
+      },
+      {
+        "source": "PENDING",
+        "target": "CONFIRMED",
+        "guard": "confirmation observed"
+      },
+      {
+        "source": "UNKNOWN",
+        "target": "CONFIRMED",
+        "guard": "confirmation recovered"
+      },
+      {
+        "source": "CONFIRMED",
+        "target": "UNKNOWN",
+        "guard": "reorg"
+      },
+      {
+        "source": "CONFIRMED",
+        "target": "FINALIZED",
+        "guard": "finality evidence"
+      },
+      {
+        "source": "PENDING",
+        "target": "FAILED_CONFIRMED",
+        "guard": "finalized error"
+      },
+      {
+        "source": "UNKNOWN",
+        "target": "FAILED_CONFIRMED",
+        "guard": "finalized error"
+      },
+      {
+        "source": "PENDING",
+        "target": "EXPIRED_VERIFIED",
+        "guard": "expiry plus complete absence reconciliation"
+      },
+      {
+        "source": "UNKNOWN",
+        "target": "EXPIRED_VERIFIED",
+        "guard": "expiry plus complete absence reconciliation"
+      },
+      {
+        "source": "PREPARED",
+        "target": "EXPIRED_VERIFIED",
+        "guard": "unsigned expired build; no signature evidence"
+      },
+      {
+        "source": "SIGNED",
+        "target": "EXPIRED_VERIFIED",
+        "guard": "expiry plus complete absence reconciliation"
+      }
+    ]
+  },
+  "control": {
+    "states": [
+      "HALTED",
+      "CLOSE_ONLY",
+      "RUNNING"
+    ],
+    "initial": "HALTED",
+    "terminal": [],
+    "transitions": [
+      {
+        "source": "RUNNING",
+        "target": "HALTED",
+        "guard": "authorized actor; new epoch CAS; audit; reconciliation/freshness before relax; never live authorization"
+      },
+      {
+        "source": "CLOSE_ONLY",
+        "target": "HALTED",
+        "guard": "authorized actor; new epoch CAS; audit; reconciliation/freshness before relax; never live authorization"
+      },
+      {
+        "source": "HALTED",
+        "target": "CLOSE_ONLY",
+        "guard": "authorized actor; new epoch CAS; audit; reconciliation/freshness before relax; never live authorization"
+      },
+      {
+        "source": "CLOSE_ONLY",
+        "target": "RUNNING",
+        "guard": "authorized actor; new epoch CAS; audit; reconciliation/freshness before relax; never live authorization"
+      },
+      {
+        "source": "RUNNING",
+        "target": "CLOSE_ONLY",
+        "guard": "authorized actor; new epoch CAS; audit; reconciliation/freshness before relax; never live authorization"
+      },
+      {
+        "source": "HALTED",
+        "target": "RUNNING",
+        "guard": "authorized actor; new epoch CAS; audit; reconciliation/freshness before relax; never live authorization"
+      }
+    ]
+  },
+  "job": {
+    "states": [
+      "QUEUED",
+      "RUNNING",
+      "SUCCEEDED",
+      "FAILED",
+      "CANCELLED"
+    ],
+    "initial": "QUEUED",
+    "terminal": [
+      "SUCCEEDED",
+      "FAILED",
+      "CANCELLED"
+    ],
+    "transitions": [
+      {
+        "source": "QUEUED",
+        "target": "RUNNING",
+        "guard": "claim lease60s; monotonically increasing fencing token"
+      },
+      {
+        "source": "QUEUED",
+        "target": "CANCELLED",
+        "guard": "authorized cancel before claim"
+      },
+      {
+        "source": "RUNNING",
+        "target": "SUCCEEDED",
+        "guard": "current fence; complete artifact durable"
+      },
+      {
+        "source": "RUNNING",
+        "target": "FAILED",
+        "guard": "current fence; typed terminal failure"
+      },
+      {
+        "source": "RUNNING",
+        "target": "CANCELLED",
+        "guard": "cooperative cancel safe point; no unresolved external effect"
+      },
+      {
+        "source": "RUNNING",
+        "target": "QUEUED",
+        "guard": "lease expired; bounded retry; deduplicated effects; next claim increments fence"
+      }
+    ]
+  }
+}

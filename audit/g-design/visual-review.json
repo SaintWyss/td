@@ -1,0 +1,140 @@
+{
+  "renderer": "@mermaid-js/mermaid-cli 12.2.0",
+  "chromium": "153.0.8010.0",
+  "browser_package": "@sparticuz/chromium 153.0.0",
+  "font_embedding": true,
+  "records": [
+    {
+      "source": "docs/diagrams/01-c4-context.mmd",
+      "source_sha256": "9a8f7e48b9356601c21751b59b08333242d8fd865d37f8d36abe7113438d5ff2",
+      "svg": "audit/g-design/diagrams-final/01-c4-context.svg",
+      "svg_sha256": "8e7987c0da639582eb08583da32dfe4574790d74b030f856b8b2589134cedbf8",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "Contexto: operador, fuentes no confiables y ejecución futura con aprobación; flechas y rótulos legibles.",
+      "screenshot_sha256": "78d4a1a39c44d7833c4114cbb79b43f465b33e5abd08faf6ac3dacf7870e3eaf",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    },
+    {
+      "source": "docs/diagrams/02-c4-container.mmd",
+      "source_sha256": "47bd0876833b8e53841f9bd0cb4fe65437e90f7018712bf58421894625e3fc50",
+      "svg": "audit/g-design/diagrams-final/02-c4-container.svg",
+      "svg_sha256": "f2d946e5bf79d122f810c3c7d43b4c6ff4668dce0b9556e27a0932e4b4d9f831",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "Contenedores: web/API, procesos locales, almacenamiento y observabilidad; cruces distinguibles. No presupone microservicios ni servicios ya desplegados.",
+      "screenshot_sha256": "3d097f7e6e134faa199ea2c1cb31f98b2ae2c12ea79928de45e89250a0b0a6b5",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    },
+    {
+      "source": "docs/diagrams/03-c4-component.mmd",
+      "source_sha256": "b70b7d525115c0fa8aeb368b09bd9b11e0833d8fd1bf643186b4ddd7ebc55714",
+      "svg": "audit/g-design/diagrams-final/03-c4-component.svg",
+      "svg_sha256": "ac9c48192dae632a0045e7f852362f1a85982447299850c547d6013e8a65d579",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "Componentes: Risk/reserva precede Execution; signer futuro separado y proyección realimenta riesgo. Diagrama conceptual, inputs incompletos siguen GD-11.",
+      "screenshot_sha256": "22a384e7424df1945a611e40133eaa0caf07b9cb64df54f5438aab7730491596",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    },
+    {
+      "source": "docs/diagrams/04-deployment.mmd",
+      "source_sha256": "b206f3fde7fa25db609992ed2b7c67ff9291009b9c862e93babb2d48ea83bb32",
+      "svg": "audit/g-design/diagrams-final/04-deployment.svg",
+      "svg_sha256": "ed553ea74f0d98e68a6e6817eacccc1cc9b7e3e9978ba004393244147e34a516",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "Despliegue propuesto entre hosts, túnel SSH y copia externa marcada futura; ninguna capacidad medida.",
+      "screenshot_sha256": "5ef9fa74ec351fd098f6cfe95a57d1b89190fe2c6ea8262161d90bbf578403c7",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    },
+    {
+      "source": "docs/diagrams/05-data-flow.mmd",
+      "source_sha256": "09f927f11260e6b607eab4dfba4b761f2288dc3379835c328711d03bf576e22e",
+      "svg": "audit/g-design/diagrams-final/05-data-flow.svg",
+      "svg_sha256": "147fccb08aef9a91dc9f32ee09902e44dadb82340240534f943f609e2798b469",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "Permiso antes de raw, revocación separada de schema inválido y cuarentena autorizada; rótulo acortado tras detectar recorte y vuelto a inspeccionar.",
+      "screenshot_sha256": "ce97a46fcc4cdcd2514869f2cb813e34d082e398a3a555f80fa2571bfe168112",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    },
+    {
+      "source": "docs/diagrams/06-research-pipeline.mmd",
+      "source_sha256": "a12264302e71938ad7217fe6bfaa1602898851f07c231e646e869ab62b847461",
+      "svg": "audit/g-design/diagrams-final/06-research-pipeline.svg",
+      "svg_sha256": "cfa50b47eecd41b9e68fa1aa0312217ac08a75105472aac0e74664405e66ed31",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "Investigación: permiso antes de fetch, abstención ante evidencia insuficiente; hipótesis no es autorización financiera.",
+      "screenshot_sha256": "6eac78b0c6096a254b129a934e17106bd8355fdcce84e9beed95584fb3c03415",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    },
+    {
+      "source": "docs/diagrams/07-ml-pipeline.mmd",
+      "source_sha256": "3db404242d06b7ce5062b2837c7bc7c876bf9890b1ee35fb56d9c5f792ef256b",
+      "svg": "audit/g-design/diagrams-final/07-ml-pipeline.svg",
+      "svg_sha256": "eff8f0743e46659722b8846fbdc72b95aec2e4ff3acbaf062c53e074bcabbdaa",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "ML: calibración temporal disjunta, test/holdout, gates, paper y revisión humana; rechazo/inconclusión explícitos.",
+      "screenshot_sha256": "58f551bdc1534fe13da4768281a6dd34af9962605c5e0253a770b70134836467",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    },
+    {
+      "source": "docs/diagrams/08-decision-pipeline.mmd",
+      "source_sha256": "4db7b0245ef9ca2d868af981aaf6601db835116029a05460afc2b2e5bb5012a7",
+      "svg": "audit/g-design/diagrams-final/08-decision-pipeline.svg",
+      "svg_sha256": "df1a20532ccf3bed19a49ef04b6932e3c8c76d272f88808cfd7d700f9bb3ea2d",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "Decisión: fallos de calidad/edge/riesgo terminan en NO_TRADE; intención aprobada y auditoría duradera.",
+      "screenshot_sha256": "490028d02c56e4d90bd682c1b06f49daf189c1dcf3666bde3c6d86d83621463c",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    },
+    {
+      "source": "docs/diagrams/09-execution-pipeline.mmd",
+      "source_sha256": "cb345221e8576c5f5ac92babfeb89d5c86b75e68489d29cd2ae10190cb057e12",
+      "svg": "audit/g-design/diagrams-final/09-execution-pipeline.svg",
+      "svg_sha256": "cd4beeddafa78746b7f37d3e4f00502f5ed70fad43ed979be348adfcc46d3534",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "Ejecución: PREPARED/ATTEMPTED antes de firma; bytes durables antes de envío; commit contable atómico y UNKNOWN retiene reserva. Inspección repetida tras corrección.",
+      "screenshot_sha256": "b03dd7728cbe26abdacb38eb82a86850e1c6baf5dddbdec1af1dbf162212b306",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    },
+    {
+      "source": "docs/diagrams/10-order-state-machine.mmd",
+      "source_sha256": "aac07fbae5020563d77c180c472e5be5b8fa6000d5e56deab50b86fdee23c059",
+      "svg": "audit/g-design/diagrams-final/10-order-state-machine.svg",
+      "svg_sha256": "20e93c31b17f49c4a1f935a72f8b1aa0634c04501883261203e447868e061741",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "Estados: UNKNOWN no tiene salida de cancelación; fracaso/expiración verificados pasan por reconciliación; guards normativos están en JSON/doc21.",
+      "screenshot_sha256": "242b815b62b1aa30ad149480f754859f34876517e7bbede7e7b96111cb7d7c40",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    },
+    {
+      "source": "docs/diagrams/11-entity-relationship.mmd",
+      "source_sha256": "163f62c7c62e08c14b75881c1e6c544374857a421bb70f91e7a8a72cd535c01b",
+      "svg": "audit/g-design/diagrams-final/11-entity-relationship.svg",
+      "svg_sha256": "2d2f35fc226e7c9d3d7848870583dc05ce3e5d00d279fc3df12f49a69d18243e",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "ER: observaciones a datasets/modelos, decisión/reserva, attempts/fills/fees y journal. Inspección ampliada confirma labels completos y cardinalidades; necesita zoom por altura. No sustituye Instrument/comandos contables pendientes GD-09.",
+      "screenshot_sha256": "9c30cc45468e8ca6d58f479ce7e74f73c63a1a016a3b5239ebf65690ad078c06",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    },
+    {
+      "source": "docs/diagrams/12-dependencies.mmd",
+      "source_sha256": "be8c627c77b2edce511a874a3466f6962545136ee34a180b8757b50e7d6719af",
+      "svg": "audit/g-design/diagrams-final/12-dependencies.svg",
+      "svg_sha256": "6ff4f066752dc356c1f753561ef7ee71a599c817effce116895a178cd39d1645",
+      "visual_status": "REVIEWED",
+      "reviewed_on": "2026-11-04 America/Argentina/Cordoba",
+      "notes": "Dependencias: application/adapters dependen de ports/domain; composición enlaza implementaciones. Flecha Web→cliente→API es uso de contrato remoto, no import de Python desde TS.",
+      "screenshot_sha256": "c4a6cc5fa620ebbcb7d804d5a40a23d2bbba3dcd1c9fea4da07b990d99fa0157",
+      "scope": "visual/readability and declared relationships; not runtime correctness"
+    }
+  ]
+}

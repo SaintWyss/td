@@ -51,9 +51,9 @@
       "mint_authority_active": false,
       "freeze_authority_active": false,
       "extensions": [],
-      "top1_share": 1,
-      "top10_share": 1,
-      "holder_coverage": 1,
+      "top1_share": "0.1",
+      "top10_share": "0.2",
+      "holder_coverage": "0.95",
       "liquidation_quote_id": "fixture",
       "reasons": [],
       "evidence_ids": [
@@ -172,16 +172,18 @@
       "revision": 1,
       "decision_id": "fixture",
       "portfolio_id": "fixture",
-      "verdict": "APPROVED",
+      "verdict": "DENIED",
       "reason_codes": [
         "fixture"
       ],
-      "approved_atoms": "1",
-      "max_fee_atoms": "1",
-      "reservation_id": "fixture",
+      "approved_atoms": "0",
+      "max_fee_atoms": "0",
+      "reservation_id": null,
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "assessed_at": "2026-11-03T14:00:00Z",
-      "expires_at": "2026-11-03T14:05:00Z"
+      "expires_at": "2026-11-03T14:05:00Z",
+      "input_asset_id": "solana:fixture-input",
+      "fee_asset_id": "solana:native"
     }
   },
   {
@@ -219,7 +221,8 @@
         "fixture"
       ],
       "chain_id": "fixture",
-      "wallet_id": "fixture"
+      "wallet_id": "fixture",
+      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     }
   },
   {

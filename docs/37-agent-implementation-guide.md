@@ -1,6 +1,6 @@
 # Guía de implementación para agentes
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
 ## Paquete de contexto mínimo
 
@@ -22,8 +22,10 @@ Orden: instrucciones vigentes del propietario → invariantes de seguridad y ADR
 
 Cambios de contrato requieren delta explícito, ejemplos positivo/negativo, migración y versión. Prohibido inventar una ruta externa, inferir permission scopes o sustituir UNKNOWN por cero. Estado de tarea: TODO, READY, IN_PROGRESS, BLOCKED, REVIEW, DONE, REJECTED. DONE exige evidencia; REJECTED para estrategia no significa bug resuelto.
 
-## Primera tarea
+## Estado vigente y primera tarea posterior al gate
 
-T-001 sólo prepara repositorio, documentación y comandos de validación de base. No implementa colectores, trading o entrenamiento. Ejecutar el validador documental incluido antes y después de integrarlo. Dependencias exactas se resuelven a versiones disponibles y lockfiles durante esa tarea; no copiar supuestos de compatibilidad como resultados de instalación.
+G-DESIGN está NOT_READY. Leer `../audit/g-design/delegability.json` y el informe antes de seleccionar tareas. T-001 ya está DONE con evidencia; T-002 será la primera después del gate, pues depende sólo de T-001. T-004/T-005 también tienen diseño local concreto, pero ninguna está habilitada todavía. No suplir GD-09/GD-11/GD-12/GD-17 ni los contratos de las 140 fichas NEEDS_SPEC durante implementación.
 
-El template `tasks/AGENT_TASK_PROMPT.md` es el texto de encargo reutilizable. `tasks/evidence.schema.json` valida el reporte; `tasks/index.json` permite seleccionar trabajo READY mediante DAG. Cada tarea especifica archivos previstos, límites y pruebas. El agente debe detenerse si descubre una API externa distinta de la evidencia, preservando los otros módulos.
+T-001 preparó repositorio, documentación y comandos de validación de base. No implementa colectores, trading o entrenamiento. Ejecutar el validador documental incluido antes y después de integrarlo. Dependencias exactas se resuelven a versiones disponibles y lockfiles durante esa tarea; no copiar supuestos de compatibilidad como resultados de instalación.
+
+El template `tasks/AGENT_TASK_PROMPT.md` es el texto de encargo reutilizable. `tasks/evidence.schema.json` valida el reporte; `tasks/index.json` aporta el DAG; la selección exige además delegability.json, G-DESIGN aprobado y evidencia DONE de dependencias. Cada tarea especifica archivos previstos, límites y pruebas. El agente debe detenerse si descubre una API externa distinta de la evidencia, preservando los otros módulos.

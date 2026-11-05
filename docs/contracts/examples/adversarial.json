@@ -1,0 +1,534 @@
+[
+  {
+    "id": "money-float",
+    "schema": "Money",
+    "value": {
+      "asset_id": "fixture",
+      "atoms": 1.5,
+      "decimals": 1
+    },
+    "valid": false,
+    "keyword": "type",
+    "path": [
+      "atoms"
+    ]
+  },
+  {
+    "id": "money-negative",
+    "schema": "Money",
+    "value": {
+      "asset_id": "fixture",
+      "atoms": "-1",
+      "decimals": 1
+    },
+    "valid": false,
+    "keyword": "pattern",
+    "path": [
+      "atoms"
+    ]
+  },
+  {
+    "id": "money-78-digits",
+    "schema": "Money",
+    "value": {
+      "asset_id": "fixture",
+      "atoms": "999999999999999999999999999999999999999999999999999999999999999999999999999999",
+      "decimals": 1
+    },
+    "valid": true,
+    "keyword": "pattern",
+    "path": []
+  },
+  {
+    "id": "money-overflow",
+    "schema": "Money",
+    "value": {
+      "asset_id": "fixture",
+      "atoms": "1000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "decimals": 1
+    },
+    "valid": false,
+    "keyword": "pattern",
+    "path": [
+      "atoms"
+    ]
+  },
+  {
+    "id": "money-zero",
+    "schema": "Money",
+    "value": {
+      "asset_id": "fixture",
+      "atoms": "0",
+      "decimals": 1
+    },
+    "valid": true,
+    "keyword": "pattern",
+    "path": []
+  },
+  {
+    "id": "money-unsupported-decimals",
+    "schema": "Money",
+    "value": {
+      "asset_id": "fixture",
+      "atoms": "1",
+      "decimals": 39
+    },
+    "valid": false,
+    "keyword": "maximum",
+    "path": [
+      "decimals"
+    ]
+  },
+  {
+    "id": "mint-observable-u8",
+    "schema": "MintSnapshot",
+    "value": {
+      "asset_id": "fixture",
+      "owner_program": "fixture",
+      "supply_atoms": "1",
+      "decimals": 255,
+      "mint_authority": "fixture",
+      "freeze_authority": "fixture",
+      "extensions": [],
+      "slot": 1
+    },
+    "valid": true,
+    "keyword": "pattern",
+    "path": []
+  },
+  {
+    "id": "denied-positive",
+    "schema": "RiskAssessment",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "decision_id": "fixture",
+      "portfolio_id": "fixture",
+      "verdict": "DENIED",
+      "reason_codes": [
+        "fixture"
+      ],
+      "approved_atoms": "1",
+      "max_fee_atoms": "0",
+      "reservation_id": null,
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "assessed_at": "2026-11-03T14:00:00Z",
+      "expires_at": "2026-11-03T14:05:00Z",
+      "input_asset_id": "solana:fixture-input",
+      "fee_asset_id": "solana:native"
+    },
+    "valid": false,
+    "keyword": "const",
+    "path": [
+      "approved_atoms"
+    ]
+  },
+  {
+    "id": "approved-no-reserve",
+    "schema": "RiskAssessment",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "decision_id": "fixture",
+      "portfolio_id": "fixture",
+      "verdict": "APPROVED",
+      "reason_codes": [
+        "fixture"
+      ],
+      "approved_atoms": "1",
+      "max_fee_atoms": "0",
+      "reservation_id": null,
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "assessed_at": "2026-11-03T14:00:00Z",
+      "expires_at": "2026-11-03T14:05:00Z",
+      "input_asset_id": "solana:fixture-input",
+      "fee_asset_id": "solana:native"
+    },
+    "valid": false,
+    "keyword": "type",
+    "path": [
+      "reservation_id"
+    ]
+  },
+  {
+    "id": "approved-bound",
+    "schema": "RiskAssessment",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "decision_id": "fixture",
+      "portfolio_id": "fixture",
+      "verdict": "APPROVED",
+      "reason_codes": [
+        "fixture"
+      ],
+      "approved_atoms": "1",
+      "max_fee_atoms": "0",
+      "reservation_id": "fixture-reserve",
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "assessed_at": "2026-11-03T14:00:00Z",
+      "expires_at": "2026-11-03T14:05:00Z",
+      "input_asset_id": "solana:fixture-input",
+      "fee_asset_id": "solana:native"
+    },
+    "valid": true,
+    "keyword": "pattern",
+    "path": []
+  },
+  {
+    "id": "negative-cost",
+    "schema": "CostRecord",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "provider_id": "fixture",
+      "job_id": "fixture",
+      "tariff_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "reserved_usd": "-1",
+      "actual_usd": "1",
+      "state": "RESERVED",
+      "occurred_at": "2026-11-03T14:00:00Z"
+    },
+    "valid": false,
+    "keyword": "pattern",
+    "path": [
+      "reserved_usd"
+    ]
+  },
+  {
+    "id": "derived-overflow",
+    "schema": "Prediction",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "asset_id": "fixture",
+      "model_id": "fixture",
+      "feature_snapshot_id": "fixture",
+      "issued_at": "2026-11-03T14:00:00Z",
+      "expires_at": "2026-11-03T14:05:00Z",
+      "horizon_s": 1,
+      "probability_net_positive": 1,
+      "q05": "100000000000000000000",
+      "q50": "0.01",
+      "q95": "0.03",
+      "expected_net_return": "1",
+      "cost_basis": "NET_TRADE",
+      "uncertainty": "0.02"
+    },
+    "valid": false,
+    "keyword": "pattern",
+    "path": [
+      "q05"
+    ]
+  },
+  {
+    "id": "derived-negative-zero",
+    "schema": "Prediction",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "asset_id": "fixture",
+      "model_id": "fixture",
+      "feature_snapshot_id": "fixture",
+      "issued_at": "2026-11-03T14:00:00Z",
+      "expires_at": "2026-11-03T14:05:00Z",
+      "horizon_s": 1,
+      "probability_net_positive": 1,
+      "q05": "-0.00",
+      "q50": "0.01",
+      "q95": "0.03",
+      "expected_net_return": "1",
+      "cost_basis": "NET_TRADE",
+      "uncertainty": "0.02"
+    },
+    "valid": false,
+    "keyword": "not",
+    "path": [
+      "q05"
+    ]
+  },
+  {
+    "id": "derived-boundary",
+    "schema": "Prediction",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "asset_id": "fixture",
+      "model_id": "fixture",
+      "feature_snapshot_id": "fixture",
+      "issued_at": "2026-11-03T14:00:00Z",
+      "expires_at": "2026-11-03T14:05:00Z",
+      "horizon_s": 1,
+      "probability_net_positive": 1,
+      "q05": "99999999999999999999.999999999999999999",
+      "q50": "0.01",
+      "q95": "0.03",
+      "expected_net_return": "1",
+      "cost_basis": "NET_TRADE",
+      "uncertainty": "0.02"
+    },
+    "valid": true,
+    "keyword": "pattern",
+    "path": []
+  },
+  {
+    "id": "censored-return",
+    "schema": "Outcome",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "prediction_id": "fixture",
+      "matured_at": "2026-11-03T14:00:00Z",
+      "observed_at": "2026-11-03T14:00:00Z",
+      "net_return": "0",
+      "state": "CENSORED",
+      "evidence_ids": [
+        "fixture"
+      ]
+    },
+    "valid": false,
+    "keyword": "type",
+    "path": [
+      "net_return"
+    ]
+  },
+  {
+    "id": "censored-unknown",
+    "schema": "Outcome",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "prediction_id": "fixture",
+      "matured_at": "2026-11-03T14:00:00Z",
+      "observed_at": "2026-11-03T14:00:00Z",
+      "net_return": null,
+      "state": "CENSORED",
+      "evidence_ids": [
+        "fixture"
+      ]
+    },
+    "valid": true,
+    "keyword": "pattern",
+    "path": []
+  },
+  {
+    "id": "quote-zero-output",
+    "schema": "Quote",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "venue_id": "fixture",
+      "input_asset_id": "fixture",
+      "output_asset_id": "fixture",
+      "input_atoms": "1",
+      "output_atoms": "0",
+      "min_output_atoms": "1",
+      "impact_bps": 1,
+      "slippage_bps": 1,
+      "fees_included": false,
+      "extra_fee_atoms": "1",
+      "fee_asset_id": "fixture",
+      "received_at": "2026-11-03T14:00:00Z",
+      "expires_at": "2026-11-03T14:05:00Z",
+      "route_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "program_ids": [
+        "fixture"
+      ],
+      "raw_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "valid": false,
+    "keyword": "pattern",
+    "path": [
+      "output_atoms"
+    ]
+  },
+  {
+    "id": "holder-float",
+    "schema": "TokenAssessment",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "asset_id": "fixture",
+      "available_at": "2026-11-03T14:00:00Z",
+      "expires_at": "2026-11-03T14:05:00Z",
+      "eligible": false,
+      "mint_authority_active": false,
+      "freeze_authority_active": false,
+      "extensions": [],
+      "top1_share": "0.1",
+      "top10_share": "0.2",
+      "holder_coverage": 0.95,
+      "liquidation_quote_id": "fixture",
+      "reasons": [],
+      "evidence_ids": [
+        "fixture"
+      ],
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "valid": false,
+    "keyword": "type",
+    "path": [
+      "holder_coverage"
+    ]
+  },
+  {
+    "id": "holder-outside-unit",
+    "schema": "TokenAssessment",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "asset_id": "fixture",
+      "available_at": "2026-11-03T14:00:00Z",
+      "expires_at": "2026-11-03T14:05:00Z",
+      "eligible": false,
+      "mint_authority_active": false,
+      "freeze_authority_active": false,
+      "extensions": [],
+      "top1_share": "0.1",
+      "top10_share": "0.2",
+      "holder_coverage": "1.1",
+      "liquidation_quote_id": "fixture",
+      "reasons": [],
+      "evidence_ids": [
+        "fixture"
+      ],
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "valid": false,
+    "keyword": "pattern",
+    "path": [
+      "holder_coverage"
+    ]
+  },
+  {
+    "id": "eligible-unknown",
+    "schema": "TokenAssessment",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "asset_id": "fixture",
+      "available_at": "2026-11-03T14:00:00Z",
+      "expires_at": "2026-11-03T14:05:00Z",
+      "eligible": true,
+      "mint_authority_active": null,
+      "freeze_authority_active": false,
+      "extensions": [],
+      "top1_share": "0.1",
+      "top10_share": "0.2",
+      "holder_coverage": "0.95",
+      "liquidation_quote_id": "fixture",
+      "reasons": [],
+      "evidence_ids": [
+        "fixture"
+      ],
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "valid": false,
+    "keyword": "const",
+    "path": [
+      "mint_authority_active"
+    ]
+  },
+  {
+    "id": "slot-unsafe-js",
+    "schema": "MintSnapshot",
+    "value": {
+      "asset_id": "fixture",
+      "owner_program": "fixture",
+      "supply_atoms": "1",
+      "decimals": 1,
+      "mint_authority": "fixture",
+      "freeze_authority": "fixture",
+      "extensions": [],
+      "slot": 9007199254740992
+    },
+    "valid": false,
+    "keyword": "maximum",
+    "path": [
+      "slot"
+    ]
+  },
+  {
+    "id": "git-sha40",
+    "schema": "ReleaseManifest",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "version": "fixture",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "lock_hashes": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "schema_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "image_digests": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "min_db_revision": 1,
+      "max_db_revision": 1,
+      "gate_report_ids": [
+        "fixture"
+      ],
+      "live_authorized": false
+    },
+    "valid": true,
+    "keyword": "pattern",
+    "path": []
+  },
+  {
+    "id": "git-sha64",
+    "schema": "ReleaseManifest",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "version": "fixture",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "lock_hashes": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "schema_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "image_digests": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "min_db_revision": 1,
+      "max_db_revision": 1,
+      "gate_report_ids": [
+        "fixture"
+      ],
+      "live_authorized": false
+    },
+    "valid": true,
+    "keyword": "pattern",
+    "path": []
+  },
+  {
+    "id": "git-short-sha",
+    "schema": "ReleaseManifest",
+    "value": {
+      "id": "fixture",
+      "revision": 1,
+      "version": "fixture",
+      "commit": "aaaaaaa",
+      "lock_hashes": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "schema_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "image_digests": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "min_db_revision": 1,
+      "max_db_revision": 1,
+      "gate_report_ids": [
+        "fixture"
+      ],
+      "live_authorized": false
+    },
+    "valid": false,
+    "keyword": "pattern",
+    "path": [
+      "commit"
+    ]
+  }
+]
