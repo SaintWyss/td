@@ -185,10 +185,20 @@
   {
     "schema": "FeatureValue",
     "value": {
-      "value": "1",
-      "unit": "fixture",
+      "value": "101",
+      "unit": "quote_major/base_major",
       "available_at": "2026-11-03T14:00:00Z",
-      "quality": "VALID"
+      "quality": "VALID",
+      "feature_id": "F-close1",
+      "definition_version": "1.2.0",
+      "event_time": "2026-11-06T12:00:00Z",
+      "window_start": "2026-11-06T11:59:00Z",
+      "window_end": "2026-11-06T12:00:00Z",
+      "source_ids": [
+        "obs:trade:1"
+      ],
+      "expires_at": "2026-11-06T12:01:00Z",
+      "reason_code": null
     },
     "expected": {
       "validator": "required",
@@ -206,11 +216,21 @@
       "schema_version": "fixture",
       "features": [
         {
-          "name": "fixture",
-          "value": "1",
-          "unit": "fixture",
+          "name": "close1",
+          "value": "101",
+          "unit": "quote_major/base_major",
           "available_at": "2026-11-03T14:00:00Z",
-          "quality": "VALID"
+          "quality": "VALID",
+          "feature_id": "F-close1",
+          "definition_version": "1.2.0",
+          "event_time": "2026-11-06T12:00:00Z",
+          "window_start": "2026-11-06T11:59:00Z",
+          "window_end": "2026-11-06T12:00:00Z",
+          "source_ids": [
+            "obs:trade:1"
+          ],
+          "expires_at": "2026-11-06T12:01:00Z",
+          "reason_code": null
         }
       ],
       "source_observation_ids": [
@@ -219,7 +239,9 @@
       "quality": "VALID",
       "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "instrument_id": "instrument:SOL-USDC:cpmm",
-      "instrument_revision": 1
+      "instrument_revision": 1,
+      "catalog_version": "1.2.0",
+      "universe_id": "universe:fixture"
     },
     "expected": {
       "validator": "required",
@@ -350,15 +372,35 @@
       "issued_at": "2026-11-03T14:00:00Z",
       "expires_at": "2026-11-03T14:05:00Z",
       "horizon_s": 1,
-      "probability_net_positive": 1,
-      "q05": "-0.01",
-      "q50": "0.01",
-      "q95": "0.03",
-      "expected_net_return": "1",
+      "probability_net_positive": "0.6",
+      "q05": null,
+      "q50": null,
+      "q95": null,
+      "expected_net_return": null,
       "cost_basis": "NET_TRADE",
       "uncertainty": "0.02",
       "instrument_id": "instrument:SOL-USDC:cpmm",
-      "instrument_revision": 1
+      "instrument_revision": 1,
+      "prediction_kind": "CLASSIFICATION",
+      "model_version": "1.2.0",
+      "model_state": "SHADOW",
+      "universe_id": "universe:fixture",
+      "available_at": "2026-11-06T12:00:00Z",
+      "target": "NET_POSITIVE",
+      "calibration_method": "PLATT",
+      "calibration_state": "VALID",
+      "calibration_artifact_id": "calibration:1",
+      "calibration_valid_until": "2026-12-01T00:00:00Z",
+      "raw_score": null,
+      "feature_ids": [
+        "F-close1"
+      ],
+      "data_quality": "VALID",
+      "evidence_ids": [
+        "evidence:model:1"
+      ],
+      "rejection_codes": [],
+      "baseline_improvement_lower": null
     },
     "expected": {
       "validator": "required",
@@ -431,7 +473,25 @@
         "fixture"
       ],
       "instrument_id": "instrument:SOL-USDC:cpmm",
-      "instrument_revision": 1
+      "instrument_revision": 1,
+      "legs": [],
+      "next_memory": {
+        "strategy_id": "S02",
+        "version": 0,
+        "position_opened_at": null,
+        "entry_price": null,
+        "peak_price": null,
+        "breakout_level": null,
+        "breakout_low": null,
+        "breakout_at": null,
+        "grid_center": null,
+        "previous_regime": null,
+        "regime_confirmations": 0,
+        "pending_order_ids": [],
+        "available_at": "2026-11-06T12:00:00Z"
+      },
+      "selected_strategy_id": null,
+      "reduce_only": false
     },
     "expected": {
       "validator": "required",
@@ -455,7 +515,11 @@
       "model_ids": [],
       "risk_assessment_id": "fixture",
       "instrument_id": "instrument:SOL-USDC:cpmm",
-      "instrument_revision": 1
+      "instrument_revision": 1,
+      "prediction_ids": [],
+      "cost_estimate_id": "evidence:cost:1",
+      "universe_id": "universe:fixture",
+      "input_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
     },
     "expected": {
       "validator": "required",
@@ -1545,7 +1609,8 @@
       "aggressor": "BUY",
       "fee_atoms": "1",
       "fee_asset_id": "fixture",
-      "slot": 1
+      "slot": 1,
+      "trader_address": "wallet:synthetic:1"
     },
     "expected": {
       "validator": "required",
@@ -1602,7 +1667,8 @@
   {
     "schema": "BookLevel",
     "value": {
-      "quantity": "1"
+      "quantity": "1",
+      "quantity_unit": "BASE_MAJOR"
     },
     "expected": {
       "validator": "required",
@@ -1618,7 +1684,10 @@
       "bids": [],
       "asks": [],
       "checksum": "fixture",
-      "valid": false
+      "valid": false,
+      "available_at": "2026-11-06T12:00:00Z",
+      "event_time": "2026-11-06T12:00:00Z",
+      "instrument_revision": 1
     },
     "expected": {
       "validator": "required",
@@ -1716,6 +1785,160 @@
         "required_capabilities": [
           "fixture"
         ]
+      },
+      "instrument": {
+        "id": "instrument:SOL-USDC:cpmm",
+        "revision": 1,
+        "kind": "AMM_POOL",
+        "venue_id": "venue:fixture-cpmm",
+        "chain_id": "solana:fixture",
+        "base_asset_id": "asset:SOL",
+        "quote_asset_id": "asset:USDC",
+        "settlement_asset_id": "asset:USDC",
+        "pool_id": "pool:1",
+        "quantity_unit": "BASE_ATOM",
+        "price_unit": "QUOTE_MAJOR_PER_BASE_MAJOR",
+        "quantity_step": "1",
+        "minimum_quantity": "1",
+        "price_tick": null,
+        "minimum_notional": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "base_atoms_per_contract_lot": null,
+        "margin_tiers": [],
+        "max_leverage": "1",
+        "fee_schedule": {
+          "maker_rate_bps": "0",
+          "taker_rate_bps": "10",
+          "fee_asset_id": "asset:USDC",
+          "included_in_quote": false,
+          "evidence_id": "evidence:fee:1",
+          "valid_until": "2026-11-06T13:00:00Z"
+        },
+        "expiry_at": null,
+        "leg_instrument_ids": [],
+        "capabilities": [
+          "SPOT",
+          "CPMM"
+        ],
+        "capability_evidence_ids": [
+          "evidence:fixture:1"
+        ],
+        "operational_status": "FIXTURE_ONLY",
+        "available_at": "2026-11-06T12:00:00Z"
+      },
+      "decision_at": "2026-11-06T12:00:00Z",
+      "predictions": [],
+      "cost": {
+        "instrument_id": "instrument:SOL-USDC:cpmm",
+        "size": {
+          "asset_id": "fixture",
+          "atoms": "1",
+          "decimals": 1
+        },
+        "roundtrip_bps": "30",
+        "slippage_bps": "10",
+        "network_fee": {
+          "asset_id": "asset:SOL",
+          "atoms": "5000",
+          "decimals": 9
+        },
+        "rent_cap": {
+          "asset_id": "asset:SOL",
+          "atoms": "0",
+          "decimals": 9
+        },
+        "delay_p99_ms": 500,
+        "available_at": "2026-11-06T12:00:00Z",
+        "expires_at": "2026-11-06T12:00:05Z",
+        "method_version": "cost-v1",
+        "evidence_ids": [
+          "evidence:cost:1"
+        ]
+      },
+      "model_artifacts": [],
+      "history": [],
+      "bars": [],
+      "books": [],
+      "news": [],
+      "social": [],
+      "wallet_flows": [],
+      "trader_profiles": [],
+      "derivatives": [],
+      "leg_instruments": [],
+      "leg_quotes": [],
+      "margin": null,
+      "regime": null,
+      "utilities": [],
+      "memory": {
+        "strategy_id": "S02",
+        "version": 0,
+        "position_opened_at": null,
+        "entry_price": null,
+        "peak_price": null,
+        "breakout_level": null,
+        "breakout_low": null,
+        "breakout_at": null,
+        "grid_center": null,
+        "previous_regime": null,
+        "regime_confirmations": 0,
+        "pending_order_ids": [],
+        "available_at": "2026-11-06T12:00:00Z"
+      },
+      "assessment": {
+        "id": "fixture",
+        "revision": 1,
+        "asset_id": "fixture",
+        "available_at": "2026-11-03T14:00:00Z",
+        "expires_at": "2026-11-03T14:05:00Z",
+        "eligible": false,
+        "mint_authority_active": false,
+        "freeze_authority_active": false,
+        "extensions": [],
+        "top1_share": "0.1",
+        "top10_share": "0.2",
+        "holder_coverage": "0.95",
+        "liquidation_quote_id": "fixture",
+        "reasons": [],
+        "evidence_ids": [
+          "fixture"
+        ],
+        "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "policy": {
+        "id": "policy:paper",
+        "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "universe_id": "universe:fixture",
+        "horizon_s": 300,
+        "min_lower_return": "0",
+        "min_baseline_improvement": "0",
+        "max_spread_bps": "20",
+        "approved_strategy_versions": [
+          "S02:1.2.0"
+        ],
+        "approved_model_ids": [],
+        "stressed_loss_fraction": "1",
+        "window_s": 60
+      },
+      "quote": null,
+      "exit_context": {
+        "position_id": null,
+        "available_to_sell": {
+          "asset_id": "asset:SOL",
+          "atoms": "0",
+          "decimals": 9
+        },
+        "pending_close": false,
+        "critical_risk": false,
+        "reversal_received": false,
+        "stop_loss_bps": 500,
+        "inverse_quote": null,
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:position:1"
+        ]
       }
     },
     "expected": {
@@ -1766,7 +1989,97 @@
         "active_reservation_ids": [],
         "uncertain_order_ids": []
       },
-      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "instrument": {
+        "id": "instrument:SOL-USDC:cpmm",
+        "revision": 1,
+        "kind": "AMM_POOL",
+        "venue_id": "venue:fixture-cpmm",
+        "chain_id": "solana:fixture",
+        "base_asset_id": "asset:SOL",
+        "quote_asset_id": "asset:USDC",
+        "settlement_asset_id": "asset:USDC",
+        "pool_id": "pool:1",
+        "quantity_unit": "BASE_ATOM",
+        "price_unit": "QUOTE_MAJOR_PER_BASE_MAJOR",
+        "quantity_step": "1",
+        "minimum_quantity": "1",
+        "price_tick": null,
+        "minimum_notional": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "base_atoms_per_contract_lot": null,
+        "margin_tiers": [],
+        "max_leverage": "1",
+        "fee_schedule": {
+          "maker_rate_bps": "0",
+          "taker_rate_bps": "10",
+          "fee_asset_id": "asset:USDC",
+          "included_in_quote": false,
+          "evidence_id": "evidence:fee:1",
+          "valid_until": "2026-11-06T13:00:00Z"
+        },
+        "expiry_at": null,
+        "leg_instrument_ids": [],
+        "capabilities": [
+          "SPOT",
+          "CPMM"
+        ],
+        "capability_evidence_ids": [
+          "evidence:fixture:1"
+        ],
+        "operational_status": "FIXTURE_ONLY",
+        "available_at": "2026-11-06T12:00:00Z"
+      },
+      "decision_at": "2026-11-06T12:00:00Z",
+      "predictions": [],
+      "cost": {
+        "instrument_id": "instrument:SOL-USDC:cpmm",
+        "size": {
+          "asset_id": "fixture",
+          "atoms": "1",
+          "decimals": 1
+        },
+        "roundtrip_bps": "30",
+        "slippage_bps": "10",
+        "network_fee": {
+          "asset_id": "asset:SOL",
+          "atoms": "5000",
+          "decimals": 9
+        },
+        "rent_cap": {
+          "asset_id": "asset:SOL",
+          "atoms": "0",
+          "decimals": 9
+        },
+        "delay_p99_ms": 500,
+        "available_at": "2026-11-06T12:00:00Z",
+        "expires_at": "2026-11-06T12:00:05Z",
+        "method_version": "cost-v1",
+        "evidence_ids": [
+          "evidence:cost:1"
+        ]
+      },
+      "model_artifacts": [],
+      "policy": {
+        "id": "policy:paper",
+        "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "universe_id": "universe:fixture",
+        "horizon_s": 300,
+        "min_lower_return": "0",
+        "min_baseline_improvement": "0",
+        "max_spread_bps": "20",
+        "approved_strategy_versions": [
+          "S02:1.2.0"
+        ],
+        "approved_model_ids": [],
+        "stressed_loss_fraction": "1",
+        "window_s": 60
+      },
+      "quote": null,
+      "recent_decisions": []
     },
     "expected": {
       "validator": "required",
@@ -1854,11 +2167,21 @@
         "schema_version": "fixture",
         "features": [
           {
-            "name": "fixture",
-            "value": "1",
-            "unit": "fixture",
+            "name": "close1",
+            "value": "101",
+            "unit": "quote_major/base_major",
             "available_at": "2026-11-03T14:00:00Z",
-            "quality": "VALID"
+            "quality": "VALID",
+            "feature_id": "F-close1",
+            "definition_version": "1.2.0",
+            "event_time": "2026-11-06T12:00:00Z",
+            "window_start": "2026-11-06T11:59:00Z",
+            "window_end": "2026-11-06T12:00:00Z",
+            "source_ids": [
+              "obs:trade:1"
+            ],
+            "expires_at": "2026-11-06T12:01:00Z",
+            "reason_code": null
           }
         ],
         "source_observation_ids": [
@@ -1867,7 +2190,9 @@
         "quality": "VALID",
         "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "instrument_id": "instrument:SOL-USDC:cpmm",
-        "instrument_revision": 1
+        "instrument_revision": 1,
+        "catalog_version": "1.2.0",
+        "universe_id": "universe:fixture"
       },
       "quotes": []
     },
@@ -2903,6 +3228,293 @@
       "validator": "required",
       "instance_path": [],
       "missing_field": "request"
+    }
+  },
+  {
+    "schema": "Bar",
+    "value": {
+      "instrument_revision": 1,
+      "start_at": "2026-11-06T11:59:00Z",
+      "end_at": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "resolution_s": 60,
+      "open": "100",
+      "high": "102",
+      "low": "99",
+      "close": "101",
+      "base_volume_atoms": "1000000000",
+      "quote_volume_atoms": "100000000",
+      "trade_count": 10,
+      "coverage": "COMPLETE",
+      "observation_ids": [
+        "obs:trade:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
+  },
+  {
+    "schema": "DerivativeObservation",
+    "value": {
+      "instrument_revision": 1,
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "mark_price": "100",
+      "index_price": "100",
+      "funding_rate": "0.001",
+      "funding_interval_s": 28800,
+      "next_funding_at": "2026-11-06T20:00:00Z",
+      "open_interest_lots": "1000",
+      "liquidation_lots": "0",
+      "liquidation_window_s": 300,
+      "coverage": "COMPLETE",
+      "source_grant_id": "grant:fixture",
+      "evidence_ids": [
+        "evidence:derivative:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
+  },
+  {
+    "schema": "SocialObservation",
+    "value": {
+      "message_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "author_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "origin_cluster_id": "origin:1",
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "source_grant_id": "grant:fixture",
+      "sentiment_score": "0.7",
+      "sentiment_model_id": "model:sentiment:1",
+      "coverage": "COMPLETE",
+      "evidence_ids": [
+        "evidence:social:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
+  },
+  {
+    "schema": "NewsAssessment",
+    "value": {
+      "event_class": "PROTOCOL_RELEASE",
+      "direction": "POSITIVE",
+      "primary_verified": true,
+      "independent_origin_ids": [
+        "origin:1"
+      ],
+      "entity_resolved": true,
+      "available_at": "2026-11-06T12:00:00Z",
+      "expires_at": "2026-11-06T13:00:00Z",
+      "retracted": false,
+      "source_grant_ids": [
+        "grant:fixture"
+      ],
+      "evidence_ids": [
+        "evidence:news:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
+  },
+  {
+    "schema": "WalletFlowSummary",
+    "value": {
+      "wallet_id": "wallet:synthetic:1",
+      "cluster_id": "cluster:1",
+      "window_start": "2026-11-06T11:55:00Z",
+      "window_end": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "net_base_atoms": "1000000000",
+      "buy_quote_atoms": "100000000",
+      "sell_quote_atoms": "0",
+      "leader_buy_price": "100",
+      "profile_id": "profile:1",
+      "selection_at": "2026-11-05T00:00:00Z",
+      "source_observation_ids": [
+        "obs:wallet:1"
+      ],
+      "coverage": "1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
+  },
+  {
+    "schema": "CostEstimate",
+    "value": {
+      "size": {
+        "asset_id": "fixture",
+        "atoms": "1",
+        "decimals": 1
+      },
+      "roundtrip_bps": "30",
+      "slippage_bps": "10",
+      "network_fee": {
+        "asset_id": "asset:SOL",
+        "atoms": "5000",
+        "decimals": 9
+      },
+      "rent_cap": {
+        "asset_id": "asset:SOL",
+        "atoms": "0",
+        "decimals": 9
+      },
+      "delay_p99_ms": 500,
+      "available_at": "2026-11-06T12:00:00Z",
+      "expires_at": "2026-11-06T12:00:05Z",
+      "method_version": "cost-v1",
+      "evidence_ids": [
+        "evidence:cost:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
+  },
+  {
+    "schema": "RegimeArtifact",
+    "value": {
+      "train_end": "2026-10-01T00:00:00Z",
+      "available_at": "2026-10-02T00:00:00Z",
+      "volatility_q25": "0.001",
+      "volatility_q75": "0.005",
+      "trend_threshold": "0.01",
+      "feature_ids": [
+        "F-vol60",
+        "F-trend"
+      ],
+      "dataset_id": "dataset:train",
+      "evidence_ids": [
+        "evidence:regime:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "StrategyUtility",
+    "value": {
+      "strategy_version": "1.2.0",
+      "regime_code": "1",
+      "lower_net_return": "0.01",
+      "available_at": "2026-11-06T12:00:00Z",
+      "train_end": "2026-10-01T00:00:00Z",
+      "oof_manifest_id": "dataset:oof",
+      "approved": false,
+      "evidence_ids": [
+        "evidence:utility:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "strategy_id"
+    }
+  },
+  {
+    "schema": "StrategyMemory",
+    "value": {
+      "version": 0,
+      "position_opened_at": null,
+      "entry_price": null,
+      "peak_price": null,
+      "breakout_level": null,
+      "breakout_low": null,
+      "breakout_at": null,
+      "grid_center": null,
+      "previous_regime": null,
+      "regime_confirmations": 0,
+      "pending_order_ids": [],
+      "available_at": "2026-11-06T12:00:00Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "strategy_id"
+    }
+  },
+  {
+    "schema": "StrategyLegProposal",
+    "value": {
+      "instrument_revision": 1,
+      "side": "BUY",
+      "quantity_ratio_numerator": "1",
+      "quantity_ratio_denominator": "1",
+      "limit_price": null,
+      "post_only": false,
+      "reduce_only": false
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
+  },
+  {
+    "schema": "DecisionPolicy",
+    "value": {
+      "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "universe_id": "universe:fixture",
+      "horizon_s": 300,
+      "min_lower_return": "0",
+      "min_baseline_improvement": "0",
+      "max_spread_bps": "20",
+      "approved_strategy_versions": [
+        "S02:1.2.0"
+      ],
+      "approved_model_ids": [],
+      "stressed_loss_fraction": "1",
+      "window_s": 60
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "ExitContext",
+    "value": {
+      "available_to_sell": {
+        "asset_id": "asset:SOL",
+        "atoms": "0",
+        "decimals": 9
+      },
+      "pending_close": false,
+      "critical_risk": false,
+      "reversal_received": false,
+      "stop_loss_bps": 500,
+      "inverse_quote": null,
+      "available_at": "2026-11-06T12:00:00Z",
+      "evidence_ids": [
+        "evidence:position:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "position_id"
     }
   }
 ]

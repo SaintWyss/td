@@ -6,5 +6,8 @@
   "WALLET": "WalletTransaction",
   "L2": "L2Snapshot",
   "NEWS": "NewsItem",
-  "COVERAGE": "CoverageInterval"
+  "COVERAGE": "CoverageInterval",
+  "BAR": "Bar",
+  "DERIVATIVE": "DerivativeObservation",
+  "SOCIAL": "SocialObservation"
 }

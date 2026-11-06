@@ -32,3 +32,7 @@ Pruebas golden incluyen un swap rentable bruto pero negativo neto, token ilíqui
 LedgerPostRequest, LedgerPostResult, ReconciliationRequest y catálogo Instrument. Son normativos
 para depósitos/rent/fees/reservas/reversos y liquidación; LedgerWriter ya no recibe Fill aislado.
 Los metadatos de Instrument y los escenarios son requisitos de implementación, no servicios activos.
+
+## Entradas y temporalidad R2
+
+[Features y estrategias](contracts/features-and-strategies.md) fija fuente, unidad, ventana, disponibilidad y estimando. El catálogo tipado `contracts/feature-catalog.json` es normativo para producir/consumir features; `contracts/strategy-specs.json` contiene las 20 evaluaciones. No reemplazar datos faltantes por valores de conveniencia.

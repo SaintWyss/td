@@ -25,3 +25,7 @@ Códigos estables: DATA_INCOMPLETE, DATA_STALE, TOKEN_UNSUPPORTED, TOKEN_RISK, N
 Decision no modifica límites, no firma, no promueve modelos y no convierte un resultado de LLM en reserva. Las reglas de decisión son versionadas y ensayadas; el motor estadístico puede abstenerse por incertidumbre, Risk puede vetar aun con señal fuerte.
 
 Pruebas: datos futuros, probabilidad alta con costos negativos, dos señales idénticas, modelos vencidos, quote que cambia tamaño y conflicto de policy revision. Fixture positivo verifica candidato y reserva; fixture negativo verifica ausencia total de intención ejecutable. Reproducir mismo contexto produce mismo resultado y hash, salvo IDs generados por el caso de uso fuera del dominio.
+
+## Contratos R2 normativos
+
+Leer [features y estrategias](contracts/features-and-strategies.md), `contracts/feature-catalog.json` y `contracts/strategy-specs.json`. Esos contratos precisan las entradas, ventanas, estimandos, salidas puras y reglas de disponibilidad de esta revisión.

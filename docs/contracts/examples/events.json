@@ -82,11 +82,21 @@
       "schema_version": "fixture",
       "features": [
         {
-          "name": "fixture",
-          "value": "1",
-          "unit": "fixture",
+          "name": "close1",
+          "value": "101",
+          "unit": "quote_major/base_major",
           "available_at": "2026-11-03T14:00:00Z",
-          "quality": "VALID"
+          "quality": "VALID",
+          "feature_id": "F-close1",
+          "definition_version": "1.2.0",
+          "event_time": "2026-11-06T12:00:00Z",
+          "window_start": "2026-11-06T11:59:00Z",
+          "window_end": "2026-11-06T12:00:00Z",
+          "source_ids": [
+            "obs:trade:1"
+          ],
+          "expires_at": "2026-11-06T12:01:00Z",
+          "reason_code": null
         }
       ],
       "source_observation_ids": [
@@ -95,7 +105,9 @@
       "quality": "VALID",
       "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "instrument_id": "instrument:SOL-USDC:cpmm",
-      "instrument_revision": 1
+      "instrument_revision": 1,
+      "catalog_version": "1.2.0",
+      "universe_id": "universe:fixture"
     }
   },
   {
@@ -130,7 +142,25 @@
         "fixture"
       ],
       "instrument_id": "instrument:SOL-USDC:cpmm",
-      "instrument_revision": 1
+      "instrument_revision": 1,
+      "legs": [],
+      "next_memory": {
+        "strategy_id": "S02",
+        "version": 0,
+        "position_opened_at": null,
+        "entry_price": null,
+        "peak_price": null,
+        "breakout_level": null,
+        "breakout_low": null,
+        "breakout_at": null,
+        "grid_center": null,
+        "previous_regime": null,
+        "regime_confirmations": 0,
+        "pending_order_ids": [],
+        "available_at": "2026-11-06T12:00:00Z"
+      },
+      "selected_strategy_id": null,
+      "reduce_only": false
     }
   },
   {
@@ -159,7 +189,11 @@
       "model_ids": [],
       "risk_assessment_id": "fixture",
       "instrument_id": "instrument:SOL-USDC:cpmm",
-      "instrument_revision": 1
+      "instrument_revision": 1,
+      "prediction_ids": [],
+      "cost_estimate_id": "evidence:cost:1",
+      "universe_id": "universe:fixture",
+      "input_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
     }
   },
   {

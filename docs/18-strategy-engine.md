@@ -6,7 +6,7 @@ El catálogo normativo está en `strategies/catalog.json` y las fichas S01–S20
 
 ## Puerto y ciclo
 
-Cada estrategia implementa `evaluate(snapshot, portfolio_view, config) -> Signal | Abstention`. Inputs son inmutables, tienen as_of, available_at, quality y hashes. El contrato `StrategyConfig` fija familia, versión, parámetros, capacidades y horizonte. No tiene SDK, HTTP, acceso a DB, wallet ni promotor de modelos. Un mismo código de señales se usa en replay y paper; sólo cambia el adaptador de reloj/datos/ejecución.
+Cada estrategia implementa `evaluate(StrategyInput) -> Signal (incluye ABSTAIN)`. Inputs son inmutables, tienen as_of, available_at, quality y hashes. El contrato `StrategyConfig` fija familia, versión, parámetros, capacidades y horizonte. No tiene SDK, HTTP, acceso a DB, wallet ni promotor de modelos. Un mismo código de señales se usa en replay y paper; sólo cambia el adaptador de reloj/datos/ejecución.
 
 Una señal declara `instrument_id`, lado, horizonte, expectativa neta estimada, incertidumbre, TTL, evidencias y motivos de salida. La estrategia propone; Decision selecciona; Risk veta y dimensiona. La ausencia de señal es explícita y contabilizada. Estrategias deshabilitadas no producen señales operables.
 
@@ -21,3 +21,7 @@ Todas las fichas heredan G-DATA, G-LAB y G-PAPER de `34-acceptance-criteria.md`,
 Primera versión opera S02 y evalúa S18 como control. S01 observa desde V2. S19 es política de salida, nunca genera entrada. S20 selecciona estrategias con features de régimen conocidas en t, entrenadas sólo en pasado. No se suman señales correlacionadas como oportunidades independientes: agrupar por instrumento y ventana; Decision elige a lo sumo una entrada por instrumento/ventana y Risk cuenta exposición conjunta.
 
 Los parámetros en fichas son valores iniciales de laboratorio para preregistrar; no recomendaciones de rentabilidad. Los agentes no ajustan un umbral hasta que «pase»: cualquier búsqueda debe quedar registrada como ensayo. La falta de datos adecuados rechaza el experimento, no justifica un backtest con supuestos favorables.
+
+## Contratos R2 normativos
+
+Leer [features y estrategias](contracts/features-and-strategies.md), `contracts/feature-catalog.json` y `contracts/strategy-specs.json`. Esos contratos precisan las entradas, ventanas, estimandos, salidas puras y reglas de disponibilidad de esta revisión.

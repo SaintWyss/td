@@ -23,3 +23,7 @@ Extensiones posteriores: TransferFeeConfig exige fee actual/próximo epoch y cap
 Leer reservas reales, owner de vaults, config mutable, permisos de upgrade y cambios abruptos. CLMM/DLMM necesitan ticks/bins completos para profundidad; no inferir liquidez ejecutable desde TVL. Liquidez bloqueada/quemada requiere evidencia de mecanismo y vencimiento, nunca etiqueta del proveedor como prueba absoluta.
 
 Reglas de anomalía: volumen por wallet extremo, ciclos repetidos de compra/venta, compradores concentrados, retiradas >30% en 5 min y actividad correlacionada. Se reporta «patrón compatible con actividad artificial», con confianza/limitaciones. No se identifican personas por wallet ni se atribuye intención privada. Operar contra posibles pumps exige el mismo filtro; TD no coordina compras ni manipulación.
+
+## Entradas y temporalidad R2
+
+[Features y estrategias](contracts/features-and-strategies.md) fija fuente, unidad, ventana, disponibilidad y estimando. El catálogo tipado `contracts/feature-catalog.json` es normativo para producir/consumir features; `contracts/strategy-specs.json` contiene las 20 evaluaciones. No reemplazar datos faltantes por valores de conveniencia.

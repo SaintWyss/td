@@ -1,0 +1,1107 @@
+{
+  "version": "1.2.0",
+  "strategies": [
+    {
+      "strategy_id": "S01",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL"
+      ],
+      "horizon_s": 14400,
+      "required_feature_ids": [
+        "F-pool_age",
+        "F-reserve_base",
+        "F-reserve_quote",
+        "F-holder_top1",
+        "F-holder_top10",
+        "F-creator_sell300"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "assessment"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "Creation observation plus 1800s complete pool history; all cohort members retained",
+      "algorithm_and_exit": "Record every supported pool; age<1800 => OBSERVING; age>=1800 and eligible => RESEARCH_COHORT_READY, always ABSTAIN (no entry). End at14400 or inactivity; retain censored records.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Compare prospective discovery coverage and survivors to retrospective popular-only cohort, report recall only over audited interval; never count disappeared pools as missing at random",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-105",
+      "experiment_task": "T-106",
+      "config": {
+        "strategy_id": "S01",
+        "version": "1.2.0",
+        "parameters": {
+          "observe_s": 1800,
+          "cohort_h": 4
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "CPMM"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S01",
+        "input": "age=1800, eligible=true, complete=true",
+        "output": "ABSTAIN/RESEARCH_COHORT_READY",
+        "independent_calculation": "1800>=1800 does not authorize trade; age1799 remains OBSERVING",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S02",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL"
+      ],
+      "horizon_s": 300,
+      "required_feature_ids": [
+        "F-close1",
+        "F-ret1",
+        "F-ret5",
+        "F-volume_ratio20",
+        "F-high5",
+        "F-buyer_delta60",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "bars",
+        "assessment"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "30 complete 60s bars and known buyer identities for last2 bars",
+      "algorithm_and_exit": "BUY iff ret5>0, volume_ratio20>=2, close1>high5 and buyer_delta60>=0; otherwise ABSTAIN. Held position SELL on ret1<0, elapsed>=300, executable price<=entry*.95 or >=entry*1.08; stop then target if same bar ambiguous, event replay preferred. No initial fill at current close.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Ablate buyers; compare no-trade and equal-capital S18; stress fees+50%, slippage2x and timestamp placebo",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-107",
+      "experiment_task": "T-108",
+      "config": {
+        "strategy_id": "S02",
+        "version": "1.2.0",
+        "parameters": {
+          "lookback_bars": 20,
+          "volume_ratio": 2.0,
+          "breakout_bars": 5,
+          "hold_s": 300,
+          "stop_bps": 500,
+          "target_bps": 800
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "CPMM"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S02",
+        "input": "ret5=.02, ratio=2, close=102, high5=101, buyer_delta=0",
+        "output": "BUY",
+        "independent_calculation": "2>=2 and102>101; close101 produces ABSTAIN; negative ret1 for held position SELL",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S03",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL",
+        "CEX_SPOT"
+      ],
+      "horizon_s": 10,
+      "required_feature_ids": [
+        "F-flow10",
+        "F-microret",
+        "F-edge_lower",
+        "F-delay_p99",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "predictions"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "11s contiguous event history; >=100 prior delay samples; matching approved10s net-return distribution",
+      "algorithm_and_exit": "BUY iff flow10>.3, microret>0, edge_lower>0 and delay_p99<2000ms. SELL held if flow10<=0 or elapsed>=10s. Per-second evaluation, no minute-bar substitution.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Event replay at1x/2x/5x delay; reject if stressed lower net edge<=0",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-109",
+      "experiment_task": "T-110",
+      "config": {
+        "strategy_id": "S03",
+        "version": "1.2.0",
+        "parameters": {
+          "window_s": 10,
+          "imbalance_min": 0.3,
+          "hold_s": 10
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "CPMM"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S03",
+        "input": "flow=.4, microret=.001, lower=.002, delay=1500",
+        "output": "BUY",
+        "independent_calculation": "(70-30)/100=.4>.3,1500<10000/5; delay2000 abstains",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S04",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL",
+        "CEX_SPOT"
+      ],
+      "horizon_s": 1800,
+      "required_feature_ids": [
+        "F-close1",
+        "F-vwap60",
+        "F-std60",
+        "F-z60",
+        "F-regime",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "bars",
+        "regime"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "61 consecutive minute bars plus frozen regime history of61 5m bars",
+      "algorithm_and_exit": "BUY if z60<=-2 and regime=0. SELL held when z60>=0, regime!=0 or age>=1800. No averaging down and no spot short.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Permanent jump vs transient deviation; compare random entry matched by regime/cost",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-111",
+      "experiment_task": "T-112",
+      "config": {
+        "strategy_id": "S04",
+        "version": "1.2.0",
+        "parameters": {
+          "window_min": 60,
+          "entry_z": -2.0,
+          "hold_s": 1800
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S04",
+        "input": "price=96,VWAP=100,std=2,regime=0",
+        "output": "BUY",
+        "independent_calculation": "(96-100)/2=-2; std0 => ABSTAIN/DATA_INCOMPLETE",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S05",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL",
+        "CEX_SPOT"
+      ],
+      "horizon_s": 1800,
+      "required_feature_ids": [
+        "F-close1",
+        "F-high20",
+        "F-volume_ratio20",
+        "F-atr20",
+        "F-drawdown_peak",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "bars",
+        "memory"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "21 complete minute bars; entry level and peak persisted in StrategyMemory",
+      "algorithm_and_exit": "BUY iff close>prior high20 and volume_ratio20>1.5. Store breakout_level=high20. SELL when close<stored level, executable price<=peak-2*atr20 or age>=1800. Update peak only with received executable quote.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Prior-channel exclusion fixture; compare breakout without volume; gap stress",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-113",
+      "experiment_task": "T-114",
+      "config": {
+        "strategy_id": "S05",
+        "version": "1.2.0",
+        "parameters": {
+          "channel_bars": 20,
+          "volume_ratio": 1.5,
+          "atr_mult": 2.0,
+          "hold_s": 1800
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "CPMM"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S05",
+        "input": "close=102,prior_high=101,ratio=1.6,ATR=1",
+        "output": "BUY",
+        "independent_calculation": "102>101,1.6>1.5; including current high102 incorrectly prevents entry",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S06",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL",
+        "CEX_SPOT"
+      ],
+      "horizon_s": 900,
+      "required_feature_ids": [
+        "F-close1",
+        "F-low1",
+        "F-low20",
+        "F-high20",
+        "F-spread_bps",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "bars",
+        "memory"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "21 complete minute bars; event marker and prior channel retained; certified executable spread",
+      "algorithm_and_exit": "When low<prior low20, store level/low/time; no BUY in same bar. Next closed bar within180s with close>stored level and spread_bps<=cost policy cap produces BUY once; expire marker otherwise. SELL at stored channel midpoint, close<event low or age>=900.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Two sequences with identical OHLC but different order; mark ambiguous bars INCONCLUSIVE rather than favorable fill",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-115",
+      "experiment_task": "T-116",
+      "config": {
+        "strategy_id": "S06",
+        "version": "1.2.0",
+        "parameters": {
+          "channel_bars": 20,
+          "reentry_s": 180,
+          "hold_s": 900
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S06",
+        "input": "t0 prior_low100 low99 close99.5; t+60 close100.5,spread10 cap20",
+        "output": "BUY at t+60 only",
+        "independent_calculation": "100.5>100 and60<=180; same bar recovery gives no entry",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S07",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "CEX_SPOT"
+      ],
+      "horizon_s": 10,
+      "required_feature_ids": [
+        "F-book_i5",
+        "F-flow5",
+        "F-spread_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "books"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "3 consecutive valid contiguous L2 updates with5 levels each, complete5s trade flow",
+      "algorithm_and_exit": "BUY iff each last3 book_i5>.6 and flow5>0. Held SELL if current I<0 or age>=10s; gap/checksum failure => ABSTAIN and cancel proposals, not assume fills.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Adversarial cancels/spoof-like depth, conservative queue; compare flow-only model",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-117",
+      "experiment_task": "T-118",
+      "config": {
+        "strategy_id": "S07",
+        "version": "1.2.0",
+        "parameters": {
+          "depth_levels": 5,
+          "imbalance_min": 0.6,
+          "confirm_updates": 3,
+          "hold_s": 10
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S07",
+        "input": "last3 I=.7,.65,.8; signedflow=.2",
+        "output": "BUY",
+        "independent_calculation": "top5 bids90 asks10 gives .8; one missing update invalidates confirmation",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S08",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL",
+        "CEX_SPOT"
+      ],
+      "horizon_s": 3600,
+      "required_feature_ids": [
+        "F-news_score",
+        "F-news_origins",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "news"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "One entity-resolved primary verified release OR >=2 independent verified origins; grant active before storage",
+      "algorithm_and_exit": "BUY only POSITIVE verified event in allowed taxonomy, not retracted, age<3600, sources sufficient. Score=exp(-age/3600), not probability. SELL on correction/retraction or age>=3600. OTHER/UNKNOWN abstain.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Market-only ablation and shifted availability placebo; human-labeled corpus; no profitability claim from extraction accuracy",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-119",
+      "experiment_task": "T-120",
+      "config": {
+        "strategy_id": "S08",
+        "version": "1.2.0",
+        "parameters": {
+          "decay_s": 3600,
+          "hold_s": 3600,
+          "min_independent_sources": 2
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S08",
+        "input": "positive protocol release, primary_verified=true,age=0",
+        "output": "BUY",
+        "independent_calculation": "exp(0)=1; one unverified syndicated origin => ABSTAIN/UNVERIFIED_NEWS",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S09",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL",
+        "CEX_SPOT"
+      ],
+      "horizon_s": 14400,
+      "required_feature_ids": [
+        "F-attention_z",
+        "F-sentiment",
+        "F-mention_count",
+        "F-origin_count",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "social"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "168 full hourly baseline bins plus current full1h;>=100 dedup authorized messages;>=5 origins",
+      "algorithm_and_exit": "BUY iff attention_z>2 and signed sentiment>.6 and count>=100/origins>=5. SELL if z<1 or age>=14400. Author-weighted score is not trading probability; denied source contributes nothing.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Remove duplicated sources; compare attention-only; block-shuffle sentiment; language drift measured separately",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-121",
+      "experiment_task": "T-122",
+      "config": {
+        "strategy_id": "S09",
+        "version": "1.2.0",
+        "parameters": {
+          "window_s": 3600,
+          "baseline_days": 7,
+          "attention_z": 2.0,
+          "sentiment_min": 0.6,
+          "min_messages": 100,
+          "min_origins": 5,
+          "hold_s": 14400
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S09",
+        "input": "current distinctauthors40,baseline mean20,std5,sentiment=.7,count100,origins5",
+        "output": "BUY",
+        "independent_calculation": "(40-20)/5=4; sentiment=.6 fails strict threshold",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S10",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL"
+      ],
+      "horizon_s": 1800,
+      "required_feature_ids": [
+        "F-wallet_coverage",
+        "F-chase_bps",
+        "F-edge_lower",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "wallet_flows",
+        "trader_profiles",
+        "predictions"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "Profile selected before event; cost-complete inventory; coverage>=.95; current quote and1800s net-return distribution",
+      "algorithm_and_exit": "BUY after observed SWAP buy by selected wallet, coverage>=.95, chase<=200bps, lower net edge>0. UNKNOWN/TRANSFER not entry. SELL on received leader sell or age>=1800, independent follower risk.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Random wallets matched before evaluation; leader price cannot become follower fill; latency and hidden-hedge limitations",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-123",
+      "experiment_task": "T-124",
+      "config": {
+        "strategy_id": "S10",
+        "version": "1.2.0",
+        "parameters": {
+          "coverage_min": 0.95,
+          "max_chase_bps": 200,
+          "hold_s": 1800
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "CPMM"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S10",
+        "input": "coverage=.96,leader100,follower101,lower=.001",
+        "output": "BUY",
+        "independent_calculation": "(101/100-1)*10000=100<=200; follower103 abstains",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S11",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL"
+      ],
+      "horizon_s": 3600,
+      "required_feature_ids": [
+        "F-positive_clusters300",
+        "F-cohort_score",
+        "F-cohort_p80",
+        "F-wallet_coverage",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "wallet_flows",
+        "trader_profiles"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": ">=20 train clusters for percentile; >=3 independently verified positive-flow clusters;300s complete flow",
+      "algorithm_and_exit": "BUY iff positive_clusters300>=3 and cohort_score>cohort_p80. Each cluster equal weight; score TWR/(1+drawdown) from frozen train. SELL if aggregate net flow<0 or age>=3600.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Compare random selection and leave-largest-cluster-out; exclude future-score selection",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-125",
+      "experiment_task": "T-126",
+      "config": {
+        "strategy_id": "S11",
+        "version": "1.2.0",
+        "parameters": {
+          "window_s": 300,
+          "min_clusters": 3,
+          "score_percentile": 80,
+          "hold_s": 3600
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "CPMM"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S11",
+        "input": "3 clusters scores .2,.3,.4,trainp80=.25",
+        "output": "BUY",
+        "independent_calculation": "(.2+.3+.4)/3=.3>.25; same operator merged to1 cluster abstains",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S12",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL"
+      ],
+      "horizon_s": 1800,
+      "required_feature_ids": [
+        "F-liquidity1pct",
+        "F-liquidity_growth600",
+        "F-withdrawal600",
+        "F-flow5",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "history"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "600s complete reserve history and3 successive minute snapshots; CPMM depth certified",
+      "algorithm_and_exit": "BUY if each last3 growth600>.2, current flow5>0, withdrawal600<=.2 and token eligible. SELL if withdrawal>.2, impact cap fails or age>=1800. Depletion proxy is conservative, not proof of LP withdrawal.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Sudden withdrawal, one-sided reserve and missing inverse route; reject TVL-as-depth substitution",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-127",
+      "experiment_task": "T-128",
+      "config": {
+        "strategy_id": "S12",
+        "version": "1.2.0",
+        "parameters": {
+          "window_s": 600,
+          "growth_min": 0.2,
+          "confirm_snapshots": 3,
+          "withdrawal_max": 0.2,
+          "hold_s": 1800
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "CPMM"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S12",
+        "input": "baseline depth100; successive depths125,126,130;flow=.1;withdrawal=.1",
+        "output": "BUY",
+        "independent_calculation": "growth=.25,.26,.30 all>.2; a snapshot120 fails strict threshold",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S13",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "CEX_SPOT"
+      ],
+      "horizon_s": 86400,
+      "required_feature_ids": [
+        "F-mid",
+        "F-spread_bps",
+        "F-regime",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "books",
+        "regime",
+        "memory"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "Valid L2, tick/lot, own base and quote inventory; frozen lateral regime",
+      "algorithm_and_exit": "Only regime0; freeze center=mid. Five levels EACH side k1..5, distance=k*max(50,2*cost_bps)/10000*center. BUY prices floor tick, SELL ceil tick. Emit10 proposed legs with equal relative quantity; Risk caps aggregate and per-order reserves. Cancel on distance>2*5*spacing from center, regime!=0 or age>=86400; reconcile before new grid.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Monotone path causes inventory risk and stop; conservative partial fills/cancel race; equal capital baseline",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-129",
+      "experiment_task": "T-130",
+      "config": {
+        "strategy_id": "S13",
+        "version": "1.2.0",
+        "parameters": {
+          "levels": 5,
+          "spacing_bps": 50,
+          "hold_s": 86400
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S13",
+        "input": "mid100,cost20bps,tick.01",
+        "output": "BUY proposal with10 legs",
+        "independent_calculation": "spacing50bps => buys99.5,99,98.5,98,97.5; sells100.5,101,101.5,102,102.5; no leverage",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S14",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "CEX_SPOT"
+      ],
+      "horizon_s": 2,
+      "required_feature_ids": [
+        "F-mid",
+        "F-book_i5",
+        "F-spread_bps",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "books",
+        "memory"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "Valid L2 plus certified post-only capability; own inventory; tick/lot; modePAPER",
+      "algorithm_and_exit": "Two post-only legs. halfspread=max(2*tick,1.5*cost_bps*mid/10000); inventory_fraction=base_notional/NAV clipped[0,1], target .5; center=mid-(inventory_fraction-.5)*2*halfspread; bid floor tick(center-halfspread), ask ceil tick(center+halfspread). No quote while previous cancel UNKNOWN; replace after2s or mid moves>=fullspread.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Independent conservative queue, double-fill stress and compare no quoting in high volatility",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-131",
+      "experiment_task": "T-132",
+      "config": {
+        "strategy_id": "S14",
+        "version": "1.2.0",
+        "parameters": {
+          "min_ticks": 2,
+          "fee_mult": 1.5,
+          "requote_ms": 2000
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S14",
+        "input": "mid100,tick.01,cost10bps,inventory_fraction=.5",
+        "output": "BUY proposal with2 legs",
+        "independent_calculation": "halfspread=max(.02,.15)=.15; bid99.85 ask100.15; inventory .75 shifts center to99.925",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S15",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "MULTI_LEG"
+      ],
+      "horizon_s": 1,
+      "required_feature_ids": [
+        "F-leg_profit_bps",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "leg_instruments",
+        "leg_quotes"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "2..4 size-chained same-asset cycle quotes, skew<=200ms and individually unexpired; atomic certificate or paper-only exposure plan",
+      "algorithm_and_exit": "Propose cycle iff conservative leg_profit_bps>20 buffer. Signal contains exact instrument ratios. Atomic required for non-paper; current work never authorizes live. Partial/non-atomic plan cancels, reconciles and only then proposes reduction under Risk.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Expire quote, fail one leg, change reserves, charge failed transaction fees; no cross-venue atomic assumption",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-133",
+      "experiment_task": "T-134",
+      "config": {
+        "strategy_id": "S15",
+        "version": "1.2.0",
+        "parameters": {
+          "quote_skew_ms": 200,
+          "buffer_bps": 20
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S15",
+        "input": "input100USDC,minimum final100.5USDC,unembeddedfee.1USDC",
+        "output": "BUY cycle proposal",
+        "independent_calculation": "net .4/100*10000=40bps>20; output100.3 withfee.1 gives20 and abstains",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S16",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "MULTI_LEG"
+      ],
+      "horizon_s": 86400,
+      "required_feature_ids": [
+        "F-funding_rate",
+        "F-funding_lower24h",
+        "F-basis",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "leg_instruments",
+        "derivatives",
+        "margin",
+        "predictions"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "Long owned spot + short linear perp same base/quote; isolated margin; approved24h funding distribution; no borrowed spot",
+      "algorithm_and_exit": "Propose equal-base long spot/short perp if conservative funding_lower24h - roundtrip cost fraction >.002 and margin headroom valid. Forecast is not current funding extrapolated. SELL/close both when lower net<=0, abs basis>.05, collateral<1.5*MM or age>=72h; UNKNOWN leg preserved.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Reverse funding, basis shock, withdraw suspended, leg failure; G-LAB with capital tied up in both legs",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-135",
+      "experiment_task": "T-136",
+      "config": {
+        "strategy_id": "S16",
+        "version": "1.2.0",
+        "parameters": {
+          "forecast_h": 24,
+          "max_hold_h": 72,
+          "buffer_bps": 20
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S16",
+        "input": "q05 carry=.006,cost=.002,basis=.001,collateral20,MM10",
+        "output": "BUY paired proposal",
+        "independent_calculation": " .006-.002=.004>.002 and20>=15; no forecast => ABSTAIN",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S17",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "MULTI_LEG"
+      ],
+      "horizon_s": 86400,
+      "required_feature_ids": [
+        "F-delta_ratio",
+        "F-basis",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "leg_instruments",
+        "margin"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "Spot and linear positions with current marks, positive NAV, known collateral; no options/inverse models",
+      "algorithm_and_exit": "No speculative opening: propose hedge of existing exposure iff delta_ratio>.02 and reduction improves stressed exposure after cost within caps. Ratios derive from base spot / contract multiplier, round lots toward zero and report residual. Close on abs basis>.05, collateral<1.5*MM, lost coverage or age>=86400. Never hedge UNKNOWN twice.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Price/mark shocks, margin call and unavailable hedge; report worst-leg delta not only intended delta",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-137",
+      "experiment_task": "T-138",
+      "config": {
+        "strategy_id": "S17",
+        "version": "1.2.0",
+        "parameters": {
+          "delta_band": 0.02,
+          "hold_s": 86400
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S17",
+        "input": "spot1SOL,long delta100USDC,NAV1000,lot.01SOL",
+        "output": "SELL100 perp lots proposal",
+        "independent_calculation": "100/1000=.1>.02;100 lots*.01=1SOL, residual0; ratio=.02 abstains",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S18",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL",
+        "CEX_SPOT"
+      ],
+      "horizon_s": 86400,
+      "required_feature_ids": [
+        "F-ema20",
+        "F-ema60",
+        "F-cost_bps"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "bars",
+        "history"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "61 consecutive5m bars after fixed seed and previous/current EMA pairs;60 alone insufficient to prove crossover",
+      "algorithm_and_exit": "BUY iff previous fast<=slow and current fast>slow. SELL on inverse cross or age>=86400. Seed both from fixed manifest start; missing bars abstain; no restart reseed.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Flat/trending/whipsaw paths; equal capital benchmark and full turnover costs",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-139",
+      "experiment_task": "T-140",
+      "config": {
+        "strategy_id": "S18",
+        "version": "1.2.0",
+        "parameters": {
+          "fast_bars": 20,
+          "slow_bars": 60,
+          "bar_s": 300,
+          "hold_s": 86400
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S18",
+        "input": "previous20=99,60=100;current20=101,60=100.5",
+        "output": "BUY",
+        "independent_calculation": "99<=100 and101>100.5; already above yesterday and today does not recross",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S19",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL",
+        "CEX_SPOT"
+      ],
+      "horizon_s": 60,
+      "required_feature_ids": [
+        "F-position_age",
+        "F-drawdown_peak"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "memory",
+        "assessment"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "Open own position; executable inverse quote; known available balance and outstanding reservations",
+      "algorithm_and_exit": "Never BUY. Priority critical risk, age>=1800, entry loss>=5%, drawdown_peak>=.05, received reversal signal; propose SELL reduce_only. Pending close => ABSTAIN/POSITION_PENDING. No route => ABSTAIN/UNLIQUIDATABLE, record alert. Closed only after reconcile; alpha missing does not block risk reduction with fresh execution data.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Double close event, missing inverse route, gap beyond stop and insufficient fee SOL",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-141",
+      "experiment_task": "T-142",
+      "config": {
+        "strategy_id": "S19",
+        "version": "1.2.0",
+        "parameters": {
+          "trailing_bps": 500,
+          "max_hold_s": 1800
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S19",
+        "input": "peak110,current104,openposition,available1SOL,no pending",
+        "output": "SELL reduce_only",
+        "independent_calculation": "1-104/110=.05454545>=.05; no route preserves position and emits UNLIQUIDATABLE",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    },
+    {
+      "strategy_id": "S20",
+      "version": "1.2.0",
+      "instrument_kinds": [
+        "AMM_POOL",
+        "CEX_SPOT"
+      ],
+      "horizon_s": 900,
+      "required_feature_ids": [
+        "F-regime",
+        "F-vol60",
+        "F-trend"
+      ],
+      "optional_feature_ids": [],
+      "required_context": [
+        "regime",
+        "utilities",
+        "memory"
+      ],
+      "feature_catalog_version": "1.2.0",
+      "minimum_data": "Two successive900s regime windows; frozen train thresholds and OOF utilities for approved strategies",
+      "algorithm_and_exit": "After same regime2 windows choose approved compatible strategy with greatest strictly positive lower OOF net utility, ties strategy_id ascending. Emit ABSTAIN/META_SELECTION with selected_strategy_id; orchestration evaluates chosen strategy separately. Existing positions retain original exit policy. No eligible utility => NO_SIGNAL.",
+      "missing_or_invalid": "ABSTAIN with stable reason and no legs; never impute required features. Held-risk exits use fresh execution facts independently of missing alpha.",
+      "costs": "CostEstimate matched to instrument/size, NET_TRADE vs NET_ECONOMIC explicit; do not deduct embedded fees twice; reserves and sizing remain Risk responsibility",
+      "risk": "Original strategy fiche lists family risks; joint portfolio limits, unknown exposure and source permissions remain vetoes",
+      "experiment": "Compare fixed weights, random selector and alwaysS02; nested chronological OOF and count selector trials",
+      "acceptance": "Exact fixture agreement and PIT invariants for technical acceptance; existing G-DATA/G-LAB/G-PAPER criteria unchanged for scientific promotion; INCONCLUSIVE for inadequate samples; no assumed alpha",
+      "external_dependencies": "Venue capability, observation coverage and source purpose grants must be certified; derivatives/CLOB sandbox only; no provider access implied",
+      "evaluator_task": "T-143",
+      "experiment_task": "T-144",
+      "config": {
+        "strategy_id": "S20",
+        "version": "1.2.0",
+        "parameters": {
+          "interval_s": 900,
+          "hysteresis_windows": 2
+        },
+        "enabled": false,
+        "required_capabilities": [
+          "RESEARCH"
+        ]
+      },
+      "oracle": {
+        "id": "STR-S20",
+        "input": "regime0 twice;S02 lower.01 approved,S18 lower.02 approved",
+        "output": "ABSTAIN/META_SELECTION selects S18",
+        "independent_calculation": "max(.01,.02)=.02; one regime window => ABSTAIN/REGIME_UNCONFIRMED",
+        "initial_state": "No position unless fixture says held/hedge; PAPER; enabled only in isolated fixture; permissions and all non-tested prerequisites valid",
+        "final_state": "No order or funds mutation; only Signal.next_memory proposals, persisted by caller once per snapshot",
+        "expected_error": null,
+        "units": "Prices quote_major/base_major; returns fractions; costs bps; time seconds; quantities declared by Instrument",
+        "validation": "Future pure-evaluator unit test with concrete source fixtures reconstructed from catalog; negative boundary stated in calculation/algorithm"
+      }
+    }
+  ]
+}

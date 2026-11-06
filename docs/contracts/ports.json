@@ -171,5 +171,14 @@
     "owner": "C-RISK",
     "effect": "TRANSACTION",
     "errors": "FinancialError; lock portfolio/collateral and reserve all legs or none; no Solana swap fallback"
+  },
+  {
+    "name": "DecisionEvaluator",
+    "method": "evaluate",
+    "input_schema": "DecisionContext",
+    "output_schema": "Decision",
+    "owner": "C-DECISION",
+    "effect": "PURE",
+    "errors": "No trade with ordered reasons; no reserve or network side effect"
   }
 ]

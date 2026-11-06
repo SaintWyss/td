@@ -2,6 +2,7 @@
 
 import json
 from collections import defaultdict
+from graphlib import CycleError, TopologicalSorter
 from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
@@ -108,4 +109,64 @@ def validate_r2(root: Path, schema: dict) -> list[str]:
     covered = {c["input"]["operation"] for c in document["cases"]}
     if required != covered:
         errors.append(f"financial scenarios: operation coverage {required - covered}")
+    if (root / "docs/contracts/feature-catalog.json").exists():
+        errors.extend(feature_catalog_errors(root, schema))
+    return errors
+
+
+def feature_catalog_errors(root: Path, schema: dict) -> list[str]:
+    """Validate traceability, not the behavior of unimplemented strategies."""
+    contracts = root / "docs/contracts"
+    features = json.loads((contracts / "feature-catalog.json").read_text())["features"]
+    strategies = json.loads((contracts / "strategy-specs.json").read_text())["strategies"]
+    errors = []
+    ids = {f["id"] for f in features}
+    if len(ids) != len(features):
+        errors.append("duplicate feature id")
+    for feature in features:
+        name = feature["id"]
+        properties = schema["$defs"].get(feature["source_schema"], {}).get("properties", {})
+        if not set(feature["original_fields"]) <= set(properties):
+            errors.append(f"{name}: unknown original source fields")
+        if not set(feature["dependencies"]) <= ids:
+            errors.append(f"{name}: undefined feature dependency")
+        for field in (
+            "formula",
+            "unit",
+            "entity",
+            "event_time",
+            "available_at",
+            "missing_policy",
+            "late_policy",
+            "validations",
+            "quality_constraints",
+            "permission",
+            "definition_version",
+            "classification",
+            "consumers",
+        ):
+            if not feature.get(field):
+                errors.append(f"{name}: missing {field}")
+        if feature["window_s"] < 0 or feature["validity_s"] <= 0:
+            errors.append(f"{name}: invalid temporal bounds")
+    try:
+        tuple(TopologicalSorter({f["id"]: f["dependencies"] for f in features}).static_order())
+    except CycleError:
+        errors.append("feature dependency cycle")
+    expected_ids = {f"S{n:02}" for n in range(1, 21)}
+    if {x["strategy_id"] for x in strategies} != expected_ids or len(strategies) != 20:
+        errors.append("strategy coverage must be exactly S01..S20")
+    fields = set(schema["$defs"]["StrategyInput"]["properties"])
+    for strategy in strategies:
+        name = strategy["strategy_id"]
+        if not set(strategy["required_feature_ids"] + strategy["optional_feature_ids"]) <= ids:
+            errors.append(f"{name}: undefined feature")
+        if not set(strategy["required_context"]) <= fields:
+            errors.append(f"{name}: undefined typed context")
+        for field in ("minimum_data", "algorithm_and_exit", "experiment", "acceptance", "oracle"):
+            if not strategy.get(field):
+                errors.append(f"{name}: missing {field}")
+        for task_field in ("evaluator_task", "experiment_task"):
+            if not (root / "docs/tasks" / (strategy[task_field] + ".md")).exists():
+                errors.append(f"{name}: missing task")
     return errors

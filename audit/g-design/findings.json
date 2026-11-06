@@ -212,10 +212,24 @@
       "T-105",
       "T-144"
     ],
-    "status": "OPEN",
+    "status": "RESOLVED_DOCUMENTARY",
     "resolution_test": "Fixture de cada estrategia calculado independientemente desde observaciones PIT, schema de input completo y consumidor explícito",
     "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
-    "runtime_verified": false
+    "runtime_verified": false,
+    "r2_resolution": {
+      "date": "2026-11-06",
+      "contracts": [
+        "docs/contracts/features-and-strategies.md",
+        "docs/contracts/feature-catalog.json",
+        "docs/contracts/strategy-specs.json"
+      ],
+      "counts": {
+        "features": 62,
+        "strategies_individually_specified": 20
+      },
+      "evidence": "audit/g-design-r2/evidence/gd11-check.json",
+      "limits": "Input definitions and synthetic rules/oracles; no evaluated product strategies, licensed sources or alpha. Runtime gates remain."
+    }
   },
   {
     "id": "GD-12",

@@ -4865,7 +4865,10 @@
               "WALLET",
               "L2",
               "NEWS",
-              "COVERAGE"
+              "COVERAGE",
+              "BAR",
+              "DERIVATIVE",
+              "SOCIAL"
             ]
           },
           "event_time": {
@@ -5344,6 +5347,52 @@
               "MISSING",
               "STALE"
             ]
+          },
+          "feature_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "definition_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "event_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "window_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "window_end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -5351,7 +5400,53 @@
           "value",
           "unit",
           "available_at",
-          "quality"
+          "quality",
+          "feature_id",
+          "definition_version",
+          "event_time",
+          "window_start",
+          "window_end",
+          "source_ids",
+          "expires_at",
+          "reason_code"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "quality": {
+                  "const": "VALID"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                  "maxLength": 40,
+                  "not": {
+                    "pattern": "^-0(\\.0+)?$"
+                  }
+                },
+                "reason_code": {
+                  "type": "null"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "value": {
+                  "type": "null"
+                },
+                "reason_code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                }
+              }
+            }
+          }
         ]
       },
       "FeatureSnapshot": {
@@ -5421,6 +5516,15 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991
+          },
+          "catalog_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "universe_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
           }
         },
         "required": [
@@ -5435,7 +5539,9 @@
           "quality",
           "hash",
           "instrument_id",
-          "instrument_revision"
+          "instrument_revision",
+          "catalog_version",
+          "universe_id"
         ]
       },
       "ArtifactFile": {
@@ -5840,41 +5946,75 @@
             "maximum": 9007199254740991
           },
           "probability_net_positive": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 1
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0(\\.[0-9]{1,18})?|1(\\.0{1,18})?)$"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "q05": {
-            "type": "string",
-            "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
-            "maxLength": 40,
-            "not": {
-              "pattern": "^-0(\\.0+)?$"
-            }
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^-0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "q50": {
-            "type": "string",
-            "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
-            "maxLength": 40,
-            "not": {
-              "pattern": "^-0(\\.0+)?$"
-            }
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^-0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "q95": {
-            "type": "string",
-            "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
-            "maxLength": 40,
-            "not": {
-              "pattern": "^-0(\\.0+)?$"
-            }
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^-0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "expected_net_return": {
-            "type": "string",
-            "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
-            "maxLength": 40,
-            "not": {
-              "pattern": "^-0(\\.0+)?$"
-            }
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^-0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "cost_basis": {
             "type": "string",
@@ -5899,6 +6039,152 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991
+          },
+          "prediction_kind": {
+            "type": "string",
+            "enum": [
+              "CLASSIFICATION",
+              "REGRESSION",
+              "RETURN_DISTRIBUTION"
+            ]
+          },
+          "model_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "model_state": {
+            "type": "string",
+            "enum": [
+              "REGISTERED",
+              "VALIDATED",
+              "SHADOW",
+              "PAPER_APPROVED",
+              "CHAMPION",
+              "RETIRED"
+            ]
+          },
+          "universe_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "target": {
+            "type": "string",
+            "enum": [
+              "NET_POSITIVE",
+              "NET_RETURN",
+              "FUNDING_RETURN"
+            ]
+          },
+          "calibration_method": {
+            "type": "string",
+            "enum": [
+              "NONE",
+              "PLATT",
+              "ISOTONIC",
+              "CONFORMAL"
+            ]
+          },
+          "calibration_state": {
+            "type": "string",
+            "enum": [
+              "NOT_APPLICABLE",
+              "UNCALIBRATED",
+              "VALID",
+              "EXPIRED"
+            ]
+          },
+          "calibration_artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "calibration_valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "raw_score": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^-0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "feature_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          },
+          "data_quality": {
+            "type": "string",
+            "enum": [
+              "VALID",
+              "PARTIAL",
+              "STALE"
+            ]
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          },
+          "rejection_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "baseline_improvement_lower": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^-0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -5918,7 +6204,203 @@
           "cost_basis",
           "uncertainty",
           "instrument_id",
-          "instrument_revision"
+          "instrument_revision",
+          "prediction_kind",
+          "model_version",
+          "model_state",
+          "universe_id",
+          "available_at",
+          "target",
+          "calibration_method",
+          "calibration_state",
+          "calibration_artifact_id",
+          "calibration_valid_until",
+          "raw_score",
+          "feature_ids",
+          "data_quality",
+          "evidence_ids",
+          "rejection_codes",
+          "baseline_improvement_lower"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "prediction_kind": {
+                  "const": "CLASSIFICATION"
+                },
+                "calibration_state": {
+                  "const": "VALID"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "probability_net_positive": {
+                  "type": "string",
+                  "pattern": "^(0(\\.[0-9]{1,18})?|1(\\.0{1,18})?)$"
+                },
+                "calibration_artifact_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+                },
+                "calibration_valid_until": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "calibration_method": {
+                  "type": "string",
+                  "enum": [
+                    "PLATT",
+                    "ISOTONIC"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "calibration_state": {
+                  "enum": [
+                    "UNCALIBRATED",
+                    "EXPIRED",
+                    "NOT_APPLICABLE"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "probability_net_positive": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "prediction_kind": {
+                  "const": "REGRESSION"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "probability_net_positive": {
+                  "type": "null"
+                },
+                "expected_net_return": {
+                  "type": "string",
+                  "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                  "maxLength": 40,
+                  "not": {
+                    "pattern": "^-0(\\.0+)?$"
+                  }
+                },
+                "q05": {
+                  "type": "null"
+                },
+                "q50": {
+                  "type": "null"
+                },
+                "q95": {
+                  "type": "null"
+                },
+                "target": {
+                  "type": "string",
+                  "enum": [
+                    "NET_RETURN",
+                    "FUNDING_RETURN"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "prediction_kind": {
+                  "const": "RETURN_DISTRIBUTION"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "q05": {
+                  "type": "string",
+                  "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                  "maxLength": 40,
+                  "not": {
+                    "pattern": "^-0(\\.0+)?$"
+                  }
+                },
+                "q50": {
+                  "type": "string",
+                  "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                  "maxLength": 40,
+                  "not": {
+                    "pattern": "^-0(\\.0+)?$"
+                  }
+                },
+                "q95": {
+                  "type": "string",
+                  "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                  "maxLength": 40,
+                  "not": {
+                    "pattern": "^-0(\\.0+)?$"
+                  }
+                },
+                "expected_net_return": {
+                  "type": "string",
+                  "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                  "maxLength": 40,
+                  "not": {
+                    "pattern": "^-0(\\.0+)?$"
+                  }
+                },
+                "probability_net_positive": {
+                  "type": "null"
+                },
+                "target": {
+                  "type": "string",
+                  "enum": [
+                    "NET_RETURN",
+                    "FUNDING_RETURN"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "prediction_kind": {
+                  "const": "CLASSIFICATION"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "const": "NET_POSITIVE"
+                },
+                "q05": {
+                  "type": "null"
+                },
+                "q50": {
+                  "type": "null"
+                },
+                "q95": {
+                  "type": "null"
+                },
+                "expected_net_return": {
+                  "type": "null"
+                }
+              }
+            }
+          }
         ]
       },
       "ModelArtifact": {
@@ -7382,6 +7864,31 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991
+          },
+          "legs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StrategyLegProposal"
+            },
+            "minItems": 0,
+            "maxItems": 10
+          },
+          "next_memory": {
+            "$ref": "#/components/schemas/StrategyMemory"
+          },
+          "selected_strategy_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reduce_only": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -7401,7 +7908,11 @@
           "feature_snapshot_id",
           "reason_codes",
           "instrument_id",
-          "instrument_revision"
+          "instrument_revision",
+          "legs",
+          "next_memory",
+          "selected_strategy_id",
+          "reduce_only"
         ]
       },
       "Decision": {
@@ -7488,6 +7999,27 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991
+          },
+          "prediction_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "cost_estimate_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "universe_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "input_hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
           }
         },
         "required": [
@@ -7503,7 +8035,11 @@
           "model_ids",
           "risk_assessment_id",
           "instrument_id",
-          "instrument_revision"
+          "instrument_revision",
+          "prediction_ids",
+          "cost_estimate_id",
+          "universe_id",
+          "input_hash"
         ]
       },
       "RiskAssessment": {
@@ -11632,6 +12168,18 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991
+          },
+          "trader_address": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -11644,7 +12192,8 @@
           "aggressor",
           "fee_atoms",
           "fee_asset_id",
-          "slot"
+          "slot",
+          "trader_address"
         ]
       },
       "Price": {
@@ -11840,11 +12389,19 @@
             "not": {
               "pattern": "^-0(\\.0+)?$"
             }
+          },
+          "quantity_unit": {
+            "type": "string",
+            "enum": [
+              "BASE_MAJOR",
+              "CONTRACT_LOT"
+            ]
           }
         },
         "required": [
           "price",
-          "quantity"
+          "quantity",
+          "quantity_unit"
         ]
       },
       "L2Snapshot": {
@@ -11897,6 +12454,19 @@
           },
           "valid": {
             "type": "boolean"
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "event_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "instrument_revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -11906,7 +12476,10 @@
           "bids",
           "asks",
           "checksum",
-          "valid"
+          "valid",
+          "available_at",
+          "event_time",
+          "instrument_revision"
         ]
       },
       "WalletTransaction": {
@@ -12077,12 +12650,191 @@
           },
           "config": {
             "$ref": "#/components/schemas/StrategyConfig"
+          },
+          "instrument": {
+            "$ref": "#/components/schemas/Instrument"
+          },
+          "decision_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "predictions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Prediction"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "cost": {
+            "$ref": "#/components/schemas/CostEstimate"
+          },
+          "model_artifacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModelArtifact"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeatureSnapshot"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "bars": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Bar"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "books": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/L2Snapshot"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "news": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NewsAssessment"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "social": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SocialObservation"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "wallet_flows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WalletFlowSummary"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "trader_profiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TraderProfile"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "derivatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DerivativeObservation"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "leg_instruments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Instrument"
+            },
+            "minItems": 0,
+            "maxItems": 4
+          },
+          "leg_quotes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Quote"
+            },
+            "minItems": 0,
+            "maxItems": 4
+          },
+          "margin": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MarginSnapshot"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "regime": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RegimeArtifact"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "utilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StrategyUtility"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "memory": {
+            "$ref": "#/components/schemas/StrategyMemory"
+          },
+          "assessment": {
+            "$ref": "#/components/schemas/TokenAssessment"
+          },
+          "policy": {
+            "$ref": "#/components/schemas/DecisionPolicy"
+          },
+          "quote": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Quote"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "exit_context": {
+            "$ref": "#/components/schemas/ExitContext"
           }
         },
         "required": [
           "snapshot",
           "portfolio",
-          "config"
+          "config",
+          "instrument",
+          "decision_at",
+          "predictions",
+          "cost",
+          "model_artifacts",
+          "history",
+          "bars",
+          "books",
+          "news",
+          "social",
+          "wallet_flows",
+          "trader_profiles",
+          "derivatives",
+          "leg_instruments",
+          "leg_quotes",
+          "margin",
+          "regime",
+          "utilities",
+          "memory",
+          "assessment",
+          "policy",
+          "quote",
+          "exit_context"
         ]
       },
       "DecisionContext": {
@@ -12109,6 +12861,53 @@
           "policy_hash": {
             "type": "string",
             "pattern": "^[a-f0-9]{64}$"
+          },
+          "instrument": {
+            "$ref": "#/components/schemas/Instrument"
+          },
+          "decision_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "predictions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Prediction"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "cost": {
+            "$ref": "#/components/schemas/CostEstimate"
+          },
+          "model_artifacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModelArtifact"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "policy": {
+            "$ref": "#/components/schemas/DecisionPolicy"
+          },
+          "quote": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Quote"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "recent_decisions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Decision"
+            },
+            "minItems": 0,
+            "maxItems": 1000
           }
         },
         "required": [
@@ -12116,7 +12915,15 @@
           "signals",
           "assessment",
           "portfolio",
-          "policy_hash"
+          "policy_hash",
+          "instrument",
+          "decision_at",
+          "predictions",
+          "cost",
+          "model_artifacts",
+          "policy",
+          "quote",
+          "recent_decisions"
         ]
       },
       "SigningRequest": {
@@ -15148,6 +15955,1103 @@
               }
             }
           }
+        ]
+      },
+      "Bar": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "instrument_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "instrument_revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "resolution_s": {
+            "type": "integer",
+            "enum": [
+              60,
+              300
+            ]
+          },
+          "open": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^0(\\.0+)?$"
+            }
+          },
+          "high": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^0(\\.0+)?$"
+            }
+          },
+          "low": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^0(\\.0+)?$"
+            }
+          },
+          "close": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^0(\\.0+)?$"
+            }
+          },
+          "base_volume_atoms": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,77})$"
+          },
+          "quote_volume_atoms": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,77})$"
+          },
+          "trade_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "coverage": {
+            "type": "string",
+            "enum": [
+              "COMPLETE",
+              "INCOMPLETE"
+            ]
+          },
+          "observation_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          }
+        },
+        "required": [
+          "instrument_id",
+          "instrument_revision",
+          "start_at",
+          "end_at",
+          "available_at",
+          "resolution_s",
+          "open",
+          "high",
+          "low",
+          "close",
+          "base_volume_atoms",
+          "quote_volume_atoms",
+          "trade_count",
+          "coverage",
+          "observation_ids"
+        ]
+      },
+      "DerivativeObservation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "instrument_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "instrument_revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "event_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "mark_price": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^0(\\.0+)?$"
+            }
+          },
+          "index_price": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^0(\\.0+)?$"
+            }
+          },
+          "funding_rate": {
+            "type": "string",
+            "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^-0(\\.0+)?$"
+            }
+          },
+          "funding_interval_s": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "next_funding_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "open_interest_lots": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,77})$"
+          },
+          "liquidation_lots": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,77})$"
+          },
+          "liquidation_window_s": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "coverage": {
+            "type": "string",
+            "enum": [
+              "COMPLETE",
+              "INCOMPLETE"
+            ]
+          },
+          "source_grant_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          }
+        },
+        "required": [
+          "instrument_id",
+          "instrument_revision",
+          "event_time",
+          "available_at",
+          "mark_price",
+          "index_price",
+          "funding_rate",
+          "funding_interval_s",
+          "next_funding_at",
+          "open_interest_lots",
+          "liquidation_lots",
+          "liquidation_window_s",
+          "coverage",
+          "source_grant_id",
+          "evidence_ids"
+        ]
+      },
+      "SocialObservation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "message_hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "author_hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "origin_cluster_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "event_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source_grant_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "sentiment_score": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^-0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sentiment_model_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coverage": {
+            "type": "string",
+            "enum": [
+              "COMPLETE",
+              "INCOMPLETE"
+            ]
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          }
+        },
+        "required": [
+          "asset_id",
+          "message_hash",
+          "author_hash",
+          "origin_cluster_id",
+          "event_time",
+          "available_at",
+          "source_grant_id",
+          "sentiment_score",
+          "sentiment_model_id",
+          "coverage",
+          "evidence_ids"
+        ]
+      },
+      "NewsAssessment": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "event_class": {
+            "type": "string",
+            "enum": [
+              "LISTING_CONFIRMED",
+              "PROTOCOL_RELEASE",
+              "SECURITY_INCIDENT",
+              "REGULATORY_EVENT",
+              "OTHER"
+            ]
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "POSITIVE",
+              "NEGATIVE",
+              "NEUTRAL",
+              "UNKNOWN"
+            ]
+          },
+          "primary_verified": {
+            "type": "boolean"
+          },
+          "independent_origin_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "entity_resolved": {
+            "type": "boolean"
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "retracted": {
+            "type": "boolean"
+          },
+          "source_grant_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          }
+        },
+        "required": [
+          "asset_id",
+          "event_class",
+          "direction",
+          "primary_verified",
+          "independent_origin_ids",
+          "entity_resolved",
+          "available_at",
+          "expires_at",
+          "retracted",
+          "source_grant_ids",
+          "evidence_ids"
+        ]
+      },
+      "WalletFlowSummary": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "wallet_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "cluster_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "window_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "window_end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "net_base_atoms": {
+            "type": "string",
+            "pattern": "^(0|-?[1-9][0-9]{0,77})$"
+          },
+          "buy_quote_atoms": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,77})$"
+          },
+          "sell_quote_atoms": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,77})$"
+          },
+          "leader_buy_price": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "profile_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "selection_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source_observation_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          },
+          "coverage": {
+            "type": "string",
+            "pattern": "^(0(\\.[0-9]{1,18})?|1(\\.0{1,18})?)$"
+          }
+        },
+        "required": [
+          "asset_id",
+          "wallet_id",
+          "cluster_id",
+          "window_start",
+          "window_end",
+          "available_at",
+          "net_base_atoms",
+          "buy_quote_atoms",
+          "sell_quote_atoms",
+          "leader_buy_price",
+          "profile_id",
+          "selection_at",
+          "source_observation_ids",
+          "coverage"
+        ]
+      },
+      "CostEstimate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "instrument_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "size": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "roundtrip_bps": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^-0(\\.0+)?$"
+            }
+          },
+          "slippage_bps": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^-0(\\.0+)?$"
+            }
+          },
+          "network_fee": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "rent_cap": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "delay_p99_ms": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "method_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          }
+        },
+        "required": [
+          "instrument_id",
+          "size",
+          "roundtrip_bps",
+          "slippage_bps",
+          "network_fee",
+          "rent_cap",
+          "delay_p99_ms",
+          "available_at",
+          "expires_at",
+          "method_version",
+          "evidence_ids"
+        ]
+      },
+      "RegimeArtifact": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "train_end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "volatility_q25": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^-0(\\.0+)?$"
+            }
+          },
+          "volatility_q75": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^-0(\\.0+)?$"
+            }
+          },
+          "trend_threshold": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^-0(\\.0+)?$"
+            }
+          },
+          "feature_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          },
+          "dataset_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          }
+        },
+        "required": [
+          "id",
+          "train_end",
+          "available_at",
+          "volatility_q25",
+          "volatility_q75",
+          "trend_threshold",
+          "feature_ids",
+          "dataset_id",
+          "evidence_ids"
+        ]
+      },
+      "StrategyUtility": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "strategy_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "strategy_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "regime_code": {
+            "type": "string",
+            "enum": [
+              "0",
+              "1",
+              "2"
+            ]
+          },
+          "lower_net_return": {
+            "type": "string",
+            "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^-0(\\.0+)?$"
+            }
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "train_end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "oof_manifest_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "approved": {
+            "type": "boolean"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          }
+        },
+        "required": [
+          "strategy_id",
+          "strategy_version",
+          "regime_code",
+          "lower_net_return",
+          "available_at",
+          "train_end",
+          "oof_manifest_id",
+          "approved",
+          "evidence_ids"
+        ]
+      },
+      "StrategyMemory": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "strategy_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "position_opened_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "entry_price": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "peak_price": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "breakout_level": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "breakout_low": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "breakout_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "grid_center": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "previous_regime": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "0",
+                  "1",
+                  "2"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "regime_confirmations": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "pending_order_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "strategy_id",
+          "version",
+          "position_opened_at",
+          "entry_price",
+          "peak_price",
+          "breakout_level",
+          "breakout_low",
+          "breakout_at",
+          "grid_center",
+          "previous_regime",
+          "regime_confirmations",
+          "pending_order_ids",
+          "available_at"
+        ]
+      },
+      "StrategyLegProposal": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "instrument_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "instrument_revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "BUY",
+              "SELL"
+            ]
+          },
+          "quantity_ratio_numerator": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]{0,77}$"
+          },
+          "quantity_ratio_denominator": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]{0,77}$"
+          },
+          "limit_price": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^0(\\.0+)?$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "post_only": {
+            "type": "boolean"
+          },
+          "reduce_only": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "instrument_revision",
+          "side",
+          "quantity_ratio_numerator",
+          "quantity_ratio_denominator",
+          "limit_price",
+          "post_only",
+          "reduce_only"
+        ]
+      },
+      "DecisionPolicy": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "universe_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "horizon_s": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "min_lower_return": {
+            "type": "string",
+            "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^-0(\\.0+)?$"
+            }
+          },
+          "min_baseline_improvement": {
+            "type": "string",
+            "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^-0(\\.0+)?$"
+            }
+          },
+          "max_spread_bps": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^-0(\\.0+)?$"
+            }
+          },
+          "approved_strategy_versions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "approved_model_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 0,
+            "maxItems": 1000
+          },
+          "stressed_loss_fraction": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+            "maxLength": 40,
+            "not": {
+              "pattern": "^-0(\\.0+)?$"
+            }
+          },
+          "window_s": {
+            "const": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "hash",
+          "universe_id",
+          "horizon_s",
+          "min_lower_return",
+          "min_baseline_improvement",
+          "max_spread_bps",
+          "approved_strategy_versions",
+          "approved_model_ids",
+          "stressed_loss_fraction",
+          "window_s"
+        ]
+      },
+      "ExitContext": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "position_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "available_to_sell": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "pending_close": {
+            "type": "boolean"
+          },
+          "critical_risk": {
+            "type": "boolean"
+          },
+          "reversal_received": {
+            "type": "boolean"
+          },
+          "stop_loss_bps": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "inverse_quote": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Quote"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "available_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000
+          }
+        },
+        "required": [
+          "position_id",
+          "available_to_sell",
+          "pending_close",
+          "critical_risk",
+          "reversal_received",
+          "stop_loss_bps",
+          "inverse_quote",
+          "available_at",
+          "evidence_ids"
         ]
       }
     }

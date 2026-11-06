@@ -44,3 +44,7 @@ no fabricar una Prediction operable sin distribución/expectativa completas. Fal
 labels maduros/cobertura suficiente devuelve INCONCLUSIVE. Estos protocolos son políticas
 de laboratorio sin demostración empírica; no cambian los límites de riesgo ni la familia
 máxima de ensayos preregistrados.
+
+## Entradas y temporalidad R2
+
+[Features y estrategias](contracts/features-and-strategies.md) fija fuente, unidad, ventana, disponibilidad y estimando. El catálogo tipado `contracts/feature-catalog.json` es normativo para producir/consumir features; `contracts/strategy-specs.json` contiene las 20 evaluaciones. No reemplazar datos faltantes por valores de conveniencia.
