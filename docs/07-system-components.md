@@ -41,3 +41,7 @@ Data caído degrada calidad y provoca abstención; AI caído sólo suspende rese
 LedgerPostRequest, LedgerPostResult, ReconciliationRequest y catálogo Instrument. Son normativos
 para depósitos/rent/fees/reservas/reversos y liquidación; LedgerWriter ya no recibe Fill aislado.
 Los metadatos de Instrument y los escenarios son requisitos de implementación, no servicios activos.
+
+## Puertos e historiales R2
+
+[Contratos auxiliares](contracts/auxiliary-ports.md) y `contracts/ports.json` fijan métodos, contexto, errores, deadline, cancelación y recuperación. Las consultas históricas tienen schemas por tipo, corte de disponibilidad, snapshot estable y cobertura explícita. No interpretar páginas vacías como cobertura garantizada.

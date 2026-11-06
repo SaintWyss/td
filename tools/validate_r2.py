@@ -111,6 +111,40 @@ def validate_r2(root: Path, schema: dict) -> list[str]:
         errors.append(f"financial scenarios: operation coverage {required - covered}")
     if (root / "docs/contracts/feature-catalog.json").exists():
         errors.extend(feature_catalog_errors(root, schema))
+    ports = json.loads((root / "docs/contracts/ports.json").read_text())
+    if (root / "docs/contracts/auxiliary-ports.md").exists():
+        errors.extend(port_contract_errors(ports, schema))
+    return errors
+
+
+def port_contract_errors(ports: list[dict], schema: dict) -> list[str]:
+    errors = []
+    seen = set()
+    for port in ports:
+        key = (port["name"], port["method"])
+        if key in seen:
+            errors.append(f"duplicate port method {key}")
+        seen.add(key)
+        for field in ("context_schema", "error_schema", "input_schema", "output_schema"):
+            if port.get(field) not in schema["$defs"]:
+                errors.append(f"{key}: undefined {field}")
+        for field in (
+            "idempotence",
+            "transaction",
+            "cancellation",
+            "retry_policy",
+            "unknown",
+            "consumer",
+            "adapter",
+            "contract_tests",
+        ):
+            if not port.get(field):
+                errors.append(f"{key}: missing {field}")
+        if port.get("timeout_ms", 0) <= 0:
+            errors.append(f"{key}: unbounded timeout")
+        if port["effect"] in {"EXTERNAL_EFFECT", "SECRET_BOUNDARY"}:
+            if port.get("retry_policy", {}).get("max_attempts") != 1:
+                errors.append(f"{key}: blind external effect retry")
     return errors
 
 

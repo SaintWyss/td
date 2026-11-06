@@ -246,10 +246,23 @@
       "T-068",
       "T-069"
     ],
-    "status": "OPEN",
+    "status": "RESOLVED_DOCUMENTARY",
     "resolution_test": "Todos los puertos citados con métodos/errores/contexto y tareas productoras/consumidoras, revisión del DAG",
     "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
-    "runtime_verified": false
+    "runtime_verified": false,
+    "r2_resolution": {
+      "date": "2026-11-06",
+      "contracts": [
+        "docs/contracts/auxiliary-ports.md",
+        "docs/contracts/ports.json"
+      ],
+      "counts": {
+        "port_methods": 50,
+        "typed_history_readers": 9
+      },
+      "evidence": "audit/g-design-r2/evidence/gd12-check.json",
+      "limits": "Interface, recovery and pagination specification only; runtime/adapters unimplemented."
+    }
   },
   {
     "id": "GD-13",

@@ -12573,6 +12573,2733 @@
         "available_at",
         "evidence_ids"
       ]
+    },
+    "PortContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "actor_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "correlation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "deadline_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "idempotency_key": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uow_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cancel_token_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "actor_id",
+        "correlation_id",
+        "deadline_at",
+        "idempotency_key",
+        "uow_id",
+        "cancel_token_id"
+      ]
+    },
+    "PortFailure": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "INVALID_ARGUMENT",
+            "NOT_FOUND",
+            "PERMISSION_DENIED",
+            "REVOKED",
+            "STALE_REVISION",
+            "IDEMPOTENCY_CONFLICT",
+            "DEADLINE_EXCEEDED",
+            "CANCELLED",
+            "UNKNOWN_OUTCOME",
+            "UNAVAILABLE",
+            "RATE_LIMITED",
+            "BUDGET_DENIED",
+            "HASH_MISMATCH",
+            "INCOMPLETE_COVERAGE",
+            "CURSOR_MISMATCH",
+            "SNAPSHOT_EXPIRED",
+            "LEASE_LOST",
+            "SCHEMA_DRIFT",
+            "UNSUPPORTED_CAPABILITY",
+            "CORRUPT_EVIDENCE"
+          ]
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "retry_after_ms": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "effect_state": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "COMMITTED",
+            "UNKNOWN"
+          ]
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "safe_message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        }
+      },
+      "required": [
+        "code",
+        "retryable",
+        "retry_after_ms",
+        "effect_state",
+        "request_id",
+        "evidence_ids",
+        "safe_message"
+      ]
+    },
+    "ClockRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "clock_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "clock_id"
+      ]
+    },
+    "ClockReading": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "monotonic_ns": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,77})$"
+        },
+        "epoch_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "utc",
+        "monotonic_ns",
+        "epoch_id"
+      ]
+    },
+    "IdRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "enum": [
+            "observation",
+            "event",
+            "operation",
+            "job",
+            "audit",
+            "decision",
+            "signal",
+            "reservation",
+            "attempt",
+            "artifact",
+            "transaction"
+          ]
+        },
+        "causal_key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "RUNTIME",
+            "REPLAY"
+          ]
+        }
+      },
+      "required": [
+        "namespace",
+        "causal_key",
+        "mode"
+      ]
+    },
+    "IdResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "RevisionCheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "entity_id",
+        "expected_revision"
+      ]
+    },
+    "UowBegin": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "isolation": {
+          "const": "SERIALIZABLE"
+        },
+        "lock_entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 32
+        },
+        "revision_checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RevisionCheck"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "deadline_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "isolation",
+        "lock_entity_ids",
+        "revision_checks",
+        "deadline_at"
+      ]
+    },
+    "UowHandle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "ACTIVE",
+            "COMMITTED",
+            "ROLLED_BACK",
+            "UNKNOWN"
+          ]
+        },
+        "commit_token": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "outbox_event_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "id",
+        "state",
+        "commit_token",
+        "outbox_event_ids"
+      ]
+    },
+    "UowReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "JobEnqueue": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "job_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "EXPERIMENT",
+            "RESEARCH",
+            "EXPORT",
+            "TRAIN",
+            "RECONCILE",
+            "BACKFILL",
+            "PAPER"
+          ]
+        },
+        "input_manifest_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "input_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "config_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "not_before": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deadline_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        }
+      },
+      "required": [
+        "job_id",
+        "kind",
+        "input_manifest_id",
+        "input_hash",
+        "config_hash",
+        "seed",
+        "not_before",
+        "deadline_at",
+        "max_attempts"
+      ]
+    },
+    "JobClaim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "worker_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "allowed_kinds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "EXPERIMENT",
+              "RESEARCH",
+              "EXPORT",
+              "TRAIN",
+              "RECONCILE",
+              "BACKFILL",
+              "PAPER"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "lease_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        }
+      },
+      "required": [
+        "worker_id",
+        "allowed_kinds",
+        "lease_seconds"
+      ]
+    },
+    "JobLeaseCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "job_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "worker_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "fencing_token": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "HEARTBEAT",
+            "SUCCEED",
+            "FAIL",
+            "CANCEL_REQUEST"
+          ]
+        },
+        "result_artifact_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "error_code": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "job_id",
+        "worker_id",
+        "fencing_token",
+        "expected_revision",
+        "action",
+        "result_artifact_id",
+        "error_code"
+      ]
+    },
+    "JobClaimResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "job": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Job"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "job"
+      ]
+    },
+    "AuditAppend": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "actor_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "target_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "ACCEPTED",
+            "DENIED",
+            "FAILED"
+          ]
+        },
+        "correlation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "record_id",
+        "actor_id",
+        "action",
+        "target_id",
+        "result",
+        "correlation_id"
+      ]
+    },
+    "EvidenceRead": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "expected_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "purpose": {
+          "type": "string",
+          "enum": [
+            "AUDIT",
+            "REPLAY",
+            "TRAIN",
+            "ANALYTICS",
+            "EXPORT"
+          ]
+        },
+        "max_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 104857600
+        }
+      },
+      "required": [
+        "artifact_id",
+        "expected_sha256",
+        "purpose",
+        "max_bytes"
+      ]
+    },
+    "EvidenceResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "manifest": {
+          "$ref": "#/$defs/ArtifactFile"
+        },
+        "local_handle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "verified_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_grant_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "manifest",
+        "local_handle",
+        "verified_sha256",
+        "source_grant_ids",
+        "available_at"
+      ]
+    },
+    "AuthoritativeRead": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "expected_revision": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entity_id",
+        "expected_revision"
+      ]
+    },
+    "OperationLookup": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "portfolio_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE"
+          ]
+        },
+        "idempotency_key": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "portfolio_id",
+        "mode",
+        "idempotency_key"
+      ]
+    },
+    "GrantRead": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "purpose": {
+          "type": "string",
+          "enum": [
+            "OBSERVE",
+            "STORE",
+            "DERIVE",
+            "TRAIN",
+            "EXPORT"
+          ]
+        },
+        "at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "source_id",
+        "purpose",
+        "at"
+      ]
+    },
+    "BudgetSettlement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cost_record_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "SETTLED",
+            "UNCERTAIN",
+            "RELEASED"
+          ]
+        },
+        "actual_usd": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "cost_record_id",
+        "expected_revision",
+        "state",
+        "actual_usd",
+        "evidence_ids"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "SETTLED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "actual_usd": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^-0(\\.0+)?$"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "UNCERTAIN"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "actual_usd": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "TemporalHistoryQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "event_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE",
+            "RESEARCH"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_retracted": {
+          "type": "boolean"
+        },
+        "snapshot_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entity_ids",
+        "source_ids",
+        "event_from",
+        "event_until",
+        "as_of",
+        "mode",
+        "limit",
+        "cursor",
+        "include_retracted",
+        "snapshot_id"
+      ]
+    },
+    "TemporalHistoryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "event_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retracted": {
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "#/$defs/Bar"
+        }
+      },
+      "required": [
+        "record_id",
+        "revision",
+        "source_id",
+        "entity_id",
+        "event_time",
+        "available_at",
+        "retracted",
+        "value"
+      ]
+    },
+    "TemporalHistoryPage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TemporalHistoryEntry"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "snapshot_expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coverage": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "coverage_intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CoverageInterval"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "missing_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_id",
+        "snapshot_expires_at",
+        "as_of",
+        "coverage",
+        "coverage_intervals",
+        "missing_source_ids"
+      ]
+    },
+    "ObservationHistoryQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "event_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE",
+            "RESEARCH"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_retracted": {
+          "type": "boolean"
+        },
+        "snapshot_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entity_ids",
+        "source_ids",
+        "event_from",
+        "event_until",
+        "as_of",
+        "mode",
+        "limit",
+        "cursor",
+        "include_retracted",
+        "snapshot_id"
+      ]
+    },
+    "ObservationHistoryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "event_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retracted": {
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "#/$defs/Observation"
+        }
+      },
+      "required": [
+        "record_id",
+        "revision",
+        "source_id",
+        "entity_id",
+        "event_time",
+        "available_at",
+        "retracted",
+        "value"
+      ]
+    },
+    "ObservationHistoryPage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObservationHistoryEntry"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "snapshot_expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coverage": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "coverage_intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CoverageInterval"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "missing_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_id",
+        "snapshot_expires_at",
+        "as_of",
+        "coverage",
+        "coverage_intervals",
+        "missing_source_ids"
+      ]
+    },
+    "TradeHistoryQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "event_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE",
+            "RESEARCH"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_retracted": {
+          "type": "boolean"
+        },
+        "snapshot_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entity_ids",
+        "source_ids",
+        "event_from",
+        "event_until",
+        "as_of",
+        "mode",
+        "limit",
+        "cursor",
+        "include_retracted",
+        "snapshot_id"
+      ]
+    },
+    "TradeHistoryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "event_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retracted": {
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "#/$defs/Trade"
+        }
+      },
+      "required": [
+        "record_id",
+        "revision",
+        "source_id",
+        "entity_id",
+        "event_time",
+        "available_at",
+        "retracted",
+        "value"
+      ]
+    },
+    "TradeHistoryPage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TradeHistoryEntry"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "snapshot_expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coverage": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "coverage_intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CoverageInterval"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "missing_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_id",
+        "snapshot_expires_at",
+        "as_of",
+        "coverage",
+        "coverage_intervals",
+        "missing_source_ids"
+      ]
+    },
+    "WalletHistoryQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "event_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE",
+            "RESEARCH"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_retracted": {
+          "type": "boolean"
+        },
+        "snapshot_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entity_ids",
+        "source_ids",
+        "event_from",
+        "event_until",
+        "as_of",
+        "mode",
+        "limit",
+        "cursor",
+        "include_retracted",
+        "snapshot_id"
+      ]
+    },
+    "WalletHistoryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "event_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retracted": {
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "#/$defs/WalletTransaction"
+        }
+      },
+      "required": [
+        "record_id",
+        "revision",
+        "source_id",
+        "entity_id",
+        "event_time",
+        "available_at",
+        "retracted",
+        "value"
+      ]
+    },
+    "WalletHistoryPage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/WalletHistoryEntry"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "snapshot_expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coverage": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "coverage_intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CoverageInterval"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "missing_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_id",
+        "snapshot_expires_at",
+        "as_of",
+        "coverage",
+        "coverage_intervals",
+        "missing_source_ids"
+      ]
+    },
+    "FeatureHistoryQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "event_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE",
+            "RESEARCH"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_retracted": {
+          "type": "boolean"
+        },
+        "snapshot_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entity_ids",
+        "source_ids",
+        "event_from",
+        "event_until",
+        "as_of",
+        "mode",
+        "limit",
+        "cursor",
+        "include_retracted",
+        "snapshot_id"
+      ]
+    },
+    "FeatureHistoryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "event_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retracted": {
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "#/$defs/FeatureSnapshot"
+        }
+      },
+      "required": [
+        "record_id",
+        "revision",
+        "source_id",
+        "entity_id",
+        "event_time",
+        "available_at",
+        "retracted",
+        "value"
+      ]
+    },
+    "FeatureHistoryPage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FeatureHistoryEntry"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "snapshot_expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coverage": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "coverage_intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CoverageInterval"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "missing_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_id",
+        "snapshot_expires_at",
+        "as_of",
+        "coverage",
+        "coverage_intervals",
+        "missing_source_ids"
+      ]
+    },
+    "PredictionHistoryQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "event_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE",
+            "RESEARCH"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_retracted": {
+          "type": "boolean"
+        },
+        "snapshot_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entity_ids",
+        "source_ids",
+        "event_from",
+        "event_until",
+        "as_of",
+        "mode",
+        "limit",
+        "cursor",
+        "include_retracted",
+        "snapshot_id"
+      ]
+    },
+    "PredictionHistoryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "event_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retracted": {
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "#/$defs/Prediction"
+        }
+      },
+      "required": [
+        "record_id",
+        "revision",
+        "source_id",
+        "entity_id",
+        "event_time",
+        "available_at",
+        "retracted",
+        "value"
+      ]
+    },
+    "PredictionHistoryPage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PredictionHistoryEntry"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "snapshot_expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coverage": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "coverage_intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CoverageInterval"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "missing_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_id",
+        "snapshot_expires_at",
+        "as_of",
+        "coverage",
+        "coverage_intervals",
+        "missing_source_ids"
+      ]
+    },
+    "DecisionHistoryQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "event_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE",
+            "RESEARCH"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_retracted": {
+          "type": "boolean"
+        },
+        "snapshot_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entity_ids",
+        "source_ids",
+        "event_from",
+        "event_until",
+        "as_of",
+        "mode",
+        "limit",
+        "cursor",
+        "include_retracted",
+        "snapshot_id"
+      ]
+    },
+    "DecisionHistoryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "event_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retracted": {
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "#/$defs/Decision"
+        }
+      },
+      "required": [
+        "record_id",
+        "revision",
+        "source_id",
+        "entity_id",
+        "event_time",
+        "available_at",
+        "retracted",
+        "value"
+      ]
+    },
+    "DecisionHistoryPage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DecisionHistoryEntry"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "snapshot_expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coverage": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "coverage_intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CoverageInterval"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "missing_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_id",
+        "snapshot_expires_at",
+        "as_of",
+        "coverage",
+        "coverage_intervals",
+        "missing_source_ids"
+      ]
+    },
+    "EvidenceHistoryQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "event_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE",
+            "RESEARCH"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_retracted": {
+          "type": "boolean"
+        },
+        "snapshot_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entity_ids",
+        "source_ids",
+        "event_from",
+        "event_until",
+        "as_of",
+        "mode",
+        "limit",
+        "cursor",
+        "include_retracted",
+        "snapshot_id"
+      ]
+    },
+    "EvidenceHistoryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "event_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retracted": {
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "#/$defs/ArtifactFile"
+        }
+      },
+      "required": [
+        "record_id",
+        "revision",
+        "source_id",
+        "entity_id",
+        "event_time",
+        "available_at",
+        "retracted",
+        "value"
+      ]
+    },
+    "EvidenceHistoryPage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EvidenceHistoryEntry"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "snapshot_expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coverage": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "coverage_intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CoverageInterval"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "missing_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_id",
+        "snapshot_expires_at",
+        "as_of",
+        "coverage",
+        "coverage_intervals",
+        "missing_source_ids"
+      ]
+    },
+    "JournalHistoryQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "event_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE",
+            "RESEARCH"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "include_retracted": {
+          "type": "boolean"
+        },
+        "snapshot_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entity_ids",
+        "source_ids",
+        "event_from",
+        "event_until",
+        "as_of",
+        "mode",
+        "limit",
+        "cursor",
+        "include_retracted",
+        "snapshot_id"
+      ]
+    },
+    "JournalHistoryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "event_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retracted": {
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "#/$defs/JournalEntry"
+        }
+      },
+      "required": [
+        "record_id",
+        "revision",
+        "source_id",
+        "entity_id",
+        "event_time",
+        "available_at",
+        "retracted",
+        "value"
+      ]
+    },
+    "JournalHistoryPage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/JournalHistoryEntry"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "snapshot_expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coverage": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "coverage_intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CoverageInterval"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "missing_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_id",
+        "snapshot_expires_at",
+        "as_of",
+        "coverage",
+        "coverage_intervals",
+        "missing_source_ids"
+      ]
+    },
+    "InstrumentRead": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "instrument_id",
+        "revision",
+        "as_of"
+      ]
     }
   }
 }

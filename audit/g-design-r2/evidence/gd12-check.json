@@ -1,0 +1,13 @@
+{
+  "command": [
+    "make",
+    "check"
+  ],
+  "cwd": "/workspace/scratch/5cb089c0fa23/td",
+  "timestamp": "2026-11-06T13:39:55.300697+00:00",
+  "exit_code": 0,
+  "status": "PASS",
+  "output": "uv run --frozen python tools/validate_spec.py --report audit/latest.json\n{\n  \"generated_at\": \"2026-11-06T13:39:41.788615+00:00\",\n  \"scope\": \"offline structural specification validation\",\n  \"status\": \"PASS\",\n  \"counts\": {\n    \"json_files\": 27,\n    \"domain_definitions\": 193,\n    \"positive_examples\": 193,\n    \"negative_examples\": 193,\n    \"financial_oracles\": 20,\n    \"api_paths\": 31,\n    \"tasks\": 144,\n    \"requirements\": 144,\n    \"components\": 16,\n    \"event_types\": 14,\n    \"local_link_targets\": 230\n  },\n  \"errors\": [],\n  \"not_verified\": [\n    \"runtime enforcement of semantic rules; cross-record financial and temporal invariants\",\n    \"runtime product, providers, permissions, data quality or profitability\",\n    \"Mermaid rendering and Markdown anchors\",\n    \"external URL freshness, licenses and legal requirements\",\n    \"full editorial consistency of prose and task implementation paths\"\n  ]\n}\nuv run --frozen ruff check backend tools tests\nAll checks passed!\nuv run --frozen ruff format --check backend tools tests\n14 files already formatted\nuv run --frozen mypy\nSuccess: no issues found in 6 source files\npnpm --dir web typecheck\n$ tsc --noEmit\nuv run --frozen pytest\n============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-8.4.2, pluggy-1.7.0\nrootdir: /workspace/scratch/5cb089c0fa23/td\nconfigfile: pyproject.toml\ntestpaths: tests/unit\ncollected 17 items\n\ntests/unit/test_r2_oracles.py .....                                      [ 29%]\ntests/unit/test_spec_tools.py ............                               [100%]\n\n============================= 17 passed in 11.51s ==============================\n",
+  "output_sha256": "99a36fb16840cacc1c0a12de6005b30eea130056664f309da6b2087160d97449",
+  "scope": "documentary validation only; no product or external providers"
+}

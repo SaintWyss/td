@@ -39,3 +39,7 @@ contraseña/cookie en registros de idempotencia. Todo endpoint sensible comprueb
 <5 minutos en servidor. Los roles son conjuntos explícitos sin jerarquía implícita:
 operator no implica approver. HALT conserva autenticación y auditoría aunque no pida una
 segunda confirmación. Consultas por ID filtran actor/entorno/grants antes de responder.
+
+## Puertos e historiales R2
+
+[Contratos auxiliares](contracts/auxiliary-ports.md) y `contracts/ports.json` fijan métodos, contexto, errores, deadline, cancelación y recuperación. Las consultas históricas tienen schemas por tipo, corte de disponibilidad, snapshot estable y cobertura explícita. No interpretar páginas vacías como cobertura garantizada.

@@ -6,7 +6,31 @@
     "output_schema": "Observation",
     "owner": "C-DATA",
     "effect": "READ",
-    "errors": "429/timeout => retry with budget; schema drift quarantine"
+    "errors": "429/timeout => retry with budget; schema drift quarantine",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 10000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
   },
   {
     "name": "ChainReader",
@@ -15,7 +39,31 @@
     "output_schema": "Observation",
     "owner": "C-DATA",
     "effect": "READ",
-    "errors": "null => unknown, not proof of failure"
+    "errors": "null => unknown, not proof of failure",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 10000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
   },
   {
     "name": "QuotePort",
@@ -24,7 +72,31 @@
     "output_schema": "Quote",
     "owner": "C-EXEC",
     "effect": "READ",
-    "errors": "no route => abstention"
+    "errors": "no route => abstention",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 10000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
   },
   {
     "name": "ArtifactStore",
@@ -33,7 +105,31 @@
     "output_schema": "DatasetManifest",
     "owner": "C-LAB",
     "effect": "READ",
-    "errors": "hash mismatch => block"
+    "errors": "hash mismatch => block",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 10000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
   },
   {
     "name": "RiskAuthorizer",
@@ -42,7 +138,28 @@
     "output_schema": "RiskAssessment",
     "owner": "C-RISK",
     "effect": "TRANSACTION",
-    "errors": "deny on any unknown"
+    "errors": "deny on any unknown",
+    "context_schema": "PortContext",
+    "error_schema": "FinancialError",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "ExecutionPort",
@@ -51,7 +168,28 @@
     "output_schema": "ExecutionReport",
     "owner": "C-EXEC",
     "effect": "EXTERNAL_EFFECT",
-    "errors": "timeout => UNKNOWN"
+    "errors": "timeout => UNKNOWN",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 10000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "No DB transaction held over network/long computation; external effects recorded durably before call",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "SignerPort",
@@ -60,7 +198,28 @@
     "output_schema": "SignatureResult",
     "owner": "C-EXEC",
     "effect": "SECRET_BOUNDARY",
-    "errors": "policy/binding mismatch => deny"
+    "errors": "policy/binding mismatch => deny",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 10000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "No DB transaction held over network/long computation; external effects recorded durably before call",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "LedgerWriter",
@@ -70,7 +229,28 @@
     "owner": "C-LEDGER",
     "effect": "TRANSACTION",
     "errors": "FinancialError; same key and payload => original journal, changed payload => IDEMPOTENCY_CONFLICT",
-    "semantics": "financial-operations.md; caller supplies operation-specific payload, never arbitrary journal lines"
+    "semantics": "financial-operations.md; caller supplies operation-specific payload, never arbitrary journal lines",
+    "context_schema": "PortContext",
+    "error_schema": "FinancialError",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "LlmGateway",
@@ -79,7 +259,31 @@
     "output_schema": "ExtractionResult",
     "owner": "C-AI",
     "effect": "EXTERNAL_READ",
-    "errors": "refusal/schema/budget => abstain"
+    "errors": "refusal/schema/budget => abstain",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 10000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No DB transaction held over network/long computation; external effects recorded durably before call",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
   },
   {
     "name": "ResearchPlanner",
@@ -88,7 +292,28 @@
     "output_schema": "Hypothesis",
     "owner": "C-RESEARCH",
     "effect": "PURE",
-    "errors": "unsupported claims => reject"
+    "errors": "unsupported claims => reject",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 1000,
+    "idempotence": "Pure deterministic result for identical immutable inputs",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
   },
   {
     "name": "Trainer",
@@ -97,7 +322,28 @@
     "output_schema": "ModelArtifact",
     "owner": "C-ML",
     "effect": "JOB",
-    "errors": "OOM => failed without champion change"
+    "errors": "OOM => failed without champion change",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 3600000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Worker computation bounded by job deadline/resource manifest; no DB transaction while training; publish artifacts atomically after validation",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "PromotionService",
@@ -106,7 +352,28 @@
     "output_schema": "Promotion",
     "owner": "C-LEARN",
     "effect": "TRANSACTION",
-    "errors": "revision mismatch => conflict"
+    "errors": "revision mismatch => conflict",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "TraderProfiler",
@@ -115,7 +382,28 @@
     "output_schema": "TraderProfile",
     "owner": "C-TRADERS",
     "effect": "JOB",
-    "errors": "incomplete cost => null PnL"
+    "errors": "incomplete cost => null PnL",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 10000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "No DB transaction held over network/long computation; external effects recorded durably before call",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "Strategy",
@@ -124,7 +412,28 @@
     "output_schema": "Signal",
     "owner": "C-STRATEGY",
     "effect": "PURE",
-    "errors": "missing features => abstain"
+    "errors": "missing features => abstain",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 1000,
+    "idempotence": "Pure deterministic result for identical immutable inputs",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
   },
   {
     "name": "BudgetLedger",
@@ -133,7 +442,28 @@
     "output_schema": "CostRecord",
     "owner": "C-OPS",
     "effect": "TRANSACTION",
-    "errors": "cap exceeded => denied"
+    "errors": "cap exceeded => denied",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "LedgerFeeWriter",
@@ -143,7 +473,28 @@
     "owner": "C-LEDGER",
     "effect": "TRANSACTION",
     "errors": "FEE operation only; delegates same LedgerWriter transaction and dedup namespace",
-    "semantics": "Compatibility facade; no second fee implementation"
+    "semantics": "Compatibility facade; no second fee implementation",
+    "context_schema": "PortContext",
+    "error_schema": "FinancialError",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "LedgerReconciler",
@@ -152,7 +503,28 @@
     "output_schema": "ReconciliationResult",
     "owner": "C-LEDGER",
     "effect": "TRANSACTION",
-    "errors": "FinancialError; all journal/reservation/order/projection/outbox writes roll back together"
+    "errors": "FinancialError; all journal/reservation/order/projection/outbox writes roll back together",
+    "context_schema": "PortContext",
+    "error_schema": "FinancialError",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "VenueExecutionPort",
@@ -161,7 +533,28 @@
     "output_schema": "CexChildOrder",
     "owner": "C-EXEC",
     "effect": "EXTERNAL_EFFECT",
-    "errors": "FinancialError; timeout => UNKNOWN, preserve collateral; no Solana SignerPort access"
+    "errors": "FinancialError; timeout => UNKNOWN, preserve collateral; no Solana SignerPort access",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 10000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "No DB transaction held over network/long computation; external effects recorded durably before call",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "VenueRiskAuthorizer",
@@ -170,7 +563,28 @@
     "output_schema": "VenueRiskResult",
     "owner": "C-RISK",
     "effect": "TRANSACTION",
-    "errors": "FinancialError; lock portfolio/collateral and reserve all legs or none; no Solana swap fallback"
+    "errors": "FinancialError; lock portfolio/collateral and reserve all legs or none; no Solana swap fallback",
+    "context_schema": "PortContext",
+    "error_schema": "FinancialError",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
   },
   {
     "name": "DecisionEvaluator",
@@ -179,6 +593,990 @@
     "output_schema": "Decision",
     "owner": "C-DECISION",
     "effect": "PURE",
-    "errors": "No trade with ordered reasons; no reserve or network side effect"
+    "errors": "No trade with ordered reasons; no reserve or network side effect",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 1000,
+    "idempotence": "Pure deterministic result for identical immutable inputs",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "Clock",
+    "method": "now",
+    "input_schema": "ClockRequest",
+    "output_schema": "ClockReading",
+    "owner": "C-CORE",
+    "effect": "READ_LOCAL",
+    "errors": "Clock drift blocks deadlines; replay clock controlled by harness, never wall fallback",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 10,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "IdGenerator",
+    "method": "derive",
+    "input_schema": "IdRequest",
+    "output_schema": "IdResult",
+    "owner": "C-CORE",
+    "effect": "PURE",
+    "errors": "Same namespace/causal key same identifier; collision is fatal integrity error",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 10,
+    "idempotence": "Pure deterministic result for identical immutable inputs",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "UnitOfWork",
+    "method": "begin",
+    "input_schema": "UowBegin",
+    "output_schema": "UowHandle",
+    "owner": "C-CORE",
+    "effect": "TRANSACTION",
+    "errors": "UNKNOWN commit must be resolved with same uow ID; never rerun with new key",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Creates caller UoW handle; context.uow_id null, request.id stable; no nested transactions",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
+  },
+  {
+    "name": "UnitOfWork",
+    "method": "commit",
+    "input_schema": "UowReference",
+    "output_schema": "UowHandle",
+    "owner": "C-CORE",
+    "effect": "TRANSACTION",
+    "errors": "UNKNOWN commit must be resolved with same uow ID; never rerun with new key",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
+  },
+  {
+    "name": "UnitOfWork",
+    "method": "rollback",
+    "input_schema": "UowReference",
+    "output_schema": "UowHandle",
+    "owner": "C-CORE",
+    "effect": "TRANSACTION",
+    "errors": "UNKNOWN commit must be resolved with same uow ID; never rerun with new key",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
+  },
+  {
+    "name": "UnitOfWork",
+    "method": "status",
+    "input_schema": "UowReference",
+    "output_schema": "UowHandle",
+    "owner": "C-CORE",
+    "effect": "READ_LOCAL",
+    "errors": "UNKNOWN commit must be resolved with same uow ID; never rerun with new key",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "JobQueue",
+    "method": "enqueue",
+    "input_schema": "JobEnqueue",
+    "output_schema": "Job",
+    "owner": "C-OPS",
+    "effect": "TRANSACTION",
+    "errors": "Same job_id/input hash returns existing; mismatch conflicts",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
+  },
+  {
+    "name": "JobQueue",
+    "method": "claim",
+    "input_schema": "JobClaim",
+    "output_schema": "JobClaimResult",
+    "owner": "C-OPS",
+    "effect": "TRANSACTION",
+    "errors": "Atomic lease claim; null job means queue empty, not unavailable",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
+  },
+  {
+    "name": "JobQueue",
+    "method": "transition",
+    "input_schema": "JobLeaseCommand",
+    "output_schema": "Job",
+    "owner": "C-OPS",
+    "effect": "TRANSACTION",
+    "errors": "LEASE_LOST on fencing mismatch; cancellation is a request, not proof worker stopped",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
+  },
+  {
+    "name": "AuditSink",
+    "method": "append",
+    "input_schema": "AuditAppend",
+    "output_schema": "AuditRecord",
+    "owner": "C-CORE",
+    "effect": "TRANSACTION",
+    "errors": "Authenticated actor; append chain atomically with effect and outbox, or deny mutation",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
+  },
+  {
+    "name": "EvidenceReader",
+    "method": "read",
+    "input_schema": "EvidenceRead",
+    "output_schema": "EvidenceResult",
+    "owner": "C-CORE",
+    "effect": "READ_LOCAL",
+    "errors": "Hash/permission mismatch denies read; local handle only, not arbitrary URL/path",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "InstrumentReader",
+    "method": "get",
+    "input_schema": "InstrumentRead",
+    "output_schema": "Instrument",
+    "owner": "C-DATA",
+    "effect": "READ_LOCAL",
+    "errors": "Read committed authoritative revision under shared UoW; no stale cache for authorization",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "ReservationReader",
+    "method": "get",
+    "input_schema": "AuthoritativeRead",
+    "output_schema": "Reservation",
+    "owner": "C-RISK",
+    "effect": "READ_LOCAL",
+    "errors": "Read committed authoritative revision under shared UoW; no stale cache for authorization",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "VenueReservationReader",
+    "method": "get",
+    "input_schema": "AuthoritativeRead",
+    "output_schema": "VenueReservation",
+    "owner": "C-RISK",
+    "effect": "READ_LOCAL",
+    "errors": "Read committed authoritative revision under shared UoW; no stale cache for authorization",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "OrderReader",
+    "method": "get",
+    "input_schema": "AuthoritativeRead",
+    "output_schema": "Order",
+    "owner": "C-EXEC",
+    "effect": "READ_LOCAL",
+    "errors": "Read committed authoritative revision under shared UoW; no stale cache for authorization",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "PortfolioReader",
+    "method": "get",
+    "input_schema": "AuthoritativeRead",
+    "output_schema": "PortfolioView",
+    "owner": "C-LEDGER",
+    "effect": "READ_LOCAL",
+    "errors": "Read committed authoritative revision under shared UoW; no stale cache for authorization",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "ModelRegistryReader",
+    "method": "get",
+    "input_schema": "AuthoritativeRead",
+    "output_schema": "ModelArtifact",
+    "owner": "C-ML",
+    "effect": "READ_LOCAL",
+    "errors": "Read committed authoritative revision under shared UoW; no stale cache for authorization",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "ControlStateReader",
+    "method": "get",
+    "input_schema": "AuthoritativeRead",
+    "output_schema": "SystemView",
+    "owner": "C-OPS",
+    "effect": "READ_LOCAL",
+    "errors": "Read committed authoritative revision under shared UoW; no stale cache for authorization",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "OperationReader",
+    "method": "lookup",
+    "input_schema": "OperationLookup",
+    "output_schema": "LedgerOperation",
+    "owner": "C-LEDGER",
+    "effect": "READ_LOCAL",
+    "errors": "NOT_FOUND only after authoritative consistent read; unavailable is not absence",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "PermissionReader",
+    "method": "get",
+    "input_schema": "GrantRead",
+    "output_schema": "SourceGrant",
+    "owner": "C-CORE",
+    "effect": "READ_LOCAL",
+    "errors": "Purpose/expiry/revocation checked before source access and again before commit",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "BudgetLedger",
+    "method": "settle",
+    "input_schema": "BudgetSettlement",
+    "output_schema": "CostRecord",
+    "owner": "C-OPS",
+    "effect": "TRANSACTION",
+    "errors": "Timeout paid request => UNCERTAIN retains cap; RELEASED only proven no billable effect",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Stable request/idempotency key; duplicate identical payload returns original; changed payload conflicts",
+    "transaction": "Caller UoW required; outbox/audit/effects same commit; no nested independent commit",
+    "cancellation": "Before effect: CANCELLED/NONE. After effect may start: stop additional work and resolve identity; UNKNOWN is never failure proof.",
+    "retry_policy": {
+      "max_attempts": 1,
+      "backoff_ms": [],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "UNKNOWN_OUTCOME keeps resource reservations and durable identity; query authoritative status before any repeated effect",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "identical repeat and changed-key conflict",
+      "UNKNOWN recovery and no duplicate effect"
+    ]
+  },
+  {
+    "name": "TemporalHistoryReader",
+    "method": "query",
+    "input_schema": "TemporalHistoryQuery",
+    "output_schema": "TemporalHistoryPage",
+    "owner": "C-DATA",
+    "effect": "READ_LOCAL",
+    "errors": "Empty COMPLETE != PARTIAL/UNKNOWN; provider/storage errors are PortFailure, not empty page",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "ObservationHistoryReader",
+    "method": "query",
+    "input_schema": "ObservationHistoryQuery",
+    "output_schema": "ObservationHistoryPage",
+    "owner": "C-DATA",
+    "effect": "READ_LOCAL",
+    "errors": "Empty COMPLETE != PARTIAL/UNKNOWN; provider/storage errors are PortFailure, not empty page",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "TradeHistoryReader",
+    "method": "query",
+    "input_schema": "TradeHistoryQuery",
+    "output_schema": "TradeHistoryPage",
+    "owner": "C-DATA",
+    "effect": "READ_LOCAL",
+    "errors": "Empty COMPLETE != PARTIAL/UNKNOWN; provider/storage errors are PortFailure, not empty page",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "WalletHistoryReader",
+    "method": "query",
+    "input_schema": "WalletHistoryQuery",
+    "output_schema": "WalletHistoryPage",
+    "owner": "C-TRADERS",
+    "effect": "READ_LOCAL",
+    "errors": "Empty COMPLETE != PARTIAL/UNKNOWN; provider/storage errors are PortFailure, not empty page",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "FeatureHistoryReader",
+    "method": "query",
+    "input_schema": "FeatureHistoryQuery",
+    "output_schema": "FeatureHistoryPage",
+    "owner": "C-LAB",
+    "effect": "READ_LOCAL",
+    "errors": "Empty COMPLETE != PARTIAL/UNKNOWN; provider/storage errors are PortFailure, not empty page",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "PredictionHistoryReader",
+    "method": "query",
+    "input_schema": "PredictionHistoryQuery",
+    "output_schema": "PredictionHistoryPage",
+    "owner": "C-ML",
+    "effect": "READ_LOCAL",
+    "errors": "Empty COMPLETE != PARTIAL/UNKNOWN; provider/storage errors are PortFailure, not empty page",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "DecisionHistoryReader",
+    "method": "query",
+    "input_schema": "DecisionHistoryQuery",
+    "output_schema": "DecisionHistoryPage",
+    "owner": "C-DECISION",
+    "effect": "READ_LOCAL",
+    "errors": "Empty COMPLETE != PARTIAL/UNKNOWN; provider/storage errors are PortFailure, not empty page",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "EvidenceHistoryReader",
+    "method": "query",
+    "input_schema": "EvidenceHistoryQuery",
+    "output_schema": "EvidenceHistoryPage",
+    "owner": "C-CORE",
+    "effect": "READ_LOCAL",
+    "errors": "Empty COMPLETE != PARTIAL/UNKNOWN; provider/storage errors are PortFailure, not empty page",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
+  },
+  {
+    "name": "JournalHistoryReader",
+    "method": "query",
+    "input_schema": "JournalHistoryQuery",
+    "output_schema": "JournalHistoryPage",
+    "owner": "C-LEDGER",
+    "effect": "READ_LOCAL",
+    "errors": "Empty COMPLETE != PARTIAL/UNKNOWN; provider/storage errors are PortFailure, not empty page",
+    "context_schema": "PortContext",
+    "error_schema": "PortFailure",
+    "timeout_ms": 5000,
+    "idempotence": "Read same snapshot/authoritative state as requested",
+    "transaction": "No write effect; repeatable snapshot or authoritative read as specified",
+    "cancellation": "Stop reads/computation at deadline or cancel; return CANCELLED, never fabricate result.",
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff_ms": [
+        250,
+        1000
+      ],
+      "conditions": "Only retryable NONE effect errors, same snapshot/key and within deadline; provider calls reserve budget per allowed attempt; retries of uncertain writes require status lookup first"
+    },
+    "unknown": "Unavailable/unknown is explicit failure or incomplete coverage, never a false empty result",
+    "consumer": "Pass authenticated context/deadline, validate typed result and availability, handle stable errors; never call infrastructure from domain",
+    "adapter": "Enforce isolation/leases/permissions, sanitize errors, preserve IDs and evidence; do not broaden source capabilities",
+    "contract_tests": [
+      "typed success",
+      "declared error without false success",
+      "deadline/cancellation before effect",
+      "missing result vs unavailable",
+      "snapshot/time validity"
+    ]
   }
 ]
