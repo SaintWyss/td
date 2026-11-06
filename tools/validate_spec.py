@@ -14,9 +14,11 @@ from openapi_spec_validator import validate as validate_openapi
 try:
     from tools.sync_docs import sync
     from tools.validate_design import validate_design
+    from tools.validate_r2 import validate_r2
 except ModuleNotFoundError:
     from sync_docs import sync
     from validate_design import validate_design
+    from validate_r2 import validate_r2
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -117,6 +119,8 @@ def validate(root: Path) -> dict:
         check_example(example["schema"], example["value"], valid=False)
     counts.update(positive_examples=len(positives), negative_examples=len(negatives))
     errors.extend(validate_design(root, schema, positives, negatives))
+    errors.extend(validate_r2(root, schema))
+    counts["financial_oracles"] = len(load("contracts/scenarios/financial.json")["cases"])
 
     policy_validator = Draft202012Validator(
         load("contracts/policy.schema.json"), format_checker=FormatChecker()

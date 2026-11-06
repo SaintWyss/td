@@ -932,6 +932,15 @@
         "hash": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
+        },
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -944,7 +953,9 @@
         "features",
         "source_observation_ids",
         "quality",
-        "hash"
+        "hash",
+        "instrument_id",
+        "instrument_revision"
       ]
     },
     "ArtifactFile": {
@@ -1399,6 +1410,15 @@
           "not": {
             "pattern": "^-0(\\.0+)?$"
           }
+        },
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -1416,7 +1436,9 @@
         "q95",
         "expected_net_return",
         "cost_basis",
-        "uncertainty"
+        "uncertainty",
+        "instrument_id",
+        "instrument_revision"
       ]
     },
     "ModelArtifact": {
@@ -2871,6 +2893,15 @@
           },
           "minItems": 1,
           "maxItems": 1000
+        },
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -2888,7 +2919,9 @@
         "cost_basis",
         "evidence_ids",
         "feature_snapshot_id",
-        "reason_codes"
+        "reason_codes",
+        "instrument_id",
+        "instrument_revision"
       ]
     },
     "Decision": {
@@ -2966,6 +2999,15 @@
               "type": "null"
             }
           ]
+        },
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -2979,7 +3021,9 @@
         "feature_snapshot_id",
         "policy_hash",
         "model_ids",
-        "risk_assessment_id"
+        "risk_assessment_id",
+        "instrument_id",
+        "instrument_revision"
       ]
     },
     "RiskAssessment": {
@@ -3058,6 +3102,14 @@
         "fee_asset_id": {
           "type": "string",
           "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "rent_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "max_rent_atoms": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,77})$"
         }
       },
       "required": [
@@ -3074,7 +3126,9 @@
         "assessed_at",
         "expires_at",
         "input_asset_id",
-        "fee_asset_id"
+        "fee_asset_id",
+        "rent_asset_id",
+        "max_rent_atoms"
       ],
       "allOf": [
         {
@@ -3107,6 +3161,9 @@
               },
               "reservation_id": {
                 "type": "null"
+              },
+              "max_rent_atoms": {
+                "const": "0"
               }
             }
           }
@@ -3225,6 +3282,23 @@
         "intent_hash": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
+        },
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "rent_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "max_rent_atoms": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,77})$"
         }
       },
       "required": [
@@ -3250,7 +3324,11 @@
         "reduce_only",
         "allowed_program_ids",
         "min_output_atoms",
-        "intent_hash"
+        "intent_hash",
+        "instrument_id",
+        "instrument_revision",
+        "rent_asset_id",
+        "max_rent_atoms"
       ]
     },
     "Quote": {
@@ -3466,6 +3544,23 @@
         "intent_hash": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
+        },
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "rent_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "max_rent_atoms": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,77})$"
         }
       },
       "required": [
@@ -3491,7 +3586,11 @@
         "allowed_program_ids",
         "chain_id",
         "wallet_id",
-        "intent_hash"
+        "intent_hash",
+        "instrument_id",
+        "instrument_revision",
+        "rent_asset_id",
+        "max_rent_atoms"
       ]
     },
     "Order": {
@@ -3924,6 +4023,15 @@
         },
         "simulated": {
           "type": "boolean"
+        },
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -3940,7 +4048,9 @@
         "fee_atoms",
         "executed_at",
         "finalized_at",
-        "simulated"
+        "simulated",
+        "instrument_id",
+        "instrument_revision"
       ]
     },
     "JournalLine": {
@@ -3957,7 +4067,7 @@
         },
         "signed_atoms": {
           "type": "string",
-          "pattern": "^-?(0|[1-9][0-9]{0,77})$"
+          "pattern": "^(0|-?[1-9][0-9]{0,77})$"
         }
       },
       "required": [
@@ -4009,12 +4119,18 @@
         "reason": {
           "type": "string",
           "enum": [
-            "FILL",
-            "FEE",
             "DEPOSIT",
             "WITHDRAWAL",
             "RENT",
-            "CORRECTION"
+            "FEE",
+            "ADJUSTMENT",
+            "RESERVE",
+            "RELEASE",
+            "INTERNAL_TRANSFER",
+            "TRADE",
+            "REVERSAL",
+            "DERIVATIVE_SETTLEMENT",
+            "REBATE"
           ]
         },
         "evidence_ids": {
@@ -4025,6 +4141,41 @@
           },
           "minItems": 1,
           "maxItems": 1000
+        },
+        "portfolio_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "operation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "idempotency_key": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE"
+          ]
+        },
+        "reverses_entry_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
         }
       },
       "required": [
@@ -4035,7 +4186,13 @@
         "lines",
         "recorded_at",
         "reason",
-        "evidence_ids"
+        "evidence_ids",
+        "portfolio_id",
+        "operation_id",
+        "idempotency_key",
+        "mode",
+        "reverses_entry_id",
+        "occurred_at"
       ]
     },
     "Position": {
@@ -6561,24 +6718,24 @@
         "event_type": {
           "type": "string",
           "enum": [
-            "observation.recorded.v1",
-            "token.assessed.v1",
-            "features.ready.v1",
-            "signal.proposed.v1",
-            "decision.recorded.v1",
-            "risk.assessed.v1",
-            "execution.intent.v1",
-            "execution.reported.v1",
-            "fill.finalized.v1",
-            "journal.recorded.v1",
-            "claim.extracted.v1",
-            "model.promoted.v1",
-            "outcome.matured.v1",
-            "alert.raised.v1"
+            "observation.recorded.v2",
+            "token.assessed.v2",
+            "features.ready.v2",
+            "signal.proposed.v2",
+            "decision.recorded.v2",
+            "risk.assessed.v2",
+            "execution.intent.v2",
+            "execution.reported.v2",
+            "fill.finalized.v2",
+            "journal.recorded.v2",
+            "claim.extracted.v2",
+            "model.promoted.v2",
+            "outcome.matured.v2",
+            "alert.raised.v2"
           ]
         },
         "schema_version": {
-          "const": "1.0.0"
+          "const": "2.0.0"
         },
         "correlation_id": {
           "type": "string",
@@ -6681,7 +6838,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "observation.recorded.v1"
+                "const": "observation.recorded.v2"
               }
             },
             "required": [
@@ -6700,7 +6857,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "token.assessed.v1"
+                "const": "token.assessed.v2"
               }
             },
             "required": [
@@ -6719,7 +6876,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "features.ready.v1"
+                "const": "features.ready.v2"
               }
             },
             "required": [
@@ -6738,7 +6895,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "signal.proposed.v1"
+                "const": "signal.proposed.v2"
               }
             },
             "required": [
@@ -6757,7 +6914,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "decision.recorded.v1"
+                "const": "decision.recorded.v2"
               }
             },
             "required": [
@@ -6776,7 +6933,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "risk.assessed.v1"
+                "const": "risk.assessed.v2"
               }
             },
             "required": [
@@ -6795,7 +6952,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "execution.intent.v1"
+                "const": "execution.intent.v2"
               }
             },
             "required": [
@@ -6814,7 +6971,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "execution.reported.v1"
+                "const": "execution.reported.v2"
               }
             },
             "required": [
@@ -6833,7 +6990,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "fill.finalized.v1"
+                "const": "fill.finalized.v2"
               }
             },
             "required": [
@@ -6852,7 +7009,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "journal.recorded.v1"
+                "const": "journal.recorded.v2"
               }
             },
             "required": [
@@ -6871,7 +7028,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "claim.extracted.v1"
+                "const": "claim.extracted.v2"
               }
             },
             "required": [
@@ -6890,7 +7047,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "model.promoted.v1"
+                "const": "model.promoted.v2"
               }
             },
             "required": [
@@ -6909,7 +7066,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "outcome.matured.v1"
+                "const": "outcome.matured.v2"
               }
             },
             "required": [
@@ -6928,7 +7085,7 @@
           "if": {
             "properties": {
               "event_type": {
-                "const": "alert.raised.v1"
+                "const": "alert.raised.v2"
               }
             },
             "required": [
@@ -8096,7 +8253,7 @@
         },
         "requested_atoms": {
           "type": "string",
-          "pattern": "^(0|[1-9][0-9]{0,77})$"
+          "pattern": "^[1-9][0-9]{0,77}$"
         },
         "filled_atoms": {
           "type": "string",
@@ -8125,6 +8282,56 @@
               "type": "null"
             }
           ]
+        },
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "quantity_unit": {
+          "type": "string",
+          "enum": [
+            "BASE_ATOM",
+            "CONTRACT_LOT"
+          ]
+        },
+        "base_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "quote_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "settlement_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "side": {
+          "type": "string",
+          "enum": [
+            "BUY",
+            "SELL"
+          ]
+        },
+        "limit_price": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^-0(\\.0+)?$"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
@@ -8136,7 +8343,15 @@
         "requested_atoms",
         "filled_atoms",
         "state",
-        "last_exchange_update"
+        "last_exchange_update",
+        "instrument_id",
+        "instrument_revision",
+        "quantity_unit",
+        "base_asset_id",
+        "quote_asset_id",
+        "settlement_asset_id",
+        "side",
+        "limit_price"
       ]
     },
     "MarginSnapshot": {
@@ -8160,7 +8375,7 @@
           "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
           "maxLength": 40,
           "not": {
-            "pattern": "^-0(\\.0+)?$"
+            "pattern": "^0(\\.0+)?$"
           }
         },
         "index_price": {
@@ -8168,7 +8383,7 @@
           "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
           "maxLength": 40,
           "not": {
-            "pattern": "^-0(\\.0+)?$"
+            "pattern": "^0(\\.0+)?$"
           }
         },
         "position_notional": {
@@ -8224,6 +8439,51 @@
         "tier_evidence_id": {
           "type": "string",
           "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "settlement_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "quote_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "collateral_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "price_unit": {
+          "type": "string",
+          "enum": [
+            "QUOTE_MAJOR_PER_BASE_MAJOR"
+          ]
+        },
+        "amount_unit": {
+          "type": "string",
+          "enum": [
+            "SETTLEMENT_MAJOR"
+          ]
+        },
+        "position_contract_lots": {
+          "type": "string",
+          "pattern": "^(0|-?[1-9][0-9]{0,77})$"
+        },
+        "funding_interval_s": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "instrument_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "coverage": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "INCOMPLETE"
+          ]
         }
       },
       "required": [
@@ -8237,7 +8497,16 @@
         "maintenance_margin",
         "funding_known_rate",
         "next_funding_at",
-        "tier_evidence_id"
+        "tier_evidence_id",
+        "settlement_asset_id",
+        "quote_asset_id",
+        "collateral_asset_id",
+        "price_unit",
+        "amount_unit",
+        "position_contract_lots",
+        "funding_interval_s",
+        "instrument_revision",
+        "coverage"
       ]
     },
     "LegPlan": {
@@ -8275,12 +8544,42 @@
         },
         "abort_rule": {
           "type": "string",
-          "minLength": 1,
-          "maxLength": 8000
+          "enum": [
+            "CANCEL_RECONCILE_THEN_REDUCE",
+            "REJECT_IF_NOT_ATOMIC"
+          ]
         },
         "capability_evidence_id": {
           "type": "string",
           "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "legs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LegInstruction"
+          },
+          "minItems": 2,
+          "maxItems": 4
+        },
+        "loss_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "loss_unit": {
+          "type": "string",
+          "enum": [
+            "ASSET_MAJOR"
+          ]
+        },
+        "max_leg_skew_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "hedge_deadline_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -8290,7 +8589,12 @@
         "atomic",
         "worst_unhedged_loss",
         "abort_rule",
-        "capability_evidence_id"
+        "capability_evidence_id",
+        "legs",
+        "loss_asset_id",
+        "loss_unit",
+        "max_leg_skew_ms",
+        "hedge_deadline_ms"
       ]
     },
     "ExportResult": {
@@ -8470,6 +8774,1900 @@
         "tariff_hash",
         "worst_case_usd",
         "idempotency_key"
+      ]
+    },
+    "LedgerAccount": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "portfolio_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "AVAILABLE",
+            "RESERVED",
+            "RENT_LOCKED",
+            "COLLATERAL",
+            "EXTERNAL",
+            "FEE_EXPENSE",
+            "TRADE_CLEARING",
+            "ADJUSTMENT_CLEARING",
+            "PNL_CLEARING"
+          ]
+        },
+        "custody_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE"
+          ]
+        },
+        "closed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "portfolio_id",
+        "asset_id",
+        "role",
+        "custody_id",
+        "mode",
+        "closed"
+      ]
+    },
+    "LedgerMove": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "$ref": "#/$defs/Money"
+        },
+        "source_account_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "destination_account_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "amount",
+        "source_account_id",
+        "destination_account_id"
+      ]
+    },
+    "ExternalFlowCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "move": {
+          "$ref": "#/$defs/LedgerMove"
+        },
+        "observation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "external_effect_key": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "move",
+        "observation_id",
+        "external_effect_key"
+      ]
+    },
+    "RentCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "move": {
+          "$ref": "#/$defs/LedgerMove"
+        },
+        "account_address": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "LOCK",
+            "RETURN",
+            "WRITE_OFF"
+          ]
+        },
+        "observation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "approval_evidence_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "move",
+        "account_address",
+        "action",
+        "observation_id",
+        "approval_evidence_id"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "WRITE_OFF"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "approval_evidence_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FeePostingCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "move": {
+          "$ref": "#/$defs/LedgerMove"
+        },
+        "attempt_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "NETWORK",
+            "VENUE",
+            "SERVICE",
+            "FUNDING",
+            "BORROW"
+          ]
+        },
+        "included_in_fill": {
+          "const": false
+        },
+        "external_effect_key": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "rebate": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "move",
+        "attempt_id",
+        "category",
+        "included_in_fill",
+        "external_effect_key",
+        "rebate"
+      ]
+    },
+    "AdjustmentCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "moves": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerMove"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "cause_evidence_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "approval_evidence_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "VERIFIED_EXTERNAL_DIFFERENCE",
+            "OPENING_BALANCE",
+            "RECOVERED_MISSING_EFFECT"
+          ]
+        }
+      },
+      "required": [
+        "moves",
+        "cause_evidence_id",
+        "approval_evidence_id",
+        "reason"
+      ]
+    },
+    "ReservationPostingCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reservation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "moves": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerMove"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "expected_reservation_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "reconciliation_evidence_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "reservation_id",
+        "moves",
+        "expected_reservation_revision",
+        "reconciliation_evidence_id"
+      ]
+    },
+    "InternalTransferCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "move": {
+          "$ref": "#/$defs/LedgerMove"
+        },
+        "destination_custody_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "move",
+        "destination_custody_id"
+      ]
+    },
+    "TradePostingCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fill": {
+          "$ref": "#/$defs/Fill"
+        },
+        "input_move": {
+          "$ref": "#/$defs/LedgerMove"
+        },
+        "output_move": {
+          "$ref": "#/$defs/LedgerMove"
+        },
+        "reservation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "fill",
+        "input_move",
+        "output_move",
+        "reservation_id"
+      ]
+    },
+    "ReversalCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "original_journal_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "correction_evidence_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "approval_evidence_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "original_journal_id",
+        "correction_evidence_id",
+        "approval_evidence_id"
+      ]
+    },
+    "DerivativeSettlementCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "position_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "move": {
+          "$ref": "#/$defs/LedgerMove"
+        },
+        "settlement_kind": {
+          "type": "string",
+          "enum": [
+            "REALIZED_PNL",
+            "FUNDING",
+            "LIQUIDATION"
+          ]
+        },
+        "observation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "instrument_id",
+        "position_id",
+        "move",
+        "settlement_kind",
+        "observation_id"
+      ]
+    },
+    "LedgerPostRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "idempotency_key": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "portfolio_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE"
+          ]
+        },
+        "expected_portfolio_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "actor_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "operation": {
+          "type": "string",
+          "enum": [
+            "DEPOSIT",
+            "WITHDRAWAL",
+            "RENT",
+            "FEE",
+            "ADJUSTMENT",
+            "RESERVE",
+            "RELEASE",
+            "INTERNAL_TRANSFER",
+            "TRADE",
+            "REVERSAL",
+            "DERIVATIVE_SETTLEMENT",
+            "REBATE"
+          ]
+        },
+        "payload": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "operation_id",
+        "idempotency_key",
+        "portfolio_id",
+        "mode",
+        "expected_portfolio_revision",
+        "actor_id",
+        "occurred_at",
+        "available_at",
+        "evidence_ids",
+        "operation",
+        "payload"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "DEPOSIT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/ExternalFlowCommand"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "WITHDRAWAL"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/ExternalFlowCommand"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "RENT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/RentCommand"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "FEE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/FeePostingCommand"
+                  },
+                  {
+                    "properties": {
+                      "rebate": {
+                        "const": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "ADJUSTMENT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/AdjustmentCommand"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "RESERVE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/ReservationPostingCommand"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "RELEASE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/ReservationPostingCommand"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "INTERNAL_TRANSFER"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/InternalTransferCommand"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "TRADE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/TradePostingCommand"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "REVERSAL"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/ReversalCommand"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "DERIVATIVE_SETTLEMENT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/DerivativeSettlementCommand"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "REBATE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/FeePostingCommand"
+                  },
+                  {
+                    "properties": {
+                      "rebate": {
+                        "const": true
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "LedgerPostResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "POSTED",
+            "DUPLICATE"
+          ]
+        },
+        "journal": {
+          "$ref": "#/$defs/JournalEntry"
+        },
+        "portfolio_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "operation_id",
+        "outcome",
+        "journal",
+        "portfolio_revision"
+      ]
+    },
+    "ReservationFinalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reservation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "target_state": {
+          "type": "string",
+          "enum": [
+            "RELEASED",
+            "CONSUMED"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "reservation_id",
+        "expected_revision",
+        "target_state",
+        "evidence_ids"
+      ]
+    },
+    "ReconciliationRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "portfolio_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "expected_portfolio_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "order_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "expected_order_revision": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "terminal_order_state": {
+          "type": "string",
+          "enum": [
+            "RECONCILED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "finality_evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerPostRequest"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "reservations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReservationFinalization"
+          },
+          "minItems": 0,
+          "maxItems": 16
+        }
+      },
+      "required": [
+        "id",
+        "portfolio_id",
+        "expected_portfolio_revision",
+        "order_id",
+        "expected_order_revision",
+        "terminal_order_state",
+        "finality_evidence_ids",
+        "commands",
+        "reservations"
+      ]
+    },
+    "ReconciliationResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "COMMITTED",
+            "DUPLICATE"
+          ]
+        },
+        "journals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/JournalEntry"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "portfolio_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "event_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "id",
+        "outcome",
+        "journals",
+        "portfolio_revision",
+        "event_ids"
+      ]
+    },
+    "FeeSchedule": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maker_rate_bps": {
+          "type": "string",
+          "pattern": "^-?(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
+        },
+        "taker_rate_bps": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
+        },
+        "fee_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "included_in_quote": {
+          "type": "boolean"
+        },
+        "evidence_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "valid_until": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "maker_rate_bps",
+        "taker_rate_bps",
+        "fee_asset_id",
+        "included_in_quote",
+        "evidence_id",
+        "valid_until"
+      ]
+    },
+    "MarginTier": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "notional_upper_atoms": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,77}$"
+        },
+        "initial_margin_ratio": {
+          "type": "string",
+          "pattern": "^(0\\.[0-9]{1,18}|1(\\.0{1,18})?)$",
+          "not": {
+            "pattern": "^0\\.0+$"
+          }
+        },
+        "maintenance_margin_ratio": {
+          "type": "string",
+          "pattern": "^(0\\.[0-9]{1,18}|1(\\.0{1,18})?)$",
+          "not": {
+            "pattern": "^0\\.0+$"
+          }
+        }
+      },
+      "required": [
+        "notional_upper_atoms",
+        "initial_margin_ratio",
+        "maintenance_margin_ratio"
+      ]
+    },
+    "Instrument": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "TOKEN_SPOT",
+            "SPOT_PAIR",
+            "AMM_POOL",
+            "CEX_SPOT",
+            "LINEAR_FUTURE",
+            "LINEAR_PERPETUAL",
+            "MULTI_LEG"
+          ]
+        },
+        "venue_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "chain_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "base_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "quote_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "settlement_asset_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "pool_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "quantity_unit": {
+          "type": "string",
+          "enum": [
+            "BASE_ATOM",
+            "CONTRACT_LOT",
+            "COMPOSITE_UNIT"
+          ]
+        },
+        "price_unit": {
+          "type": "string",
+          "enum": [
+            "QUOTE_MAJOR_PER_BASE_MAJOR",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "quantity_step": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,77}$"
+        },
+        "minimum_quantity": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,77}$"
+        },
+        "price_tick": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+              "maxLength": 40,
+              "not": {
+                "pattern": "^0(\\.0+)?$"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "minimum_notional": {
+          "$ref": "#/$defs/Money"
+        },
+        "base_atoms_per_contract_lot": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,77}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "margin_tiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MarginTier"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "max_leverage": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
+        },
+        "fee_schedule": {
+          "$ref": "#/$defs/FeeSchedule"
+        },
+        "expiry_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "leg_instrument_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 4
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "SPOT",
+              "CPMM",
+              "CLOB",
+              "LINEAR_MARGIN",
+              "MULTI_LEG",
+              "ATOMIC_MULTI_LEG"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "capability_evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "operational_status": {
+          "type": "string",
+          "enum": [
+            "DESIGN_ONLY",
+            "FIXTURE_ONLY",
+            "EXTERNAL_BLOCKED"
+          ]
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "kind",
+        "venue_id",
+        "chain_id",
+        "base_asset_id",
+        "quote_asset_id",
+        "settlement_asset_id",
+        "pool_id",
+        "quantity_unit",
+        "price_unit",
+        "quantity_step",
+        "minimum_quantity",
+        "price_tick",
+        "minimum_notional",
+        "base_atoms_per_contract_lot",
+        "margin_tiers",
+        "max_leverage",
+        "fee_schedule",
+        "expiry_at",
+        "leg_instrument_ids",
+        "capabilities",
+        "capability_evidence_ids",
+        "operational_status",
+        "available_at"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "LINEAR_FUTURE",
+                  "LINEAR_PERPETUAL"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "quantity_unit": {
+                "const": "CONTRACT_LOT"
+              },
+              "base_atoms_per_contract_lot": {
+                "type": "string",
+                "pattern": "^[1-9][0-9]{0,77}$"
+              },
+              "margin_tiers": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/MarginTier"
+                },
+                "minItems": 1,
+                "maxItems": 20
+              },
+              "price_tick": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+                "maxLength": 40,
+                "not": {
+                  "pattern": "^0(\\.0+)?$"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "AMM_POOL"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "pool_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              },
+              "chain_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              },
+              "quantity_unit": {
+                "const": "BASE_ATOM"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "LINEAR_FUTURE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "expiry_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "MULTI_LEG"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "leg_instrument_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+                },
+                "minItems": 2,
+                "maxItems": 4
+              },
+              "quantity_unit": {
+                "const": "COMPOSITE_UNIT"
+              },
+              "price_unit": {
+                "const": "NOT_APPLICABLE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "LegInstruction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "intent_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "side": {
+          "type": "string",
+          "enum": [
+            "BUY",
+            "SELL"
+          ]
+        },
+        "quantity": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,77}$"
+        },
+        "quantity_unit": {
+          "type": "string",
+          "enum": [
+            "BASE_ATOM",
+            "CONTRACT_LOT"
+          ]
+        },
+        "ratio_numerator": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,77}$"
+        },
+        "ratio_denominator": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,77}$"
+        }
+      },
+      "required": [
+        "sequence",
+        "instrument_id",
+        "instrument_revision",
+        "intent_id",
+        "side",
+        "quantity",
+        "quantity_unit",
+        "ratio_numerator",
+        "ratio_denominator"
+      ]
+    },
+    "VenueExecutionIntent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "portfolio_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument": {
+          "$ref": "#/$defs/Instrument"
+        },
+        "reservation_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "side": {
+          "type": "string",
+          "enum": [
+            "BUY",
+            "SELL"
+          ]
+        },
+        "quantity": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,77}$"
+        },
+        "quantity_unit": {
+          "type": "string",
+          "enum": [
+            "BASE_ATOM",
+            "CONTRACT_LOT"
+          ]
+        },
+        "limit_price": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^-0(\\.0+)?$"
+          }
+        },
+        "time_in_force": {
+          "type": "string",
+          "enum": [
+            "IOC",
+            "FOK",
+            "GTC"
+          ]
+        },
+        "reduce_only": {
+          "type": "boolean"
+        },
+        "collateral_cap": {
+          "$ref": "#/$defs/Money"
+        },
+        "fee_cap": {
+          "$ref": "#/$defs/Money"
+        },
+        "policy_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "control_epoch": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE"
+          ]
+        },
+        "intent_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "fencing_token": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "decision_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "id",
+        "portfolio_id",
+        "instrument",
+        "reservation_id",
+        "side",
+        "quantity",
+        "quantity_unit",
+        "limit_price",
+        "time_in_force",
+        "reduce_only",
+        "collateral_cap",
+        "fee_cap",
+        "policy_hash",
+        "control_epoch",
+        "expires_at",
+        "mode",
+        "intent_hash",
+        "fencing_token",
+        "decision_id"
+      ]
+    },
+    "FinancialError": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "UNIT_MISMATCH",
+            "UNKNOWN_AMOUNT",
+            "NUMERIC_OVERFLOW",
+            "BELOW_MIN_UNIT",
+            "INVALID_AMOUNT",
+            "UNVERIFIED_EFFECT",
+            "INCOMPLETE_COVERAGE",
+            "STALE_REVISION",
+            "IDEMPOTENCY_CONFLICT",
+            "INSUFFICIENT_AVAILABLE",
+            "RESERVATION_COMMITTED",
+            "RESERVATION_MISMATCH",
+            "UNAUTHORIZED_ACTOR",
+            "INVALID_ACCOUNT_ROLE",
+            "UNBALANCED_JOURNAL",
+            "ALREADY_REVERSED",
+            "UNSUPPORTED_INSTRUMENT",
+            "UNSUPPORTED_MARGIN",
+            "CAPABILITY_MISSING",
+            "OFF_TICK",
+            "OFF_LOT",
+            "BELOW_MIN_NOTIONAL",
+            "UNKNOWN_OUTCOME",
+            "MODEL_NOT_APPROVED",
+            "EXPIRED",
+            "CANCELLED_BEFORE_EFFECT",
+            "DEADLINE_EXCEEDED"
+          ]
+        },
+        "operation_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        }
+      },
+      "required": [
+        "code",
+        "operation_id",
+        "retryable",
+        "evidence_ids",
+        "message"
+      ]
+    },
+    "VenueReservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "intent_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "portfolio_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "instrument_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "quantity": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,77}$"
+        },
+        "quantity_unit": {
+          "type": "string",
+          "enum": [
+            "BASE_ATOM",
+            "CONTRACT_LOT"
+          ]
+        },
+        "side": {
+          "type": "string",
+          "enum": [
+            "BUY",
+            "SELL"
+          ]
+        },
+        "limit_price": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})(\\.[0-9]{1,18})?$",
+          "maxLength": 40,
+          "not": {
+            "pattern": "^0(\\.0+)?$"
+          }
+        },
+        "time_in_force": {
+          "type": "string",
+          "enum": [
+            "IOC",
+            "FOK",
+            "GTC"
+          ]
+        },
+        "reduce_only": {
+          "type": "boolean"
+        },
+        "collateral_cap": {
+          "$ref": "#/$defs/Money"
+        },
+        "fee_cap": {
+          "$ref": "#/$defs/Money"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "ACTIVE",
+            "ATTEMPTED",
+            "RELEASED",
+            "CONSUMED"
+          ]
+        },
+        "intent_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "policy_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "control_epoch": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "fencing_token": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PAPER",
+            "DEVNET",
+            "LIVE"
+          ]
+        },
+        "decision_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "intent_id",
+        "portfolio_id",
+        "instrument_id",
+        "instrument_revision",
+        "quantity",
+        "quantity_unit",
+        "side",
+        "limit_price",
+        "time_in_force",
+        "reduce_only",
+        "collateral_cap",
+        "fee_cap",
+        "state",
+        "intent_hash",
+        "policy_hash",
+        "control_epoch",
+        "fencing_token",
+        "expires_at",
+        "mode",
+        "decision_id"
+      ]
+    },
+    "VenueRiskRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "proposal": {
+          "$ref": "#/$defs/VenueExecutionIntent"
+        },
+        "portfolio": {
+          "$ref": "#/$defs/PortfolioView"
+        },
+        "margin": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MarginSnapshot"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "capability_evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "decision_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        }
+      },
+      "required": [
+        "proposal",
+        "portfolio",
+        "margin",
+        "capability_evidence_ids",
+        "decision_id"
+      ]
+    },
+    "VenueRiskResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+        },
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "DENIED"
+          ]
+        },
+        "reservation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/VenueReservation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason_codes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "decision_id",
+        "verdict",
+        "reservation",
+        "reason_codes"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "verdict": {
+                "const": "APPROVED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "reservation": {
+                "$ref": "#/$defs/VenueReservation"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "reservation": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "LedgerOperation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/LedgerPostRequest"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "RECEIVED",
+            "PENDING_EVIDENCE",
+            "VERIFIED",
+            "POSTED",
+            "REJECTED"
+          ]
+        },
+        "request_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "journal_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FinancialError"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "request",
+        "state",
+        "request_hash",
+        "journal_id",
+        "error",
+        "updated_at"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "POSTED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "journal_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:_.-]{0,159}$"
+              },
+              "error": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "REJECTED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "journal_id": {
+                "type": "null"
+              },
+              "error": {
+                "$ref": "#/$defs/FinancialError"
+              }
+            }
+          }
+        }
       ]
     }
   }

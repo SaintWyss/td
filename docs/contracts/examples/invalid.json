@@ -5,8 +5,6 @@
       "atoms": "1",
       "decimals": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required asset_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -21,8 +19,6 @@
       "data_root": "fixture",
       "max_active_assets": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required environment",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -41,8 +37,6 @@
       "result": "ACCEPTED",
       "correlation_id": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -74,8 +68,6 @@
       "allowed_processor_ids": [],
       "storage_allowed": false
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -92,8 +84,6 @@
       "quota_remaining": "1",
       "error_code": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required source_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -120,8 +110,6 @@
       "supersedes_id": "fixture",
       "parser_version": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -140,8 +128,6 @@
       "first_seen_at": "2026-11-03T14:00:00Z",
       "created_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -163,8 +149,6 @@
       "observed_at": "2026-11-03T14:00:00Z",
       "slot": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -192,8 +176,6 @@
       ],
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -208,8 +190,6 @@
       "available_at": "2026-11-03T14:00:00Z",
       "quality": "VALID"
     },
-    "expect": "INVALID",
-    "reason": "missing required name",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -237,10 +217,10 @@
         "fixture"
       ],
       "quality": "VALID",
-      "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -254,8 +234,6 @@
       "size_bytes": 1,
       "rows": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required path",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -288,8 +266,6 @@
       "seed": 1,
       "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -311,8 +287,6 @@
       "holdout_consumed": false,
       "created_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -328,8 +302,6 @@
       "ci_upper": "1",
       "sample_count": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required name",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -362,8 +334,6 @@
       ],
       "created_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -386,10 +356,10 @@
       "q95": "0.03",
       "expected_net_return": "1",
       "cost_basis": "NET_TRADE",
-      "uncertainty": "0.02"
+      "uncertainty": "0.02",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -414,8 +384,6 @@
       "state": "REGISTERED",
       "created_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -435,8 +403,6 @@
         "CPMM"
       ]
     },
-    "expect": "INVALID",
-    "reason": "missing required strategy_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -463,10 +429,10 @@
       "feature_snapshot_id": "fixture",
       "reason_codes": [
         "fixture"
-      ]
+      ],
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -487,10 +453,10 @@
       "feature_snapshot_id": "fixture",
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "model_ids": [],
-      "risk_assessment_id": "fixture"
+      "risk_assessment_id": "fixture",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -514,10 +480,10 @@
       "assessed_at": "2026-11-03T14:00:00Z",
       "expires_at": "2026-11-03T14:05:00Z",
       "input_asset_id": "solana:fixture-input",
-      "fee_asset_id": "solana:native"
+      "fee_asset_id": "solana:native",
+      "rent_asset_id": "asset:SOL",
+      "max_rent_atoms": "0"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -550,10 +516,12 @@
       "allowed_program_ids": [
         "fixture-program"
       ],
-      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1,
+      "rent_asset_id": "asset:SOL",
+      "max_rent_atoms": "0"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -583,8 +551,6 @@
       ],
       "raw_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -617,10 +583,12 @@
       ],
       "chain_id": "fixture",
       "wallet_id": "fixture",
-      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1,
+      "rent_asset_id": "asset:SOL",
+      "max_rent_atoms": "0"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -643,8 +611,6 @@
       "created_at": "2026-11-03T14:00:00Z",
       "updated_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -666,8 +632,6 @@
       "fencing_token": 1,
       "signed_artifact_id": null
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -690,8 +654,6 @@
       ],
       "simulated": false
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -713,10 +675,10 @@
       "fee_atoms": "1",
       "executed_at": "2026-11-03T14:00:00Z",
       "finalized_at": "2026-11-03T14:00:00Z",
-      "simulated": false
+      "simulated": false,
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -727,10 +689,8 @@
     "schema": "JournalLine",
     "value": {
       "asset_id": "fixture",
-      "signed_atoms": "1"
+      "signed_atoms": "1000000"
     },
-    "expect": "INVALID",
-    "reason": "missing required account_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -742,27 +702,31 @@
     "value": {
       "revision": 1,
       "external_effect_key": "fixture",
-      "fill_id": "fixture",
+      "fill_id": null,
       "lines": [
         {
-          "account_id": "cash",
-          "asset_id": "fixture",
-          "signed_atoms": "1"
+          "account_id": "acct:external:USDC",
+          "asset_id": "asset:USDC",
+          "signed_atoms": "-1000000"
         },
         {
-          "account_id": "external",
-          "asset_id": "fixture",
-          "signed_atoms": "-1"
+          "account_id": "acct:paper:USDC:available",
+          "asset_id": "asset:USDC",
+          "signed_atoms": "1000000"
         }
       ],
       "recorded_at": "2026-11-03T14:00:00Z",
-      "reason": "FILL",
+      "reason": "DEPOSIT",
       "evidence_ids": [
         "fixture"
-      ]
+      ],
+      "portfolio_id": "portfolio:paper",
+      "operation_id": "operation:deposit:1",
+      "idempotency_key": "idem:deposit:1",
+      "mode": "PAPER",
+      "reverses_entry_id": null,
+      "occurred_at": "2026-11-06T12:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -778,8 +742,6 @@
       "liquidation_value_usdc": "1",
       "status": "OPEN"
     },
-    "expect": "INVALID",
-    "reason": "missing required asset_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -805,8 +767,6 @@
       "active_reservation_ids": [],
       "uncertain_order_ids": []
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -819,8 +779,6 @@
       "reason": "fixture",
       "expected_revision": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required action",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -842,8 +800,6 @@
       "budget_usd": "1",
       "deadline": "2026-11-03T14:05:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required source_grant_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -860,8 +816,6 @@
       ],
       "confidence": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required text",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -883,8 +837,6 @@
         "FIXTURE_ABSTENTION"
       ]
     },
-    "expect": "INVALID",
-    "reason": "missing required request_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -911,8 +863,6 @@
       "available_at": "2026-11-03T14:00:00Z",
       "supersedes_id": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -939,8 +889,6 @@
         "fixture"
       ]
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -967,8 +915,6 @@
         "fixture"
       ]
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -988,8 +934,6 @@
         "fixture"
       ]
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1012,8 +956,6 @@
       "state": "APPROVED",
       "environment": "SHADOW"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1032,8 +974,6 @@
       "state": "RESERVED",
       "occurred_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1053,8 +993,6 @@
       "last_seen_at": "2026-11-03T14:00:00Z",
       "count": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1082,8 +1020,6 @@
       ],
       "live_authorized": false
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1118,8 +1054,6 @@
       "created_at": "2026-11-03T14:00:00Z",
       "updated_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1134,8 +1068,6 @@
       "request_id": "fixture",
       "retryable": false
     },
-    "expect": "INVALID",
-    "reason": "missing required code",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1151,8 +1083,6 @@
       "expires_at": "2026-11-03T14:05:00Z",
       "csrf_token": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required user_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1164,8 +1094,6 @@
     "value": {
       "password": "synthetic-test-only"
     },
-    "expect": "INVALID",
-    "reason": "missing required username",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1182,8 +1110,6 @@
       "alerts_open": 1,
       "live_enabled": false
     },
-    "expect": "INVALID",
-    "reason": "missing required environment",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1198,8 +1124,6 @@
       "config_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "seed": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required hypothesis_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1212,8 +1136,6 @@
       "question": "fixture",
       "budget_usd": "1"
     },
-    "expect": "INVALID",
-    "reason": "missing required source_grant_ids",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1227,8 +1149,6 @@
       "start_at": "2026-11-03T14:00:00Z",
       "initial_cash_usdc": "1"
     },
-    "expect": "INVALID",
-    "reason": "missing required strategy_ids",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1243,8 +1163,6 @@
       "format": "CSV",
       "environment": "paper"
     },
-    "expect": "INVALID",
-    "reason": "missing required resource",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1261,8 +1179,6 @@
       "expected_assignment_revision": 1,
       "reason": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required strategy_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1291,8 +1207,6 @@
       "allowed_processor_ids": [],
       "storage_allowed": false
     },
-    "expect": "INVALID",
-    "reason": "missing required source_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1306,8 +1220,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1321,8 +1233,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1336,8 +1246,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1351,8 +1259,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1366,8 +1272,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1381,8 +1285,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1396,8 +1298,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1411,8 +1311,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1426,8 +1324,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1441,8 +1337,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1456,8 +1350,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1471,8 +1363,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1486,8 +1376,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1501,8 +1389,6 @@
       "input_atoms": "1",
       "slippage_bps": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required input_asset_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1573,8 +1459,6 @@
         "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       }
     },
-    "expect": "INVALID",
-    "reason": "missing required decision",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1588,8 +1472,6 @@
       "bytes_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "signed_transaction_b64": "AQID"
     },
-    "expect": "INVALID",
-    "reason": "missing required attempt_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1608,8 +1490,6 @@
       "certified_at": "2026-11-03T14:00:00Z",
       "evidence_ids": []
     },
-    "expect": "INVALID",
-    "reason": "missing required venue_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1619,8 +1499,8 @@
   {
     "schema": "EventEnvelope",
     "value": {
-      "event_type": "observation.recorded.v1",
-      "schema_version": "1.0.0",
+      "event_type": "observation.recorded.v2",
+      "schema_version": "2.0.0",
       "correlation_id": "fixture",
       "causation_id": "fixture",
       "occurred_at": "2026-11-03T14:00:00Z",
@@ -1648,8 +1528,6 @@
         "parser_version": "fixture"
       }
     },
-    "expect": "INVALID",
-    "reason": "missing required event_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1669,8 +1547,6 @@
       "fee_asset_id": "fixture",
       "slot": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required asset_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1685,8 +1561,6 @@
       "mark_kind": "MID",
       "size_atoms": "1"
     },
-    "expect": "INVALID",
-    "reason": "missing required asset_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1702,8 +1576,6 @@
       "slot": 1,
       "depth_complete": false
     },
-    "expect": "INVALID",
-    "reason": "missing required pool_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1721,8 +1593,6 @@
       "extensions": [],
       "slot": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required asset_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1734,8 +1604,6 @@
     "value": {
       "quantity": "1"
     },
-    "expect": "INVALID",
-    "reason": "missing required price",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1752,8 +1620,6 @@
       "checksum": "fixture",
       "valid": false
     },
-    "expect": "INVALID",
-    "reason": "missing required instrument_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1782,8 +1648,6 @@
       },
       "slot": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required wallet_address",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1800,8 +1664,6 @@
       "received_at": "2026-11-03T14:00:00Z",
       "origin_cluster_id": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required source_grant_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1816,8 +1678,6 @@
       "status": "COMPLETE",
       "reason": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required source_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1858,8 +1718,6 @@
         ]
       }
     },
-    "expect": "INVALID",
-    "reason": "missing required snapshot",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1910,8 +1768,6 @@
       },
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
-    "expect": "INVALID",
-    "reason": "missing required snapshot",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1928,8 +1784,6 @@
       "simulation_evidence_id": "fixture",
       "approval_id": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required intent",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1952,8 +1806,6 @@
         "fixture"
       ]
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -1963,8 +1815,6 @@
   {
     "schema": "LogoutResult",
     "value": {},
-    "expect": "INVALID",
-    "reason": "missing required logged_out",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2015,12 +1865,12 @@
           "fixture"
         ],
         "quality": "VALID",
-        "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "instrument_id": "instrument:SOL-USDC:cpmm",
+        "instrument_revision": 1
       },
       "quotes": []
     },
-    "expect": "INVALID",
-    "reason": "missing required asset",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2047,13 +1897,13 @@
         "assessed_at": "2026-11-03T14:00:00Z",
         "expires_at": "2026-11-03T14:05:00Z",
         "input_asset_id": "solana:fixture-input",
-        "fee_asset_id": "solana:native"
+        "fee_asset_id": "solana:native",
+        "rent_asset_id": "asset:SOL",
+        "max_rent_atoms": "0"
       },
       "orders": [],
       "evidence_ids": []
     },
-    "expect": "INVALID",
-    "reason": "missing required decision",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2067,8 +1917,6 @@
       "fills": [],
       "journal_entries": []
     },
-    "expect": "INVALID",
-    "reason": "missing required order",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2105,8 +1953,6 @@
         "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       }
     },
-    "expect": "INVALID",
-    "reason": "missing required experiment",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2119,8 +1965,6 @@
       "reports": [],
       "promotions": []
     },
-    "expect": "INVALID",
-    "reason": "missing required model",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2134,8 +1978,6 @@
       "latest_report_id": "fixture",
       "metrics": []
     },
-    "expect": "INVALID",
-    "reason": "missing required config",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2149,8 +1991,6 @@
       "nav_usd": "1",
       "data_status": "VALID"
     },
-    "expect": "INVALID",
-    "reason": "missing required as_of",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2164,8 +2004,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2179,8 +2017,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2208,8 +2044,6 @@
       "mode": "DEVNET",
       "capital_asset_id": "solana:devnet:native"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2226,10 +2060,16 @@
       "requested_atoms": "1",
       "filled_atoms": "1",
       "state": "NEW",
-      "last_exchange_update": "2026-11-03T14:00:00Z"
+      "last_exchange_update": "2026-11-03T14:00:00Z",
+      "instrument_id": "instrument:cex:SOL-USDC",
+      "instrument_revision": 1,
+      "quantity_unit": "BASE_ATOM",
+      "base_asset_id": "asset:SOL",
+      "quote_asset_id": "asset:USDC",
+      "settlement_asset_id": "asset:USDC",
+      "side": "BUY",
+      "limit_price": "100"
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2248,10 +2088,17 @@
       "maintenance_margin": "1",
       "funding_known_rate": "1",
       "next_funding_at": "2026-11-03T14:00:00Z",
-      "tier_evidence_id": "fixture"
+      "tier_evidence_id": "fixture",
+      "settlement_asset_id": "asset:USDC",
+      "quote_asset_id": "asset:USDC",
+      "collateral_asset_id": "asset:USDC",
+      "price_unit": "QUOTE_MAJOR_PER_BASE_MAJOR",
+      "amount_unit": "SETTLEMENT_MAJOR",
+      "position_contract_lots": "10",
+      "funding_interval_s": 28800,
+      "instrument_revision": 1,
+      "coverage": "COMPLETE"
     },
-    "expect": "INVALID",
-    "reason": "missing required venue_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2263,16 +2110,42 @@
     "value": {
       "revision": 1,
       "intent_ids": [
-        "fixture",
-        "fixture"
+        "intent:1",
+        "intent:2"
       ],
       "atomic": false,
       "worst_unhedged_loss": "1",
-      "abort_rule": "fixture",
-      "capability_evidence_id": "fixture"
+      "abort_rule": "CANCEL_RECONCILE_THEN_REDUCE",
+      "capability_evidence_id": "fixture",
+      "legs": [
+        {
+          "sequence": 0,
+          "instrument_id": "instrument:spot:1",
+          "instrument_revision": 1,
+          "intent_id": "intent:1",
+          "side": "BUY",
+          "quantity": "1000000000",
+          "quantity_unit": "BASE_ATOM",
+          "ratio_numerator": "1",
+          "ratio_denominator": "1"
+        },
+        {
+          "sequence": 1,
+          "instrument_id": "instrument:linear:1",
+          "instrument_revision": 1,
+          "intent_id": "intent:2",
+          "side": "SELL",
+          "quantity": "10",
+          "quantity_unit": "CONTRACT_LOT",
+          "ratio_numerator": "1",
+          "ratio_denominator": "1"
+        }
+      ],
+      "loss_asset_id": "asset:USDC",
+      "loss_unit": "ASSET_MAJOR",
+      "max_leg_skew_ms": 500,
+      "hedge_deadline_ms": 2000
     },
-    "expect": "INVALID",
-    "reason": "missing required id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2288,8 +2161,6 @@
       "download_ticket": "fixture",
       "ticket_expires_at": "2026-11-03T14:05:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required job_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2306,8 +2177,6 @@
       "as_of": "2026-11-03T14:00:00Z",
       "grant_id": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required source_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2322,8 +2191,6 @@
       "max_supported_version": 0,
       "grant_id": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required chain_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2335,8 +2202,6 @@
     "value": {
       "expected_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
-    "expect": "INVALID",
-    "reason": "missing required artifact_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
@@ -2351,12 +2216,693 @@
       "worst_case_usd": "1",
       "idempotency_key": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required provider_id",
     "expected": {
       "validator": "required",
       "instance_path": [],
       "missing_field": "provider_id"
+    }
+  },
+  {
+    "schema": "LedgerAccount",
+    "value": {
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:USDC",
+      "role": "AVAILABLE",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "LedgerMove",
+    "value": {
+      "source_account_id": "acct:external:USDC",
+      "destination_account_id": "acct:paper:USDC:available"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "amount"
+    }
+  },
+  {
+    "schema": "ExternalFlowCommand",
+    "value": {
+      "observation_id": "obs:deposit:1",
+      "external_effect_key": "paper:deposit:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "move"
+    }
+  },
+  {
+    "schema": "RentCommand",
+    "value": {
+      "account_address": "synthetic-ata",
+      "action": "LOCK",
+      "observation_id": "obs:rent:1",
+      "approval_evidence_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "move"
+    }
+  },
+  {
+    "schema": "FeePostingCommand",
+    "value": {
+      "attempt_id": "attempt:1",
+      "category": "NETWORK",
+      "included_in_fill": false,
+      "external_effect_key": "paper:tx:1:network:0",
+      "rebate": false
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "move"
+    }
+  },
+  {
+    "schema": "AdjustmentCommand",
+    "value": {
+      "cause_evidence_id": "evidence:reconcile:1",
+      "approval_evidence_id": "approval:adjust:1",
+      "reason": "OPENING_BALANCE"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "moves"
+    }
+  },
+  {
+    "schema": "ReservationPostingCommand",
+    "value": {
+      "moves": [
+        {
+          "amount": {
+            "asset_id": "asset:USDC",
+            "atoms": "1000000",
+            "decimals": 6
+          },
+          "source_account_id": "acct:paper:USDC:available",
+          "destination_account_id": "acct:paper:USDC:reserved"
+        }
+      ],
+      "expected_reservation_revision": 0,
+      "reconciliation_evidence_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "reservation_id"
+    }
+  },
+  {
+    "schema": "InternalTransferCommand",
+    "value": {
+      "destination_custody_id": "wallet:paper"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "move"
+    }
+  },
+  {
+    "schema": "TradePostingCommand",
+    "value": {
+      "input_move": {
+        "amount": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "source_account_id": "acct:external:USDC",
+        "destination_account_id": "acct:paper:USDC:available"
+      },
+      "output_move": {
+        "amount": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "source_account_id": "acct:external:USDC",
+        "destination_account_id": "acct:paper:USDC:available"
+      },
+      "reservation_id": "reservation:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "fill"
+    }
+  },
+  {
+    "schema": "ReversalCommand",
+    "value": {
+      "correction_evidence_id": "evidence:correction:1",
+      "approval_evidence_id": "approval:correction:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "original_journal_id"
+    }
+  },
+  {
+    "schema": "DerivativeSettlementCommand",
+    "value": {
+      "position_id": "position:1",
+      "move": {
+        "amount": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "source_account_id": "acct:external:USDC",
+        "destination_account_id": "acct:paper:USDC:available"
+      },
+      "settlement_kind": "REALIZED_PNL",
+      "observation_id": "obs:settlement:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
+  },
+  {
+    "schema": "LedgerPostRequest",
+    "value": {
+      "idempotency_key": "idem:deposit:1",
+      "portfolio_id": "portfolio:paper",
+      "mode": "PAPER",
+      "expected_portfolio_revision": 0,
+      "actor_id": "reconciler:paper",
+      "occurred_at": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "evidence_ids": [
+        "evidence:deposit:1"
+      ],
+      "operation": "DEPOSIT",
+      "payload": {
+        "move": {
+          "amount": {
+            "asset_id": "asset:USDC",
+            "atoms": "1000000",
+            "decimals": 6
+          },
+          "source_account_id": "acct:external:USDC",
+          "destination_account_id": "acct:paper:USDC:available"
+        },
+        "observation_id": "obs:deposit:1",
+        "external_effect_key": "paper:deposit:1"
+      }
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "operation_id"
+    }
+  },
+  {
+    "schema": "LedgerPostResult",
+    "value": {
+      "outcome": "POSTED",
+      "journal": {
+        "id": "fixture",
+        "revision": 1,
+        "external_effect_key": "fixture",
+        "fill_id": null,
+        "lines": [
+          {
+            "account_id": "acct:external:USDC",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-1000000"
+          },
+          {
+            "account_id": "acct:paper:USDC:available",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "1000000"
+          }
+        ],
+        "recorded_at": "2026-11-03T14:00:00Z",
+        "reason": "DEPOSIT",
+        "evidence_ids": [
+          "fixture"
+        ],
+        "portfolio_id": "portfolio:paper",
+        "operation_id": "operation:deposit:1",
+        "idempotency_key": "idem:deposit:1",
+        "mode": "PAPER",
+        "reverses_entry_id": null,
+        "occurred_at": "2026-11-06T12:00:00Z"
+      },
+      "portfolio_revision": 1
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "operation_id"
+    }
+  },
+  {
+    "schema": "ReservationFinalization",
+    "value": {
+      "expected_revision": 1,
+      "target_state": "CONSUMED",
+      "evidence_ids": [
+        "evidence:finality:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "reservation_id"
+    }
+  },
+  {
+    "schema": "ReconciliationRequest",
+    "value": {
+      "portfolio_id": "portfolio:paper",
+      "expected_portfolio_revision": 0,
+      "order_id": null,
+      "expected_order_revision": null,
+      "terminal_order_state": "NOT_APPLICABLE",
+      "finality_evidence_ids": [
+        "evidence:deposit:1"
+      ],
+      "commands": [
+        {
+          "operation_id": "operation:deposit:1",
+          "idempotency_key": "idem:deposit:1",
+          "portfolio_id": "portfolio:paper",
+          "mode": "PAPER",
+          "expected_portfolio_revision": 0,
+          "actor_id": "reconciler:paper",
+          "occurred_at": "2026-11-06T12:00:00Z",
+          "available_at": "2026-11-06T12:00:00Z",
+          "evidence_ids": [
+            "evidence:deposit:1"
+          ],
+          "operation": "DEPOSIT",
+          "payload": {
+            "move": {
+              "amount": {
+                "asset_id": "asset:USDC",
+                "atoms": "1000000",
+                "decimals": 6
+              },
+              "source_account_id": "acct:external:USDC",
+              "destination_account_id": "acct:paper:USDC:available"
+            },
+            "observation_id": "obs:deposit:1",
+            "external_effect_key": "paper:deposit:1"
+          }
+        }
+      ],
+      "reservations": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "ReconciliationResult",
+    "value": {
+      "outcome": "COMMITTED",
+      "journals": [
+        {
+          "id": "fixture",
+          "revision": 1,
+          "external_effect_key": "fixture",
+          "fill_id": null,
+          "lines": [
+            {
+              "account_id": "acct:external:USDC",
+              "asset_id": "asset:USDC",
+              "signed_atoms": "-1000000"
+            },
+            {
+              "account_id": "acct:paper:USDC:available",
+              "asset_id": "asset:USDC",
+              "signed_atoms": "1000000"
+            }
+          ],
+          "recorded_at": "2026-11-03T14:00:00Z",
+          "reason": "DEPOSIT",
+          "evidence_ids": [
+            "fixture"
+          ],
+          "portfolio_id": "portfolio:paper",
+          "operation_id": "operation:deposit:1",
+          "idempotency_key": "idem:deposit:1",
+          "mode": "PAPER",
+          "reverses_entry_id": null,
+          "occurred_at": "2026-11-06T12:00:00Z"
+        }
+      ],
+      "portfolio_revision": 1,
+      "event_ids": [
+        "event:journal:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "FeeSchedule",
+    "value": {
+      "taker_rate_bps": "10",
+      "fee_asset_id": "asset:USDC",
+      "included_in_quote": false,
+      "evidence_id": "evidence:fee:1",
+      "valid_until": "2026-11-06T13:00:00Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "maker_rate_bps"
+    }
+  },
+  {
+    "schema": "MarginTier",
+    "value": {
+      "initial_margin_ratio": "0.1",
+      "maintenance_margin_ratio": "0.05"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "notional_upper_atoms"
+    }
+  },
+  {
+    "schema": "Instrument",
+    "value": {
+      "revision": 1,
+      "kind": "AMM_POOL",
+      "venue_id": "venue:fixture-cpmm",
+      "chain_id": "solana:fixture",
+      "base_asset_id": "asset:SOL",
+      "quote_asset_id": "asset:USDC",
+      "settlement_asset_id": "asset:USDC",
+      "pool_id": "pool:1",
+      "quantity_unit": "BASE_ATOM",
+      "price_unit": "QUOTE_MAJOR_PER_BASE_MAJOR",
+      "quantity_step": "1",
+      "minimum_quantity": "1",
+      "price_tick": null,
+      "minimum_notional": {
+        "asset_id": "asset:USDC",
+        "atoms": "1000000",
+        "decimals": 6
+      },
+      "base_atoms_per_contract_lot": null,
+      "margin_tiers": [],
+      "max_leverage": "1",
+      "fee_schedule": {
+        "maker_rate_bps": "0",
+        "taker_rate_bps": "10",
+        "fee_asset_id": "asset:USDC",
+        "included_in_quote": false,
+        "evidence_id": "evidence:fee:1",
+        "valid_until": "2026-11-06T13:00:00Z"
+      },
+      "expiry_at": null,
+      "leg_instrument_ids": [],
+      "capabilities": [
+        "SPOT",
+        "CPMM"
+      ],
+      "capability_evidence_ids": [
+        "evidence:fixture:1"
+      ],
+      "operational_status": "FIXTURE_ONLY",
+      "available_at": "2026-11-06T12:00:00Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "LegInstruction",
+    "value": {
+      "instrument_id": "instrument:spot:1",
+      "instrument_revision": 1,
+      "intent_id": "intent:1",
+      "side": "BUY",
+      "quantity": "1000000000",
+      "quantity_unit": "BASE_ATOM",
+      "ratio_numerator": "1",
+      "ratio_denominator": "1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "sequence"
+    }
+  },
+  {
+    "schema": "VenueExecutionIntent",
+    "value": {
+      "portfolio_id": "portfolio:paper",
+      "instrument": {
+        "id": "instrument:fixture-cex:SOL-USDC:spot",
+        "revision": 1,
+        "kind": "CEX_SPOT",
+        "venue_id": "venue:fixture-cex",
+        "chain_id": null,
+        "base_asset_id": "asset:SOL",
+        "quote_asset_id": "asset:USDC",
+        "settlement_asset_id": "asset:USDC",
+        "pool_id": null,
+        "quantity_unit": "BASE_ATOM",
+        "price_unit": "QUOTE_MAJOR_PER_BASE_MAJOR",
+        "quantity_step": "1",
+        "minimum_quantity": "1",
+        "price_tick": "0.01",
+        "minimum_notional": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "base_atoms_per_contract_lot": null,
+        "margin_tiers": [],
+        "max_leverage": "1",
+        "fee_schedule": {
+          "maker_rate_bps": "0",
+          "taker_rate_bps": "10",
+          "fee_asset_id": "asset:USDC",
+          "included_in_quote": false,
+          "evidence_id": "evidence:fee:1",
+          "valid_until": "2026-11-06T13:00:00Z"
+        },
+        "expiry_at": null,
+        "leg_instrument_ids": [],
+        "capabilities": [
+          "SPOT",
+          "CLOB"
+        ],
+        "capability_evidence_ids": [
+          "evidence:fixture:1"
+        ],
+        "operational_status": "FIXTURE_ONLY",
+        "available_at": "2026-11-06T12:00:00Z"
+      },
+      "reservation_id": "reservation:venue:1",
+      "side": "BUY",
+      "quantity": "1000000000",
+      "quantity_unit": "BASE_ATOM",
+      "limit_price": "100",
+      "time_in_force": "IOC",
+      "reduce_only": false,
+      "collateral_cap": {
+        "asset_id": "asset:USDC",
+        "atoms": "100000000",
+        "decimals": 6
+      },
+      "fee_cap": {
+        "asset_id": "asset:USDC",
+        "atoms": "1000000",
+        "decimals": 6
+      },
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "control_epoch": 0,
+      "expires_at": "2026-11-06T12:00:05Z",
+      "mode": "PAPER",
+      "intent_hash": "7f9d3a6a2b54481dd427471c10229f79401b3810280a2e8dfd3aa09fd8655da2",
+      "fencing_token": 1,
+      "decision_id": "decision:cex:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "FinancialError",
+    "value": {
+      "operation_id": "operation:1",
+      "retryable": false,
+      "evidence_ids": [],
+      "message": "Finalized evidence required"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "code"
+    }
+  },
+  {
+    "schema": "VenueReservation",
+    "value": {
+      "revision": 1,
+      "intent_id": "venue-intent:1",
+      "portfolio_id": "portfolio:paper",
+      "instrument_id": "instrument:fixture-cex:SOL-USDC:spot",
+      "instrument_revision": 1,
+      "quantity": "1000000000",
+      "quantity_unit": "BASE_ATOM",
+      "side": "BUY",
+      "limit_price": "100",
+      "time_in_force": "IOC",
+      "reduce_only": false,
+      "collateral_cap": {
+        "asset_id": "asset:USDC",
+        "atoms": "100000000",
+        "decimals": 6
+      },
+      "fee_cap": {
+        "asset_id": "asset:USDC",
+        "atoms": "1000000",
+        "decimals": 6
+      },
+      "state": "ACTIVE",
+      "intent_hash": "7f9d3a6a2b54481dd427471c10229f79401b3810280a2e8dfd3aa09fd8655da2",
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "control_epoch": 0,
+      "fencing_token": 1,
+      "expires_at": "2026-11-06T12:00:05Z",
+      "mode": "PAPER",
+      "decision_id": "decision:cex:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "VenueRiskRequest",
+    "value": {
+      "portfolio": {
+        "id": "fixture",
+        "revision": 1,
+        "mode": "PAPER",
+        "as_of": "2026-11-03T14:00:00Z",
+        "nav_usdc": "1",
+        "high_water_mark_usdc": "1",
+        "daily_pnl_usdc": "1",
+        "weekly_pnl_usdc": "1",
+        "positions": [],
+        "control_mode": "RUNNING",
+        "control_epoch": 1,
+        "reconciled": false,
+        "wallet_id": "fixture-wallet",
+        "chain_id": "solana:devnet",
+        "active_reservation_ids": [],
+        "uncertain_order_ids": []
+      },
+      "margin": null,
+      "capability_evidence_ids": [
+        "evidence:fixture:cex"
+      ],
+      "decision_id": "decision:cex:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "proposal"
+    }
+  },
+  {
+    "schema": "VenueRiskResult",
+    "value": {
+      "verdict": "APPROVED",
+      "reservation": {
+        "id": "reservation:venue:1",
+        "revision": 1,
+        "intent_id": "venue-intent:1",
+        "portfolio_id": "portfolio:paper",
+        "instrument_id": "instrument:fixture-cex:SOL-USDC:spot",
+        "instrument_revision": 1,
+        "quantity": "1000000000",
+        "quantity_unit": "BASE_ATOM",
+        "side": "BUY",
+        "limit_price": "100",
+        "time_in_force": "IOC",
+        "reduce_only": false,
+        "collateral_cap": {
+          "asset_id": "asset:USDC",
+          "atoms": "100000000",
+          "decimals": 6
+        },
+        "fee_cap": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "state": "ACTIVE",
+        "intent_hash": "7f9d3a6a2b54481dd427471c10229f79401b3810280a2e8dfd3aa09fd8655da2",
+        "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "control_epoch": 0,
+        "fencing_token": 1,
+        "expires_at": "2026-11-06T12:00:05Z",
+        "mode": "PAPER",
+        "decision_id": "decision:cex:1"
+      },
+      "reason_codes": [
+        "FIXTURE_LIMITS_OK"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "decision_id"
+    }
+  },
+  {
+    "schema": "LedgerOperation",
+    "value": {
+      "state": "POSTED",
+      "request_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "journal_id": "journal:deposit:1",
+      "error": null,
+      "updated_at": "2026-11-06T12:00:00Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "request"
     }
   }
 ]

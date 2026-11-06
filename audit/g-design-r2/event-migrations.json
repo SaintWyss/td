@@ -1,0 +1,72 @@
+[
+  {
+    "from": "observation.recorded.v1",
+    "to": "observation.recorded.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "token.assessed.v1",
+    "to": "token.assessed.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "features.ready.v1",
+    "to": "features.ready.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "signal.proposed.v1",
+    "to": "signal.proposed.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "decision.recorded.v1",
+    "to": "decision.recorded.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "risk.assessed.v1",
+    "to": "risk.assessed.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "execution.intent.v1",
+    "to": "execution.intent.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "execution.reported.v1",
+    "to": "execution.reported.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "fill.finalized.v1",
+    "to": "fill.finalized.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "journal.recorded.v1",
+    "to": "journal.recorded.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "claim.extracted.v1",
+    "to": "claim.extracted.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "model.promoted.v1",
+    "to": "model.promoted.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "outcome.matured.v1",
+    "to": "outcome.matured.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  },
+  {
+    "from": "alert.raised.v1",
+    "to": "alert.raised.v2",
+    "reason": "Envelope v2 documents incompatible domain changes; consumer must explicitly migrate or quarantine v1."
+  }
+]

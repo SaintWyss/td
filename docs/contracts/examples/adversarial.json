@@ -115,7 +115,9 @@
       "assessed_at": "2026-11-03T14:00:00Z",
       "expires_at": "2026-11-03T14:05:00Z",
       "input_asset_id": "solana:fixture-input",
-      "fee_asset_id": "solana:native"
+      "fee_asset_id": "solana:native",
+      "rent_asset_id": "asset:SOL",
+      "max_rent_atoms": "0"
     },
     "valid": false,
     "keyword": "const",
@@ -142,7 +144,9 @@
       "assessed_at": "2026-11-03T14:00:00Z",
       "expires_at": "2026-11-03T14:05:00Z",
       "input_asset_id": "solana:fixture-input",
-      "fee_asset_id": "solana:native"
+      "fee_asset_id": "solana:native",
+      "rent_asset_id": "asset:SOL",
+      "max_rent_atoms": "0"
     },
     "valid": false,
     "keyword": "type",
@@ -169,7 +173,9 @@
       "assessed_at": "2026-11-03T14:00:00Z",
       "expires_at": "2026-11-03T14:05:00Z",
       "input_asset_id": "solana:fixture-input",
-      "fee_asset_id": "solana:native"
+      "fee_asset_id": "solana:native",
+      "rent_asset_id": "asset:SOL",
+      "max_rent_atoms": "0"
     },
     "valid": true,
     "keyword": "pattern",
@@ -213,7 +219,9 @@
       "q95": "0.03",
       "expected_net_return": "1",
       "cost_basis": "NET_TRADE",
-      "uncertainty": "0.02"
+      "uncertainty": "0.02",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     },
     "valid": false,
     "keyword": "pattern",
@@ -239,7 +247,9 @@
       "q95": "0.03",
       "expected_net_return": "1",
       "cost_basis": "NET_TRADE",
-      "uncertainty": "0.02"
+      "uncertainty": "0.02",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     },
     "valid": false,
     "keyword": "not",
@@ -265,7 +275,9 @@
       "q95": "0.03",
       "expected_net_return": "1",
       "cost_basis": "NET_TRADE",
-      "uncertainty": "0.02"
+      "uncertainty": "0.02",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     },
     "valid": true,
     "keyword": "pattern",

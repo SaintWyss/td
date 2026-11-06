@@ -1,6 +1,6 @@
 [
   {
-    "type": "observation.recorded.v1",
+    "type": "observation.recorded.v2",
     "producer": "C-DATA",
     "consumers": [
       "C-SOLANA",
@@ -11,7 +11,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "token.assessed.v1",
+    "type": "token.assessed.v2",
     "producer": "C-SOLANA",
     "consumers": [
       "C-DECISION"
@@ -21,7 +21,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "features.ready.v1",
+    "type": "features.ready.v2",
     "producer": "C-ML",
     "consumers": [
       "C-STRATEGY"
@@ -31,7 +31,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "signal.proposed.v1",
+    "type": "signal.proposed.v2",
     "producer": "C-STRATEGY",
     "consumers": [
       "C-DECISION"
@@ -41,7 +41,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "decision.recorded.v1",
+    "type": "decision.recorded.v2",
     "producer": "C-DECISION",
     "consumers": [
       "C-RISK",
@@ -52,7 +52,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "risk.assessed.v1",
+    "type": "risk.assessed.v2",
     "producer": "C-RISK",
     "consumers": [
       "C-EXEC"
@@ -62,7 +62,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "execution.intent.v1",
+    "type": "execution.intent.v2",
     "producer": "C-RISK",
     "consumers": [
       "C-EXEC"
@@ -72,7 +72,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "execution.reported.v1",
+    "type": "execution.reported.v2",
     "producer": "C-EXEC",
     "consumers": [
       "C-LEDGER"
@@ -82,7 +82,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "fill.finalized.v1",
+    "type": "fill.finalized.v2",
     "producer": "C-EXEC",
     "consumers": [
       "C-LEDGER"
@@ -92,7 +92,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "journal.recorded.v1",
+    "type": "journal.recorded.v2",
     "producer": "C-LEDGER",
     "consumers": [
       "C-RISK",
@@ -103,7 +103,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "claim.extracted.v1",
+    "type": "claim.extracted.v2",
     "producer": "C-RESEARCH",
     "consumers": [
       "C-LAB"
@@ -113,7 +113,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "model.promoted.v1",
+    "type": "model.promoted.v2",
     "producer": "C-LEARN",
     "consumers": [
       "C-ML"
@@ -123,7 +123,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "outcome.matured.v1",
+    "type": "outcome.matured.v2",
     "producer": "C-LEARN",
     "consumers": [
       "C-LAB"
@@ -133,7 +133,7 @@
     "ordering": "AGGREGATE_REVISION"
   },
   {
-    "type": "alert.raised.v1",
+    "type": "alert.raised.v2",
     "producer": "C-OPS",
     "consumers": [
       "C-API"

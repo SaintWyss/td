@@ -65,11 +65,12 @@
   {
     "name": "LedgerWriter",
     "method": "post",
-    "input_schema": "Fill",
-    "output_schema": "JournalEntry",
+    "input_schema": "LedgerPostRequest",
+    "output_schema": "LedgerPostResult",
     "owner": "C-LEDGER",
     "effect": "TRANSACTION",
-    "errors": "duplicate effect => original journal"
+    "errors": "FinancialError; same key and payload => original journal, changed payload => IDEMPOTENCY_CONFLICT",
+    "semantics": "financial-operations.md; caller supplies operation-specific payload, never arbitrary journal lines"
   },
   {
     "name": "LlmGateway",
@@ -137,10 +138,38 @@
   {
     "name": "LedgerFeeWriter",
     "method": "post_fee",
-    "input_schema": "FeeEvent",
-    "output_schema": "JournalEntry",
+    "input_schema": "LedgerPostRequest",
+    "output_schema": "LedgerPostResult",
     "owner": "C-LEDGER",
     "effect": "TRANSACTION",
-    "errors": "duplicate effect => existing entry"
+    "errors": "FEE operation only; delegates same LedgerWriter transaction and dedup namespace",
+    "semantics": "Compatibility facade; no second fee implementation"
+  },
+  {
+    "name": "LedgerReconciler",
+    "method": "finalize",
+    "input_schema": "ReconciliationRequest",
+    "output_schema": "ReconciliationResult",
+    "owner": "C-LEDGER",
+    "effect": "TRANSACTION",
+    "errors": "FinancialError; all journal/reservation/order/projection/outbox writes roll back together"
+  },
+  {
+    "name": "VenueExecutionPort",
+    "method": "submit",
+    "input_schema": "VenueExecutionIntent",
+    "output_schema": "CexChildOrder",
+    "owner": "C-EXEC",
+    "effect": "EXTERNAL_EFFECT",
+    "errors": "FinancialError; timeout => UNKNOWN, preserve collateral; no Solana SignerPort access"
+  },
+  {
+    "name": "VenueRiskAuthorizer",
+    "method": "authorize",
+    "input_schema": "VenueRiskRequest",
+    "output_schema": "VenueRiskResult",
+    "owner": "C-RISK",
+    "effect": "TRANSACTION",
+    "errors": "FinancialError; lock portfolio/collateral and reserve all legs or none; no Solana swap fallback"
   }
 ]

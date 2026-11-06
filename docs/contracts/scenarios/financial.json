@@ -1,0 +1,1861 @@
+{
+  "version": "1.2.0-draft",
+  "synthetic": true,
+  "account_registry": {
+    "USDC:AVAILABLE": {
+      "id": "USDC:AVAILABLE",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:USDC",
+      "role": "AVAILABLE",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 6
+    },
+    "USDC:RESERVED": {
+      "id": "USDC:RESERVED",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:USDC",
+      "role": "RESERVED",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 6
+    },
+    "USDC:RENT_LOCKED": {
+      "id": "USDC:RENT_LOCKED",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:USDC",
+      "role": "RENT_LOCKED",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 6
+    },
+    "USDC:COLLATERAL": {
+      "id": "USDC:COLLATERAL",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:USDC",
+      "role": "COLLATERAL",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 6
+    },
+    "USDC:EXTERNAL": {
+      "id": "USDC:EXTERNAL",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:USDC",
+      "role": "EXTERNAL",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 6
+    },
+    "USDC:FEE_EXPENSE": {
+      "id": "USDC:FEE_EXPENSE",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:USDC",
+      "role": "FEE_EXPENSE",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 6
+    },
+    "USDC:TRADE_CLEARING": {
+      "id": "USDC:TRADE_CLEARING",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:USDC",
+      "role": "TRADE_CLEARING",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 6
+    },
+    "USDC:ADJUSTMENT_CLEARING": {
+      "id": "USDC:ADJUSTMENT_CLEARING",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:USDC",
+      "role": "ADJUSTMENT_CLEARING",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 6
+    },
+    "USDC:PNL_CLEARING": {
+      "id": "USDC:PNL_CLEARING",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:USDC",
+      "role": "PNL_CLEARING",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 6
+    },
+    "SOL:AVAILABLE": {
+      "id": "SOL:AVAILABLE",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:SOL",
+      "role": "AVAILABLE",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 9
+    },
+    "SOL:RESERVED": {
+      "id": "SOL:RESERVED",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:SOL",
+      "role": "RESERVED",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 9
+    },
+    "SOL:RENT_LOCKED": {
+      "id": "SOL:RENT_LOCKED",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:SOL",
+      "role": "RENT_LOCKED",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 9
+    },
+    "SOL:COLLATERAL": {
+      "id": "SOL:COLLATERAL",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:SOL",
+      "role": "COLLATERAL",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 9
+    },
+    "SOL:EXTERNAL": {
+      "id": "SOL:EXTERNAL",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:SOL",
+      "role": "EXTERNAL",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 9
+    },
+    "SOL:FEE_EXPENSE": {
+      "id": "SOL:FEE_EXPENSE",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:SOL",
+      "role": "FEE_EXPENSE",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 9
+    },
+    "SOL:TRADE_CLEARING": {
+      "id": "SOL:TRADE_CLEARING",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:SOL",
+      "role": "TRADE_CLEARING",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 9
+    },
+    "SOL:ADJUSTMENT_CLEARING": {
+      "id": "SOL:ADJUSTMENT_CLEARING",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:SOL",
+      "role": "ADJUSTMENT_CLEARING",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 9
+    },
+    "SOL:PNL_CLEARING": {
+      "id": "SOL:PNL_CLEARING",
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:SOL",
+      "role": "PNL_CLEARING",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false,
+      "decimals": 9
+    }
+  },
+  "cases": [
+    {
+      "id": "FIN-01",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-01",
+        "idempotency_key": "idem:FIN-01",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "DEPOSIT",
+        "payload": {
+          "move": {
+            "amount": {
+              "asset_id": "asset:USDC",
+              "atoms": "25000000",
+              "decimals": 6
+            },
+            "source_account_id": "USDC:EXTERNAL",
+            "destination_account_id": "USDC:AVAILABLE"
+          },
+          "observation_id": "obs:deposit:1",
+          "external_effect_key": "paper:deposit:1"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "USDC:EXTERNAL",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-25000000"
+          },
+          {
+            "account_id": "USDC:AVAILABLE",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "25000000"
+          }
+        ],
+        "journal_id": "journal:FIN-01"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "125000000",
+          "USDC:EXTERNAL": "-125000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "100 USDC + 25 USDC = 125 USDC; capital +25, PnL 0",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-02",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-02",
+        "idempotency_key": "idem:FIN-02",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "WITHDRAWAL",
+        "payload": {
+          "move": {
+            "amount": {
+              "asset_id": "asset:USDC",
+              "atoms": "20000000",
+              "decimals": 6
+            },
+            "source_account_id": "USDC:AVAILABLE",
+            "destination_account_id": "USDC:EXTERNAL"
+          },
+          "observation_id": "obs:withdrawal:1",
+          "external_effect_key": "paper:withdrawal:1"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "USDC:AVAILABLE",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-20000000"
+          },
+          {
+            "account_id": "USDC:EXTERNAL",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "20000000"
+          }
+        ],
+        "journal_id": "journal:FIN-02"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "80000000",
+          "USDC:EXTERNAL": "-80000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "100 - 20 = 80 USDC; capital -20, PnL 0",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-03",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-03",
+        "idempotency_key": "idem:FIN-03",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "FEE",
+        "payload": {
+          "move": {
+            "amount": {
+              "asset_id": "asset:USDC",
+              "atoms": "1000000",
+              "decimals": 6
+            },
+            "source_account_id": "USDC:AVAILABLE",
+            "destination_account_id": "USDC:FEE_EXPENSE"
+          },
+          "attempt_id": "attempt:1",
+          "category": "VENUE",
+          "included_in_fill": false,
+          "external_effect_key": "paper:fee:1",
+          "rebate": false
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "USDC:AVAILABLE",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-1000000"
+          },
+          {
+            "account_id": "USDC:FEE_EXPENSE",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "1000000"
+          }
+        ],
+        "journal_id": "journal:FIN-03"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "99000000",
+          "USDC:EXTERNAL": "-100000000",
+          "USDC:FEE_EXPENSE": "1000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "100 - 1 fee = 99 USDC; expense 1 USDC",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-04",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-04",
+        "idempotency_key": "idem:FIN-04",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "RENT",
+        "payload": {
+          "move": {
+            "amount": {
+              "asset_id": "asset:SOL",
+              "atoms": "2039280",
+              "decimals": 9
+            },
+            "source_account_id": "SOL:AVAILABLE",
+            "destination_account_id": "SOL:RENT_LOCKED"
+          },
+          "account_address": "synthetic-ata",
+          "action": "LOCK",
+          "observation_id": "obs:rent:1",
+          "approval_evidence_id": null
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "SOL:AVAILABLE": "10000000000",
+          "SOL:EXTERNAL": "-10000000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "SOL:AVAILABLE",
+            "asset_id": "asset:SOL",
+            "signed_atoms": "-2039280"
+          },
+          {
+            "account_id": "SOL:RENT_LOCKED",
+            "asset_id": "asset:SOL",
+            "signed_atoms": "2039280"
+          }
+        ],
+        "journal_id": "journal:FIN-04"
+      },
+      "expected_state": {
+        "balances": {
+          "SOL:AVAILABLE": "9997960720",
+          "SOL:EXTERNAL": "-10000000000",
+          "SOL:RENT_LOCKED": "2039280"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "10,000,000,000 - 2,039,280 = 9,997,960,720 lamports; total owned stays 10 SOL",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-05",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-05",
+        "idempotency_key": "idem:FIN-05",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "RENT",
+        "payload": {
+          "move": {
+            "amount": {
+              "asset_id": "asset:SOL",
+              "atoms": "2039280",
+              "decimals": 9
+            },
+            "source_account_id": "SOL:RENT_LOCKED",
+            "destination_account_id": "SOL:AVAILABLE"
+          },
+          "account_address": "synthetic-ata",
+          "action": "RETURN",
+          "observation_id": "obs:rent:1",
+          "approval_evidence_id": null
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "SOL:AVAILABLE": "9997960720",
+          "SOL:EXTERNAL": "-10000000000",
+          "SOL:RENT_LOCKED": "2039280"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "SOL:RENT_LOCKED",
+            "asset_id": "asset:SOL",
+            "signed_atoms": "-2039280"
+          },
+          {
+            "account_id": "SOL:AVAILABLE",
+            "asset_id": "asset:SOL",
+            "signed_atoms": "2039280"
+          }
+        ],
+        "journal_id": "journal:FIN-05"
+      },
+      "expected_state": {
+        "balances": {
+          "SOL:AVAILABLE": "10000000000",
+          "SOL:EXTERNAL": "-10000000000",
+          "SOL:RENT_LOCKED": "0"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "9,997,960,720 + 2,039,280 = 10,000,000,000 lamports; no income",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-06",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-06",
+        "idempotency_key": "idem:FIN-06",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "RENT",
+        "payload": {
+          "move": {
+            "amount": {
+              "asset_id": "asset:SOL",
+              "atoms": "2039280",
+              "decimals": 9
+            },
+            "source_account_id": "SOL:RENT_LOCKED",
+            "destination_account_id": "SOL:FEE_EXPENSE"
+          },
+          "account_address": "synthetic-ata",
+          "action": "WRITE_OFF",
+          "observation_id": "obs:rent:1",
+          "approval_evidence_id": "approval:write-off:1"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "SOL:AVAILABLE": "9997960720",
+          "SOL:EXTERNAL": "-10000000000",
+          "SOL:RENT_LOCKED": "2039280"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "SOL:RENT_LOCKED",
+            "asset_id": "asset:SOL",
+            "signed_atoms": "-2039280"
+          },
+          {
+            "account_id": "SOL:FEE_EXPENSE",
+            "asset_id": "asset:SOL",
+            "signed_atoms": "2039280"
+          }
+        ],
+        "journal_id": "journal:FIN-06"
+      },
+      "expected_state": {
+        "balances": {
+          "SOL:AVAILABLE": "9997960720",
+          "SOL:EXTERNAL": "-10000000000",
+          "SOL:RENT_LOCKED": "0",
+          "SOL:FEE_EXPENSE": "2039280"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "Recoverable principal 2,039,280 becomes proven loss; owned drops by exactly that amount",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-07",
+      "requirement_ids": [
+        "R-051"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-07",
+        "idempotency_key": "idem:FIN-07",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "RESERVE",
+        "payload": {
+          "reservation_id": "reservation:1",
+          "moves": [
+            {
+              "amount": {
+                "asset_id": "asset:USDC",
+                "atoms": "30000000",
+                "decimals": 6
+              },
+              "source_account_id": "USDC:AVAILABLE",
+              "destination_account_id": "USDC:RESERVED"
+            }
+          ],
+          "expected_reservation_revision": 0,
+          "reconciliation_evidence_id": null
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RISK",
+          "reservation_state": "NEW",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "USDC:AVAILABLE",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-30000000"
+          },
+          {
+            "account_id": "USDC:RESERVED",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "30000000"
+          }
+        ],
+        "journal_id": "journal:FIN-07"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "70000000",
+          "USDC:RESERVED": "30000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "100 = 70 available + 30 reserved; quantity 100, reserved 30, available 70",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-051"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-08",
+      "requirement_ids": [
+        "R-055"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-08",
+        "idempotency_key": "idem:FIN-08",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "RELEASE",
+        "payload": {
+          "reservation_id": "reservation:1",
+          "moves": [
+            {
+              "amount": {
+                "asset_id": "asset:USDC",
+                "atoms": "10000000",
+                "decimals": 6
+              },
+              "source_account_id": "USDC:RESERVED",
+              "destination_account_id": "USDC:AVAILABLE"
+            }
+          ],
+          "expected_reservation_revision": 2,
+          "reconciliation_evidence_id": "evidence:finality:1"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "70000000",
+          "USDC:RESERVED": "30000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "reservation_state": "ATTEMPTED",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        },
+        "reservation_allocations": {
+          "reservation:1": {
+            "USDC:RESERVED": "10000000"
+          },
+          "reservation:other": {
+            "USDC:RESERVED": "20000000"
+          }
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "USDC:RESERVED",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-10000000"
+          },
+          {
+            "account_id": "USDC:AVAILABLE",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "10000000"
+          }
+        ],
+        "journal_id": "journal:FIN-08"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "80000000",
+          "USDC:RESERVED": "20000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED",
+        "reservation_allocations": {
+          "reservation:1": {
+            "USDC:RESERVED": "0"
+          },
+          "reservation:other": {
+            "USDC:RESERVED": "20000000"
+          }
+        },
+        "reservation_state": "RELEASED"
+      },
+      "independent_calculation": "Residual 10 returned after verified partial consumption; unrelated 20 remains reserved",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-055"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-09",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-09",
+        "idempotency_key": "idem:FIN-09",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "INTERNAL_TRANSFER",
+        "payload": {
+          "move": {
+            "amount": {
+              "asset_id": "asset:USDC",
+              "atoms": "10000000",
+              "decimals": 6
+            },
+            "source_account_id": "USDC:AVAILABLE",
+            "destination_account_id": "USDC:COLLATERAL"
+          },
+          "destination_custody_id": "wallet:paper"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "USDC:AVAILABLE",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-10000000"
+          },
+          {
+            "account_id": "USDC:COLLATERAL",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "10000000"
+          }
+        ],
+        "journal_id": "journal:FIN-09"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "90000000",
+          "USDC:COLLATERAL": "10000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "100 = 90 available + 10 collateral; same custody, no external transfer",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-10",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-10",
+        "idempotency_key": "idem:FIN-10",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "ADJUSTMENT",
+        "payload": {
+          "moves": [
+            {
+              "amount": {
+                "asset_id": "asset:USDC",
+                "atoms": "2000000",
+                "decimals": 6
+              },
+              "source_account_id": "USDC:ADJUSTMENT_CLEARING",
+              "destination_account_id": "USDC:AVAILABLE"
+            }
+          ],
+          "cause_evidence_id": "evidence:missing:1",
+          "approval_evidence_id": "approval:adjust:1",
+          "reason": "RECOVERED_MISSING_EFFECT"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "USDC:ADJUSTMENT_CLEARING",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-2000000"
+          },
+          {
+            "account_id": "USDC:AVAILABLE",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "2000000"
+          }
+        ],
+        "journal_id": "journal:FIN-10"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "102000000",
+          "USDC:EXTERNAL": "-100000000",
+          "USDC:ADJUSTMENT_CLEARING": "-2000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "100 + independently proven 2 = 102 USDC; adjustment classification retained",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-11",
+      "requirement_ids": [
+        "R-055"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-11",
+        "idempotency_key": "idem:FIN-11",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "TRADE",
+        "payload": {
+          "fill": {
+            "id": "fill:1",
+            "revision": 1,
+            "order_id": "order:1",
+            "attempt_id": "attempt:1",
+            "external_effect_key": "fixture",
+            "input_asset_id": "asset:USDC",
+            "output_asset_id": "asset:SOL",
+            "input_atoms": "25000000",
+            "output_atoms": "250000000",
+            "fee_asset_id": "asset:SOL",
+            "fee_atoms": "0",
+            "executed_at": "2026-11-06T12:00:00Z",
+            "finalized_at": "2026-11-06T12:00:00Z",
+            "simulated": true,
+            "instrument_id": "instrument:SOL-USDC:cpmm",
+            "instrument_revision": 1
+          },
+          "input_move": {
+            "amount": {
+              "asset_id": "asset:USDC",
+              "atoms": "25000000",
+              "decimals": 6
+            },
+            "source_account_id": "USDC:RESERVED",
+            "destination_account_id": "USDC:TRADE_CLEARING"
+          },
+          "output_move": {
+            "amount": {
+              "asset_id": "asset:SOL",
+              "atoms": "250000000",
+              "decimals": 9
+            },
+            "source_account_id": "SOL:TRADE_CLEARING",
+            "destination_account_id": "SOL:AVAILABLE"
+          },
+          "reservation_id": "reservation:trade:1"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "75000000",
+          "USDC:RESERVED": "25000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "USDC:RESERVED",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-25000000"
+          },
+          {
+            "account_id": "USDC:TRADE_CLEARING",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "25000000"
+          },
+          {
+            "account_id": "SOL:TRADE_CLEARING",
+            "asset_id": "asset:SOL",
+            "signed_atoms": "-250000000"
+          },
+          {
+            "account_id": "SOL:AVAILABLE",
+            "asset_id": "asset:SOL",
+            "signed_atoms": "250000000"
+          }
+        ],
+        "journal_id": "journal:FIN-11"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "75000000",
+          "USDC:RESERVED": "0",
+          "USDC:EXTERNAL": "-100000000",
+          "USDC:TRADE_CLEARING": "25000000",
+          "SOL:TRADE_CLEARING": "-250000000",
+          "SOL:AVAILABLE": "250000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "25 USDC / 100 USDC per SOL = 0.25 SOL = 250,000,000 lamports; no sum across currencies",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-055"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-12",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-12",
+        "idempotency_key": "idem:FIN-12",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "REVERSAL",
+        "payload": {
+          "original_journal_id": "journal:FIN-01",
+          "correction_evidence_id": "evidence:correction:1",
+          "approval_evidence_id": "approval:correction:1"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "125000000",
+          "USDC:EXTERNAL": "-125000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        },
+        "original_journal_lines": [
+          {
+            "account_id": "USDC:EXTERNAL",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-25000000"
+          },
+          {
+            "account_id": "USDC:AVAILABLE",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "25000000"
+          }
+        ]
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "USDC:AVAILABLE",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-25000000"
+          },
+          {
+            "account_id": "USDC:EXTERNAL",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "25000000"
+          }
+        ],
+        "journal_id": "journal:FIN-12"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "Negate exactly FIN-01: -25 available, +25 external; 125 - 25 = 100",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-13",
+      "requirement_ids": [
+        "R-102"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-13",
+        "idempotency_key": "idem:FIN-13",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "DERIVATIVE_SETTLEMENT",
+        "payload": {
+          "instrument_id": "instrument:linear:1",
+          "position_id": "position:1",
+          "move": {
+            "amount": {
+              "asset_id": "asset:USDC",
+              "atoms": "5000000",
+              "decimals": 6
+            },
+            "source_account_id": "USDC:PNL_CLEARING",
+            "destination_account_id": "USDC:COLLATERAL"
+          },
+          "settlement_kind": "REALIZED_PNL",
+          "observation_id": "obs:pnl:1"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:COLLATERAL": "10000000",
+          "USDC:EXTERNAL": "-10000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "USDC:PNL_CLEARING",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-5000000"
+          },
+          {
+            "account_id": "USDC:COLLATERAL",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "5000000"
+          }
+        ],
+        "journal_id": "journal:FIN-13"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:COLLATERAL": "15000000",
+          "USDC:EXTERNAL": "-10000000",
+          "USDC:PNL_CLEARING": "-5000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "10 lots * 0.01 SOL per lot * (150 - 100) USDC/SOL = 5 USDC realized",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-102"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-14",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-14",
+        "idempotency_key": "idem:FIN-14",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "REBATE",
+        "payload": {
+          "move": {
+            "amount": {
+              "asset_id": "asset:USDC",
+              "atoms": "100000",
+              "decimals": 6
+            },
+            "source_account_id": "USDC:TRADE_CLEARING",
+            "destination_account_id": "USDC:AVAILABLE"
+          },
+          "attempt_id": "attempt:1",
+          "category": "VENUE",
+          "included_in_fill": false,
+          "external_effect_key": "paper:rebate:1",
+          "rebate": true
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "POSTED",
+        "journal_lines": [
+          {
+            "account_id": "USDC:TRADE_CLEARING",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-100000"
+          },
+          {
+            "account_id": "USDC:AVAILABLE",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "100000"
+          }
+        ],
+        "journal_id": "journal:FIN-14"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100100000",
+          "USDC:EXTERNAL": "-100000000",
+          "USDC:TRADE_CLEARING": "-100000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "Confirmed rebate 0.1 USDC; 100 + 0.1 = 100.1, never assumed from quote",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-15",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-01",
+        "idempotency_key": "idem:FIN-01",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "DEPOSIT",
+        "payload": {
+          "move": {
+            "amount": {
+              "asset_id": "asset:USDC",
+              "atoms": "25000000",
+              "decimals": 6
+            },
+            "source_account_id": "USDC:EXTERNAL",
+            "destination_account_id": "USDC:AVAILABLE"
+          },
+          "observation_id": "obs:deposit:1",
+          "external_effect_key": "paper:deposit:1"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "125000000",
+          "USDC:EXTERNAL": "-125000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        },
+        "existing_operation_id": "op:FIN-01"
+      },
+      "expected_output": {
+        "outcome": "DUPLICATE",
+        "journal_lines": [],
+        "journal_id": "journal:FIN-01"
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "125000000",
+          "USDC:EXTERNAL": "-125000000"
+        },
+        "portfolio_revision": 8,
+        "operation_state": "POSTED"
+      },
+      "independent_calculation": "Same operation/effect key returns original journal, delta 0 and revision unchanged",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": null,
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-16",
+      "requirement_ids": [
+        "R-051"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-16",
+        "idempotency_key": "idem:FIN-16",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "RELEASE",
+        "payload": {
+          "reservation_id": "reservation:1",
+          "moves": [
+            {
+              "amount": {
+                "asset_id": "asset:USDC",
+                "atoms": "30000000",
+                "decimals": 6
+              },
+              "source_account_id": "USDC:RESERVED",
+              "destination_account_id": "USDC:AVAILABLE"
+            }
+          ],
+          "expected_reservation_revision": 1,
+          "reconciliation_evidence_id": null
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "70000000",
+          "USDC:RESERVED": "30000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "reservation_state": "ATTEMPTED",
+          "order_state": "UNKNOWN",
+          "finality": "UNKNOWN"
+        }
+      },
+      "expected_output": {
+        "outcome": "REJECTED",
+        "journal_lines": [],
+        "journal_id": null
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "70000000",
+          "USDC:RESERVED": "30000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "REJECTED"
+      },
+      "independent_calculation": "UNKNOWN + ATTEMPTED: zero release even after expiry; reserved remains 30 USDC",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": "RESERVATION_COMMITTED",
+      "tasks": [
+        "T-051"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-17",
+      "requirement_ids": [
+        "R-098"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-17",
+        "idempotency_key": "idem:FIN-17",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "DEPOSIT",
+        "payload": {
+          "move": {
+            "amount": {
+              "asset_id": "asset:USDC",
+              "atoms": "25000000",
+              "decimals": 6
+            },
+            "source_account_id": "USDC:EXTERNAL",
+            "destination_account_id": "USDC:AVAILABLE"
+          },
+          "observation_id": "obs:deposit:1",
+          "external_effect_key": "paper:deposit:1"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "UNKNOWN",
+          "coverage": "INCOMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "REJECTED",
+        "journal_lines": [],
+        "journal_id": null
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "PENDING_EVIDENCE"
+      },
+      "independent_calculation": "RPC accepted/processed does not finalize 25 USDC: spendable remains 100",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": "UNVERIFIED_EFFECT",
+      "tasks": [
+        "T-098"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-18",
+      "requirement_ids": [
+        "R-051"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-18",
+        "idempotency_key": "idem:FIN-18",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "RESERVE",
+        "payload": {
+          "reservation_id": "reservation:1",
+          "moves": [
+            {
+              "amount": {
+                "asset_id": "asset:USDC",
+                "atoms": "101000000",
+                "decimals": 6
+              },
+              "source_account_id": "USDC:AVAILABLE",
+              "destination_account_id": "USDC:RESERVED"
+            }
+          ],
+          "expected_reservation_revision": 0,
+          "reconciliation_evidence_id": null
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RISK",
+          "reservation_state": "NEW",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "REJECTED",
+        "journal_lines": [],
+        "journal_id": null
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "REJECTED"
+      },
+      "independent_calculation": "101 USDC requested > 100 USDC available: reject entire operation",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": "INSUFFICIENT_AVAILABLE",
+      "tasks": [
+        "T-051"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-19",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-19",
+        "idempotency_key": "idem:FIN-19",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "INTERNAL_TRANSFER",
+        "payload": {
+          "move": {
+            "amount": {
+              "asset_id": "asset:USDC",
+              "atoms": "1000000",
+              "decimals": 6
+            },
+            "source_account_id": "USDC:AVAILABLE",
+            "destination_account_id": "USDC:COLLATERAL"
+          },
+          "destination_custody_id": "wallet:other"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "finality": "VERIFIED",
+          "coverage": "COMPLETE"
+        }
+      },
+      "expected_output": {
+        "outcome": "REJECTED",
+        "journal_lines": [],
+        "journal_id": null
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "REJECTED"
+      },
+      "independent_calculation": "Different custody requires verified external movement, not a journal-only command",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": "UNVERIFIED_EFFECT",
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    },
+    {
+      "id": "FIN-20",
+      "requirement_ids": [
+        "R-031"
+      ],
+      "input_schema": "LedgerPostRequest",
+      "input": {
+        "operation_id": "op:FIN-20",
+        "idempotency_key": "idem:FIN-20",
+        "portfolio_id": "portfolio:paper",
+        "mode": "PAPER",
+        "expected_portfolio_revision": 7,
+        "actor_id": "reconciler:paper",
+        "occurred_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:deposit:1"
+        ],
+        "operation": "REVERSAL",
+        "payload": {
+          "original_journal_id": "journal:FIN-01",
+          "correction_evidence_id": "evidence:correction:1",
+          "approval_evidence_id": "approval:correction:1"
+        }
+      },
+      "initial_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "RECEIVED",
+        "context": {
+          "actor_role": "RECONCILER",
+          "original_already_reversed": true
+        }
+      },
+      "expected_output": {
+        "outcome": "REJECTED",
+        "journal_lines": [],
+        "journal_id": null
+      },
+      "expected_state": {
+        "balances": {
+          "USDC:AVAILABLE": "100000000",
+          "USDC:EXTERNAL": "-100000000"
+        },
+        "portfolio_revision": 7,
+        "operation_state": "REJECTED"
+      },
+      "independent_calculation": "Second reversal of journal:FIN-01 is rejected and does not create another 25 USDC",
+      "units": {
+        "USDC": "atoms, 6 decimals",
+        "SOL": "lamports, 9 decimals"
+      },
+      "invariant": "Exact conservation separately per asset; own spendable balances cannot become negative; confirmed fact required",
+      "expected_error": "ALREADY_REVERSED",
+      "tasks": [
+        "T-031"
+      ],
+      "validation_method": "Validate typed command and independently reconcile documented deltas/balances; future implementation must produce the same oracle"
+    }
+  ]
+}

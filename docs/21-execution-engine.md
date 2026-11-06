@@ -59,10 +59,17 @@ incluida en los importes netos del swap. Clave económica: chain/venue + signatu
 + categoría + índice de efecto + asset. Varias FeeEvent permiten fees en distintos activos.
 Rent de ATA es depósito recuperable, no fee: requiere asiento de activo restringido y
 reversión cuando se recupera. Transacción fallida puede generar sólo FeeEvent y ningún Fill.
-Las interfaces para depósitos/rent y derivados necesitan el cierre registrado en GD-09;
-no inferirlas de LedgerWriter.post(Fill).
+Las interfaces de depósitos/rent y derivados se especifican en financial-operations.md;
+LedgerWriter.post recibe LedgerPostRequest y no un Fill aislado.
 
 Paper nunca firma: PREPARED→SUBMITTING exige persistir intent/seed/fill-model hash;
 SUBMITTING→PENDING es aceptación del simulador y luego confirmación/finalidad simuladas.
 Sus Attempt tienen simulated=true, firma/artefacto null; los IDs y efectos incluyen PAPER.
 No presentar pruebas sobre fixtures como confirmación de red.
+
+## Contratos financieros R2
+
+[Operaciones, instrumentos y unidades](contracts/financial-operations.md) y ADR-019 especifican
+LedgerPostRequest, LedgerPostResult, ReconciliationRequest y catálogo Instrument. Son normativos
+para depósitos/rent/fees/reservas/reversos y liquidación; LedgerWriter ya no recibe Fill aislado.
+Los metadatos de Instrument y los escenarios son requisitos de implementación, no servicios activos.

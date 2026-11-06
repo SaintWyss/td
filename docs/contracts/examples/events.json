@@ -1,8 +1,8 @@
 [
   {
     "event_id": "fixture",
-    "event_type": "observation.recorded.v1",
-    "schema_version": "1.0.0",
+    "event_type": "observation.recorded.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -32,8 +32,8 @@
   },
   {
     "event_id": "fixture",
-    "event_type": "token.assessed.v1",
-    "schema_version": "1.0.0",
+    "event_type": "token.assessed.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -64,8 +64,8 @@
   },
   {
     "event_id": "fixture",
-    "event_type": "features.ready.v1",
-    "schema_version": "1.0.0",
+    "event_type": "features.ready.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -93,13 +93,15 @@
         "fixture"
       ],
       "quality": "VALID",
-      "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     }
   },
   {
     "event_id": "fixture",
-    "event_type": "signal.proposed.v1",
-    "schema_version": "1.0.0",
+    "event_type": "signal.proposed.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -126,13 +128,15 @@
       "feature_snapshot_id": "fixture",
       "reason_codes": [
         "fixture"
-      ]
+      ],
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     }
   },
   {
     "event_id": "fixture",
-    "event_type": "decision.recorded.v1",
-    "schema_version": "1.0.0",
+    "event_type": "decision.recorded.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -153,13 +157,15 @@
       "feature_snapshot_id": "fixture",
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "model_ids": [],
-      "risk_assessment_id": "fixture"
+      "risk_assessment_id": "fixture",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     }
   },
   {
     "event_id": "fixture",
-    "event_type": "risk.assessed.v1",
-    "schema_version": "1.0.0",
+    "event_type": "risk.assessed.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -183,13 +189,15 @@
       "assessed_at": "2026-11-03T14:00:00Z",
       "expires_at": "2026-11-03T14:05:00Z",
       "input_asset_id": "solana:fixture-input",
-      "fee_asset_id": "solana:native"
+      "fee_asset_id": "solana:native",
+      "rent_asset_id": "asset:SOL",
+      "max_rent_atoms": "0"
     }
   },
   {
     "event_id": "fixture",
-    "event_type": "execution.intent.v1",
-    "schema_version": "1.0.0",
+    "event_type": "execution.intent.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -222,13 +230,17 @@
       ],
       "chain_id": "fixture",
       "wallet_id": "fixture",
-      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1,
+      "rent_asset_id": "asset:SOL",
+      "max_rent_atoms": "0"
     }
   },
   {
     "event_id": "fixture",
-    "event_type": "execution.reported.v1",
-    "schema_version": "1.0.0",
+    "event_type": "execution.reported.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -254,8 +266,8 @@
   },
   {
     "event_id": "fixture",
-    "event_type": "fill.finalized.v1",
-    "schema_version": "1.0.0",
+    "event_type": "fill.finalized.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -277,13 +289,15 @@
       "fee_atoms": "1",
       "executed_at": "2026-11-03T14:00:00Z",
       "finalized_at": "2026-11-03T14:00:00Z",
-      "simulated": false
+      "simulated": false,
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     }
   },
   {
     "event_id": "fixture",
-    "event_type": "journal.recorded.v1",
-    "schema_version": "1.0.0",
+    "event_type": "journal.recorded.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -309,16 +323,22 @@
         }
       ],
       "recorded_at": "2026-11-03T14:00:00Z",
-      "reason": "FILL",
+      "reason": "TRADE",
       "evidence_ids": [
         "fixture"
-      ]
+      ],
+      "portfolio_id": "portfolio:paper",
+      "operation_id": "operation:deposit:1",
+      "idempotency_key": "idem:deposit:1",
+      "mode": "PAPER",
+      "reverses_entry_id": null,
+      "occurred_at": "2026-11-06T12:00:00Z"
     }
   },
   {
     "event_id": "fixture",
-    "event_type": "claim.extracted.v1",
-    "schema_version": "1.0.0",
+    "event_type": "claim.extracted.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -348,8 +368,8 @@
   },
   {
     "event_id": "fixture",
-    "event_type": "model.promoted.v1",
-    "schema_version": "1.0.0",
+    "event_type": "model.promoted.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -375,8 +395,8 @@
   },
   {
     "event_id": "fixture",
-    "event_type": "outcome.matured.v1",
-    "schema_version": "1.0.0",
+    "event_type": "outcome.matured.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",
@@ -399,8 +419,8 @@
   },
   {
     "event_id": "fixture",
-    "event_type": "alert.raised.v1",
-    "schema_version": "1.0.0",
+    "event_type": "alert.raised.v2",
+    "schema_version": "2.0.0",
     "correlation_id": "fixture",
     "causation_id": "fixture",
     "occurred_at": "2026-11-03T14:00:00Z",

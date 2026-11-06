@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-11-06T13:08:40.515610+00:00",
+  "scope": "offline structural specification validation",
+  "status": "PASS",
+  "counts": {
+    "json_files": 24,
+    "domain_definitions": 131,
+    "positive_examples": 131,
+    "negative_examples": 131,
+    "api_paths": 31,
+    "tasks": 144,
+    "requirements": 144,
+    "components": 16,
+    "event_types": 14,
+    "local_link_targets": 219
+  },
+  "errors": [],
+  "not_verified": [
+    "runtime enforcement of semantic rules; cross-record financial and temporal invariants",
+    "runtime product, providers, permissions, data quality or profitability",
+    "Mermaid rendering and Markdown anchors",
+    "external URL freshness, licenses and legal requirements",
+    "full editorial consistency of prose and task implementation paths"
+  ]
+}

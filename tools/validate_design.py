@@ -70,6 +70,10 @@ def validate_design(root: Path, schema: dict, positives: dict, negatives: list) 
             errors.append("order: UNKNOWN has unsafe terminal/retry edge")
     binding = {
         "intent_hash",
+        "instrument_id",
+        "instrument_revision",
+        "rent_asset_id",
+        "max_rent_atoms",
         "wallet_id",
         "chain_id",
         "mode",

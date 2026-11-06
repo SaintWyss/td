@@ -37,7 +37,7 @@ Reservation y ExecutionIntent vinculan input/output/fee asset, cantidades, min o
 wallet, chain, mode, reduce_only, programas ordenados, quote/policy hashes, epoch,
 fencing y expiración. `Reservation.asset_id` identifica el activo de riesgo (output en
 entrada, input en salida). `RiskAssessment.approved_atoms` está en input_asset_id;
-max_fee_atoms en fee_asset_id. DENIED = cantidad/fee 0 y reserva null.
+max_fee_atoms en fee_asset_id y max_rent_atoms en rent_asset_id. DENIED = cantidad/fee/rent 0 y reserva null.
 
 `intent_hash` = SHA256 de JSON canónico UTF-8 (claves ordenadas, sin espacios, sólo ASCII
 para IDs, números enteros seguros) de ExecutionIntent excluyendo `intent_hash`, `id`,
@@ -48,3 +48,10 @@ nueva decisión/reserva después de resolver la anterior, nunca sustituir una UN
 Signer re-lee la autorización, compara hash y cada efecto decodificado (incluyendo ATA,
 rent y lookup tables) y vuelve a comprobar epoch/deadline. La lista de programas por sí
 sola no autoriza transferencias arbitrarias.
+
+## Contratos financieros R2
+
+[Operaciones, instrumentos y unidades](contracts/financial-operations.md) y ADR-019 especifican
+LedgerPostRequest, LedgerPostResult, ReconciliationRequest y catálogo Instrument. Son normativos
+para depósitos/rent/fees/reservas/reversos y liquidación; LedgerWriter ya no recibe Fill aislado.
+Los metadatos de Instrument y los escenarios son requisitos de implementación, no servicios activos.

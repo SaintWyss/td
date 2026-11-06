@@ -30,3 +30,10 @@ Publicar un archivo: escribir temporal, fsync, hash, renombrar atómicamente, re
 La ausencia de trades no implica precio constante ni liquidez disponible. OHLCV vacío se marca; no hay forward-fill de volumen. El universo conserva mints muertos, pools drenados, rutas ausentes y intervalos sin observación. Retención inicial: raw on-chain 30 días caliente, canonical/Parquet 180 días caliente y archivo hasta 365 días según capacidad; manifiestos, decisiones y ledger se conservan durante la vida del experimento. Límites son política local y se revisan contra contrato de cada fuente.
 
 Cold storage al HDD del escritorio; portátil sólo fixtures y resultados resumidos. Al 80% de cuota detener nuevos backfills; al 90% detener colectores secundarios; nunca borrar archivos referenciados por holdouts o incidentes sin decisión explícita.
+
+## Contratos financieros R2
+
+[Operaciones, instrumentos y unidades](contracts/financial-operations.md) y ADR-019 especifican
+LedgerPostRequest, LedgerPostResult, ReconciliationRequest y catálogo Instrument. Son normativos
+para depósitos/rent/fees/reservas/reversos y liquidación; LedgerWriter ya no recibe Fill aislado.
+Los metadatos de Instrument y los escenarios son requisitos de implementación, no servicios activos.

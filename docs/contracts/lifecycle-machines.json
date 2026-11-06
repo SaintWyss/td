@@ -227,5 +227,56 @@
         "guard": "lease expired; bounded retry; deduplicated effects; next claim increments fence"
       }
     ]
+  },
+  "ledger_operation": {
+    "initial": "RECEIVED",
+    "states": [
+      "RECEIVED",
+      "PENDING_EVIDENCE",
+      "VERIFIED",
+      "POSTED",
+      "REJECTED"
+    ],
+    "terminal": [
+      "POSTED",
+      "REJECTED"
+    ],
+    "transitions": [
+      {
+        "source": "RECEIVED",
+        "target": "PENDING_EVIDENCE",
+        "guard": "insufficient evidence: retain observation, no balance effect"
+      },
+      {
+        "source": "RECEIVED",
+        "target": "VERIFIED",
+        "guard": "schema, units, actor and finalized evidence valid"
+      },
+      {
+        "source": "PENDING_EVIDENCE",
+        "target": "VERIFIED",
+        "guard": "new evidence revision complete before freezing payload hash"
+      },
+      {
+        "source": "RECEIVED",
+        "target": "REJECTED",
+        "guard": "typed invalid command"
+      },
+      {
+        "source": "PENDING_EVIDENCE",
+        "target": "REJECTED",
+        "guard": "authoritative invalid evidence or cancellation before effects"
+      },
+      {
+        "source": "VERIFIED",
+        "target": "POSTED",
+        "guard": "atomic journal, projections and outbox commit durable"
+      },
+      {
+        "source": "VERIFIED",
+        "target": "REJECTED",
+        "guard": "CAS/account/balance authorization fails, no writes"
+      }
+    ]
   }
 }

@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-06T13:04:21.180363+00:00",
+  "scope": "offline structural specification validation",
+  "status": "FAIL",
+  "counts": {
+    "json_files": 24,
+    "domain_definitions": 128,
+    "positive_examples": 128,
+    "negative_examples": 128,
+    "api_paths": 31,
+    "tasks": 144,
+    "requirements": 144,
+    "components": 16,
+    "event_types": 14,
+    "local_link_targets": 213
+  },
+  "errors": [
+    "example EventEnvelope: {'id': 'fixture', 'revision': 1, 'source_id': 'fixture', 'asset_id': 'fixture', 'kind': 'TRADE', 'event_time': '2026-11-03T14:00:00Z', 'received_at': '2026-11-03T14:00:00Z', 'available_at': '2026-11-03T14:00:00Z', 'recorded_at': '2026-11-03T14:00:00Z', 'slot': 1, 'commitment': 'processed', 'dedup_key': 'fixture', 'payload_hash': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'artifact_id': 'fixture', 'quality': 'VALID', 'supersedes_id': 'fixture', 'parser_version': 'fixture', 'fingerprint': 'fixture', 'severity': 'INFO', 'state': 'OPEN', 'code': 'fixture', 'message': 'fixture', 'first_seen_at': '2026-11-03T14:00:00Z', 'last_seen_at': '2026-11-03T14:00:00Z', 'count': 1} is not valid under any of the given schemas",
+    "example EventEnvelope: {'id': 'fixture', 'revision': 1, 'external_effect_key': 'fixture', 'fill_id': 'fixture', 'lines': [{'account_id': 'cash', 'asset_id': 'fixture', 'signed_atoms': '1'}, {'account_id': 'external', 'asset_id': 'fixture', 'signed_atoms': '-1'}], 'recorded_at': '2026-11-03T14:00:00Z', 'reason': 'FILL', 'evidence_ids': ['fixture'], 'portfolio_id': 'portfolio:paper', 'operation_id': 'operation:deposit:1', 'idempotency_key': 'idem:deposit:1', 'mode': 'PAPER', 'reverses_entry_id': None, 'occurred_at': '2026-11-06T12:00:00Z'} is not valid under any of the given schemas",
+    "example JournalEntry: 'FILL' is not one of ['DEPOSIT', 'WITHDRAWAL', 'RENT', 'FEE', 'ADJUSTMENT', 'RESERVE', 'RELEASE', 'INTERNAL_TRANSFER', 'TRADE', 'REVERSAL', 'DERIVATIVE_SETTLEMENT']"
+  ],
+  "not_verified": [
+    "runtime enforcement of semantic rules; cross-record financial and temporal invariants",
+    "runtime product, providers, permissions, data quality or profitability",
+    "Mermaid rendering and Markdown anchors",
+    "external URL freshness, licenses and legal requirements",
+    "full editorial consistency of prose and task implementation paths"
+  ]
+}

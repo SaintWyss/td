@@ -67,3 +67,10 @@ Un slot/contador externo mayor se rechaza como UNSUPPORTED_RANGE conservando raw
 no se redondea. Extenderlos a string exige nueva versión. Porcentajes de holders usados
 por Risk son strings decimales [0,1], leídos exactamente desde el texto. Probabilidades
 ML y métricas no monetarias pueden ser float finito; no son balances ni caps financieros.
+
+## Contratos financieros R2
+
+[Operaciones, instrumentos y unidades](contracts/financial-operations.md) y ADR-019 especifican
+LedgerPostRequest, LedgerPostResult, ReconciliationRequest y catálogo Instrument. Son normativos
+para depósitos/rent/fees/reservas/reversos y liquidación; LedgerWriter ya no recibe Fill aislado.
+Los metadatos de Instrument y los escenarios son requisitos de implementación, no servicios activos.
