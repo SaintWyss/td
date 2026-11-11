@@ -1,4 +1,9 @@
-# TD — investigación cuantitativa e inteligencia Solana
+<h1 align="center">td</h1>
+
+<p align="center"><strong>Investigación cuantitativa y diseño de herramientas para Solana.</strong><br/>Investigación · Python · TypeScript</p>
+
+> Proyecto en desarrollo. El alcance y la validación de cada funcionalidad se detallan a continuación.
+
 
 Repositorio privado con el blueprint de diseño y una base de desarrollo reproducible.
 **Estado: bootstrap; producto pendiente.** La documentación `1.0.0-draft` no es una
