@@ -1,7 +1,7 @@
 [
   {
     "strategy_id": "S01",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "observe_s": 1800,
       "cohort_h": 4
@@ -13,7 +13,7 @@
   },
   {
     "strategy_id": "S02",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "lookback_bars": 20,
       "volume_ratio": 2.0,
@@ -29,7 +29,7 @@
   },
   {
     "strategy_id": "S03",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "window_s": 10,
       "imbalance_min": 0.3,
@@ -42,7 +42,7 @@
   },
   {
     "strategy_id": "S04",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "window_min": 60,
       "entry_z": -2.0,
@@ -55,7 +55,7 @@
   },
   {
     "strategy_id": "S05",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "channel_bars": 20,
       "volume_ratio": 1.5,
@@ -69,7 +69,7 @@
   },
   {
     "strategy_id": "S06",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "channel_bars": 20,
       "reentry_s": 180,
@@ -82,7 +82,7 @@
   },
   {
     "strategy_id": "S07",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "depth_levels": 5,
       "imbalance_min": 0.6,
@@ -96,7 +96,7 @@
   },
   {
     "strategy_id": "S08",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "decay_s": 3600,
       "hold_s": 3600,
@@ -109,7 +109,7 @@
   },
   {
     "strategy_id": "S09",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "window_s": 3600,
       "baseline_days": 7,
@@ -126,7 +126,7 @@
   },
   {
     "strategy_id": "S10",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "coverage_min": 0.95,
       "max_chase_bps": 200,
@@ -139,7 +139,7 @@
   },
   {
     "strategy_id": "S11",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "window_s": 300,
       "min_clusters": 3,
@@ -153,7 +153,7 @@
   },
   {
     "strategy_id": "S12",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "window_s": 600,
       "growth_min": 0.2,
@@ -168,7 +168,7 @@
   },
   {
     "strategy_id": "S13",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "levels": 5,
       "spacing_bps": 50,
@@ -181,7 +181,7 @@
   },
   {
     "strategy_id": "S14",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "min_ticks": 2,
       "fee_mult": 1.5,
@@ -194,7 +194,7 @@
   },
   {
     "strategy_id": "S15",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "quote_skew_ms": 200,
       "buffer_bps": 20
@@ -206,7 +206,7 @@
   },
   {
     "strategy_id": "S16",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "forecast_h": 24,
       "max_hold_h": 72,
@@ -219,7 +219,7 @@
   },
   {
     "strategy_id": "S17",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "delta_band": 0.02,
       "hold_s": 86400
@@ -231,7 +231,7 @@
   },
   {
     "strategy_id": "S18",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "fast_bars": 20,
       "slow_bars": 60,
@@ -245,7 +245,7 @@
   },
   {
     "strategy_id": "S19",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "trailing_bps": 500,
       "max_hold_s": 1800
@@ -257,7 +257,7 @@
   },
   {
     "strategy_id": "S20",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "parameters": {
       "interval_s": 900,
       "hysteresis_windows": 2

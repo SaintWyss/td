@@ -1,0 +1,45 @@
+uv run --frozen python tools/validate_spec.py --report audit/latest.json
+{
+  "generated_at": "2026-11-04T19:47:32.379256+00:00",
+  "scope": "offline structural specification validation",
+  "status": "PASS",
+  "counts": {
+    "json_files": 24,
+    "domain_definitions": 106,
+    "positive_examples": 106,
+    "negative_examples": 106,
+    "api_paths": 31,
+    "tasks": 144,
+    "requirements": 144,
+    "components": 16,
+    "event_types": 14,
+    "local_link_targets": 205
+  },
+  "errors": [],
+  "not_verified": [
+    "runtime enforcement of semantic rules; cross-record financial and temporal invariants",
+    "runtime product, providers, permissions, data quality or profitability",
+    "Mermaid rendering and Markdown anchors",
+    "external URL freshness, licenses and legal requirements",
+    "full editorial consistency of prose and task implementation paths"
+  ]
+}
+uv run --frozen ruff check backend tools tests
+All checks passed!
+uv run --frozen ruff format --check backend tools tests
+12 files already formatted
+uv run --frozen mypy
+Success: no issues found in 6 source files
+pnpm --dir web typecheck
+$ tsc --noEmit
+uv run --frozen pytest
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-8.4.2, pluggy-1.7.0
+rootdir: /workspace/scratch/5cb089c0fa23/td
+configfile: pyproject.toml
+testpaths: tests/unit
+collected 12 items
+
+tests/unit/test_spec_tools.py ............                               [100%]
+
+============================= 12 passed in 23.09s ==============================

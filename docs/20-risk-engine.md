@@ -1,6 +1,6 @@
 # Motor determinista de riesgo
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
 La política canónica está en `contracts/policy-defaults.json`. Sólo Risk puede crear una reserva. Cualquier error de parser, dato crítico ausente, conflicto o estado desconocido deniega nuevas entradas; no se convierte en aprobación parcial.
 
@@ -23,3 +23,35 @@ El permiso vincula wallet, chain, input/output mint, amount/max_input, min_outpu
 RUNNING permite evaluar; CLOSE_ONLY prohíbe aumentar exposición y autoriza únicamente ventas que reduzcan posición, dentro de integridad, fees y programas permitidos. HALTED bloquea firmas nuevas incluidas salidas; un operador puede solicitar CLOSE_ONLY tras revisar el incidente. No ordenar una venta masiva ciega. El kill switch es durable, incrementa control_epoch y hace que futuras firmas fallen, pero no cancela transacciones ya emitidas.
 
 Datos de alpha vencidos no impiden por sí solos una salida de riesgo; siguen siendo obligatorios balances, identidad, quote, fee cap y control de posición. Cuando no hay mercado de salida, marcar UNLIQUIDATABLE y estimar pérdida conservadora. No anunciar cierre sin fill. Cualquier cambio que relaje límites requiere revisión humana y versión; endurecer puede automatizarse si está autorizado por política.
+
+## Binding y frontera transaccional cerrada (ADR-017)
+
+Risk re-lee cartera, saldos, reservas ACTIVE/ATTEMPTED y órdenes inciertas bajo el lock
+por portfolio. `RiskRequest.portfolio` es snapshot de diagnóstico: se contrasta revision,
+wallet, chain, mode y as_of con la DB; nunca es autoridad enviada por el cliente.
+Exposición incluye el peor resultado posible de pendientes; no se contabiliza dos veces
+una misma orden ya incluida en posiciones conciliadas. Saldo disponible = saldo final
+menos reservas aún no consumidas por activo, incluyendo fee asset distinto de input.
+
+Reservation y ExecutionIntent vinculan input/output/fee asset, cantidades, min output,
+wallet, chain, mode, reduce_only, programas ordenados, quote/policy hashes, epoch,
+fencing y expiración. `Reservation.asset_id` identifica el activo de riesgo (output en
+entrada, input en salida). `RiskAssessment.approved_atoms` está en input_asset_id;
+max_fee_atoms en fee_asset_id y max_rent_atoms en rent_asset_id. DENIED = cantidad/fee/rent 0 y reserva null.
+
+`intent_hash` = SHA256 de JSON canónico UTF-8 (claves ordenadas, sin espacios, sólo ASCII
+para IDs, números enteros seguros) de ExecutionIntent excluyendo `intent_hash`, `id`,
+`revision`, `order_id` y `reservation_id`. El conjunto de programas se ordena y deduplica.
+Risk genera ese payload y persiste reserva+intención+auditoría+outbox en una transacción.
+Exec no puede modificar ni ampliar ese objeto. Cambiar quote, fee o tamaño requiere
+nueva decisión/reserva después de resolver la anterior, nunca sustituir una UNKNOWN.
+Signer re-lee la autorización, compara hash y cada efecto decodificado (incluyendo ATA,
+rent y lookup tables) y vuelve a comprobar epoch/deadline. La lista de programas por sí
+sola no autoriza transferencias arbitrarias.
+
+## Contratos financieros R2
+
+[Operaciones, instrumentos y unidades](contracts/financial-operations.md) y ADR-019 especifican
+LedgerPostRequest, LedgerPostResult, ReconciliationRequest y catálogo Instrument. Son normativos
+para depósitos/rent/fees/reservas/reversos y liquidación; LedgerWriter ya no recibe Fill aislado.
+Los metadatos de Instrument y los escenarios son requisitos de implementación, no servicios activos.

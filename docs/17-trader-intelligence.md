@@ -23,3 +23,7 @@ S11 usa flujo agregado de wallets seleccionadas previamente, sin copiar cada tra
 ## Fallos y pruebas
 
 Historial truncado crea `coverage=PARTIAL`, no PnL cero. Transacción null o reorg conserva registro provisional hasta resolver. Fixtures incluyen transferencias propias, airdrops, inversión con costo desconocido, cuentas cerradas, rutas multihop y fees fallidas. Perfil aprobado requiere balances reconstruidos consistentes con snapshots observados dentro de tolerancia atómica explicada. Diferencias no resueltas deshabilitan el score financiero, preservando métricas de actividad válidas.
+
+## Entradas y temporalidad R2
+
+[Features y estrategias](contracts/features-and-strategies.md) fija fuente, unidad, ventana, disponibilidad y estimando. El catálogo tipado `contracts/feature-catalog.json` es normativo para producir/consumir features; `contracts/strategy-specs.json` contiene las 20 evaluaciones. No reemplazar datos faltantes por valores de conveniencia.

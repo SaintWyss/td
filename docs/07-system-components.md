@@ -34,3 +34,14 @@ Los consumidores usan vistas de lectura o contratos; no importan tablas del veci
 ## Falla y recuperación
 
 Data caído degrada calidad y provoca abstención; AI caído sólo suspende research; Trainer caído deja champion intacto; DB caída impide nuevos efectos; Risk caído impide ejecuciones; Exec incierto conserva reservas; API caída no debería perder reconciliación. Ningún módulo de análisis puede «ayudar» escribiendo directamente en el estado de otro para saltar un error.
+
+## Contratos financieros R2
+
+[Operaciones, instrumentos y unidades](contracts/financial-operations.md) y ADR-019 especifican
+LedgerPostRequest, LedgerPostResult, ReconciliationRequest y catálogo Instrument. Son normativos
+para depósitos/rent/fees/reservas/reversos y liquidación; LedgerWriter ya no recibe Fill aislado.
+Los metadatos de Instrument y los escenarios son requisitos de implementación, no servicios activos.
+
+## Puertos e historiales R2
+
+[Contratos auxiliares](contracts/auxiliary-ports.md) y `contracts/ports.json` fijan métodos, contexto, errores, deadline, cancelación y recuperación. Las consultas históricas tienen schemas por tipo, corte de disponibilidad, snapshot estable y cobertura explícita. No interpretar páginas vacías como cobertura garantizada.

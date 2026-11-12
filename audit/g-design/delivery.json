@@ -1,0 +1,18 @@
+{
+  "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+  "branch": "audit/g-design-blueprint-finalization",
+  "state": "PUBLISHED_FOR_REVIEW",
+  "content_sha": "49267ab031239525382ece105444e3dee038f0b1",
+  "pull_request": "https://github.com/SaintWyss/td/pull/1",
+  "design_gate": "NOT_READY",
+  "merge_authorized": false,
+  "content_tree_sha": "6d555d968d7de924af3e441e530373cde42c3d68",
+  "draft": true,
+  "content_ci": {
+    "run_id": 41944958851,
+    "conclusion": "success",
+    "url": "https://github.com/SaintWyss/td/actions/runs/41944958851"
+  },
+  "delivery_commit_resolution": "git log -1 --format=%H -- audit/g-design/delivery.json; PR head is final delivery SHA",
+  "delivery_ci": "Re-run by PR after evidence-only commit; consult current PR head checks. This record certifies content commit only."
+}

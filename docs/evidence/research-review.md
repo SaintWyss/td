@@ -33,3 +33,31 @@ Se incorporan universo point-in-time con muertos y gaps, timestamps de disponibi
 Se reemplaza «experimento rentable» por protocolo falsable con base de costos y prueba prospectiva. No hay resultados financieros en esta especificación. Las hipótesis pueden quedar INCONCLUSIVE o REJECTED. No se necesita resolver la biografía de traders famosos para construir el laboratorio.
 
 Las fuentes dinámicas se consultaron el2026-11-03; no se garantiza que permanezcan iguales cuando se implemente. Las tareas de onboarding deben volver a cotejar esquemas, licencias, cuotas y versiones. Rutas antiguas de Raydium devolvieron404; se resolvió la referencia actual de programas. La ruta específica de lista Birdeye no pudo recuperarse: no se fija como contrato externo.
+
+## Revisión G-DESIGN, 2026-11-04
+
+La consigna y el informe originales están íntegros en input-brief.txt/input-research.md.
+Se conserva su texto histórico y sus citas internas sin fingir que son enlaces portables.
+Las afirmaciones adoptadas tienen fuentes S01–S41. Los retornos de Medallion/Thorp,
+entrevistas de scalpers y cifras de estudios sociales citados sólo con IDs internos se
+clasifican como ANTECEDENTE_NO_VERIFICADO en esta auditoría; no fundamentan límites,
+licencias, selección de wallets ni promesas de TD. No se reconstruyeron esos papers.
+
+Cobertura de la consigna: Solana/seguridad docs16/20; APIs docs10/13; hardware doc27;
+research/IA docs13–15; 20 familias doc18/strategies; ejecución doc21; riesgo doc20;
+ciencia docs22–24; seguridad doc25; UI doc26; arquitectura docs06–12; roadmap docs32–37.
+Esta correspondencia demuestra localización, no completitud: los huecos operativos
+GD-09–GD-12 impiden delegar el diseño íntegro. El plan 90/180/365 del antecedente es
+orientativo; los gates prevalecen sobre calendario.
+
+Se verificaron documentos primarios para Solana, Jupiter, Raydium, DEX Screener,
+proveedores LLM, modelos y normas CNV. Se reparó la URL de precios Birdeye (404 anterior)
+y se recuperó el abstract de NBER por búsqueda oficial tras 403 directo. Sólo evidencia
+documental; no se hicieron llamadas de mercado, firma, pagos ni canaries autenticados.
+
+CNV: se recuperaron RG1058/2025 y RG1172/2026 (publicada 15/10/2026), que modifica el
+régimen PSAV. Esto identifica normativa a revisar, no certifica la situación jurídica de
+TD. Antes de capital real, servicios a terceros, señales comerciales o custodia: dictamen
+profesional sobre actividad concreta, jurisdicción, impuestos, datos y obligaciones vigentes.
+Telegram/Reddit/X permanecen BLOCKED para fuentes reales sin grant; licencia de código,
+pesos, corpus, API, almacenamiento, ML y redistribución se evalúan separadamente.

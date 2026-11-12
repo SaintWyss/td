@@ -1,6 +1,6 @@
 # Modelos predictivos y selección tecnológica
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
 ## Primera comparación cerrada
 
@@ -26,3 +26,25 @@ Baseline 0: efectivo; baseline 1: regla S02; baseline 2: regresión logística r
 No se predetermina ganador. Artefactos registran versión exacta de librería, hash de pesos/tokenizer, licencia de código/pesos/datos por separado, corte de preentrenamiento conocido o desconocido, commit, seed, entorno y resultados. Un modelo preentrenado con fecha de corte incierta puede participar en diagnóstico; no prueba independencia de un backtest histórico. El paper prospectivo comienza después de congelar el artefacto.
 
 GPU opcional: perfil inicial máximo 6 GiB de VRAM verificada, batch reducido; OOM aborta job y limpia contexto, no reinicia ingesta. No entrenar durante operaciones que dependan del mismo host si la contención viola SLO. Optuna puede añadirse con número de ensayos registrado; cada nuevo trial cuenta para selección múltiple.
+
+## Separación de probabilidad, cuantiles y expectativa
+
+Platt calibra sólo P(net_return>0), no genera q05/q50/q95 ni expectativa. T-039 entrena
+clasificador y tres regresores cuantílicos alpha=0.05/0.50/0.95 sobre el mismo target neto;
+un regresor de media separado estima expected_net_return. T-040 calibra probabilidad en
+un bloque temporal disjunto de fit/selección. Predicción con cuantiles cruzados se rechaza,
+no se ordenan a posteriori para aparentar calibración. Uncertainty = q95-q05 (ancho de
+retorno, no desviación estándar). Registrar pinball loss y cobertura empírica por cuantil.
+
+La validación de 14 días se divide cronológicamente en 7 días de selección y 7 de
+calibración, con purging/embargo en cada frontera. Entrenar scalers e imputación sólo en
+train; Platt usa exclusivamente calibración. El test de 14 días y el holdout final de
+30 días no ajustan ninguno. La logística T-038 produce sólo probabilidad diagnóstica;
+no fabricar una Prediction operable sin distribución/expectativa completas. Falta de
+labels maduros/cobertura suficiente devuelve INCONCLUSIVE. Estos protocolos son políticas
+de laboratorio sin demostración empírica; no cambian los límites de riesgo ni la familia
+máxima de ensayos preregistrados.
+
+## Entradas y temporalidad R2
+
+[Features y estrategias](contracts/features-and-strategies.md) fija fuente, unidad, ventana, disponibilidad y estimando. El catálogo tipado `contracts/feature-catalog.json` es normativo para producir/consumir features; `contracts/strategy-specs.json` contiene las 20 evaluaciones. No reemplazar datos faltantes por valores de conveniencia.

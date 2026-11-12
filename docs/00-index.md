@@ -1,10 +1,10 @@
 # Índice del blueprint TD
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
-**Borrador documental 1.0.0-draft — 2026-11-03.** Diseño, contratos y roadmap; no contiene la implementación del producto ni autoriza trading real.
+**Revisión documental 1.1.0-draft — 2026-11-04. G-DESIGN: NOT_READY.** Diseño, contratos y roadmap; no contiene la implementación del producto ni autoriza trading real.
 
-Empezar por [resumen ejecutivo](01-executive-summary.md), [alcance](05-scope-and-assumptions.md), [arquitectura](06-architecture-overview.md), [riesgo](20-risk-engine.md) y [validación](23-statistical-validation.md). Para programar, leer [guía de agentes](37-agent-implementation-guide.md) y la primera [T-001](tasks/T-001.md).
+Empezar por [resumen ejecutivo](01-executive-summary.md), [alcance](05-scope-and-assumptions.md), [arquitectura](06-architecture-overview.md), [riesgo](20-risk-engine.md) y [validación](23-statistical-validation.md). Para programar, leer [guía de agentes](37-agent-implementation-guide.md) y el [informe G-DESIGN](../audit/G-DESIGN-FINAL-REPORT.md). T-001 ya está terminada; T-002 espera aprobación del gate.
 
 ## Documentos obligatorios
 
@@ -52,11 +52,11 @@ Empezar por [resumen ejecutivo](01-executive-summary.md), [alcance](05-scope-and
 
 - [Revisión del informe y límites de evidencia](evidence/research-review.md).
 - [Fuentes oficiales](evidence/sources.md) y registro estructurado `evidence/sources.json`.
-- `adr/`:16 decisiones aceptadas de diseño con alternativas y consecuencias.
+- `adr/`:18 decisiones (16 originales y ADR-017/018 de auditoría) aceptadas de diseño con alternativas y consecuencias.
 - `diagrams/`:12 diagramas Mermaid con fuentes editables y renders cuando validados.
 - `contracts/`:OpenAPI3.1, JSON Schema2020-12, eventos, puertos, estados, política, reglas semánticas y ejemplos.
 - `strategies/`:20 fichas, parámetros y criterios experimentales.
-- `tasks/`:144 fichas atómicas, índice estructurado y formato de evidencia.
+- `tasks/`:144 fichas revisadas; 140 requieren especificación adicional, índice estructurado y formato de evidencia.
 - `requirements.json`, `components.json`, `risks.json`, `external-dependencies.json`:inventarios para trazabilidad.
 - `../audit/`:resultados reales de validación del paquete, hallazgos y límites.
 
@@ -64,7 +64,7 @@ Empezar por [resumen ejecutivo](01-executive-summary.md), [alcance](05-scope-and
 
 Contrato canónico: `contracts/domain.schema.json`; API empaquetada: `contracts/openapi.json`; valores de política: `contracts/policy-defaults.json`; máquina de órdenes: `contracts/order-machine.json`; tarea: ficha T-NNN y `tasks/index.json`. Documento explicativo y ejemplo no pueden cambiar una invariante. Precedencia/conflictos se resuelven según doc37.
 
-Los enlaces de fuentes se identifican S01–S40. `VERIFIED_DOC` sólo significa documentación consultada, nunca cuenta o SLA probado. Parámetros de estrategia y riesgo son decisiones iniciales de laboratorio. Tareas y tests del producto son futuros. El código de `tools/` sólo valida documentación.
+Los enlaces de fuentes se identifican S01–S41. `VERIFIED_DOCUMENTATION` sólo significa documentación consultada, nunca cuenta o SLA probado. Parámetros de estrategia y riesgo son decisiones iniciales de laboratorio. Tareas y tests del producto son futuros. El código de `tools/` sólo valida documentación.
 
 ## Orden de uso
 

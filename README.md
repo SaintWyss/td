@@ -4,10 +4,9 @@
 
 > Proyecto en desarrollo. El alcance y la validación de cada funcionalidad se detallan a continuación.
 
-
 Repositorio con el blueprint de diseño y una base de desarrollo reproducible.
-**Estado: bootstrap; producto pendiente.** La documentación `1.0.0-draft` no es una
-release. El primer objetivo es investigación y simulación (**MVP-PAPER**).
+**G-DESIGN: NOT_READY. Bootstrap T-001 completado; producto pendiente.** La revisión
+de contratos es `1.1.0-draft`; los documentos sin cambios conservan su fecha histórica. No es una release. El primer objetivo es investigación y simulación (**MVP-PAPER**).
 
 No hay motor de trading, API, dashboard, conectores, modelos entrenados ni ejecución
 de órdenes implementados. No se requiere ninguna credencial para los checks locales.
@@ -34,8 +33,8 @@ secretos ni permisos de escritura en el repositorio.
 |---|---|
 | `backend/src/td/` | Paquete Python y fronteras domain/application/ports/adapters/entrypoints |
 | `web/` | Workspace TypeScript estricto; UI pendiente |
-| `docs/` | 40 documentos principales, 16 ADR, 20 estrategias y 144 tareas propuestas |
-| `docs/contracts/` | 102 definiciones de dominio, OpenAPI, eventos, políticas y ejemplos |
+| `docs/` | 40 documentos principales, 18 ADR (16 originales + 2 de auditoría), 20 estrategias y 144 tareas propuestas |
+| `docs/contracts/` | 106 definiciones de dominio (102 originales + 4 requests), OpenAPI, eventos, políticas y ejemplos |
 | `tools/` | Validación estructural y regeneración de tablas derivadas |
 | `tests/unit/` | Pruebas adversariales del validador documental |
 | `config/`, `infra/` | Alcance previsto de configuración e infraestructura |
@@ -47,13 +46,15 @@ secretos ni permisos de escritura en el repositorio.
 - [Índice del blueprint](docs/00-index.md), [arquitectura](docs/06-architecture-overview.md) y [roadmap](docs/32-implementation-roadmap.md).
 - [Backlog](docs/33-implementation-backlog.md) y [guía para contribuir](CONTRIBUTING.md).
 - [Reglas de trabajo](AGENTS.md) y [plan de pruebas](docs/30-testing.md).
-- [Resultado estructural del bootstrap](audit/validation.json).
+- [Informe G-DESIGN](audit/G-DESIGN-FINAL-REPORT.md), [hallazgos](audit/g-design/findings.json) y [delegabilidad de las 144 tareas](audit/g-design/delegability.md).
+- [Resultado estructural del bootstrap](audit/validation.json), preservado como evidencia histórica.
 
 La validación comprueba esquemas y ejemplos, referencias, DAG, trazabilidad,
 transiciones declaradas y sincronización de tablas. **No demuestra** invariantes
 financieras entre campos, seguridad operativa, disponibilidad de APIs, permisos
 de datos, consumo real de recursos ni rentabilidad. Los 12 diagramas Mermaid
-conservan sus fuentes; sus renders y revisión visual siguen pendientes.
+conservan sus fuentes; los renders y su revisión están en `audit/g-design/diagrams-final/`
+y `audit/g-design/visual-review.json`. Renderizar no valida la semántica financiera.
 
 Los originales recibidos están en `docs/evidence/`; se preservan como antecedentes,
 no como instrucciones de ejecución ni fuentes verificadas de forma automática.

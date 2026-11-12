@@ -1,0 +1,60 @@
+[
+  {
+    "file": "01-c4-context.mmd",
+    "syntax": "NOT_VALIDATED",
+    "error": "TypeError: DOMPurify.addHook is not a function"
+  },
+  {
+    "file": "02-c4-container.mmd",
+    "syntax": "NOT_VALIDATED",
+    "error": "TypeError: DOMPurify.addHook is not a function"
+  },
+  {
+    "file": "03-c4-component.mmd",
+    "syntax": "NOT_VALIDATED",
+    "error": "TypeError: DOMPurify.addHook is not a function"
+  },
+  {
+    "file": "04-deployment.mmd",
+    "syntax": "NOT_VALIDATED",
+    "error": "TypeError: DOMPurify.addHook is not a function"
+  },
+  {
+    "file": "05-data-flow.mmd",
+    "syntax": "NOT_VALIDATED",
+    "error": "TypeError: DOMPurify.addHook is not a function"
+  },
+  {
+    "file": "06-research-pipeline.mmd",
+    "syntax": "NOT_VALIDATED",
+    "error": "TypeError: DOMPurify.addHook is not a function"
+  },
+  {
+    "file": "07-ml-pipeline.mmd",
+    "syntax": "NOT_VALIDATED",
+    "error": "TypeError: DOMPurify.addHook is not a function"
+  },
+  {
+    "file": "08-decision-pipeline.mmd",
+    "syntax": "NOT_VALIDATED",
+    "error": "TypeError: DOMPurify.addHook is not a function"
+  },
+  {
+    "file": "09-execution-pipeline.mmd",
+    "syntax": "PASS"
+  },
+  {
+    "file": "10-order-state-machine.mmd",
+    "syntax": "NOT_VALIDATED",
+    "error": "TypeError: DOMPurify.addHook is not a function"
+  },
+  {
+    "file": "11-entity-relationship.mmd",
+    "syntax": "PASS"
+  },
+  {
+    "file": "12-dependencies.mmd",
+    "syntax": "NOT_VALIDATED",
+    "error": "TypeError: DOMPurify.addHook is not a function"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "^12.2.0",
+    "@sparticuz/chromium": "^153.0.0"
+  }
+}

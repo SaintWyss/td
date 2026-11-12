@@ -1,6 +1,6 @@
 # Alcance, supuestos y dependencias
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
 ## Primera entrega utilizable: MVP-PAPER
 
@@ -22,4 +22,4 @@ No hay históricos completos contratados ni SLA contratado. No se asume acceso r
 
 ## Estados de dependencia
 
-`OPEN` exige verificación; `VERIFIED_DOC` significa documentación pública leída; `VERIFIED_ACCOUNT` exige prueba autorizada de la cuenta; `ACCEPTED` requiere evidencia y aprobación aplicable; `REJECTED` deshabilita el componente. Todo bloqueo tiene alcance local en `38-external-dependencies.md`. Se puede desarrollar contra fixtures mientras la integración externa permanece bloqueada.
+`OPEN` exige verificación; `VERIFIED_DOCUMENTATION` significa documentación pública leída; `VERIFIED_RUNTIME` exige prueba autorizada de la cuenta; `ACCEPTED` requiere evidencia y aprobación aplicable; `REJECTED` deshabilita el componente. Todo bloqueo tiene alcance local en `38-external-dependencies.md`. Se puede desarrollar contra fixtures mientras la integración externa permanece bloqueada.

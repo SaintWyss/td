@@ -49,7 +49,7 @@
     {
       "source": "PREPARED",
       "target": "SUBMITTING",
-      "guard": "signed bytes persisted"
+      "guard": "signed bytes persisted OR PAPER simulation input durable; reservation ATTEMPTED"
     },
     {
       "source": "PREPARED",
@@ -119,17 +119,17 @@
     {
       "source": "FINALIZED",
       "target": "RECONCILED",
-      "guard": "balances and ledger reconciled"
+      "guard": "balances and ledger reconciled; journal/reservation/projection/state/outbox atomic"
     },
     {
       "source": "FAILED_CONFIRMED",
       "target": "RECONCILED",
-      "guard": "fee ledger reconciled"
+      "guard": "fee ledger reconciled; journal/reservation/projection/state/outbox atomic"
     },
     {
       "source": "EXPIRED_VERIFIED",
       "target": "RECONCILED",
-      "guard": "absence and reservation release reconciled"
+      "guard": "absence and reservation release reconciled; journal/reservation/projection/state/outbox atomic"
     }
   ],
   "unknown_rule": "retain maximum reservation; no replacement signature",

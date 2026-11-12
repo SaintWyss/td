@@ -7,8 +7,8 @@
     "horizon": "30 min–4 h",
     "hypothesis": "La cohorte de pools nuevos permite estudiar supervivencia y señales iniciales sin seleccionar sólo ganadores.",
     "data": "Logs de creación, mints, reservas, first_seen, cobertura y autoridades.",
-    "algorithm": "Registrar toda creación validada; observar30 min; comparar cohortes por actividad inicial. No genera entrada MVP. En fase experimental sólo pasar a S02 si cumple elegibilidad.",
-    "exit": "Fin de ventana4 h o pool inactivo; conservar desaparecidos.",
+    "algorithm": "Record every supported pool; age<1800 => OBSERVING; age>=1800 and eligible => RESEARCH_COHORT_READY, always ABSTAIN (no entry). End at14400 or inactivity; retain censored records.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Censura por gaps, mint sin pool, actividad artificial y latencia de descubrimiento.",
     "experiment": "Comparar cohorte completa contra lista retrospectiva popular; medir recall en intervalo auditado, no en toda cadena.",
     "components": [
@@ -18,7 +18,17 @@
     "parameters": {
       "observe_s": 1800,
       "cohort_h": 4
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-pool_age",
+      "F-reserve_base",
+      "F-reserve_quote",
+      "F-holder_top1",
+      "F-holder_top10",
+      "F-creator_sell300"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S01"
   },
   {
     "id": "S02",
@@ -28,8 +38,8 @@
     "horizon": "1–15 min",
     "hypothesis": "Flujo persistente puede continuar más que el coste de entrar y salir.",
     "data": "Barras1 min, trades, reservas, compradores únicos, quotes y assessment.",
-    "algorithm": "Con barra cerrada, r5m>0 y volumen1m/mediana20 barras previas>=2; breakout del máximo5 barras previas y compradores únicos no decrecientes. Requiere30 min de historia y filtros. Comprar sólo al siguiente estado ejecutable.",
-    "exit": "Cerrar con r1m<0, pérdida de elegibilidad o5 min; stop5% y objetivo8% son gatillos, no precios garantizados.",
+    "algorithm": "BUY iff ret5>0, volume_ratio20>=2, close1>high5 and buyer_delta60>=0; otherwise ABSTAIN. Held position SELL on ret1<0, elapsed>=300, executable price<=entry*.95 or >=entry*1.08; stop then target if same bar ambiguous, event replay preferred. No initial fill at current close.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Selección de pumps, impacto y desaparición de salida; riesgo100% notional.",
     "experiment": "Golden cruce de umbral; baseline sin compradores; fees+50% y slippage×2; placebo de timestamps.",
     "components": [
@@ -44,7 +54,18 @@
       "hold_s": 300,
       "stop_bps": 500,
       "target_bps": 800
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-close1",
+      "F-ret1",
+      "F-ret5",
+      "F-volume_ratio20",
+      "F-high5",
+      "F-buyer_delta60",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S02"
   },
   {
     "id": "S03",
@@ -54,8 +75,8 @@
     "horizon": "5–60 s",
     "hypothesis": "Microflujo puede predecir cambios muy cortos si latencia/costos dejan margen.",
     "data": "Trades subsegundo/segundo, depth o reservas, quotes, latencia empírica.",
-    "algorithm": "Cada segundo, desequilibrio de volumen comprador/vendedor10 s>0,3 y microretorno positivo; entrada sólo si edge neto inferior95%>0 y delay p99<horizonte/5.",
-    "exit": "Reversión de imbalance a<=0 o10 s; cap inventario y quote vigente.",
+    "algorithm": "BUY iff flow10>.3, microret>0, edge_lower>0 and delay_p99<2000ms. SELL held if flow10<=0 or elapsed>=10s. Per-second evaluation, no minute-bar substitution.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Competencia/MEV; datos agregados minuto son inadmisibles.",
     "experiment": "Replay por evento con latencias1×/2×/5×; rechazar si no conserva ventaja estresada.",
     "components": [
@@ -66,7 +87,16 @@
       "window_s": 10,
       "imbalance_min": 0.3,
       "hold_s": 10
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-flow10",
+      "F-microret",
+      "F-edge_lower",
+      "F-delay_p99",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S03"
   },
   {
     "id": "S04",
@@ -76,8 +106,8 @@
     "horizon": "5–60 min",
     "hypothesis": "Desviaciones transitorias en régimen estable pueden revertir.",
     "data": "Precios ejecutables, VWAP60 min, volatilidad, spread y régimen.",
-    "algorithm": "z=(price−VWAP60)/std60; long si z<=−2 y régimen no tendencial; sin short en spot. VWAP/std sólo pasado.",
-    "exit": "z>=0 o30 min; invalidación de régimen y riesgo.",
+    "algorithm": "BUY if z60<=-2 and regime=0. SELL held when z60>=0, regime!=0 or age>=1800. No averaging down and no spot short.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Caída estructural confundida con sobreventa.",
     "experiment": "Serie con salto permanente y reversión; no martingala; comparar compra aleatoria emparejada.",
     "components": [
@@ -88,7 +118,17 @@
       "window_min": 60,
       "entry_z": -2.0,
       "hold_s": 1800
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-close1",
+      "F-vwap60",
+      "F-std60",
+      "F-z60",
+      "F-regime",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S04"
   },
   {
     "id": "S05",
@@ -98,8 +138,8 @@
     "horizon": "5–60 min",
     "hypothesis": "Ruptura con volumen puede indicar persistencia de demanda.",
     "data": "Barras cerradas1 min, volumen, costos y profundidad.",
-    "algorithm": "close_t>max(high de20 barras anteriores) y volume_t>1,5×mediana previa; excluir la barra actual del canal.",
-    "exit": "Retorno bajo nivel de ruptura, trailing2×ATR20 o30 min.",
+    "algorithm": "BUY iff close>prior high20 and volume_ratio20>1.5. Store breakout_level=high20. SELL when close<stored level, executable price<=peak-2*atr20 or age>=1800. Update peak only with received executable quote.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Falso breakout, gaps y costo de perseguir movimiento.",
     "experiment": "Fixture que detecta leakage de incluir high actual; comparar breakout sin volumen.",
     "components": [
@@ -111,7 +151,17 @@
       "volume_ratio": 1.5,
       "atr_mult": 2.0,
       "hold_s": 1800
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-close1",
+      "F-high20",
+      "F-volume_ratio20",
+      "F-atr20",
+      "F-drawdown_peak",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S05"
   },
   {
     "id": "S06",
@@ -121,8 +171,8 @@
     "horizon": "5–30 min",
     "hypothesis": "Retorno rápido al rango tras ruptura bajista puede indicar presión transitoria.",
     "data": "Barras1 min y mínimo20 previo con liquidity flags.",
-    "algorithm": "Marcar low por debajo del mínimo20; long sólo si una barra posterior dentro de3 min cierra otra vez encima del nivel, con spread admisible. No conocer cierre futuro al marcar.",
-    "exit": "Centro del rango previo o15 min; invalidación bajo mínimo del evento.",
+    "algorithm": "When low<prior low20, store level/low/time; no BUY in same bar. Next closed bar within180s with close>stored level and spread_bps<=cost policy cap produces BUY once; expire marker otherwise. SELL at stored channel midpoint, close<event low or age>=900.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Cuchillo cayendo y ambigüedad intrabar.",
     "experiment": "Secuencia paso a paso; mismo low/high con orden distinto; prueba en régimen tendencial.",
     "components": [
@@ -133,7 +183,17 @@
       "channel_bars": 20,
       "reentry_s": 180,
       "hold_s": 900
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-close1",
+      "F-low1",
+      "F-low20",
+      "F-high20",
+      "F-spread_bps",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S06"
   },
   {
     "id": "S07",
@@ -143,8 +203,8 @@
     "horizon": "1–30 s",
     "hypothesis": "Desequilibrio de liquidez/flujo puede anticipar cambio del mid.",
     "data": "L2 snapshot+deltas íntegros, trades y checksum.",
-    "algorithm": "I=(sum bidqty top5−sum askqty top5)/(suma total); long si I>0,6 durante3 updates y flujo comprador neto5 s>0; bloquear checksum inválido.",
-    "exit": "I<0 o10 s; bid ejecutable y fees.",
+    "algorithm": "BUY iff each last3 book_i5>.6 and flow5>0. Held SELL if current I<0 or age>=10s; gap/checksum failure => ABSTAIN and cancel proposals, not assume fills.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Spoofing/cancelaciones; qty agregada no garantiza fill pasivo.",
     "experiment": "Deltas fuera de orden, cola conservadora, spoof-like cancel; DeepLOB opcional sólo challenger.",
     "components": [
@@ -156,7 +216,14 @@
       "imbalance_min": 0.6,
       "confirm_updates": 3,
       "hold_s": 10
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-book_i5",
+      "F-flow5",
+      "F-spread_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S07"
   },
   {
     "id": "S08",
@@ -166,8 +233,8 @@
     "horizon": "5 min–4 h",
     "hypothesis": "Un evento novedoso verificable puede no estar completamente incorporado al precio recibido.",
     "data": "News permitida, published/received/available, entidad resuelta y quotes.",
-    "algorithm": "Clasificar evento predefinido, dos orígenes independientes o comunicado primario; dirección positiva y entidad inequívoca; ejecutar después deavailable_at con decay exponencial60 min.",
-    "exit": "Caducidad60 min, corrección de noticia o caída de tesis.",
+    "algorithm": "BUY only POSITIVE verified event in allowed taxonomy, not retracted, age<3600, sources sufficient. Score=exp(-age/3600), not probability. SELL on correction/retraction or age>=3600. OTHER/UNKNOWN abstain.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Rumor, duplicación, timestamp editado, prompt injection.",
     "experiment": "Ablación sin noticia y timestamps desplazados; corpus evaluado por humanos; impedir rumor sin contraste.",
     "components": [
@@ -178,7 +245,14 @@
       "decay_s": 3600,
       "hold_s": 3600,
       "min_independent_sources": 2
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-news_score",
+      "F-news_origins",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S08"
   },
   {
     "id": "S09",
@@ -188,8 +262,8 @@
     "horizon": "15 min–4 h",
     "hypothesis": "Atención/sentimiento incremental puede aportar sobre mercado-only.",
     "data": "Conteos por origen independiente, sentimiento calibrado y cobertura.",
-    "algorithm": "z de menciones1 h respecto7 días, ponderado por diversidad de autores; long si z>2 y sentimiento>0,6, sólo con100 mensajes autorizados y al menos5 orígenes.",
-    "exit": "Decay a z<1 o4 h; riesgo/token policy.",
+    "algorithm": "BUY iff attention_z>2 and signed sentiment>.6 and count>=100/origins>=5. SELL if z<1 or age>=14400. Author-weighted score is not trading probability; denied source contributes nothing.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Bots, selección de comunidades, permisos y drift lingüístico.",
     "experiment": "Remover fuentes duplicadas, control atención sin sentimiento y placebo por bloques.",
     "components": [
@@ -204,7 +278,16 @@
       "min_messages": 100,
       "min_origins": 5,
       "hold_s": 14400
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-attention_z",
+      "F-sentiment",
+      "F-mention_count",
+      "F-origin_count",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S09"
   },
   {
     "id": "S10",
@@ -214,8 +297,8 @@
     "horizon": "1 min–4 h",
     "hypothesis": "Algunas decisiones públicas pueden conservar ventaja después de retraso del follower.",
     "data": "Wallet fills, selección train, inventario/cobertura y quote nueva.",
-    "algorithm": "Wallet previamente elegida y coverage>=0,95; señal de compra recibida; nueva quote; rechazar si precio ya avanzó>2% o edge no cubre costos. Tamaño del follower lo fija Risk.",
-    "exit": "Salida pública recibida o30 min; límites propios y reversión.",
+    "algorithm": "BUY after observed SWAP buy by selected wallet, coverage>=.95, chase<=200bps, lower net edge>0. UNKNOWN/TRANSFER not entry. SELL on received leader sell or age>=1800, independent follower risk.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "No observar hedge, inventario inicial o acceso privilegiado; latencia adversa.",
     "experiment": "Follower no usa precio líder; wallets aleatorias emparejadas y cohortes ganadoras/perdedoras.",
     "components": [
@@ -226,7 +309,15 @@
       "coverage_min": 0.95,
       "max_chase_bps": 200,
       "hold_s": 1800
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-wallet_coverage",
+      "F-chase_bps",
+      "F-edge_lower",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S10"
   },
   {
     "id": "S11",
@@ -236,8 +327,8 @@
     "horizon": "5 min–4 h",
     "hypothesis": "Flujos conjuntos de wallets elegidas ex ante pueden ser informativos.",
     "data": "Perfiles PIT, clusters de dependencia y flows.",
-    "algorithm": "Tres clusters independientes seleccionados en train con entradas netas en5 min; long sólo si score de cohortes>percentil80 train y quote apta.",
-    "exit": "Flujo neto negativo o1 h.",
+    "algorithm": "BUY iff positive_clusters300>=3 and cohort_score>cohort_p80. Each cluster equal weight; score TWR/(1+drawdown) from frozen train. SELL if aggregate net flow<0 or age>=3600.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Clusters pueden ser mismo operador; score no prueba intención.",
     "experiment": "Ablación de wallet-score, selección aleatoria y exclusión de cluster dominante.",
     "components": [
@@ -249,7 +340,16 @@
       "min_clusters": 3,
       "score_percentile": 80,
       "hold_s": 3600
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-positive_clusters300",
+      "F-cohort_score",
+      "F-cohort_p80",
+      "F-wallet_coverage",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S11"
   },
   {
     "id": "S12",
@@ -259,8 +359,8 @@
     "horizon": "5–60 min",
     "hypothesis": "Mejoras persistentes de liquidez pueden reducir fricción sin eliminar riesgo.",
     "data": "Reservas/ticks según tipo, LP events, quotes de varios tamaños.",
-    "algorithm": "Liquidez ejecutable a impacto1% crece>20% en10 min y persiste3 snapshots; flujo comprador positivo; long sólo si riesgo de retiro evaluado.",
-    "exit": "Retiro>20%, spread/impact supera cap o30 min.",
+    "algorithm": "BUY if each last3 growth600>.2, current flow5>0, withdrawal600<=.2 and token eligible. SELL if withdrawal>.2, impact cap fails or age>=1800. Depletion proxy is conservative, not proof of LP withdrawal.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "TVL engañoso, capital temporal y concentración del LP.",
     "experiment": "Retiro súbito, liquidez unilateral y ruta que desaparece; no usar TVL como depth.",
     "components": [
@@ -273,7 +373,16 @@
       "confirm_snapshots": 3,
       "withdrawal_max": 0.2,
       "hold_s": 1800
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-liquidity1pct",
+      "F-liquidity_growth600",
+      "F-withdrawal600",
+      "F-flow5",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S12"
   },
   {
     "id": "S13",
@@ -283,8 +392,8 @@
     "horizon": "horas–días",
     "hypothesis": "Oscilaciones en rango pueden compensar costos si no hay tendencia dominante.",
     "data": "L2, tick/lot, balances y régimen lateral.",
-    "algorithm": "Cinco niveles simétricos alrededor de mid congelado, spacing=max(50bps,2×costo roundtrip); cotizar compras/ventas sólo con inventario propio y reserva por orden. Sin aumentar tamaño tras pérdida.",
-    "exit": "Ruptura de rango2×ancho, límite de inventario o24 h; cancelar/reconciliar.",
+    "algorithm": "Only regime0; freeze center=mid. Five levels EACH side k1..5, distance=k*max(50,2*cost_bps)/10000*center. BUY prices floor tick, SELL ceil tick. Emit10 proposed legs with equal relative quantity; Risk caps aggregate and per-order reserves. Cancel on distance>2*5*spacing from center, regime!=0 or age>=86400; reconcile before new grid.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Inventario en tendencia, cancel race, fees y cola.",
     "experiment": "Trayectoria monotónica debe perder/controlar y parar; fills conservadores y cancel parcial.",
     "components": [
@@ -295,7 +404,15 @@
       "levels": 5,
       "spacing_bps": 50,
       "hold_s": 86400
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-mid",
+      "F-spread_bps",
+      "F-regime",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S13"
   },
   {
     "id": "S14",
@@ -305,8 +422,8 @@
     "horizon": "segundos–minutos",
     "hypothesis": "Spread capturado puede superar adverse selection y fees con inventario controlado.",
     "data": "L2 íntegro, trades, maker/taker fees, latencia y tick/lot.",
-    "algorithm": "Cotizar bid/ask a mid±max(2 ticks,1,5×fee_equiv), skew alejando lado que aumenta inventario; post-only cuando capability certificada.",
-    "exit": "Cancelar/requote cada2 s o mid mueve1 spread; detener ante inventario/gaps.",
+    "algorithm": "Two post-only legs. halfspread=max(2*tick,1.5*cost_bps*mid/10000); inventory_fraction=base_notional/NAV clipped[0,1], target .5; center=mid-(inventory_fraction-.5)*2*halfspread; bid floor tick(center-halfspread), ask ceil tick(center+halfspread). No quote while previous cancel UNKNOWN; replace after2s or mid moves>=fullspread.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Toxic flow, cola, cancel/replace, doble fill y exchange outage.",
     "experiment": "Modelo de cola independiente y worst-case doble fill; comparar no cotizar en volatilidad.",
     "components": [
@@ -317,7 +434,15 @@
       "min_ticks": 2,
       "fee_mult": 1.5,
       "requote_ms": 2000
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-mid",
+      "F-book_i5",
+      "F-spread_bps",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S14"
   },
   {
     "id": "S15",
@@ -327,8 +452,8 @@
     "horizon": "subsegundos–segundos",
     "hypothesis": "Diferencia executable después de todas las piernas puede superar costos.",
     "data": "Quotes simultáneas, capacidades de atomicidad, balances y fees.",
-    "algorithm": "Comparar ida/vuelta para mismo tamaño; enviar sólo bundle de transacción atómica decodificada con min_profit>cost+buffer. Cross-venue no atómico sólo paper y exposición de leg explícita.",
-    "exit": "Fin de ciclo; fallo atómico contabiliza fees; leg residual paper se liquida con coste estresado.",
+    "algorithm": "Propose cycle iff conservative leg_profit_bps>20 buffer. Signal contains exact instrument ratios. Atomic required for non-paper; current work never authorizes live. Partial/non-atomic plan cancels, reconciles and only then proposes reduction under Risk.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Quotes asincrónicas, MEV, bridge/counterparty y capital inmovilizado.",
     "experiment": "Simular una pierna falla, expira quote y cambio de reservas; rechazar sin atomicidad certificada.",
     "components": [
@@ -338,7 +463,13 @@
     "parameters": {
       "quote_skew_ms": 200,
       "buffer_bps": 20
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-leg_profit_bps",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S15"
   },
   {
     "id": "S16",
@@ -348,8 +479,8 @@
     "horizon": "8 h–días",
     "hypothesis": "Funding cobrado puede compensar basis, fees y capital.",
     "data": "Funding conocido, calendario, mark/index, margin tiers, spot/perp fees y borrow.",
-    "algorithm": "Long spot/short perp igual delta sólo si funding esperado conservador24 h supera todos los costos+buffer; no asumir funding futuro fijo.",
-    "exit": "Funding adverso, basis extremo, margen umbral o72 h; cerrar ambas piernas con reconciliación.",
+    "algorithm": "Propose equal-base long spot/short perp if conservative funding_lower24h - roundtrip cost fraction >.002 and margin headroom valid. Forecast is not current funding extrapolated. SELL/close both when lower net<=0, abs basis>.05, collateral<1.5*MM or age>=72h; UNKNOWN leg preserved.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Liquidación, exchange, basis y riesgo stablecoin; apalancamiento prohibido en MVP.",
     "experiment": "Funding revierte, mark diverge, leg falla y retiro suspendido; no usar tasa realizada futura.",
     "components": [
@@ -360,7 +491,15 @@
       "forecast_h": 24,
       "max_hold_h": 72,
       "buffer_bps": 20
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-funding_rate",
+      "F-funding_lower24h",
+      "F-basis",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S16"
   },
   {
     "id": "S17",
@@ -370,8 +509,8 @@
     "horizon": "horas–días",
     "hypothesis": "Reducir beta puede aislar carry/spread si hedge y costos son estables.",
     "data": "Greeks/delta aplicable, posiciones, mark/index, costos y margen.",
-    "algorithm": "Portfolio objetivo delta0; rebalance si abs(delta_notional)/NAV>0,02; respetar margen/counterparty y reservar piernas conjuntamente. No introducir opciones sin capability/modelo nuevo.",
-    "exit": "Pérdida de cobertura, riesgo margen, costos>beneficio o24 h.",
+    "algorithm": "No speculative opening: propose hedge of existing exposure iff delta_ratio>.02 and reduction improves stressed exposure after cost within caps. Ratios derive from base spot / contract multiplier, round lots toward zero and report residual. Close on abs basis>.05, collateral<1.5*MM, lost coverage or age>=86400. Never hedge UNKNOWN twice.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Delta no elimina basis/gamma/counterparty; hedge puede fallar.",
     "experiment": "Shock de precio, margin-call y hedge unavailable; validar exposición residual por peor leg.",
     "components": [
@@ -381,7 +520,14 @@
     "parameters": {
       "delta_band": 0.02,
       "hold_s": 86400
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-delta_ratio",
+      "F-basis",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S17"
   },
   {
     "id": "S18",
@@ -391,8 +537,8 @@
     "horizon": "horas–días",
     "hypothesis": "Tendencias persistentes pueden servir de baseline simple.",
     "data": "Barras5 min, EMA20/60 cerradas y costos.",
-    "algorithm": "Long si EMA20 cruza sobreEMA60 con60 barras completas; efectivo si cruce contrario. Sin look-ahead ni short.",
-    "exit": "Cruce inverso o24 h; límites y liquidez.",
+    "algorithm": "BUY iff previous fast<=slow and current fast>slow. SELL on inverse cross or age>=86400. Seed both from fixed manifest start; missing bars abstain; no restart reseed.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Whipsaw, costos acumulados y comparabilidad de capital.",
     "experiment": "Golden de EMA/crossover, mercado lateral, monotónico y misma asignación que benchmark.",
     "components": [
@@ -403,7 +549,14 @@
       "slow_bars": 60,
       "bar_s": 300,
       "hold_s": 86400
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-ema20",
+      "F-ema60",
+      "F-cost_bps"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S18"
   },
   {
     "id": "S19",
@@ -413,8 +566,8 @@
     "horizon": "evaluación1 s–1 min",
     "hypothesis": "Salida basada en riesgo/liquidez puede limitar exposición aunque no garantice ejecución.",
     "data": "Posición, quote inversa, tiempo, riesgo actual y señal.",
-    "algorithm": "No abre. Prioridad: riesgo crítico→intentar cierre seguro; luego tiempo máximo, stop observado, trailing, reversión. Reduce-only verdadero, nunca vende más que balance disponible.",
-    "exit": "Finalizada sólo después de fill/reconciliación; sin ruta marca UNLIQUIDATABLE.",
+    "algorithm": "Never BUY. Priority critical risk, age>=1800, entry loss>=5%, drawdown_peak>=.05, received reversal signal; propose SELL reduce_only. Pending close => ABSTAIN/POSITION_PENDING. No route => ABSTAIN/UNLIQUIDATABLE, record alert. Closed only after reconcile; alpha missing does not block risk reduction with fresh execution data.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Gap salta stop; datos de alpha viejos no reemplazan quote válida; fee SOL insuficiente.",
     "experiment": "Quote desaparece, doble evento de cierre, pending previo y balance menor al solicitado.",
     "components": [
@@ -424,7 +577,13 @@
     "parameters": {
       "trailing_bps": 500,
       "max_hold_s": 1800
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-position_age",
+      "F-drawdown_peak"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S19"
   },
   {
     "id": "S20",
@@ -434,8 +593,8 @@
     "horizon": "actualización15 min",
     "hypothesis": "El desempeño relativo de estrategias puede depender de volatilidad/tendencia/liquidez.",
     "data": "Features de régimen PIT y retornos OOF de estrategias.",
-    "algorithm": "Clasificar con umbrales train congelados de volatilidad/tendencia; seleccionar estrategia aprobada con mayor utilidad conservadora por régimen; si ninguna cumple NO_TRADE. Histeresis2 ventanas.",
-    "exit": "Cambio confirmado de régimen sólo afecta nuevas entradas; salidas siguen política activa.",
+    "algorithm": "After same regime2 windows choose approved compatible strategy with greatest strictly positive lower OOF net utility, ties strategy_id ascending. Emit ABSTAIN/META_SELECTION with selected_strategy_id; orchestration evaluates chosen strategy separately. Existing positions retain original exit policy. No eligible utility => NO_SIGNAL.",
+    "exit": "Regla de salida incluida en algoritmo R2 y ficha individual",
     "risk": "Leakage del selector, alta rotación y sobreajuste de regímenes.",
     "experiment": "Comparar pesos fijos, selector aleatorio y simple siempre-momentum; contar todos los trials.",
     "components": [
@@ -445,6 +604,13 @@
     "parameters": {
       "interval_s": 900,
       "hysteresis_windows": 2
-    }
+    },
+    "contract_version": "1.2.0",
+    "required_feature_ids": [
+      "F-regime",
+      "F-vol60",
+      "F-trend"
+    ],
+    "specification": "docs/contracts/strategy-specs.json#S20"
   }
 ]

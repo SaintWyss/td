@@ -1,6 +1,6 @@
 # Contratos de API interna
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
 La fuente normativa es `contracts/openapi.json` (OpenAPI 3.1). `contracts/domain.schema.json` define los payloads compartidos; se empaquetan en OpenAPI para generar clientes. Las rutas `/v1/...` son diseño de TD, no endpoints de proveedores. No existe ruta pública para firmar, enviar a mainnet, retirar fondos ni desactivar controles de riesgo.
 
@@ -23,3 +23,23 @@ Mutaciones de recursos versionados incorporan `expected_revision`; falla concurr
 MVP usa polling cada 5 s visible en pantalla; se pausa en pestaña oculta y aplica backoff. Históricos no se descargan completos. SSE puede añadirse mediante nuevo contrato; no se presume existente. Cambios incompatibles crean `/v2`, no se reinterpretan campos monetarios de `/v1`. Clientes TypeScript se generan de OpenAPI; un cambio de esquema exige ejemplos y prueba de compatibilidad.
 
 Prueba crítica: el actor reader no puede iniciar paper ni cambiar grants aunque construya HTTP manualmente. La UI deshabilitada no es el control de acceso.
+
+## Compatibilidad y reautenticación del draft 1.1
+
+Schema canónico y OpenAPI empaquetado deben coincidir. T-004 generará tipos en
+`web/src/api/generated/schema.d.ts` y wrapper en `web/src/api/client.ts`; no usar Number
+para atoms/decimales. Tool propuesto: openapi-typescript 7, versión patch exacta y lock
+verificados en T-004 antes de instalar; el cliente no se implementa durante G-DESIGN.
+Fixtures de TypeScript deben rechazar dinero number y exigir manejo explícito de null.
+
+Reautenticación reutiliza POST `/v1/session`: si ya existe sesión, exige Origin válido
++ CSRF actual, verifica la contraseña y rota sesión/token antes de actualizar authenticated_at
+interno. Login inicial exige Origin/Host allowlist y JSON, sin sesión previa; no guardar
+contraseña/cookie en registros de idempotencia. Todo endpoint sensible comprueba edad
+<5 minutos en servidor. Los roles son conjuntos explícitos sin jerarquía implícita:
+operator no implica approver. HALT conserva autenticación y auditoría aunque no pida una
+segunda confirmación. Consultas por ID filtran actor/entorno/grants antes de responder.
+
+## Puertos e historiales R2
+
+[Contratos auxiliares](contracts/auxiliary-ports.md) y `contracts/ports.json` fijan métodos, contexto, errores, deadline, cancelación y recuperación. Las consultas históricas tienen schemas por tipo, corte de disponibilidad, snapshot estable y cobertura explícita. No interpretar páginas vacías como cobertura garantizada.

@@ -14,7 +14,9 @@ erDiagram
   RESERVATION ||--o| ORDER : authorizes
   ORDER ||--o{ ATTEMPT : attempts
   ATTEMPT ||--o{ FILL : yields
-  FILL ||--|| JOURNAL : posts
+  FILL ||--o| JOURNAL : posts
+  ATTEMPT ||--o{ FEE_EVENT : incurs
+  FEE_EVENT ||--o| JOURNAL : posts
   JOURNAL ||--|{ JOURNAL_LINE : contains
   ASSET ||--o{ JOURNAL_LINE : denominates
 ```

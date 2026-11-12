@@ -26,3 +26,7 @@ Medir disponibilidad durante ventana declarada, tasa de eventos válidos, cobert
 Runbook RPC caído: breaker, source unhealthy, NO_TRADE, recuperación de cursor y gaps. DB caída: ningún efecto económico nuevo, spool acotado sólo raw permitido, replay cuando vuelva. Cuota agotada: prioridad conciliación, parar research y backfill. Worker crash: lease y fencing, no doble envío. Drift: retirar entradas del modelo y conservar gestión de salidas. Host offline: cierre de sesión paper y gap, sin inventar fills durante apagado.
 
 La auditoría enlaza actor/comando/policy hash y resultado. No usar logs como único ledger. Para incidentes conservar un bundle saneado con versión, ventana, métricas, eventos y acciones; el secreto comprometido no se incluye como evidencia.
+
+## Puertos e historiales R2
+
+[Contratos auxiliares](contracts/auxiliary-ports.md) y `contracts/ports.json` fijan métodos, contexto, errores, deadline, cancelación y recuperación. Las consultas históricas tienen schemas por tipo, corte de disponibilidad, snapshot estable y cobertura explícita. No interpretar páginas vacías como cobertura garantizada.

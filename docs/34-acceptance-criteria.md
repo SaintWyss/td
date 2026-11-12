@@ -1,11 +1,12 @@
 # Criterios de aceptación y gates
 
-Versión documental: **1.0.0-draft** · Fecha: **2026-11-03** · Proyecto: **TD**
+Versión documental: **1.1.0-draft** · Fecha: **2026-11-04** · Proyecto: **TD**
 
 Un gate tiene veredicto PASS/FAIL/INCONCLUSIVE/BLOCKED, evidencia hash, commit, fecha y revisor. No se aprueba por checklist sin ejecutar. Los umbrales numéricos son políticas iniciales del laboratorio, versionadas antes del experimento.
 
 | Gate | Criterio verificable |
 |---|---|
+| G-DESIGN | Cero BLOCKER documentales; fichas delegables, contratos/puertos/unidades completos, escenarios semánticos, trazabilidad, diagramas y evidencia reproducible. Dictamen actual NOT_READY; detalle en audit/G-DESIGN-FINAL-REPORT.md |
 | G-FOUNDATION | Contratos válidos, límites de import, auth negativa, secretos ausentes, live inaccesible |
 | G-DATA | Replay idempotente, tiempos propios, gaps visibles, grants y cuotas respetados, muestra con tokens fallidos |
 | G-SOLANA | Decoder con fixtures y programa cotejado; extensiones desconocidas bloquean; concentración con cobertura |
@@ -26,4 +27,4 @@ G-READINESS no concede autorización financiera. Live adicional requiere aprobac
 
 Comprobar 40 documentos requeridos, 12 diagramas, ADR, estrategias, contratos, ejemplos, tareas y trazabilidad sin IDs rotos. La auditoría distingue verificación estática ejecutada de pruebas futuras del producto. Las dependencias externas están declaradas con verificación y alcance bloqueado; no son secciones vacías ni hechos inventados.
 
-Diseño completo significa alcance modelado y trabajo descompuesto. No significa cuenta de proveedor habilitada, licencia resuelta para toda fuente, ventaja demostrada ni software implementado. Esos estados permanecen explícitos hasta obtener evidencia real.
+Diseño completo exige además interfaces, unidades, invariantes y oracles sin decisiones importantes delegadas al implementador. Alcance modelado y trabajo descompuesto son necesarios pero insuficientes. No significa cuenta de proveedor habilitada, licencia resuelta para toda fuente, ventaja demostrada ni software implementado. Esos estados permanecen explícitos hasta obtener evidencia real.

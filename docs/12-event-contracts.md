@@ -21,3 +21,7 @@ No se mezclan colas: prioridad 0 reconciliación y riesgo; 1 ingesta; 2 paper y 
 Cambios aditivos crean minor de contrato sólo si lectores toleran el campo; con `additionalProperties=false`, incluso una adición requiere desplegar consumidores compatibles antes del productor. Breaking cambia event_type con sufijo v2. El registro mantiene v1 durante replay de históricos. Payload corrupto va a cuarentena con hash; jamás se «arregla» suponiendo la unidad.
 
 La auditoría local es append-only por permisos, con cadena de hashes y anclaje diario en backup separado. Es tamper-evident, no mágicamente inmutable frente a root o al propietario de la DB. Este límite forma parte del modelo de amenazas.
+
+## Puertos e historiales R2
+
+[Contratos auxiliares](contracts/auxiliary-ports.md) y `contracts/ports.json` fijan métodos, contexto, errores, deadline, cancelación y recuperación. Las consultas históricas tienen schemas por tipo, corte de disponibilidad, snapshot estable y cobertura explícita. No interpretar páginas vacías como cobertura garantizada.

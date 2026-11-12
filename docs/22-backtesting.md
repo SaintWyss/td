@@ -25,3 +25,14 @@ NAV = efectivo convertido + valor conservador de liquidación de inventario − 
 Reporte con curva diaria, trades, abstenciones, exposición, costos desglosados, cobertura, comparación emparejada, incertidumbre y fallos. Baselines comparten universo y calendario: buy-and-hold desde primera elegibilidad conocida, límites de capital equivalentes y tratamiento de tokens muertos. BTC/SOL buy-and-hold es referencia de mercado adicional, no sustituto del benchmark comparable.
 
 Pruebas golden incluyen un swap rentable bruto pero negativo neto, token ilíquido, fee de fallo, duplicado, ingreso externo, price gap, salida parcial CEX y corte entre fill/journal. Golden esperado se calcula manualmente en fixture; no se obtiene llamando a la función bajo prueba.
+
+## Contratos financieros R2
+
+[Operaciones, instrumentos y unidades](contracts/financial-operations.md) y ADR-019 especifican
+LedgerPostRequest, LedgerPostResult, ReconciliationRequest y catálogo Instrument. Son normativos
+para depósitos/rent/fees/reservas/reversos y liquidación; LedgerWriter ya no recibe Fill aislado.
+Los metadatos de Instrument y los escenarios son requisitos de implementación, no servicios activos.
+
+## Entradas y temporalidad R2
+
+[Features y estrategias](contracts/features-and-strategies.md) fija fuente, unidad, ventana, disponibilidad y estimando. El catálogo tipado `contracts/feature-catalog.json` es normativo para producir/consumir features; `contracts/strategy-specs.json` contiene las 20 evaluaciones. No reemplazar datos faltantes por valores de conveniencia.

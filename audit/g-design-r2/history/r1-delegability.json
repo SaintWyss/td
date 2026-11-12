@@ -1,0 +1,4261 @@
+[
+  {
+    "id": "T-001",
+    "phase": "V0",
+    "dependencies": [],
+    "document_state": "DONE_VERIFIED",
+    "delegable": true,
+    "task_ready": false,
+    "reviewed_objective": "Crear estructura hexagonal, locks y targets verify-spec/lint/typecheck/test-unit; copiar este paquete sin implementar negocio",
+    "reviewed_negative": "Comando de check ausente o lock no reproducible falla bootstrap",
+    "blocking_reason": null,
+    "findings": [],
+    "references": [
+      "docs/tasks/T-001.md",
+      "docs/06-architecture-overview.md",
+      "docs/08-domain-model.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/Settings"
+    ],
+    "enablement_gate": "DONE",
+    "external_dependency": "NONE",
+    "runtime_status": "BOOTSTRAP_ONLY",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-002",
+    "phase": "V0",
+    "dependencies": [
+      "T-001"
+    ],
+    "document_state": "DESIGN_READY",
+    "delegable": true,
+    "task_ready": false,
+    "reviewed_objective": "Value objects de átomos y decimal, conversión por decimals y redondeo hacia abajo",
+    "reviewed_negative": "Overflow, float de entrada y átomos negativos son rechazados",
+    "blocking_reason": "Diseño concreto revisado; implementación no ejecutada; requiere cierre global G-DESIGN.",
+    "findings": [],
+    "references": [
+      "docs/tasks/T-002.md",
+      "docs/06-architecture-overview.md",
+      "docs/08-domain-model.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/Money"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-003",
+    "phase": "V0",
+    "dependencies": [
+      "T-001",
+      "T-002"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Cargar config strict y grants sólo de fuentes documentadas aceptadas por operador; live siempre false en perfiles normales",
+    "reviewed_negative": "Secreto en configuración pública o finalidad ausente impide arrancar conector",
+    "blocking_reason": "Completar interfaz concreta de configuración/permisos/transacción y errores por operación.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-003.md",
+      "docs/06-architecture-overview.md",
+      "docs/08-domain-model.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/Settings"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-01",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-004",
+    "phase": "V0",
+    "dependencies": [
+      "T-001"
+    ],
+    "document_state": "DESIGN_READY",
+    "delegable": true,
+    "task_ready": false,
+    "reviewed_objective": "Integrar schemas canónicos, validadores locales y generación TypeScript OpenAPI con diff de contratos",
+    "reviewed_negative": "Campo extra, decimal numérico o respuesta incompatible falla CI",
+    "blocking_reason": "Diseño concreto revisado; implementación no ejecutada; requiere cierre global G-DESIGN.",
+    "findings": [],
+    "references": [
+      "docs/tasks/T-004.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/Problem"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-005",
+    "phase": "V0",
+    "dependencies": [
+      "T-001"
+    ],
+    "document_state": "DESIGN_READY",
+    "delegable": true,
+    "task_ready": false,
+    "reviewed_objective": "Regla automatizada impide imports de SDK, ORM y HTTP desde domain y strategies",
+    "reviewed_negative": "Fixture con import prohibido hace fallar check",
+    "blocking_reason": "Diseño concreto revisado; implementación no ejecutada; requiere cierre global G-DESIGN.",
+    "findings": [],
+    "references": [
+      "docs/tasks/T-005.md",
+      "docs/06-architecture-overview.md",
+      "docs/08-domain-model.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/Settings"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-006",
+    "phase": "V0",
+    "dependencies": [
+      "T-003",
+      "T-004",
+      "T-009"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Bootstrap usuario local, Argon2id, login rate-limited y cookie opaca con expiración; logout revoca servidor",
+    "reviewed_negative": "Cookie revocada, contraseña incorrecta y sesión vencida no autentican",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-006.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/Session"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-007",
+    "phase": "V0",
+    "dependencies": [
+      "T-006"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Middleware por rol, CSRF y clave de comando con huella actor/env/path/payload y conflicto409",
+    "reviewed_negative": "Reader hace POST control, CSRF ausente o clave reciclada con otro payload se rechazan",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-007.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/ControlCommand"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-008",
+    "phase": "V0",
+    "dependencies": [
+      "T-003",
+      "T-009"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Append con hash anterior, actor y resultado; permisos niegan UPDATE/DELETE a runtime",
+    "reviewed_negative": "No poder persistir auditoría bloquea mutación sensible",
+    "blocking_reason": "Completar interfaz concreta de configuración/permisos/transacción y errores por operación.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-008.md",
+      "docs/06-architecture-overview.md",
+      "docs/08-domain-model.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/AuditRecord"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-009",
+    "phase": "V0",
+    "dependencies": [
+      "T-002",
+      "T-003",
+      "T-004"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Crear tablas de identidad, observaciones, grants, jobs y outbox con claves únicas y migraciones expand",
+    "reviewed_negative": "Duplicado de dedup_key/revision y rollback de migración conservan datos",
+    "blocking_reason": "Cerrar requests/resultados por método y cursor, con fixture de paginación/calidad; Observation genérica no prueba cobertura.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-009.md",
+      "docs/09-data-architecture.md",
+      "docs/10-data-source-catalog.md",
+      "docs/12-event-contracts.md",
+      "docs/contracts/domain.schema.json#/$defs/Observation"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-010",
+    "phase": "V1",
+    "dependencies": [
+      "T-008",
+      "T-009"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Escribir evento con agregado y consumir con receipt único; lease60s heartbeat15s y fencing",
+    "reviewed_negative": "Crash después del efecto antes del ACK no duplica efecto",
+    "blocking_reason": "Cerrar requests/resultados por método y cursor, con fixture de paginación/calidad; Observation genérica no prueba cobertura.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-010.md",
+      "docs/09-data-architecture.md",
+      "docs/10-data-source-catalog.md",
+      "docs/12-event-contracts.md",
+      "docs/contracts/domain.schema.json#/$defs/EventEnvelope"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-011",
+    "phase": "V1",
+    "dependencies": [
+      "T-009",
+      "T-010"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Reservar peor costo bajo transacción y reconciliar usage; contabilizar UNCERTAIN conservador",
+    "reviewed_negative": "Dos jobs concurrentes al borde del cap no lo superan",
+    "blocking_reason": "Completar manifiesto/runbook/comando concreto y criterio de falla; no confundir alerta con recuperación.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-011.md",
+      "docs/27-infrastructure.md",
+      "docs/28-deployment.md",
+      "docs/29-observability.md",
+      "docs/39-release-and-rollback.md",
+      "docs/contracts/domain.schema.json#/$defs/CostRecord"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-02",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-012",
+    "phase": "V1",
+    "dependencies": [
+      "T-010",
+      "T-011"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Limiter compartido por organización, timeouts y jitter acotados;401/403 bloquean y429 difiere",
+    "reviewed_negative": "Crear más workers no aumenta cuota;5 fallos abre breaker",
+    "blocking_reason": "Cerrar requests/resultados por método y cursor, con fixture de paginación/calidad; Observation genérica no prueba cobertura.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-012.md",
+      "docs/09-data-architecture.md",
+      "docs/10-data-source-catalog.md",
+      "docs/12-event-contracts.md",
+      "docs/contracts/domain.schema.json#/$defs/ConnectorStatus"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-02",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-013",
+    "phase": "V1",
+    "dependencies": [
+      "T-009"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Escribir tmp fsync hash rename y registrar evidencia; recuperación de huérfanos sin borrar referenciados",
+    "reviewed_negative": "Crash antes del registro no expone dataset incompleto",
+    "blocking_reason": "Cerrar requests/resultados por método y cursor, con fixture de paginación/calidad; Observation genérica no prueba cobertura.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-013.md",
+      "docs/09-data-architecture.md",
+      "docs/10-data-source-catalog.md",
+      "docs/12-event-contracts.md",
+      "docs/contracts/domain.schema.json#/$defs/ArtifactFile"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-014",
+    "phase": "V1",
+    "dependencies": [
+      "T-012",
+      "T-013"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Adaptar getAccountInfo/getTransaction/getSignaturesForAddress con timestamp propio y versión admitida",
+    "reviewed_negative": "RPC null o versión desconocida se marca desconocida; no fill ficticio",
+    "blocking_reason": "Cerrar requests/resultados por método y cursor, con fixture de paginación/calidad; Observation genérica no prueba cobertura.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-014.md",
+      "docs/09-data-architecture.md",
+      "docs/10-data-source-catalog.md",
+      "docs/12-event-contracts.md",
+      "docs/contracts/domain.schema.json#/$defs/Observation"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-01",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-015",
+    "phase": "V1",
+    "dependencies": [
+      "T-014"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Abrir WSS con un mentions por suscripción, heartbeat y recepción durable por firma/slot",
+    "reviewed_negative": "Mensaje repetido o disconnect no reinicia cursor sin evidencia",
+    "blocking_reason": "Cerrar requests/resultados por método y cursor, con fixture de paginación/calidad; Observation genérica no prueba cobertura.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-015.md",
+      "docs/09-data-architecture.md",
+      "docs/10-data-source-catalog.md",
+      "docs/12-event-contracts.md",
+      "docs/contracts/domain.schema.json#/$defs/Observation"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-01",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-016",
+    "phase": "V1",
+    "dependencies": [
+      "T-014",
+      "T-015"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Recuperar páginas before/until con solapamiento, dedup y watermark finalizado",
+    "reviewed_negative": "Historial truncado produce GAP y no COMPLETE",
+    "blocking_reason": "Cerrar requests/resultados por método y cursor, con fixture de paginación/calidad; Observation genérica no prueba cobertura.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-016.md",
+      "docs/09-data-architecture.md",
+      "docs/10-data-source-catalog.md",
+      "docs/12-event-contracts.md",
+      "docs/contracts/domain.schema.json#/$defs/CoverageInterval"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-017",
+    "phase": "V1",
+    "dependencies": [
+      "T-012",
+      "T-013"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Batch tokens máximo30 y mapear pairs con source/fecha; no generar universo desde populares",
+    "reviewed_negative": "pairs null, ticker duplicado y campos nuevos no cambian identidad",
+    "blocking_reason": "Cerrar requests/resultados por método y cursor, con fixture de paginación/calidad; Observation genérica no prueba cobertura.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-017.md",
+      "docs/09-data-architecture.md",
+      "docs/10-data-source-catalog.md",
+      "docs/12-event-contracts.md",
+      "docs/contracts/domain.schema.json#/$defs/Pool"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-01",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-018",
+    "phase": "V1",
+    "dependencies": [
+      "T-012",
+      "T-013"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "GET order de sólo cotización y mapping de cantidades,fees,route,timestamp; no firmar ni ejecutar",
+    "reviewed_negative": "Ruta ausente, bytes inesperados y quote vencida no habilitan entrada",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-018.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/Quote"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-04",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-019",
+    "phase": "V1",
+    "dependencies": [
+      "T-014",
+      "T-017"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Validar schemas, unidades, tiempos, duplicados y retractaciones con versión de parser",
+    "reviewed_negative": "Payload malformado queda en cuarentena conservando hash",
+    "blocking_reason": "Cerrar requests/resultados por método y cursor, con fixture de paginación/calidad; Observation genérica no prueba cobertura.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-019.md",
+      "docs/09-data-architecture.md",
+      "docs/10-data-source-catalog.md",
+      "docs/12-event-contracts.md",
+      "docs/contracts/domain.schema.json#/$defs/Observation"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-020",
+    "phase": "V1",
+    "dependencies": [
+      "T-016",
+      "T-019"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Materializar intervalos observados/gaps y membresía histórica sin borrar tokens muertos",
+    "reviewed_negative": "Consulta as_of no incluye un asset descubierto posteriormente",
+    "blocking_reason": "Cerrar requests/resultados por método y cursor, con fixture de paginación/calidad; Observation genérica no prueba cobertura.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-020.md",
+      "docs/09-data-architecture.md",
+      "docs/10-data-source-catalog.md",
+      "docs/12-event-contracts.md",
+      "docs/contracts/domain.schema.json#/$defs/CoverageInterval"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-021",
+    "phase": "V2",
+    "dependencies": [
+      "T-015",
+      "T-019",
+      "T-020"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Validar programa e instrucciones/cuentas de inicialización usando layout fijado; distinguir mint y pool",
+    "reviewed_negative": "Log textual engañoso o upgrade no reconocido produce UNSUPPORTED",
+    "blocking_reason": "Fijar campos derivados, layout soportado y tabla de errores antes de delegar el decoder/evaluador; no basta un nombre de schema.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-021.md",
+      "docs/08-domain-model.md",
+      "docs/16-solana-intelligence.md",
+      "docs/contracts/domain.schema.json#/$defs/Pool"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-05",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-022",
+    "phase": "V2",
+    "dependencies": [
+      "T-021"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Reconstruir swaps y cambios de vault con cantidades atómicas y fees por versión",
+    "reviewed_negative": "Multihop y transacción fallida no se cuentan dos veces como volumen",
+    "blocking_reason": "Fijar campos derivados, layout soportado y tabla de errores antes de delegar el decoder/evaluador; no basta un nombre de schema.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-022.md",
+      "docs/08-domain-model.md",
+      "docs/16-solana-intelligence.md",
+      "docs/contracts/domain.schema.json#/$defs/Trade"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-05",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-023",
+    "phase": "V2",
+    "dependencies": [
+      "T-014",
+      "T-021"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Decodificar owner,decimals,supply,mint/freeze authority con evidencia de slot",
+    "reviewed_negative": "Owner desconocido o null crítico impide elegibilidad",
+    "blocking_reason": "Fijar campos derivados, layout soportado y tabla de errores antes de delegar el decoder/evaluador; no basta un nombre de schema.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-023.md",
+      "docs/08-domain-model.md",
+      "docs/16-solana-intelligence.md",
+      "docs/contracts/domain.schema.json#/$defs/MintSnapshot"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-05",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-024",
+    "phase": "V2",
+    "dependencies": [
+      "T-023"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Enumerar TLV/extensiones y cambios de fees/epoch; observar pero bloquear entradas MVP",
+    "reviewed_negative": "TransferHook/PermanentDelegate/desconocida no aparece como seguro",
+    "blocking_reason": "Fijar campos derivados, layout soportado y tabla de errores antes de delegar el decoder/evaluador; no basta un nombre de schema.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-024.md",
+      "docs/08-domain-model.md",
+      "docs/16-solana-intelligence.md",
+      "docs/contracts/domain.schema.json#/$defs/TokenAssessment"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-05",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-025",
+    "phase": "V2",
+    "dependencies": [
+      "T-023"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Agrupar token accounts por owner, separar vaults identificados y reportar cobertura",
+    "reviewed_negative": "Top accounts incompleto no produce Gini o top10 poblacional ficticios",
+    "blocking_reason": "Fijar campos derivados, layout soportado y tabla de errores antes de delegar el decoder/evaluador; no basta un nombre de schema.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-025.md",
+      "docs/08-domain-model.md",
+      "docs/16-solana-intelligence.md",
+      "docs/contracts/domain.schema.json#/$defs/TokenAssessment"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-026",
+    "phase": "V2",
+    "dependencies": [
+      "T-018",
+      "T-022",
+      "T-024",
+      "T-025"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Aplicar policy temporal y tamaños cotizables, concentración y edad; persistir causas",
+    "reviewed_negative": "Sin ruta de venta o retiro súbito revoca elegibilidad aun con alto TVL",
+    "blocking_reason": "Fijar campos derivados, layout soportado y tabla de errores antes de delegar el decoder/evaluador; no basta un nombre de schema.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-026.md",
+      "docs/08-domain-model.md",
+      "docs/16-solana-intelligence.md",
+      "docs/contracts/domain.schema.json#/$defs/TokenAssessment"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-04",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-027",
+    "phase": "V2",
+    "dependencies": [
+      "T-022",
+      "T-025"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Detectar concentración de flujo,ciclos y retiro abrupto con reglas versionadas y evidencia",
+    "reviewed_negative": "Patrón raro no etiqueta fraude ni identidad personal",
+    "blocking_reason": "Fijar campos derivados, layout soportado y tabla de errores antes de delegar el decoder/evaluador; no basta un nombre de schema.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-027.md",
+      "docs/08-domain-model.md",
+      "docs/16-solana-intelligence.md",
+      "docs/contracts/domain.schema.json#/$defs/ResearchClaim"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-028",
+    "phase": "V3",
+    "dependencies": [
+      "T-020",
+      "T-022"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Calcular retornos,volumen,volatilidad,compradores y missingness sólo con available_at pasado",
+    "reviewed_negative": "Una observación tardía no cambia snapshot de decisión histórica",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-028.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/FeatureSnapshot"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-029",
+    "phase": "V3",
+    "dependencies": [
+      "T-013",
+      "T-020",
+      "T-028"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Exportar Parquet con hashes,universo,cobertura y permisos; incluir fallidos y censura",
+    "reviewed_negative": "Archivo cambiado o permiso revocado invalida consumo",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-029.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/DatasetManifest"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-030",
+    "phase": "V3",
+    "dependencies": [
+      "T-029"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Generar folds temporales y eliminar solapamientos de etiquetas; registrar acceso al holdout",
+    "reviewed_negative": "Random split o label que cruza frontera falla check",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-030.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/Experiment"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-031",
+    "phase": "V3",
+    "dependencies": [
+      "T-002",
+      "T-009"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Postear fills/fees con effect_key único y suma cero por activo en una transacción",
+    "reviewed_negative": "Duplicado o asiento desbalanceado no cambia saldo",
+    "blocking_reason": "Completar comando de journal para depósitos/rent/correcciones y golden FIFO multi-activo sin fee duplicada.",
+    "findings": [
+      "GD-10",
+      "GD-09"
+    ],
+    "references": [
+      "docs/tasks/T-031.md",
+      "docs/08-domain-model.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/JournalEntry"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-032",
+    "phase": "V3",
+    "dependencies": [
+      "T-031"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Reconstruir lotes,costo,realizado,no realizado y marca liquidable; separar flujos externos",
+    "reviewed_negative": "Token sin liquidez no conserva mark ficticio; depósito no cuenta como ganancia",
+    "blocking_reason": "Completar comando de journal para depósitos/rent/correcciones y golden FIFO multi-activo sin fee duplicada.",
+    "findings": [
+      "GD-10",
+      "GD-09"
+    ],
+    "references": [
+      "docs/tasks/T-032.md",
+      "docs/08-domain-model.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/PortfolioView"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-033",
+    "phase": "V3",
+    "dependencies": [
+      "T-028",
+      "T-029",
+      "T-030",
+      "T-031"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Construir harness de replay por available_at con Clock y puertos inyectados; fixtures de estrategia/riesgo. Integración de evaluadores reales en T-054/T-056.",
+    "reviewed_negative": "Repetir dataset/config produce misma secuencia; datos futuros no se entregan",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-033.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/Experiment"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-034",
+    "phase": "V3",
+    "dependencies": [
+      "T-018",
+      "T-022",
+      "T-033"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Simular reservas por evento,fees y latencia; no usar cierre de vela ni descontar fee dos veces",
+    "reviewed_negative": "Profundidad insuficiente o pool no soportado produce no fill",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-034.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/Fill"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-05",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-035",
+    "phase": "V3",
+    "dependencies": [
+      "T-034"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Reejecutar con slippage2x,fees1.5x,latencia y pérdida total; versionar escenario",
+    "reviewed_negative": "Una estrategia positiva bruto puede quedar REJECTED neta",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-035.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-036",
+    "phase": "V3",
+    "dependencies": [
+      "T-030",
+      "T-032",
+      "T-035"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Calcular métricas doc23,bootstrap por bloques,comparación emparejada y Holm; exportar supuestos",
+    "reviewed_negative": "Profit factor sin pérdidas queda indefinido; ticks correlacionados no inflan n",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-036.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-037",
+    "phase": "V3",
+    "dependencies": [
+      "T-030",
+      "T-036"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Congelar hipótesis,trial_family,max_trials y criterios antes de acceso holdout",
+    "reviewed_negative": "Ensayo extra o cambio tras holdout requiere nueva versión y no se oculta",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-037.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/Experiment"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-038",
+    "phase": "V4",
+    "dependencies": [
+      "T-028",
+      "T-030",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Entrenar logística regularizada con scaler train-only y artefacto reproducible",
+    "reviewed_negative": "Imputador entrenado en test es detectado por fixture temporal",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-038.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/ModelArtifact"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-039",
+    "phase": "V4",
+    "dependencies": [
+      "T-038"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Entrenar12 configs preregistradas como máximo,8 hilos4GiB y early stopping interno",
+    "reviewed_negative": "OOM marca FAILED sin reemplazar modelo existente",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-039.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/ModelArtifact"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-07",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-040",
+    "phase": "V4",
+    "dependencies": [
+      "T-039"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Calibrar probabilidad con Platt en bloque temporal disjunto; validar cuantiles q05/q50/q95 de regresores separados y expectativa de regresor de media según doc14.",
+    "reviewed_negative": "Cuantiles cruzados o calibración sobre test son rechazados",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-040.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/Prediction"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-041",
+    "phase": "V4",
+    "dependencies": [
+      "T-038",
+      "T-040"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Registrar hashes,licencias,cutoff,feature schema y estado sin autopromoción",
+    "reviewed_negative": "Hash de pesos alterado o licencia ausente bloquea carga",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-041.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/ModelArtifact"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-07",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-042",
+    "phase": "V4",
+    "dependencies": [
+      "T-041"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Comparar mismo target,folds y presupuesto contra LightGBM sin cambiar champion",
+    "reviewed_negative": "Mejor accuracy con peor PnL no promueve",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-042.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/ModelArtifact"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-07",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-043",
+    "phase": "V4",
+    "dependencies": [
+      "T-041"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Adaptador mini/small con contexto permitido y medición RAM/VRAM; metadata de pretraining",
+    "reviewed_negative": "Corte de pretraining desconocido etiqueta histórico como no ciego",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-043.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/ModelArtifact"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-07",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-044",
+    "phase": "V4",
+    "dependencies": [
+      "T-041"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Adapter forecast a target común y cuantiles con datos pasados; medir costo local",
+    "reviewed_negative": "Covariable futura o calendario incorrecto invalida ensayo",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-044.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/ModelArtifact"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-07",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-045",
+    "phase": "V4",
+    "dependencies": [
+      "T-041"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Verificar checkpoint/licencia; sólo benchmark autorizado;3.0 no productivo por aviso consultado",
+    "reviewed_negative": "Confundir licencia de código con pesos bloquea registro",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-045.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/ModelArtifact"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-07",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-046",
+    "phase": "V7",
+    "dependencies": [
+      "T-041"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Evaluar checkpoint autorizado en corpus humano de dominio, con evidencia de licencia de pesos/datos",
+    "reviewed_negative": "Licencia no acreditada o bajo recall de entidades deja adapter disabled",
+    "blocking_reason": "Completar mapping request/response/refusal/usage y prueba de permiso por procesador, sin credenciales reales.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-046.md",
+      "docs/13-ai-architecture.md",
+      "docs/15-autonomous-research.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/ExtractionResult"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-07",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-047",
+    "phase": "V7",
+    "dependencies": [
+      "T-041"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Comparar artefacto específico/base/LoRA autorizado contra extracción API con budget fijo",
+    "reviewed_negative": "Código MIT no acredita corpus o modelo base",
+    "blocking_reason": "Completar mapping request/response/refusal/usage y prueba de permiso por procesador, sin credenciales reales.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-047.md",
+      "docs/13-ai-architecture.md",
+      "docs/15-autonomous-research.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/ModelArtifact"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-07",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-048",
+    "phase": "V9",
+    "dependencies": [
+      "T-041",
+      "T-100"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Entrenar red acotada sólo con L2 íntegro y folds por tiempo/instrumento",
+    "reviewed_negative": "Datos AMM sin libro no se adaptan fingiendo bids/asks",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-048.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/Prediction"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-08",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-049",
+    "phase": "V5",
+    "dependencies": [
+      "T-026",
+      "T-040",
+      "T-041",
+      "T-028"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Seleccionar Decision desde DecisionContext con Signal de fixtures tipadas; integración con S02 se cierra en T-054, sin dependencia circular de T-107.",
+    "reviewed_negative": "Dos señales correlacionadas no generan doble candidato; costo mata edge",
+    "blocking_reason": "Completar enlace entre Prediction, Signal y DecisionContext y regla determinista de comparación.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-049.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Decision"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-050",
+    "phase": "V5",
+    "dependencies": [
+      "T-026",
+      "T-032",
+      "T-049"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Implementar caps de policy,full-loss memecoin y rounding down; desconocido deniega",
+    "reviewed_negative": "Stop5% no reduce riesgo100%; NAV desconocido impide entrada",
+    "blocking_reason": "Completar oracle de sizing/reserva multi-activo y servicio transaccional; guardar prueba de carrera y pérdida total.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-050.md",
+      "docs/08-domain-model.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/RiskAssessment"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-051",
+    "phase": "V5",
+    "dependencies": [
+      "T-009",
+      "T-050"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Bloqueo de portfolio,exposición pending,expiry segura y unique decision con outbox",
+    "reviewed_negative": "Carrera de dos compras no excede cap ni libera UNKNOWN por lease",
+    "blocking_reason": "Completar oracle de sizing/reserva multi-activo y servicio transaccional; guardar prueba de carrera y pérdida total.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-051.md",
+      "docs/08-domain-model.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Reservation"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-052",
+    "phase": "V5",
+    "dependencies": [
+      "T-007",
+      "T-008",
+      "T-051"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Control durable con epoch; HALT inmediato,RESUME sólo paper reautenticado",
+    "reviewed_negative": "Restart no borra pérdidas; halt no finge cancelar on-chain",
+    "blocking_reason": "Completar oracle de sizing/reserva multi-activo y servicio transaccional; guardar prueba de carrera y pérdida total.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-052.md",
+      "docs/08-domain-model.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/ControlCommand"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-053",
+    "phase": "V6",
+    "dependencies": [
+      "T-051",
+      "T-052"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Implementar transiciones normativas y guards con versiones; efecto durable por paso",
+    "reviewed_negative": "PREPARED inválido no salta a fill; transición prohibida devuelve conflicto",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-053.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/Order"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-054",
+    "phase": "V6",
+    "dependencies": [
+      "T-034",
+      "T-053",
+      "T-107",
+      "T-141"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Crear fill simulado con quote disponible,latencia y failure model; conservar simulated true",
+    "reviewed_negative": "Datos futuros o quote inexistente no se convierten en precio de cierre",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-054.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/ExecutionReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-04",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-055",
+    "phase": "V6",
+    "dependencies": [
+      "T-031",
+      "T-032",
+      "T-054"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Conciliar órdenes,fills,reservas y balances reconstruidos antes de liberar exposición",
+    "reviewed_negative": "Crash entre fill y journal se recupera sin doble asiento",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10",
+      "GD-09"
+    ],
+    "references": [
+      "docs/tasks/T-055.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/PortfolioView"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-056",
+    "phase": "V6",
+    "dependencies": [
+      "T-020",
+      "T-055",
+      "T-108",
+      "T-140"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Persistir start/end,config,coverage,checkpoint y estado paused al reiniciar",
+    "reviewed_negative": "Apagado no genera fills inexistentes y baja cobertura",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-056.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/Job"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-057",
+    "phase": "V6",
+    "dependencies": [
+      "T-007",
+      "T-052",
+      "T-056"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Mostrar entorno,modo,decisiones,órdenes,stale y HALT; polling5s y permisos",
+    "reviewed_negative": "Offline o401 deja acciones bloqueadas; reader no puede mutar",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-057.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/SystemView"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-058",
+    "phase": "V7",
+    "dependencies": [
+      "T-003",
+      "T-009",
+      "T-041"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Aprobar/revocar finalidades con evidencia y propagar expiración a caches/datasets/modelos",
+    "reviewed_negative": "Permiso inference no permite training; revocación interrumpe jobs afectados",
+    "blocking_reason": "Completar request de hipótesis/job, permisos y materialización de conocimiento con oracle específico.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-058.md",
+      "docs/10-data-source-catalog.md",
+      "docs/15-autonomous-research.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/SourceGrant"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-06",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-059",
+    "phase": "V7",
+    "dependencies": [
+      "T-012",
+      "T-013",
+      "T-058"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "HTTPS limitado,validación DNS/redirecciones,MIME/tamaño y evidencia; sin shell",
+    "reviewed_negative": "Redirect a metadata olocalhost y archivo ejecutable se rechazan",
+    "blocking_reason": "Completar request de hipótesis/job, permisos y materialización de conocimiento con oracle específico.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-059.md",
+      "docs/10-data-source-catalog.md",
+      "docs/15-autonomous-research.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/NewsItem"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-06",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-060",
+    "phase": "V7",
+    "dependencies": [
+      "T-011",
+      "T-012",
+      "T-041",
+      "T-058"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Mapear request/schema al SDK oficial,validar localmente,usage/deadline y abstención",
+    "reviewed_negative": "Refusal,truncamiento oJSON válido con fuente inventada falla seguro",
+    "blocking_reason": "Completar mapping request/response/refusal/usage y prueba de permiso por procesador, sin credenciales reales.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-060.md",
+      "docs/13-ai-architecture.md",
+      "docs/15-autonomous-research.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/ExtractionResult"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-09",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-061",
+    "phase": "V7",
+    "dependencies": [
+      "T-060"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Certificar contrato con Haiku y permitir fallback sólo con misma evaluación/costo",
+    "reviewed_negative": "Fallback fuera de deadline o a modelo no certificado se rechaza",
+    "blocking_reason": "Completar mapping request/response/refusal/usage y prueba de permiso por procesador, sin credenciales reales.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-061.md",
+      "docs/13-ai-architecture.md",
+      "docs/15-autonomous-research.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/ExtractionResult"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-09",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-062",
+    "phase": "V7",
+    "dependencies": [
+      "T-060"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Certificar Flash-Lite con esquema compatible y tratamiento de datos elegido",
+    "reviewed_negative": "Free tier sin autorización de contenido no se usa por ahorro",
+    "blocking_reason": "Completar mapping request/response/refusal/usage y prueba de permiso por procesador, sin credenciales reales.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-062.md",
+      "docs/13-ai-architecture.md",
+      "docs/15-autonomous-research.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/ExtractionResult"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-09",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-063",
+    "phase": "V7",
+    "dependencies": [
+      "T-059",
+      "T-060"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Prompt versionado identifica mint/contexto,claims,evidencia y abstención con corpus humano",
+    "reviewed_negative": "Ticker ambiguo o instrucción incrustada no produce entidad segura ni herramienta",
+    "blocking_reason": "Completar mapping request/response/refusal/usage y prueba de permiso por procesador, sin credenciales reales.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-063.md",
+      "docs/13-ai-architecture.md",
+      "docs/15-autonomous-research.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/ExtractionResult"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-06",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-064",
+    "phase": "V7",
+    "dependencies": [
+      "T-063"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Canonical URL/hash/similitud y cluster de sindicación; revisiones append-only",
+    "reviewed_negative": "Cinco copias no cuentan cinco fuentes independientes",
+    "blocking_reason": "Completar request de hipótesis/job, permisos y materialización de conocimiento con oracle específico.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-064.md",
+      "docs/10-data-source-catalog.md",
+      "docs/15-autonomous-research.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/ResearchClaim"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-065",
+    "phase": "V7",
+    "dependencies": [
+      "T-037",
+      "T-064"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Proponer mecanismo,target,placebo/rechazo y ejecutar sólo plantillas admitidas con2 jobs/día",
+    "reviewed_negative": "Texto externo pide código/shell oautoaprobación y no obtiene permisos",
+    "blocking_reason": "Completar request de hipótesis/job, permisos y materialización de conocimiento con oracle específico.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-065.md",
+      "docs/10-data-source-catalog.md",
+      "docs/15-autonomous-research.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/Hypothesis"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-066",
+    "phase": "V7",
+    "dependencies": [
+      "T-064",
+      "T-065"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Guardar claims,relaciones,contradicciones y conclusiones negativas con búsqueda textual",
+    "reviewed_negative": "Corrección no borra evidencia previa; permiso vencido limita lectura",
+    "blocking_reason": "Completar request de hipótesis/job, permisos y materialización de conocimiento con oracle específico.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-066.md",
+      "docs/10-data-source-catalog.md",
+      "docs/15-autonomous-research.md",
+      "docs/25-security.md",
+      "docs/contracts/domain.schema.json#/$defs/ResearchClaim"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-067",
+    "phase": "V8",
+    "dependencies": [
+      "T-014",
+      "T-016",
+      "T-022"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Reconstruir swaps,transferencias,wraps,fees y ownership sin inferir persona",
+    "reviewed_negative": "Transferencia no se trata como compra; cuenta cerrada conserva historia",
+    "blocking_reason": "Completar WalletHistory/ValuationPolicy y entradas parciales; una Observation no representa un historial.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-067.md",
+      "docs/16-solana-intelligence.md",
+      "docs/17-trader-intelligence.md",
+      "docs/contracts/domain.schema.json#/$defs/WalletTransaction"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-068",
+    "phase": "V8",
+    "dependencies": [
+      "T-031",
+      "T-032",
+      "T-067"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "FIFO por wallet con lotes UNKNOWN_COST y TWR sólo con flujos/capital observables",
+    "reviewed_negative": "Airdrop/desconocido no infla ROI; falta historia deja null",
+    "blocking_reason": "Completar WalletHistory/ValuationPolicy y entradas parciales; una Observation no representa un historial.",
+    "findings": [
+      "GD-10",
+      "GD-09",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-068.md",
+      "docs/16-solana-intelligence.md",
+      "docs/17-trader-intelligence.md",
+      "docs/contracts/domain.schema.json#/$defs/TraderProfile"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-069",
+    "phase": "V8",
+    "dependencies": [
+      "T-030",
+      "T-036",
+      "T-068"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Score por train con cobertura>=95%/90 días,clusters y selección congelada",
+    "reviewed_negative": "Ranking test no se infiltra al pasado; wallets correlacionadas no son n independientes",
+    "blocking_reason": "Completar WalletHistory/ValuationPolicy y entradas parciales; una Observation no representa un historial.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-069.md",
+      "docs/16-solana-intelligence.md",
+      "docs/17-trader-intelligence.md",
+      "docs/contracts/domain.schema.json#/$defs/TraderProfile"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-070",
+    "phase": "V9",
+    "dependencies": [
+      "T-040",
+      "T-063",
+      "T-069"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Meta-modelo logístico con señales OOF disponibles y ablaciones completas",
+    "reviewed_negative": "In-sample predicciones de bases en train del ensemble son bloqueadas",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-070.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/Prediction"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-06",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-071",
+    "phase": "V9",
+    "dependencies": [
+      "T-028",
+      "T-030"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Calcular volatilidad/tendencia/liquidez y thresholds train-only con histéresis",
+    "reviewed_negative": "Regímenes definidos usando futuro del test invalidan experimento",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-071.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/FeatureSnapshot"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-072",
+    "phase": "V10",
+    "dependencies": [
+      "T-040",
+      "T-055"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Unir predicción con resultado observable sólo al vencer horizonte y conservar censura/correcciones",
+    "reviewed_negative": "Token sin salida no se elimina de evaluación",
+    "blocking_reason": "Completar política operativa de ventanas/drift/CAS y salidas observables con fixtures temporales.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-072.md",
+      "docs/14-ml-models.md",
+      "docs/24-continuous-learning.md",
+      "docs/contracts/domain.schema.json#/$defs/Outcome"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-073",
+    "phase": "V10",
+    "dependencies": [
+      "T-072"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Medir missingness/calibración/costos y deshabilitar entradas del modelo según política",
+    "reviewed_negative": "Una alerta no cambia champion ni liquida a precio inexistente",
+    "blocking_reason": "Completar política operativa de ventanas/drift/CAS y salidas observables con fixtures temporales.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-073.md",
+      "docs/14-ml-models.md",
+      "docs/24-continuous-learning.md",
+      "docs/contracts/domain.schema.json#/$defs/Alert"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-074",
+    "phase": "V10",
+    "dependencies": [
+      "T-007",
+      "T-008",
+      "T-036",
+      "T-041",
+      "T-072"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Revisar gates/reportes y asignar champion en paper con compare-and-swap humano",
+    "reviewed_negative": "Job trainer no puede aprobarse; revisión concurrente produce409",
+    "blocking_reason": "Completar política operativa de ventanas/drift/CAS y salidas observables con fixtures temporales.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-074.md",
+      "docs/14-ml-models.md",
+      "docs/24-continuous-learning.md",
+      "docs/contracts/domain.schema.json#/$defs/Promotion"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-075",
+    "phase": "V10",
+    "dependencies": [
+      "T-074"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Reasignar anterior compatible conservando predicciones y política de posiciones",
+    "reviewed_negative": "Feature schema distinto impide cargar incluso con hash válido",
+    "blocking_reason": "Completar política operativa de ventanas/drift/CAS y salidas observables con fixtures temporales.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-075.md",
+      "docs/14-ml-models.md",
+      "docs/24-continuous-learning.md",
+      "docs/contracts/domain.schema.json#/$defs/Promotion"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-076",
+    "phase": "V10",
+    "dependencies": [
+      "T-035",
+      "T-041",
+      "T-072"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Experimento FinRL con simulador validado,recompensa neta/caps y benchmark fijo",
+    "reviewed_negative": "Explotar fallo del simulador produce REJECTED,no promoción",
+    "blocking_reason": "Precisar features/target y manifiesto de entrenamiento por tarea; revisar estimadores y compatibilidad exacta de salida.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-076.md",
+      "docs/13-ai-architecture.md",
+      "docs/14-ml-models.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/ModelArtifact"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-07",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-077",
+    "phase": "V11",
+    "dependencies": [
+      "T-057",
+      "T-089"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Pantalla inicio/fuentes conlag,cobertura,permisos y errores saneados",
+    "reviewed_negative": "ACK no resuelve incidente ni habilita operaciones",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-077.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/SystemView"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-078",
+    "phase": "V11",
+    "dependencies": [
+      "T-026",
+      "T-057"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Tabla filtros/as_of y drawer de mint/pool/assessment con desconocidos visibles",
+    "reviewed_negative": "Ticker repetido odata stale no se muestra como seguro",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-078.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/Asset"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-079",
+    "phase": "V11",
+    "dependencies": [
+      "T-057",
+      "T-069"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Mostrar PnL observable,unknown_cost,cohortes y selección temporal",
+    "reviewed_negative": "Null no se renderiza como0 oROI garantizado",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-079.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/TraderProfile"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-080",
+    "phase": "V11",
+    "dependencies": [
+      "T-057",
+      "T-066"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Fuentes,claims,contradicciones y jobs con permisos de visualización",
+    "reviewed_negative": "HTML de fuente se escapa y texto no autorizado no llega al cliente",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-080.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/ResearchClaim"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-081",
+    "phase": "V11",
+    "dependencies": [
+      "T-055",
+      "T-057"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Timeline evidencia→señal→riesgo→orden→ledger y rechazo visible",
+    "reviewed_negative": "Fallo RPC no aparece como trade exitoso",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-081.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/Decision"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-082",
+    "phase": "V11",
+    "dependencies": [
+      "T-037",
+      "T-057"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Mostrar folds,trials negativos,baselines,CI y consumo del holdout; crear job typed",
+    "reviewed_negative": "Ver sólo mejor trial no oculta multiplicidad;412/409 se explica",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-082.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-083",
+    "phase": "V11",
+    "dependencies": [
+      "T-057",
+      "T-074"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Comparación champion/challenger,licencias,drift y reautenticación para promover",
+    "reviewed_negative": "Accuracy alta no permite saltar gates ni permisos",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-083.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/ModelArtifact"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-084",
+    "phase": "V11",
+    "dependencies": [
+      "T-011",
+      "T-057"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Reservado/real/estimado por proveedor y tarifa con alerts80/100%",
+    "reviewed_negative": "Uso incierto no se presenta como gratuito",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-084.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/CostRecord"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-085",
+    "phase": "V11",
+    "dependencies": [
+      "T-008",
+      "T-057"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Lectura paginada y jobs export con rango/rol/expiry; config sólo lectura",
+    "reviewed_negative": "Export sin permiso oURL reutilizada/vencida falla",
+    "blocking_reason": "Completar contrato de vista/endpoint y estados de UI por acción; fijar permiso y E2E correspondiente.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-085.md",
+      "docs/11-api-contracts.md",
+      "docs/26-dashboard.md",
+      "docs/contracts/domain.schema.json#/$defs/AuditRecord"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-086",
+    "phase": "V11",
+    "dependencies": [
+      "T-003",
+      "T-007",
+      "T-052"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Servicios no root,puertos privados,volúmenes separados,limits y arranque paused",
+    "reviewed_negative": "Perfil paper con seed/signer oDB pública falla preflight",
+    "blocking_reason": "Completar manifiesto/runbook/comando concreto y criterio de falla; no confundir alerta con recuperación.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-086.md",
+      "docs/27-infrastructure.md",
+      "docs/28-deployment.md",
+      "docs/29-observability.md",
+      "docs/39-release-and-rollback.md",
+      "docs/contracts/domain.schema.json#/$defs/ReleaseManifest"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-10",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-087",
+    "phase": "V11",
+    "dependencies": [
+      "T-013",
+      "T-031",
+      "T-086"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "SnapshotDB+manifests+archivos referenciados con hashes/retención y clave separada",
+    "reviewed_negative": "Backup sin archivo referenciado es inválido,no éxito",
+    "blocking_reason": "Completar manifiesto/runbook/comando concreto y criterio de falla; no confundir alerta con recuperación.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-087.md",
+      "docs/27-infrastructure.md",
+      "docs/28-deployment.md",
+      "docs/29-observability.md",
+      "docs/39-release-and-rollback.md",
+      "docs/contracts/domain.schema.json#/$defs/DatasetManifest"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-10",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-088",
+    "phase": "V11",
+    "dependencies": [
+      "T-055",
+      "T-087"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Restaurar en entorno aislado,verificar hashes/journal/receipts y nuevo control_epoch",
+    "reviewed_negative": "Backup viejo nunca reanuda RUNNING ni duplica efecto",
+    "blocking_reason": "Completar manifiesto/runbook/comando concreto y criterio de falla; no confundir alerta con recuperación.",
+    "findings": [
+      "GD-10",
+      "GD-09",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-088.md",
+      "docs/27-infrastructure.md",
+      "docs/28-deployment.md",
+      "docs/29-observability.md",
+      "docs/39-release-and-rollback.md",
+      "docs/contracts/domain.schema.json#/$defs/PortfolioView"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-10",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-089",
+    "phase": "V11",
+    "dependencies": [
+      "T-008",
+      "T-010",
+      "T-012"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Instrumentar lag,deadlines,budget,pending,leases y redacción de secretos;alertas dedup",
+    "reviewed_negative": "Secreto señuelo no aparece en logs; métrica stale no queda verde",
+    "blocking_reason": "Completar manifiesto/runbook/comando concreto y criterio de falla; no confundir alerta con recuperación.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-089.md",
+      "docs/27-infrastructure.md",
+      "docs/28-deployment.md",
+      "docs/29-observability.md",
+      "docs/39-release-and-rollback.md",
+      "docs/contracts/domain.schema.json#/$defs/Alert"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-090",
+    "phase": "V11",
+    "dependencies": [
+      "T-052",
+      "T-088",
+      "T-089"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Ejecutar drillsRPC caída,DB caída,disco lleno,clock drift y restart con reporte",
+    "reviewed_negative": "Healthy de contenedor no basta si ledger no concilia",
+    "blocking_reason": "Completar manifiesto/runbook/comando concreto y criterio de falla; no confundir alerta con recuperación.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-090.md",
+      "docs/27-infrastructure.md",
+      "docs/28-deployment.md",
+      "docs/29-observability.md",
+      "docs/39-release-and-rollback.md",
+      "docs/contracts/domain.schema.json#/$defs/Alert"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-10",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-091",
+    "phase": "V11",
+    "dependencies": [
+      "T-001",
+      "T-086"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Generar SBOM,scan CVE/secrets,locks y excepción con expiración sólo si admisible",
+    "reviewed_negative": "Dependencia crítica explotable osecret encontrado bloquea release",
+    "blocking_reason": "Completar manifiesto/runbook/comando concreto y criterio de falla; no confundir alerta con recuperación.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-091.md",
+      "docs/27-infrastructure.md",
+      "docs/28-deployment.md",
+      "docs/29-observability.md",
+      "docs/39-release-and-rollback.md",
+      "docs/contracts/domain.schema.json#/$defs/ReleaseManifest"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-07",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-092",
+    "phase": "V11",
+    "dependencies": [
+      "T-075",
+      "T-088",
+      "T-091"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Manifest código/config/modelo/contrato y expand-contract con prueba de rollback",
+    "reviewed_negative": "Downgrade de esquema incompatible falla antes de mutarDB",
+    "blocking_reason": "Completar manifiesto/runbook/comando concreto y criterio de falla; no confundir alerta con recuperación.",
+    "findings": [
+      "GD-10",
+      "GD-12"
+    ],
+    "references": [
+      "docs/tasks/T-092.md",
+      "docs/27-infrastructure.md",
+      "docs/28-deployment.md",
+      "docs/29-observability.md",
+      "docs/39-release-and-rollback.md",
+      "docs/contracts/domain.schema.json#/$defs/ReleaseManifest"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-093",
+    "phase": "V12",
+    "dependencies": [
+      "T-051",
+      "T-052",
+      "T-086"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Daemon sin acceso LLM valida aprobación/binding/epoch/expiry y claves sólo devnet",
+    "reviewed_negative": "Solicitud con wallet,mint,cantidad oprograma distinto se rechaza",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-093.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/SigningRequest"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-11",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-094",
+    "phase": "V12",
+    "dependencies": [
+      "T-024",
+      "T-093"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Resolver cuentas e instrucciones y verificar efectos permitidos/fees antes de firma",
+    "reviewed_negative": "Transferencia escondida,lookup cambiado oinstruction desconocida bloquea",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-094.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/SigningRequest"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-05",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-095",
+    "phase": "V12",
+    "dependencies": [
+      "T-018",
+      "T-094"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Adaptar build documentado con fixtures y permitir sólo rutas inspeccionadas",
+    "reviewed_negative": "Cambio de schema oprograma de ruta no se firma por fallback",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-095.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/SigningRequest"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-04",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-096",
+    "phase": "V12",
+    "dependencies": [
+      "T-095"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Simular commitment consistente,verificar balances/fees y lastValidBlockHeight; invalidar build viejo",
+    "reviewed_negative": "Simulación exitosa no se marca fill; bloque vencido descarta intento",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-096.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/Attempt"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-11",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-097",
+    "phase": "V12",
+    "dependencies": [
+      "T-053",
+      "T-093",
+      "T-096"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Persistir bytes/signature antes de enviar;timeout conserva UNKNOWN y mismo payload",
+    "reviewed_negative": "Crash tras envío no crea firma nueva ni libera reserva",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-097.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/ExecutionReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-11",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-098",
+    "phase": "V12",
+    "dependencies": [
+      "T-055",
+      "T-097"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Consultar status/tx,balance y fee;finalizar/reconciliar;contrasteRPC para incertidumbre",
+    "reviewed_negative": "Null en unRPC oreorg no prueba no ejecución",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10",
+      "GD-09"
+    ],
+    "references": [
+      "docs/tasks/T-098.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/ExecutionReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-11",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-099",
+    "phase": "V12",
+    "dependencies": [
+      "T-052",
+      "T-098"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Invalidar writers viejos con epoch y comprobar modo justo antes de firma",
+    "reviewed_negative": "Worker conlease vencido no firma;transacción ya emitida sigue conciliación",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-099.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/ExecutionIntent"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-11",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-100",
+    "phase": "V9",
+    "dependencies": [
+      "T-012",
+      "T-013",
+      "T-019"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Snapshot+deltas y checksum,orden preciso y capability para replay;referencia pública documentada",
+    "reviewed_negative": "Checksum roto pide snapshot y bloquea señales; no inventar continuidad",
+    "blocking_reason": "Cerrar requests/resultados por método y cursor, con fixture de paginación/calidad; Observation genérica no prueba cobertura.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-100.md",
+      "docs/09-data-architecture.md",
+      "docs/10-data-source-catalog.md",
+      "docs/12-event-contracts.md",
+      "docs/contracts/domain.schema.json#/$defs/L2Snapshot"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-08",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-101",
+    "phase": "V9",
+    "dependencies": [
+      "T-053",
+      "T-100"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Modelo child orders conpartial fills/cancel/replace y reserva compartida;sin endpoint real",
+    "reviewed_negative": "Fill posterior a cancel request actualiza ledger y exposición correctamente",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10",
+      "GD-09"
+    ],
+    "references": [
+      "docs/tasks/T-101.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/Order"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-08",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-102",
+    "phase": "V9",
+    "dependencies": [
+      "T-050",
+      "T-101"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Contrato de tiers/mark/index/funding conocido y escenario peor pierna;instrumento no certificado denegado",
+    "reviewed_negative": "Funding realizado futuro ohedge fallido no produce delta cero ficticio",
+    "blocking_reason": "Completar oracle de sizing/reserva multi-activo y servicio transaccional; guardar prueba de carrera y pérdida total.",
+    "findings": [
+      "GD-10",
+      "GD-09"
+    ],
+    "references": [
+      "docs/tasks/T-102.md",
+      "docs/08-domain-model.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/RiskAssessment"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-12",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-103",
+    "phase": "V9",
+    "dependencies": [
+      "T-034",
+      "T-051",
+      "T-101"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Reservar todas piernas y probar atomicidad declarada;cross-venue no atómico sólo simulación",
+    "reviewed_negative": "Pierna residual conserva exposición/costo y activa recuperación",
+    "blocking_reason": "Completar interfaces de persistencia/conciliación y protocolo de recovery con fixtures de corte en cada frontera.",
+    "findings": [
+      "GD-10",
+      "GD-09"
+    ],
+    "references": [
+      "docs/tasks/T-103.md",
+      "docs/20-risk-engine.md",
+      "docs/21-execution-engine.md",
+      "docs/22-backtesting.md",
+      "docs/contracts/domain.schema.json#/$defs/ExecutionIntent"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-08",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-104",
+    "phase": "V12",
+    "dependencies": [
+      "T-036",
+      "T-074",
+      "T-090",
+      "T-092",
+      "T-099"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Compilar gates,evidencia jurídica/costos/auditoría y disponibilidad;dejar live false",
+    "reviewed_negative": "Software terminado sinalpha/consentimiento/continuidad no aprueba live",
+    "blocking_reason": "Completar manifiesto/runbook/comando concreto y criterio de falla; no confundir alerta con recuperación.",
+    "findings": [
+      "GD-10"
+    ],
+    "references": [
+      "docs/tasks/T-104.md",
+      "docs/27-infrastructure.md",
+      "docs/28-deployment.md",
+      "docs/29-observability.md",
+      "docs/39-release-and-rollback.md",
+      "docs/contracts/domain.schema.json#/$defs/ReleaseManifest"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-11",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-105",
+    "phase": "V2",
+    "dependencies": [
+      "T-021",
+      "T-026"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Registrar toda creación validada; observar30 min; comparar cohortes por actividad inicial. No genera entrada MVP. En fase experimental sólo pasar a S02 si cumple elegibilidad.",
+    "reviewed_negative": "Censura por gaps, mint sin pool, actividad artificial y latencia de descubrimiento.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-105.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-106",
+    "phase": "V3",
+    "dependencies": [
+      "T-105",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Comparar cohorte completa contra lista retrospectiva popular; medir recall en intervalo auditado, no en toda cadena.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-106.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-107",
+    "phase": "V5",
+    "dependencies": [
+      "T-028",
+      "T-049",
+      "T-050"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Con barra cerrada, r5m>0 y volumen1m/mediana20 barras previas>=2; breakout del máximo5 barras previas y compradores únicos no decrecientes. Requiere30 min de historia y filtros. Comprar sólo al siguiente estado ejecutable.",
+    "reviewed_negative": "Selección de pumps, impacto y desaparición de salida; riesgo100% notional.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-107.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-108",
+    "phase": "V5",
+    "dependencies": [
+      "T-107",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Golden cruce de umbral; baseline sin compradores; fees+50% y slippage×2; placebo de timestamps.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-108.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-109",
+    "phase": "V9",
+    "dependencies": [
+      "T-034",
+      "T-100",
+      "T-101"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Cada segundo, desequilibrio de volumen comprador/vendedor10 s>0,3 y microretorno positivo; entrada sólo si edge neto inferior95%>0 y delay p99<horizonte/5.",
+    "reviewed_negative": "Competencia/MEV; datos agregados minuto son inadmisibles.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-109.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-110",
+    "phase": "V9",
+    "dependencies": [
+      "T-109",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Replay por evento con latencias1×/2×/5×; rechazar si no conserva ventaja estresada.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-110.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-111",
+    "phase": "V9",
+    "dependencies": [
+      "T-028",
+      "T-071"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "z=(price−VWAP60)/std60; long si z<=−2 y régimen no tendencial; sin short en spot. VWAP/std sólo pasado.",
+    "reviewed_negative": "Caída estructural confundida con sobreventa.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-111.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-112",
+    "phase": "V9",
+    "dependencies": [
+      "T-111",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Serie con salto permanente y reversión; no martingala; comparar compra aleatoria emparejada.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-112.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-113",
+    "phase": "V9",
+    "dependencies": [
+      "T-028",
+      "T-050"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "close_t>max(high de20 barras anteriores) y volume_t>1,5×mediana previa; excluir la barra actual del canal.",
+    "reviewed_negative": "Falso breakout, gaps y costo de perseguir movimiento.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-113.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-114",
+    "phase": "V9",
+    "dependencies": [
+      "T-113",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Fixture que detecta leakage de incluir high actual; comparar breakout sin volumen.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-114.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-115",
+    "phase": "V9",
+    "dependencies": [
+      "T-028",
+      "T-050"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Marcar low por debajo del mínimo20; long sólo si una barra posterior dentro de3 min cierra otra vez encima del nivel, con spread admisible. No conocer cierre futuro al marcar.",
+    "reviewed_negative": "Cuchillo cayendo y ambigüedad intrabar.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-115.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-116",
+    "phase": "V9",
+    "dependencies": [
+      "T-115",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Secuencia paso a paso; mismo low/high con orden distinto; prueba en régimen tendencial.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-116.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-117",
+    "phase": "V9",
+    "dependencies": [
+      "T-100",
+      "T-101"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "I=(sum bidqty top5−sum askqty top5)/(suma total); long si I>0,6 durante3 updates y flujo comprador neto5 s>0; bloquear checksum inválido.",
+    "reviewed_negative": "Spoofing/cancelaciones; qty agregada no garantiza fill pasivo.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-117.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-118",
+    "phase": "V9",
+    "dependencies": [
+      "T-117",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Deltas fuera de orden, cola conservadora, spoof-like cancel; DeepLOB opcional sólo challenger.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-118.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-119",
+    "phase": "V9",
+    "dependencies": [
+      "T-063",
+      "T-064",
+      "T-065"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Clasificar evento predefinido, dos orígenes independientes o comunicado primario; dirección positiva y entidad inequívoca; ejecutar después deavailable_at con decay exponencial60 min.",
+    "reviewed_negative": "Rumor, duplicación, timestamp editado, prompt injection.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-119.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-120",
+    "phase": "V9",
+    "dependencies": [
+      "T-119",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Ablación sin noticia y timestamps desplazados; corpus evaluado por humanos; impedir rumor sin contraste.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-120.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-121",
+    "phase": "V9",
+    "dependencies": [
+      "T-063",
+      "T-064",
+      "T-070"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "z de menciones1 h respecto7 días, ponderado por diversidad de autores; long si z>2 y sentimiento>0,6, sólo con100 mensajes autorizados y al menos5 orígenes.",
+    "reviewed_negative": "Bots, selección de comunidades, permisos y drift lingüístico.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-121.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-122",
+    "phase": "V9",
+    "dependencies": [
+      "T-121",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Remover fuentes duplicadas, control atención sin sentimiento y placebo por bloques.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-122.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-123",
+    "phase": "V8",
+    "dependencies": [
+      "T-069",
+      "T-055"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Wallet previamente elegida y coverage>=0,95; señal de compra recibida; nueva quote; rechazar si precio ya avanzó>2% o edge no cubre costos. Tamaño del follower lo fija Risk.",
+    "reviewed_negative": "No observar hedge, inventario inicial o acceso privilegiado; latencia adversa.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-123.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-124",
+    "phase": "V8",
+    "dependencies": [
+      "T-123",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Follower no usa precio líder; wallets aleatorias emparejadas y cohortes ganadoras/perdedoras.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-124.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-125",
+    "phase": "V8",
+    "dependencies": [
+      "T-069",
+      "T-036"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Tres clusters independientes seleccionados en train con entradas netas en5 min; long sólo si score de cohortes>percentil80 train y quote apta.",
+    "reviewed_negative": "Clusters pueden ser mismo operador; score no prueba intención.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-125.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-126",
+    "phase": "V8",
+    "dependencies": [
+      "T-125",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Ablación de wallet-score, selección aleatoria y exclusión de cluster dominante.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-126.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-127",
+    "phase": "V9",
+    "dependencies": [
+      "T-026",
+      "T-034"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Liquidez ejecutable a impacto1% crece>20% en10 min y persiste3 snapshots; flujo comprador positivo; long sólo si riesgo de retiro evaluado.",
+    "reviewed_negative": "TVL engañoso, capital temporal y concentración del LP.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-127.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-128",
+    "phase": "V9",
+    "dependencies": [
+      "T-127",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Retiro súbito, liquidez unilateral y ruta que desaparece; no usar TVL como depth.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-128.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-129",
+    "phase": "V9",
+    "dependencies": [
+      "T-101",
+      "T-071"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Cinco niveles simétricos alrededor de mid congelado, spacing=max(50bps,2×costo roundtrip); cotizar compras/ventas sólo con inventario propio y reserva por orden. Sin aumentar tamaño tras pérdida.",
+    "reviewed_negative": "Inventario en tendencia, cancel race, fees y cola.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-129.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-130",
+    "phase": "V9",
+    "dependencies": [
+      "T-129",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Trayectoria monotónica debe perder/controlar y parar; fills conservadores y cancel parcial.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-130.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-131",
+    "phase": "V9",
+    "dependencies": [
+      "T-101",
+      "T-100"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Cotizar bid/ask a mid±max(2 ticks,1,5×fee_equiv), skew alejando lado que aumenta inventario; post-only cuando capability certificada.",
+    "reviewed_negative": "Toxic flow, cola, cancel/replace, doble fill y exchange outage.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-131.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-132",
+    "phase": "V9",
+    "dependencies": [
+      "T-131",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Modelo de cola independiente y worst-case doble fill; comparar no cotizar en volatilidad.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-132.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-133",
+    "phase": "V9",
+    "dependencies": [
+      "T-103"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Comparar ida/vuelta para mismo tamaño; enviar sólo bundle de transacción atómica decodificada con min_profit>cost+buffer. Cross-venue no atómico sólo paper y exposición de leg explícita.",
+    "reviewed_negative": "Quotes asincrónicas, MEV, bridge/counterparty y capital inmovilizado.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-133.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-134",
+    "phase": "V9",
+    "dependencies": [
+      "T-133",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Simular una pierna falla, expira quote y cambio de reservas; rechazar sin atomicidad certificada.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-134.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-135",
+    "phase": "V9",
+    "dependencies": [
+      "T-102"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Long spot/short perp igual delta sólo si funding esperado conservador24 h supera todos los costos+buffer; no asumir funding futuro fijo.",
+    "reviewed_negative": "Liquidación, exchange, basis y riesgo stablecoin; apalancamiento prohibido en MVP.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11",
+      "GD-09"
+    ],
+    "references": [
+      "docs/tasks/T-135.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-12",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-136",
+    "phase": "V9",
+    "dependencies": [
+      "T-135",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Funding revierte, mark diverge, leg falla y retiro suspendido; no usar tasa realizada futura.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11",
+      "GD-09"
+    ],
+    "references": [
+      "docs/tasks/T-136.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-137",
+    "phase": "V9",
+    "dependencies": [
+      "T-102"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Portfolio objetivo delta0; rebalance si abs(delta_notional)/NAV>0,02; respetar margen/counterparty y reservar piernas conjuntamente. No introducir opciones sin capability/modelo nuevo.",
+    "reviewed_negative": "Delta no elimina basis/gamma/counterparty; hedge puede fallar.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11",
+      "GD-09"
+    ],
+    "references": [
+      "docs/tasks/T-137.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-12",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-138",
+    "phase": "V9",
+    "dependencies": [
+      "T-137",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Shock de precio, margin-call y hedge unavailable; validar exposición residual por peor leg.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11",
+      "GD-09"
+    ],
+    "references": [
+      "docs/tasks/T-138.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-139",
+    "phase": "V3",
+    "dependencies": [
+      "T-028",
+      "T-033"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Long si EMA20 cruza sobreEMA60 con60 barras completas; efectivo si cruce contrario. Sin look-ahead ni short.",
+    "reviewed_negative": "Whipsaw, costos acumulados y comparabilidad de capital.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-139.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-140",
+    "phase": "V3",
+    "dependencies": [
+      "T-139",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Golden de EMA/crossover, mercado lateral, monotónico y misma asignación que benchmark.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-140.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-141",
+    "phase": "V5",
+    "dependencies": [
+      "T-051",
+      "T-049",
+      "T-032"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "No abre. Prioridad: riesgo crítico→intentar cierre seguro; luego tiempo máximo, stop observado, trailing, reversión. Reduce-only verdadero, nunca vende más que balance disponible.",
+    "reviewed_negative": "Gap salta stop; datos de alpha viejos no reemplazan quote válida; fee SOL insuficiente.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-141.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-142",
+    "phase": "V5",
+    "dependencies": [
+      "T-141",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Quote desaparece, doble evento de cierre, pending previo y balance menor al solicitado.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-142.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-143",
+    "phase": "V9",
+    "dependencies": [
+      "T-070",
+      "T-071"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Clasificar con umbrales train congelados de volatilidad/tendencia; seleccionar estrategia aprobada con mayor utilidad conservadora por régimen; si ninguna cumple NO_TRADE. Histeresis2 ventanas.",
+    "reviewed_negative": "Leakage del selector, alta rotación y sobreajuste de regímenes.",
+    "blocking_reason": "Faltan nombres/unidades/ventanas de features consumidas y fixture de señal/salida con valores esperados.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-143.md",
+      "docs/18-strategy-engine.md",
+      "docs/19-decision-engine.md",
+      "docs/contracts/domain.schema.json#/$defs/Signal"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "NONE",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "NOT_APPLICABLE",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  },
+  {
+    "id": "T-144",
+    "phase": "V9",
+    "dependencies": [
+      "T-143",
+      "T-035",
+      "T-036",
+      "T-037"
+    ],
+    "document_state": "NEEDS_SPEC",
+    "delegable": false,
+    "task_ready": false,
+    "reviewed_objective": "Comparar pesos fijos, selector aleatorio y simple siempre-momentum; contar todos los trials.",
+    "reviewed_negative": "Ventaja desaparece después de costos oplacebo: guardar REJECTED; muestra insuficiente: INCONCLUSIVE.",
+    "blocking_reason": "Completar contrato de ejecución de experimento y oracle numérico independiente; fijar datasets/splits/costos por versión.",
+    "findings": [
+      "GD-10",
+      "GD-11"
+    ],
+    "references": [
+      "docs/tasks/T-144.md",
+      "docs/09-data-architecture.md",
+      "docs/22-backtesting.md",
+      "docs/23-statistical-validation.md",
+      "docs/contracts/domain.schema.json#/$defs/EvaluationReport"
+    ],
+    "enablement_gate": "G-DESIGN + dependencies DONE + local task evidence",
+    "external_dependency": "ED-03",
+    "runtime_status": "NOT_TESTED",
+    "empirical_status": "EXPERIMENT_PENDING",
+    "live_status": "LIVE_NOT_AUTHORIZED"
+  }
+]

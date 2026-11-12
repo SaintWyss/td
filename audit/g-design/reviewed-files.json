@@ -1,0 +1,1112 @@
+[
+  {
+    "path": "docs/00-index.md",
+    "review": "content/consistency/links",
+    "sha256": "9702b8558a0455c7b73e4001d9a00194dfc0ce91f87ac150d0e3244360dbe3c6"
+  },
+  {
+    "path": "docs/01-executive-summary.md",
+    "review": "content/consistency/links",
+    "sha256": "5629c8546ffa6c2b6df536eca34912230f595d49f748e96beb3c1c8992eadb78"
+  },
+  {
+    "path": "docs/02-product-vision.md",
+    "review": "content/consistency/links",
+    "sha256": "a04cdd8ae8c62967df3ef0d53559f34e30007604af0b6364cb69a2eef9a470c2"
+  },
+  {
+    "path": "docs/03-functional-requirements.md",
+    "review": "content/consistency/links",
+    "sha256": "8d4ce607cc8138a95dcc7ced5b06a379eb483cac3cdcf76332735a41777bf705"
+  },
+  {
+    "path": "docs/04-nonfunctional-requirements.md",
+    "review": "content/consistency/links",
+    "sha256": "276edbfb0cc887ca238579722f9817206302e33f837206656727c4764ef0bd89"
+  },
+  {
+    "path": "docs/05-scope-and-assumptions.md",
+    "review": "content/consistency/links",
+    "sha256": "d181e45b90d5d20d13a64c74027b0c016b0dfa2a3d02d713e9f54b49b3b7edeb"
+  },
+  {
+    "path": "docs/06-architecture-overview.md",
+    "review": "content/consistency/links",
+    "sha256": "32eb8971668f9202b59037c19cddc889f8780f4aaed122134954365d3e4d5cd2"
+  },
+  {
+    "path": "docs/07-system-components.md",
+    "review": "content/consistency/links",
+    "sha256": "5208fe0978f55beff2127f93bf08d121d6b52033b07c911030d32c4c7be47367"
+  },
+  {
+    "path": "docs/08-domain-model.md",
+    "review": "content/consistency/links",
+    "sha256": "40be510c93435588e41d58bc4f7aeb97b95fc279fc5ba12fd0b6649650ac9b44"
+  },
+  {
+    "path": "docs/09-data-architecture.md",
+    "review": "content/consistency/links",
+    "sha256": "ad2e627f4f5913aefe08177f5d2b4ceb79c13c02e316af76e2d7c382666b4b43"
+  },
+  {
+    "path": "docs/10-data-source-catalog.md",
+    "review": "content/consistency/links",
+    "sha256": "47fd8921ed60a798cf566162e00821d4b45dbd725c724aa12ae9460c862bbcdd"
+  },
+  {
+    "path": "docs/11-api-contracts.md",
+    "review": "content/consistency/links",
+    "sha256": "46763cfda5e8d7efbb70b23cae527ed18ca12824ccc9c4e0443d0ca260ca2f95"
+  },
+  {
+    "path": "docs/12-event-contracts.md",
+    "review": "content/consistency/links",
+    "sha256": "8e79e86155d7b6a9a86bf4a455029c968524f4dab89128362bdaead16f890fef"
+  },
+  {
+    "path": "docs/13-ai-architecture.md",
+    "review": "content/consistency/links",
+    "sha256": "a71aa701101f5b6aa764aaba9f7ccc4319935ed96bae71a34d1381a4861ee2ca"
+  },
+  {
+    "path": "docs/14-ml-models.md",
+    "review": "content/consistency/links",
+    "sha256": "cb22e5094503d8931689d55e0a5a648b91c5d240ed790ab5180d166fed2a90aa"
+  },
+  {
+    "path": "docs/15-autonomous-research.md",
+    "review": "content/consistency/links",
+    "sha256": "27cd67bb5b546779f9e5d53c1ee776caf5d6128b4f468efe543971adc7b9e206"
+  },
+  {
+    "path": "docs/16-solana-intelligence.md",
+    "review": "content/consistency/links",
+    "sha256": "de4ef3b36907013fb9e9d62ecd600807dbaec56725fe7fb785dbdbfe2d6a3a57"
+  },
+  {
+    "path": "docs/17-trader-intelligence.md",
+    "review": "content/consistency/links",
+    "sha256": "6a4047b9fe8d9b41bb4e7081b55209a29c6de7d6b5453e93848eb0edf15621d8"
+  },
+  {
+    "path": "docs/18-strategy-engine.md",
+    "review": "content/consistency/links",
+    "sha256": "0742430b6cfa05ba2bd785b4b221a10e2e154ed2e08995ca6e5e41703e2ddf56"
+  },
+  {
+    "path": "docs/19-decision-engine.md",
+    "review": "content/consistency/links",
+    "sha256": "411a59f7f8b082a6d5893907ba59318830ab51751ca28b5246e686de2b471e03"
+  },
+  {
+    "path": "docs/20-risk-engine.md",
+    "review": "content/consistency/links",
+    "sha256": "e74314cbf712d8c0f0d70159a69ad407a22e2d9901653700bb76d7fb7d75fd97"
+  },
+  {
+    "path": "docs/21-execution-engine.md",
+    "review": "content/consistency/links",
+    "sha256": "cace874d7cfe78973a30ce3e57542db88eb7dc903fe7372b5a1225f618432bdf"
+  },
+  {
+    "path": "docs/22-backtesting.md",
+    "review": "content/consistency/links",
+    "sha256": "7998350f9767786089d5199b097b82d81cf6598a2356e63bf93ebb015e6c0688"
+  },
+  {
+    "path": "docs/23-statistical-validation.md",
+    "review": "content/consistency/links",
+    "sha256": "070839590af292e13ee0f98b27b07cfe052fa2e8aed33474587a615d5ce7fa71"
+  },
+  {
+    "path": "docs/24-continuous-learning.md",
+    "review": "content/consistency/links",
+    "sha256": "34ab9897d32703efc56253ce889825736db7048e94ec01daa009c0cb4543f80d"
+  },
+  {
+    "path": "docs/25-security.md",
+    "review": "content/consistency/links",
+    "sha256": "dbcd662001889a031de01ebe61e3764c9711d72a69496f23c35779b42906dbb5"
+  },
+  {
+    "path": "docs/26-dashboard.md",
+    "review": "content/consistency/links",
+    "sha256": "65eebd4239e710244129d3d3459d54a065d3598dd8de25415574e2eaa48633c3"
+  },
+  {
+    "path": "docs/27-infrastructure.md",
+    "review": "content/consistency/links",
+    "sha256": "ab1246666a94c16c2165ebb3c2746d474e5e96fb63a2aef4d112e7ad139b1416"
+  },
+  {
+    "path": "docs/28-deployment.md",
+    "review": "content/consistency/links",
+    "sha256": "53601aafe7e293f987bb7eaedadd86db058e50f4c0d455fdb928edb350406d33"
+  },
+  {
+    "path": "docs/29-observability.md",
+    "review": "content/consistency/links",
+    "sha256": "0eae7ed40a793d93ee72001cac6f9bb4660212716fdab8d588522a3f25eca09b"
+  },
+  {
+    "path": "docs/30-testing.md",
+    "review": "content/consistency/links",
+    "sha256": "9e1ee13f90d8e6ba6144c6b0b534a0829ed57de85861f57e54510edb1420026e"
+  },
+  {
+    "path": "docs/31-cost-analysis.md",
+    "review": "content/consistency/links",
+    "sha256": "db685a7079c20e3814f54a4484b67f4e0997eb04d48bdbf051c0057f7c038a32"
+  },
+  {
+    "path": "docs/32-implementation-roadmap.md",
+    "review": "content/consistency/links",
+    "sha256": "f2b34cd66c210da0fbdb75f03e7232054834d471969791de606f4155112ffd2a"
+  },
+  {
+    "path": "docs/33-implementation-backlog.md",
+    "review": "content/consistency/links",
+    "sha256": "c233806348b9b1092681e3b60bae92151f901d16f6fe59ae1d2a7d5d431dd1ce"
+  },
+  {
+    "path": "docs/34-acceptance-criteria.md",
+    "review": "content/consistency/links",
+    "sha256": "08459fd1edf574b90d3be89a92bbd44550b988149140f82143577359b224bd6e"
+  },
+  {
+    "path": "docs/35-traceability-matrix.md",
+    "review": "content/consistency/links",
+    "sha256": "a681fe1ba190bffa587989d821c9a2685162301054dd573e079bd14c524d02f4"
+  },
+  {
+    "path": "docs/36-risk-register.md",
+    "review": "content/consistency/links",
+    "sha256": "0c44bb71bc1c0cbb76e1f1931f7df0d73c7c9eb1f73f55ccb3369177a83c8a4d"
+  },
+  {
+    "path": "docs/37-agent-implementation-guide.md",
+    "review": "content/consistency/links",
+    "sha256": "aef4f565557dcafa5e1c3086e6e4dc32bcef6392dd1b2d9187ffcbdbc66f1549"
+  },
+  {
+    "path": "docs/38-external-dependencies.md",
+    "review": "content/consistency/links",
+    "sha256": "c19d2c5e5d807b6ac5d1caf3e7c7fbe2705ff1ff12e9c0424a41dfc89a433e88"
+  },
+  {
+    "path": "docs/39-release-and-rollback.md",
+    "review": "content/consistency/links",
+    "sha256": "2f7f20b8f675b3067527dfe7070a3a325d05d5c2fa54f6382f3d52c081b15b78"
+  },
+  {
+    "path": "docs/adr/ADR-001.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "0a4c922a95f7d74bfcda6407d594d1eca7fbf36651fb22e11afc49affa370457"
+  },
+  {
+    "path": "docs/adr/ADR-002.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "694014258df6691dc91e4e99263a772326dab6e6259de53ad35785d8129f6d66"
+  },
+  {
+    "path": "docs/adr/ADR-003.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "43cf03c053061d3e0ec42a78b77538033e3796f73a72c7c7ddf7376491d91e9b"
+  },
+  {
+    "path": "docs/adr/ADR-004.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "f37312f1319120a22f4de1fcf29abd997f2fba49687cdafab61733d359e154c8"
+  },
+  {
+    "path": "docs/adr/ADR-005.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "79d6cabbdcf1353c463e19432b765fd6abfa81fc457df6fd15212b0194789665"
+  },
+  {
+    "path": "docs/adr/ADR-006.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "e4c63d0c7672d361d7a0ea0732247d8dff225f9de821291a2123604c650be66f"
+  },
+  {
+    "path": "docs/adr/ADR-007.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "724502ef0664c583aea068ed178391e74e3a22595db5e542257c99badb3d9947"
+  },
+  {
+    "path": "docs/adr/ADR-008.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "9ad4b3bc63ffc310184519f1bf424b590ef61624074d50dcf33fa3ead50706c2"
+  },
+  {
+    "path": "docs/adr/ADR-009.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "bf7476418ff1774c8d5a13b63d76ef39cc831f698a23e80a48b9d7ebe636f084"
+  },
+  {
+    "path": "docs/adr/ADR-010.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "a51000ba5ba6197e7c62a88b6b989d95eddcc0c307f38768c5da3ffa5203f559"
+  },
+  {
+    "path": "docs/adr/ADR-011.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "9de9d6000a5d9213ccf37e0dc24df095591d56718d18a2351bd6da9b21318ea8"
+  },
+  {
+    "path": "docs/adr/ADR-012.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "974a1bffc0d96adc8b5edfdf2ead7225f6d6d69dbebab2ef50289126c353b540"
+  },
+  {
+    "path": "docs/adr/ADR-013.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "09b77d023f477e21177b01e9368dfcd713193ac7af367e58ed632acfe5ada4cb"
+  },
+  {
+    "path": "docs/adr/ADR-014.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "0d3377d5de4fe300d1a8954a38aa2b46eaf8bb81525fb2a753461db1615089ea"
+  },
+  {
+    "path": "docs/adr/ADR-015.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "00fc1e0bfcc577e98c9c8a73fb3c725f2614303454ec0f79010e491ed6cf55b7"
+  },
+  {
+    "path": "docs/adr/ADR-016.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "f019c1042acdb6ce075420583d5498b34fcc1c96e43e991ac39eb6469dd31417"
+  },
+  {
+    "path": "docs/adr/ADR-017.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "cf8eff442cffff82ba9b3b0ca7fde6bdb290e2e260fd1ea38764b378e7c4da61"
+  },
+  {
+    "path": "docs/adr/ADR-018.md",
+    "review": "decision/alternatives/consequences",
+    "sha256": "51a66701a9d3f0921f0a4e90b1083882d174c0b9d2f58e99fa6de4481875c811"
+  },
+  {
+    "path": "docs/strategies/S01.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "11051beda0f773e4a90d8ad05699f9ba81abd1af9823e4e9c2fc1279defa107e"
+  },
+  {
+    "path": "docs/strategies/S02.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "2d3dccbea126476150268eb110bc79c0bb3d461b2d6f172e1de2d977cfd50f55"
+  },
+  {
+    "path": "docs/strategies/S03.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "921ac0f7a843e82519a96d76c8143337ba0b845bd2c3efa2bd25755ee25fcf22"
+  },
+  {
+    "path": "docs/strategies/S04.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "9de618705f71a26a5e90aa479ffd395d83a158092a3a30fc9b7caf4e252521ef"
+  },
+  {
+    "path": "docs/strategies/S05.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "c627f432465861c2ba1297fb8bd01f1be7dba998fec44a86a1d68477a5578d65"
+  },
+  {
+    "path": "docs/strategies/S06.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "ab89af53955351159eecaecb8e6d23500fa05ca88892d0df528823a1cea27133"
+  },
+  {
+    "path": "docs/strategies/S07.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "9b816f55b73de005b398e7668d99287570d23fe8810cb99ade2d5d457742951a"
+  },
+  {
+    "path": "docs/strategies/S08.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "52e0225560729b82739798fbba29f290a715c80e87615fcd5a17ec6f520652a0"
+  },
+  {
+    "path": "docs/strategies/S09.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "1268efee2eda558f1b6940d65886c240904877ad8c5950a63ad7511c85ba2119"
+  },
+  {
+    "path": "docs/strategies/S10.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "7679b3f36d78042feaa8524611cb61113367abc26784b06e7d10a07c257815c7"
+  },
+  {
+    "path": "docs/strategies/S11.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "125b27e8b909d59f2fa1d9e94719c925b36e5a44d2a87694ea098786e003bec1"
+  },
+  {
+    "path": "docs/strategies/S12.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "3a2db0d35fe81cfbb6b592c3025f9c25eed622823eaeafe73b7fe27eac0d926f"
+  },
+  {
+    "path": "docs/strategies/S13.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "0f03164f8d63cc433222efc75cb3150a7b66fd1e94ee6f68b574ca055a30c0e1"
+  },
+  {
+    "path": "docs/strategies/S14.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "be16c6f96dc8f94406cac8033f8a05daa32688d17ab6848923c74d31bfa400db"
+  },
+  {
+    "path": "docs/strategies/S15.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "67f243321260be8a19b4de34bde163d6f80431801aae3ccd4e37ea2043cb60d9"
+  },
+  {
+    "path": "docs/strategies/S16.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "785c392b97a13edbbb830780b16c50a0ba061d6b06056849fcae1f0fd0566903"
+  },
+  {
+    "path": "docs/strategies/S17.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "9eb6313b16221cb7c46e0c008656ffc5fbc5feb5a08e59d51fae68981229e041"
+  },
+  {
+    "path": "docs/strategies/S18.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "c3337494f748d407031422d94b9aef8135dd8b701759b12a491cb0a705a4f9d8"
+  },
+  {
+    "path": "docs/strategies/S19.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "1f2e488272d1b582fd1b310c27e389a32ea985aee01324cd060cda9ca880853b"
+  },
+  {
+    "path": "docs/strategies/S20.md",
+    "review": "hypothesis/input/algorithm/exit/risk/experiment",
+    "sha256": "ac2fb64fb9c7cbaee94bc607cdbe622848e6ebb0b0737165877a0440eaa6098c"
+  },
+  {
+    "path": "docs/tasks/T-001.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "9334bd84852b873090df43f31800eb4b0249bf265d395ea14bce7efddf7abfdd"
+  },
+  {
+    "path": "docs/tasks/T-002.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "cedad9b0d64ebea0ae48184dfe26045b5316b5a086e4159aa8b91f6cc06ebdce"
+  },
+  {
+    "path": "docs/tasks/T-003.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "2e1209f9c39a2dde0cd0c0c001609fb87f4067e31e99dcb7df3ccd20771e4ae7"
+  },
+  {
+    "path": "docs/tasks/T-004.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "ef107dd5f8c4bc40c9f9e131a2a28e8b2a8dd77050d56cbca189576b67f5528c"
+  },
+  {
+    "path": "docs/tasks/T-005.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "4404154096113b71f27020d412bec265a6851174f1d6c4db4da56867751ccb24"
+  },
+  {
+    "path": "docs/tasks/T-006.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "7ce223dee52d2d8397b038c3ab82d2c6aaab4d3871999deeffea34db4d863bdd"
+  },
+  {
+    "path": "docs/tasks/T-007.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "6b10e13de8da37f10df564ed0c1d19e9cd75b360713a0086f7818b0421ab79ed"
+  },
+  {
+    "path": "docs/tasks/T-008.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "641195c194c1d5a659f9af642e50d35ce1eab7d8b66e6a4890e96800c752f7b3"
+  },
+  {
+    "path": "docs/tasks/T-009.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "f14120ccd0deb2b756eb46c618ed73dd3e044c5e397bad9a9408aaa2a331aa87"
+  },
+  {
+    "path": "docs/tasks/T-010.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "aed9b67e6144390e9ac70c132680f8688d5b869927205cbda87ac920b9e6a472"
+  },
+  {
+    "path": "docs/tasks/T-011.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "d382bda7c544ac723dd360b7fe26ac8b8ff8626cdf72c67833b33a2e4ba5bf88"
+  },
+  {
+    "path": "docs/tasks/T-012.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "5d1b3b4fefa0d62aa523da8dec1f388be04ce4327fb7aec60087b3be17a91eeb"
+  },
+  {
+    "path": "docs/tasks/T-013.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "5ee99783f19776fbe58cc85d060e1622b1d4f8ba28dcfd5709b9763fd99947c8"
+  },
+  {
+    "path": "docs/tasks/T-014.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "717f9fff86921e583b1f0487e624a257362e4c6f29b0c9a5852d419adbad86d5"
+  },
+  {
+    "path": "docs/tasks/T-015.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "10d90622ab1a890ba2f0589835bb8f496a27ae470d9268f15d0ba6e3d173cb6c"
+  },
+  {
+    "path": "docs/tasks/T-016.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "6a0364b58376c04182d8c9c4c7661a52bc26926c8ae9d5391295f8555c2cbc1c"
+  },
+  {
+    "path": "docs/tasks/T-017.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "5ebbd6f8590cf45bad162a861bc14ac0ac73cee09c1bb553a5dd8fae264c353e"
+  },
+  {
+    "path": "docs/tasks/T-018.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "ce643f8b77cfb1b3ac2c3520531255cd4af395108398b954267a45c2b045e61d"
+  },
+  {
+    "path": "docs/tasks/T-019.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "fe1cccf76b95bf9a9ca814d541358882770bcfc71928ea6736fbf5c6b52478da"
+  },
+  {
+    "path": "docs/tasks/T-020.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "efe4a5c1becf02310fdeb9380cf6fcb7d633700158c156b6cd60bf33bd25be22"
+  },
+  {
+    "path": "docs/tasks/T-021.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "805968f0a12196338fd9220da7ad567ab4d2eac319d38d23cc1a6c4bf22da0ee"
+  },
+  {
+    "path": "docs/tasks/T-022.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "7d0ce7fb17343c8689115e3352876975a0f6751ec155cad9e03a663aacd6a980"
+  },
+  {
+    "path": "docs/tasks/T-023.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "5a5ced454a8007c6bde6a09cac5c8f5415229860c66638f00991377df48e1eb2"
+  },
+  {
+    "path": "docs/tasks/T-024.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "f49f5e60add17571ebe9097ca51f70276f8f8e688363bbbdbf17b1aaae7899d0"
+  },
+  {
+    "path": "docs/tasks/T-025.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "4b65c38268a87a3266f298ca4c1550ae4a74f4fd8d23df823ae3e32804cf9466"
+  },
+  {
+    "path": "docs/tasks/T-026.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "b880e1d3f4a9280e4c7327857816ff1c6cf272511bb018b6a643362f7c109cce"
+  },
+  {
+    "path": "docs/tasks/T-027.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "cb63251b3fad173a92b9f28f2a0c7af36a2de0af79cc7111fc5b6f5fe3e72ff3"
+  },
+  {
+    "path": "docs/tasks/T-028.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "8b1ec8855645347739a419206c0e7ca558530c03e09b5de5658e8cf3715ced8b"
+  },
+  {
+    "path": "docs/tasks/T-029.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "27f83047107fd8c0dc6543b88bd0b391b641d31126a481906dc1d5595c1228e7"
+  },
+  {
+    "path": "docs/tasks/T-030.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "e099e8f0032505a90d3804d989949beeac6cf5e5fb37cbb7462d539752e3cbc5"
+  },
+  {
+    "path": "docs/tasks/T-031.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "f12cd4ed71bc09d2d51a1eb35bf6c789372daed24be66d90eb0316b0ecd03935"
+  },
+  {
+    "path": "docs/tasks/T-032.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "55d46346023adff9b78af7d602e9275f6655a867f6f69afed3ebb86ce3cc9139"
+  },
+  {
+    "path": "docs/tasks/T-033.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "652d2a875b863fae96a61ef37c04863fbad4e4699690db6a4c4a424121d2d2ed"
+  },
+  {
+    "path": "docs/tasks/T-034.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "04fbe1c5e64ed668bbbf013203bf6f557764597cde7d543da8d95bde656ecda1"
+  },
+  {
+    "path": "docs/tasks/T-035.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "ba32dbdcc34b0a632e5e750f9227da3d8c91392fbe7e53a84c4076c803ad8ae4"
+  },
+  {
+    "path": "docs/tasks/T-036.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "b7c2d32c0809021a3a71144d9ee8ae77ed35e987b6c3735b81f37aee1eb885d1"
+  },
+  {
+    "path": "docs/tasks/T-037.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "1d87dea6a5e9379c7fb06ee4eca20aeff83fe02dfd5af6fa7fc131d0c15bb611"
+  },
+  {
+    "path": "docs/tasks/T-038.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "ba432da575263967e09300b9727632c9669629439603da12eb60ff38763df39c"
+  },
+  {
+    "path": "docs/tasks/T-039.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "e84f5e5abcea94e2ff7cef1e7d4616dfff5e584d52adce9a56694844e117ad90"
+  },
+  {
+    "path": "docs/tasks/T-040.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "a170d9fffcb1c329c3cf64b8e1d4ee7ac8a8fd67c928926a32137e5957a6c0f8"
+  },
+  {
+    "path": "docs/tasks/T-041.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "a06680978e994266bdf673cba86ea31cce13b1f6fbb40cded7f3d4cd329072fe"
+  },
+  {
+    "path": "docs/tasks/T-042.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "13966c16c21ddc4f682e6f3ea62570a9c8f2e046f550c82a1a75a599ab326aa3"
+  },
+  {
+    "path": "docs/tasks/T-043.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "9e5e4f12d318f40305d8d963430eb87ecea9859ffd031f492377ade08c61e73e"
+  },
+  {
+    "path": "docs/tasks/T-044.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "50a4b7c181da173507f5259d505fecc711e1b1fdfd2c293a9e72d66e3ab9d490"
+  },
+  {
+    "path": "docs/tasks/T-045.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "8eb34e1d81274cf4a3dd246a48fdb41299265835efd6ec624b1739b0f392be01"
+  },
+  {
+    "path": "docs/tasks/T-046.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "c4605b90e5591af00012de6186c9669f8223938e3226ced8b115079ce110de1f"
+  },
+  {
+    "path": "docs/tasks/T-047.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "01135707381082be2ea6bf73828dd32320a3adff65f3b4e8031b0527110453d4"
+  },
+  {
+    "path": "docs/tasks/T-048.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "c0a6d3d412a2cf5df931ff88a93ed5f4fb7ac020373612cc57bcd546948a9d60"
+  },
+  {
+    "path": "docs/tasks/T-049.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "9e5a59cd1541794cc777fe45626042f58d2112cba58b6ad4169282d88c0c4f1b"
+  },
+  {
+    "path": "docs/tasks/T-050.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "99115c8cd430dc5800940a6c3dfe22a4feb26411f63805de78969b392bedcbfd"
+  },
+  {
+    "path": "docs/tasks/T-051.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "8e1f286275bf0c21dea66ae105e5f47cc0cc55eaff0db4f81c3299ae3d73d3be"
+  },
+  {
+    "path": "docs/tasks/T-052.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "3f01f6da25e67f4a2d147adc827a150a01b5e2a07e69132e6067d4a51848b995"
+  },
+  {
+    "path": "docs/tasks/T-053.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "fe6872467706c615975a2709ce91f4c04248ed02170372306fe986623c1fb140"
+  },
+  {
+    "path": "docs/tasks/T-054.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "4d6ae7bd20bfd5e30d29ab0f423196caac3c4c03a13519da3b6c3ef0a5080149"
+  },
+  {
+    "path": "docs/tasks/T-055.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "04c0de280b4d47c84671f9e8d2b0691d9d3608e98b87771659eb452dbecd0a4c"
+  },
+  {
+    "path": "docs/tasks/T-056.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "98552d302e2b5c10f2549371da2d40424b56b12c2751deff3dbfe0664dbd36f9"
+  },
+  {
+    "path": "docs/tasks/T-057.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "f1103b196b731c009346ae4ba1a9e0aea4a0c539f7be36bb83cde8cb60c54ec1"
+  },
+  {
+    "path": "docs/tasks/T-058.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "c4349b39ac84cd2b15fd8439dc60aff24882ff2de9b5a69cb313d8a29322e689"
+  },
+  {
+    "path": "docs/tasks/T-059.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "4df228ca1c54c8dd6aa43e95204b0ba3d3d0d43dc937695df5f50bb19e64430e"
+  },
+  {
+    "path": "docs/tasks/T-060.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "adf43ab7c279fd7e497b14db2b0e1271ae7063d4d29ddf17cf0661df827318b2"
+  },
+  {
+    "path": "docs/tasks/T-061.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "fba36a9a10053db0d9d739fc1d586812cb2574a22a3390006d1e9d494fa94988"
+  },
+  {
+    "path": "docs/tasks/T-062.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "cf3ccb26d1d8951e207226fded547a26c58e8f8e08a7e7e367302d17093fd9d8"
+  },
+  {
+    "path": "docs/tasks/T-063.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "7c22510bad5f96ce6195f3a84218a597d7b4dff298e0d2164c57565287e5d36f"
+  },
+  {
+    "path": "docs/tasks/T-064.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "380357733f0b744b03d5294b10ca6c895a29013a0b7f32fb1c7820823f5f8f9e"
+  },
+  {
+    "path": "docs/tasks/T-065.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "85a17bcc220d08147bf5b3da52bfef3dbe66d83567312a35aa38e1ef9bcbb719"
+  },
+  {
+    "path": "docs/tasks/T-066.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "013c8c4265a57f6f607b4e625e73e35206560a3792275752f8d3bfa5228db589"
+  },
+  {
+    "path": "docs/tasks/T-067.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "77e11867c9dd6f55c0cd76e89ba58d6729e6376b844ca3200bdd2da583fd8065"
+  },
+  {
+    "path": "docs/tasks/T-068.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "e064841bf66b43df5ca85bca9413f2027083fd81e8aedf3766f2615ca4eb8288"
+  },
+  {
+    "path": "docs/tasks/T-069.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "0a01f369106fe3156c49450f2b6b245869f410ba0bdec7373d134511a905faad"
+  },
+  {
+    "path": "docs/tasks/T-070.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "6f344ef3734b7106c0b050c9ee0bf6c4453c4dc8022518663070059466eb625c"
+  },
+  {
+    "path": "docs/tasks/T-071.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "bb8df1a8f96b57728fe9994dc1f876dd8662b5d18bd16d4fb48177799d305880"
+  },
+  {
+    "path": "docs/tasks/T-072.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "fc513d704d327fb9257560f3d604f6679eedfb032b778c0d2935171ab6119298"
+  },
+  {
+    "path": "docs/tasks/T-073.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "121210378c614808fac8e2cb2a961ac196f37b656d7291e79ece24c0980d7a12"
+  },
+  {
+    "path": "docs/tasks/T-074.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "08457f28a025a008eae0b7cb619b4a4783cd129f1fbbbd582f69765ce02f60c2"
+  },
+  {
+    "path": "docs/tasks/T-075.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "a72754d5d0460b73da43d3fcae87c09939d856f427851d6342b226b534e5a8cb"
+  },
+  {
+    "path": "docs/tasks/T-076.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "993b3b8f8826deb9876cc45142043ab61cd7fd1c5540af3a5d3111ed151caa88"
+  },
+  {
+    "path": "docs/tasks/T-077.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "2dae07a62fe7968fee74f80a047e91a893c8e0d6ebf1797c07392fab42dc8803"
+  },
+  {
+    "path": "docs/tasks/T-078.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "d728376b7639db3f6675e6329c27b96423757137fd41f7342c777026e68d8940"
+  },
+  {
+    "path": "docs/tasks/T-079.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "3d9e217d4f8a4bb35763e0c9cc3f4d5ca7b017f4c9572c622b74ead46507d5c4"
+  },
+  {
+    "path": "docs/tasks/T-080.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "ee5b8753d43e864515beeab376111ceaace7fcb9be3e2d3cf95ca5bfbbe894c4"
+  },
+  {
+    "path": "docs/tasks/T-081.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "23e3cbf0d0ad2011df97e0915a6624a725aaee2c3d258015007440b4b6c1b582"
+  },
+  {
+    "path": "docs/tasks/T-082.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "07cb9bf99bb471ab743fed5eed20688a104e91cefb456c0c3afa5df2f18a72c2"
+  },
+  {
+    "path": "docs/tasks/T-083.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "0163528d27d79d53d396cc75e78d9de04ff467710c848be9de81fc6f2a0051ae"
+  },
+  {
+    "path": "docs/tasks/T-084.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "58d1667dc3f65920fa9b8956367400a421755d9898d207cacd58df8058c9adf7"
+  },
+  {
+    "path": "docs/tasks/T-085.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "b9275225430bfbee486c1349d90a0a1f66aa5d93220f73236125c1aed1633b6f"
+  },
+  {
+    "path": "docs/tasks/T-086.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "6e017f02f36fc831f2f16d5da9fd00b9894b673450cc9169bdb38cd0558dac4e"
+  },
+  {
+    "path": "docs/tasks/T-087.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "f95bbee373296c37eb78fffd642d0989612065c10255b7adb4df877c4ce668ed"
+  },
+  {
+    "path": "docs/tasks/T-088.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "9d95654514e1327aa0076e47d5fe886f5b4f0af80d97d9202be49b3dfa9405f0"
+  },
+  {
+    "path": "docs/tasks/T-089.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "19bf75d6fa2b7919ac3a5ab1b8f117d3a5e57237ab7e0e494fe919feb4ec02e5"
+  },
+  {
+    "path": "docs/tasks/T-090.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "715f8832e6c2eda4944acedc8e00847ec026f8196522b352fffb3e934dc91fa9"
+  },
+  {
+    "path": "docs/tasks/T-091.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "c4d376d96907b4ee444c3334680a3c5d0b78f326863c5137a61ccd624c2234f0"
+  },
+  {
+    "path": "docs/tasks/T-092.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "fae93f1f2caa6aa216d58255b6f01773fac8593676e940a35e9c150d49c3cc8c"
+  },
+  {
+    "path": "docs/tasks/T-093.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "789bcf9f9b7b94759816f8c25938d1186ba22ab5e0b9473a17167e3706877cf3"
+  },
+  {
+    "path": "docs/tasks/T-094.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "178beda82d03979deede10508d34b27d5414599de4da71b5b7c71a93d2fe14d9"
+  },
+  {
+    "path": "docs/tasks/T-095.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "f0e4f1f79e8fba1260baa1f6a94d020c3e7292fafba24f292061c7f66ab28e59"
+  },
+  {
+    "path": "docs/tasks/T-096.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "3c0f77d7096fe8340b89f67d4cc4d826639823dccb4550468759b8cb5a26e532"
+  },
+  {
+    "path": "docs/tasks/T-097.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "43a77428a887d11ccf4b81c114d799c07399944293f19ee0988f2c2229be11fd"
+  },
+  {
+    "path": "docs/tasks/T-098.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "c94629cadde760608b434eb0fbca2d8afdde082bae671e7bcc23ec7256bc918a"
+  },
+  {
+    "path": "docs/tasks/T-099.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "ea46ce987ffda0a94eb8e3ef301861d1efa8e5b5567f43006c71111082843053"
+  },
+  {
+    "path": "docs/tasks/T-100.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "860e588b3e3d16ce30931b9ffa00620f0883fed564d4bbe2ae677bf9c69b27c5"
+  },
+  {
+    "path": "docs/tasks/T-101.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "9333173280970f7fcb8feb3e8a089d60cc518ff6a08ca8fd30c1b0ecb3486f77"
+  },
+  {
+    "path": "docs/tasks/T-102.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "5334d623624184bc9fcbd66fcd9403a5219be202fb840f0992183b1e5702d3b6"
+  },
+  {
+    "path": "docs/tasks/T-103.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "0cb650d757923c21a3a398e30b8d77d91790145af92bdc4191f0939d64398aba"
+  },
+  {
+    "path": "docs/tasks/T-104.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "92a7dee7366f774c9fa38a3b3b67a1d5ef3074566b3db0c81a9b1ae58b69b33c"
+  },
+  {
+    "path": "docs/tasks/T-105.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "eebcd62c2d8d655ccc3f8e44d6d6c9199c4a99f7981453f41f20b2f70408f796"
+  },
+  {
+    "path": "docs/tasks/T-106.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "c11ab80222dd07cf4ab838c933f4c166d798d3ee070fcea4caacdd39a704759d"
+  },
+  {
+    "path": "docs/tasks/T-107.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "7ca0356b651e626dc36924fade8063e05ae872ad168f58313c9d3a7305ae059b"
+  },
+  {
+    "path": "docs/tasks/T-108.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "0a00a5024882045f07ec334084fa61e54c7616b25e18b5aa263aa09984f7452b"
+  },
+  {
+    "path": "docs/tasks/T-109.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "0499abd52aa1fb85ffc85685375ebbe38e30edb525ae2d8254b36080c967cb52"
+  },
+  {
+    "path": "docs/tasks/T-110.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "9c52db931abce5f7e9dc7e72b7e3651b3ec76fd109817b1f69a9fbc97e4f39c4"
+  },
+  {
+    "path": "docs/tasks/T-111.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "38decf651e10185ffa1fe45af94644172a45d1702c469801ef40977d4c26e2ce"
+  },
+  {
+    "path": "docs/tasks/T-112.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "4bfc8dbfaf21834bff2a0bc32aed021d98befe1960fdc9f9fa030bc5f3b8f53f"
+  },
+  {
+    "path": "docs/tasks/T-113.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "337be74c6cbf635e9ab4d60321395106c5437c3fa6319fed68e09be701901a6b"
+  },
+  {
+    "path": "docs/tasks/T-114.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "325087329051a660d63f6a46d5a7d75bc358b6f5798682798901784c0dbf16a2"
+  },
+  {
+    "path": "docs/tasks/T-115.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "3e61bad662246c99e446f588b47aac508edeb03e7b9498416297940085930067"
+  },
+  {
+    "path": "docs/tasks/T-116.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "f3fae8723d32e41edfafca3414c56101e01ef2481cefe672f34b1c064f4f2929"
+  },
+  {
+    "path": "docs/tasks/T-117.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "a95afe6fec91e51f646c4debcb0ed9e290e2af2ad46cb467136b8b1a39f37043"
+  },
+  {
+    "path": "docs/tasks/T-118.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "abebc84b8788355d27cb5c8a6147cc3ba928a0847a13d339e494e7fec7845912"
+  },
+  {
+    "path": "docs/tasks/T-119.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "f3a30688ef08563e209120fb040a806a76a8010323082fc372ca4716faab535b"
+  },
+  {
+    "path": "docs/tasks/T-120.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "ddaac641cd4862667c067239d4c4a8edc344b163388442c75f335d7ba4be4988"
+  },
+  {
+    "path": "docs/tasks/T-121.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "d899c8b79e1f6e0613763f965d17f01ed1fc5f6ffbbb537153d478828133c2a3"
+  },
+  {
+    "path": "docs/tasks/T-122.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "9b7f0da68df7df9181a1f5c87671e42f5284ce186a56dbfcfa5bc72b33508d1b"
+  },
+  {
+    "path": "docs/tasks/T-123.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "fff056695c54b9920c5785ccac083b0cf287644ba1c28a0f1936efb6f196d87d"
+  },
+  {
+    "path": "docs/tasks/T-124.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "5fa528fe4074c5b58c2cefe2ed734d4f070f9080acafc371aa8b5eb8d1247713"
+  },
+  {
+    "path": "docs/tasks/T-125.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "ec94505a66f78d2ce7184aad11211666df41e3f3e0dd585bed2e99a76124ec87"
+  },
+  {
+    "path": "docs/tasks/T-126.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "324ff96bcf52dd476fedec83afce45d23347a3e1f76406c465153ac37f2e69b5"
+  },
+  {
+    "path": "docs/tasks/T-127.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "aa915de960ac07aa1a600ee6d5bfb7e6ce552f3ca5574de57d52e48f9476cdd4"
+  },
+  {
+    "path": "docs/tasks/T-128.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "9b488cd5197328fb2a49a3af1ca372387642fa8616d8c7dbb79c205f4d497d1a"
+  },
+  {
+    "path": "docs/tasks/T-129.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "73ab89e5791a95ef5162c5397991cab7cc2cedb1e2b205d4625216deac2b9da2"
+  },
+  {
+    "path": "docs/tasks/T-130.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "c5a249cd3cb43ff7e261fc5f80a7f93685e69126879c688ae7d573cec4443081"
+  },
+  {
+    "path": "docs/tasks/T-131.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "0981de2e1ff6bfe386cd78043086ecd260c84df7fcd31f748b547db4f3ef76ad"
+  },
+  {
+    "path": "docs/tasks/T-132.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "26e5c1d8b5c8171df7685c95426ff15d8fe56ad6d70fa1cf2292f299e8f64af2"
+  },
+  {
+    "path": "docs/tasks/T-133.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "b339f634797fca0f51b3dee9d86096ff1a3516c2600f883d4eda7e5ad2063a9e"
+  },
+  {
+    "path": "docs/tasks/T-134.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "2f6e655f11ae238654eb68661ecc6c3fdbbe91e3265dd859dec7e8e1857d463c"
+  },
+  {
+    "path": "docs/tasks/T-135.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "efec4098106a6250a2fc81f7cd36192567c5bf6c9c9a68fc70e1ce2d8c32da78"
+  },
+  {
+    "path": "docs/tasks/T-136.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "8473e8daa06199d1b9a864212f66f1b62d47364d7ef732ad5b1ba4b6f3a07ec8"
+  },
+  {
+    "path": "docs/tasks/T-137.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "ec5f992f06817e6cd7dd97c2dac2234c501786743fae9fd00af6ad2f04bd2ac9"
+  },
+  {
+    "path": "docs/tasks/T-138.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "4917f0877cfa0feadb78de1af2e5fc07d5b463381945f4177c9bb1054692c6f1"
+  },
+  {
+    "path": "docs/tasks/T-139.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "b1855d01fb91b75ea3af029d6e137894b391d3aa25869359b8bf911d7fecafd4"
+  },
+  {
+    "path": "docs/tasks/T-140.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "26732265aeb6d0784d25f69268d0b57c186fcf8a588735e2ced8909151ca4fd9"
+  },
+  {
+    "path": "docs/tasks/T-141.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "b31791c2ef8925eaf6945c8053339fe61399e8e94a74b549f03aa108fefa3f39"
+  },
+  {
+    "path": "docs/tasks/T-142.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "1aa50614b19c3399286fcfe27d755c946192cdafc0786a2d1c4a6bbb10863251"
+  },
+  {
+    "path": "docs/tasks/T-143.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "393f09255ce9c4bf43c12e7c82c55d9eca431f9ccd2bc139483ddeca3a694dd9"
+  },
+  {
+    "path": "docs/tasks/T-144.md",
+    "review": "individual objective/dependencies/paths/contracts/negative/acceptance; shared text normalized for comparison",
+    "sha256": "5869966d8f22bc290e655e03b87074d0f7297a05cc46fa70eac53a8d4ff29d6b"
+  }
+]

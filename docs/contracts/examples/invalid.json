@@ -5,8 +5,11 @@
       "atoms": "1",
       "decimals": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required asset_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
   },
   {
     "schema": "Settings",
@@ -16,8 +19,11 @@
       "data_root": "fixture",
       "max_active_assets": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required environment"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "environment"
+    }
   },
   {
     "schema": "AuditRecord",
@@ -31,8 +37,11 @@
       "result": "ACCEPTED",
       "correlation_id": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "SourceGrant",
@@ -49,10 +58,21 @@
       ],
       "retention_days": 1,
       "expires_at": "2026-11-03T14:05:00Z",
-      "reviewer_id": "fixture"
+      "reviewer_id": "fixture",
+      "allowed_methods": [
+        "GET"
+      ],
+      "allowed_url_prefixes": [
+        "https://example.invalid/"
+      ],
+      "allowed_processor_ids": [],
+      "storage_allowed": false
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ConnectorStatus",
@@ -64,8 +84,11 @@
       "quota_remaining": "1",
       "error_code": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required source_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_id"
+    }
   },
   {
     "schema": "Observation",
@@ -87,8 +110,11 @@
       "supersedes_id": "fixture",
       "parser_version": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Asset",
@@ -102,8 +128,11 @@
       "first_seen_at": "2026-11-03T14:00:00Z",
       "created_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Pool",
@@ -120,8 +149,11 @@
       "observed_at": "2026-11-03T14:00:00Z",
       "slot": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "TokenAssessment",
@@ -134,9 +166,9 @@
       "mint_authority_active": false,
       "freeze_authority_active": false,
       "extensions": [],
-      "top1_share": 1,
-      "top10_share": 1,
-      "holder_coverage": 1,
+      "top1_share": "0.1",
+      "top10_share": "0.2",
+      "holder_coverage": "0.95",
       "liquidation_quote_id": "fixture",
       "reasons": [],
       "evidence_ids": [
@@ -144,19 +176,35 @@
       ],
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "FeatureValue",
     "value": {
-      "value": "1",
-      "unit": "fixture",
+      "value": "101",
+      "unit": "quote_major/base_major",
       "available_at": "2026-11-03T14:00:00Z",
-      "quality": "VALID"
+      "quality": "VALID",
+      "feature_id": "F-close1",
+      "definition_version": "1.2.0",
+      "event_time": "2026-11-06T12:00:00Z",
+      "window_start": "2026-11-06T11:59:00Z",
+      "window_end": "2026-11-06T12:00:00Z",
+      "source_ids": [
+        "obs:trade:1"
+      ],
+      "expires_at": "2026-11-06T12:01:00Z",
+      "reason_code": null
     },
-    "expect": "INVALID",
-    "reason": "missing required name"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "name"
+    }
   },
   {
     "schema": "FeatureSnapshot",
@@ -168,21 +216,38 @@
       "schema_version": "fixture",
       "features": [
         {
-          "name": "fixture",
-          "value": "1",
-          "unit": "fixture",
+          "name": "close1",
+          "value": "101",
+          "unit": "quote_major/base_major",
           "available_at": "2026-11-03T14:00:00Z",
-          "quality": "VALID"
+          "quality": "VALID",
+          "feature_id": "F-close1",
+          "definition_version": "1.2.0",
+          "event_time": "2026-11-06T12:00:00Z",
+          "window_start": "2026-11-06T11:59:00Z",
+          "window_end": "2026-11-06T12:00:00Z",
+          "source_ids": [
+            "obs:trade:1"
+          ],
+          "expires_at": "2026-11-06T12:01:00Z",
+          "reason_code": null
         }
       ],
       "source_observation_ids": [
         "fixture"
       ],
       "quality": "VALID",
-      "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1,
+      "catalog_version": "1.2.0",
+      "universe_id": "universe:fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ArtifactFile",
@@ -191,8 +256,11 @@
       "size_bytes": 1,
       "rows": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required path"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "path"
+    }
   },
   {
     "schema": "DatasetManifest",
@@ -220,8 +288,11 @@
       "seed": 1,
       "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Experiment",
@@ -238,8 +309,11 @@
       "holdout_consumed": false,
       "created_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Metric",
@@ -250,8 +324,11 @@
       "ci_upper": "1",
       "sample_count": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required name"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "name"
+    }
   },
   {
     "schema": "EvaluationReport",
@@ -279,8 +356,11 @@
       ],
       "created_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Prediction",
@@ -292,16 +372,41 @@
       "issued_at": "2026-11-03T14:00:00Z",
       "expires_at": "2026-11-03T14:05:00Z",
       "horizon_s": 1,
-      "probability_net_positive": 1,
-      "q05": "-0.01",
-      "q50": "0.01",
-      "q95": "0.03",
-      "expected_net_return": "1",
+      "probability_net_positive": "0.6",
+      "q05": null,
+      "q50": null,
+      "q95": null,
+      "expected_net_return": null,
       "cost_basis": "NET_TRADE",
-      "uncertainty": "0.02"
+      "uncertainty": "0.02",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1,
+      "prediction_kind": "CLASSIFICATION",
+      "model_version": "1.2.0",
+      "model_state": "SHADOW",
+      "universe_id": "universe:fixture",
+      "available_at": "2026-11-06T12:00:00Z",
+      "target": "NET_POSITIVE",
+      "calibration_method": "PLATT",
+      "calibration_state": "VALID",
+      "calibration_artifact_id": "calibration:1",
+      "calibration_valid_until": "2026-12-01T00:00:00Z",
+      "raw_score": null,
+      "feature_ids": [
+        "F-close1"
+      ],
+      "data_quality": "VALID",
+      "evidence_ids": [
+        "evidence:model:1"
+      ],
+      "rejection_codes": [],
+      "baseline_improvement_lower": null
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ModelArtifact",
@@ -321,8 +426,11 @@
       "state": "REGISTERED",
       "created_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "StrategyConfig",
@@ -337,8 +445,11 @@
         "CPMM"
       ]
     },
-    "expect": "INVALID",
-    "reason": "missing required strategy_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "strategy_id"
+    }
   },
   {
     "schema": "Signal",
@@ -360,10 +471,33 @@
       "feature_snapshot_id": "fixture",
       "reason_codes": [
         "fixture"
-      ]
+      ],
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1,
+      "legs": [],
+      "next_memory": {
+        "strategy_id": "S02",
+        "version": 0,
+        "position_opened_at": null,
+        "entry_price": null,
+        "peak_price": null,
+        "breakout_level": null,
+        "breakout_low": null,
+        "breakout_at": null,
+        "grid_center": null,
+        "previous_regime": null,
+        "regime_confirmations": 0,
+        "pending_order_ids": [],
+        "available_at": "2026-11-06T12:00:00Z"
+      },
+      "selected_strategy_id": null,
+      "reduce_only": false
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Decision",
@@ -379,10 +513,19 @@
       "feature_snapshot_id": "fixture",
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "model_ids": [],
-      "risk_assessment_id": "fixture"
+      "risk_assessment_id": "fixture",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1,
+      "prediction_ids": [],
+      "cost_estimate_id": "evidence:cost:1",
+      "universe_id": "universe:fixture",
+      "input_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "RiskAssessment",
@@ -390,19 +533,26 @@
       "revision": 1,
       "decision_id": "fixture",
       "portfolio_id": "fixture",
-      "verdict": "APPROVED",
+      "verdict": "DENIED",
       "reason_codes": [
         "fixture"
       ],
-      "approved_atoms": "1",
-      "max_fee_atoms": "1",
-      "reservation_id": "fixture",
+      "approved_atoms": "0",
+      "max_fee_atoms": "0",
+      "reservation_id": null,
       "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "assessed_at": "2026-11-03T14:00:00Z",
-      "expires_at": "2026-11-03T14:05:00Z"
+      "expires_at": "2026-11-03T14:05:00Z",
+      "input_asset_id": "solana:fixture-input",
+      "fee_asset_id": "solana:native",
+      "rent_asset_id": "asset:SOL",
+      "max_rent_atoms": "0"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Reservation",
@@ -421,10 +571,26 @@
       "fencing_token": 1,
       "quote_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "chain_id": "fixture",
-      "wallet_id": "fixture"
+      "wallet_id": "fixture",
+      "output_asset_id": "solana:fixture-output",
+      "fee_asset_id": "solana:native",
+      "min_output_atoms": "1",
+      "mode": "PAPER",
+      "reduce_only": false,
+      "allowed_program_ids": [
+        "fixture-program"
+      ],
+      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1,
+      "rent_asset_id": "asset:SOL",
+      "max_rent_atoms": "0"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Quote",
@@ -449,8 +615,11 @@
       ],
       "raw_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ExecutionIntent",
@@ -477,10 +646,18 @@
         "fixture"
       ],
       "chain_id": "fixture",
-      "wallet_id": "fixture"
+      "wallet_id": "fixture",
+      "intent_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1,
+      "rent_asset_id": "asset:SOL",
+      "max_rent_atoms": "0"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Order",
@@ -498,8 +675,11 @@
       "created_at": "2026-11-03T14:00:00Z",
       "updated_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Attempt",
@@ -513,10 +693,14 @@
       "state": "PREPARED",
       "submitted_at": "2026-11-03T14:00:00Z",
       "simulated": false,
-      "fencing_token": 1
+      "fencing_token": 1,
+      "signed_artifact_id": null
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ExecutionReport",
@@ -534,8 +718,11 @@
       ],
       "simulated": false
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Fill",
@@ -552,46 +739,63 @@
       "fee_atoms": "1",
       "executed_at": "2026-11-03T14:00:00Z",
       "finalized_at": "2026-11-03T14:00:00Z",
-      "simulated": false
+      "simulated": false,
+      "instrument_id": "instrument:SOL-USDC:cpmm",
+      "instrument_revision": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "JournalLine",
     "value": {
       "asset_id": "fixture",
-      "signed_atoms": "1"
+      "signed_atoms": "1000000"
     },
-    "expect": "INVALID",
-    "reason": "missing required account_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "account_id"
+    }
   },
   {
     "schema": "JournalEntry",
     "value": {
       "revision": 1,
       "external_effect_key": "fixture",
-      "fill_id": "fixture",
+      "fill_id": null,
       "lines": [
         {
-          "account_id": "cash",
-          "asset_id": "fixture",
-          "signed_atoms": "1"
+          "account_id": "acct:external:USDC",
+          "asset_id": "asset:USDC",
+          "signed_atoms": "-1000000"
         },
         {
-          "account_id": "external",
-          "asset_id": "fixture",
-          "signed_atoms": "-1"
+          "account_id": "acct:paper:USDC:available",
+          "asset_id": "asset:USDC",
+          "signed_atoms": "1000000"
         }
       ],
       "recorded_at": "2026-11-03T14:00:00Z",
-      "reason": "FILL",
+      "reason": "DEPOSIT",
       "evidence_ids": [
         "fixture"
-      ]
+      ],
+      "portfolio_id": "portfolio:paper",
+      "operation_id": "operation:deposit:1",
+      "idempotency_key": "idem:deposit:1",
+      "mode": "PAPER",
+      "reverses_entry_id": null,
+      "occurred_at": "2026-11-06T12:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Position",
@@ -602,8 +806,11 @@
       "liquidation_value_usdc": "1",
       "status": "OPEN"
     },
-    "expect": "INVALID",
-    "reason": "missing required asset_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
   },
   {
     "schema": "PortfolioView",
@@ -618,10 +825,17 @@
       "positions": [],
       "control_mode": "RUNNING",
       "control_epoch": 1,
-      "reconciled": false
+      "reconciled": false,
+      "wallet_id": "fixture-wallet",
+      "chain_id": "solana:devnet",
+      "active_reservation_ids": [],
+      "uncertain_order_ids": []
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ControlCommand",
@@ -629,8 +843,11 @@
       "reason": "fixture",
       "expected_revision": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required action"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "action"
+    }
   },
   {
     "schema": "ExtractionRequest",
@@ -647,8 +864,11 @@
       "budget_usd": "1",
       "deadline": "2026-11-03T14:05:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required source_grant_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_grant_id"
+    }
   },
   {
     "schema": "ExtractedClaim",
@@ -660,8 +880,11 @@
       ],
       "confidence": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required text"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "text"
+    }
   },
   {
     "schema": "ExtractionResult",
@@ -669,15 +892,20 @@
       "model_id": "fixture",
       "prompt_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "schema_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "abstain": false,
+      "abstain": true,
       "claims": [],
       "input_tokens": 1,
       "output_tokens": 1,
       "cost_usd": "1",
-      "reason_codes": []
+      "reason_codes": [
+        "FIXTURE_ABSTENTION"
+      ]
     },
-    "expect": "INVALID",
-    "reason": "missing required request_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "request_id"
+    }
   },
   {
     "schema": "ResearchClaim",
@@ -699,8 +927,11 @@
       "available_at": "2026-11-03T14:00:00Z",
       "supersedes_id": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Hypothesis",
@@ -722,8 +953,11 @@
         "fixture"
       ]
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "TraderProfile",
@@ -745,8 +979,11 @@
         "fixture"
       ]
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Outcome",
@@ -761,8 +998,11 @@
         "fixture"
       ]
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Promotion",
@@ -780,8 +1020,11 @@
       "state": "APPROVED",
       "environment": "SHADOW"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "CostRecord",
@@ -795,8 +1038,11 @@
       "state": "RESERVED",
       "occurred_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Alert",
@@ -811,8 +1057,11 @@
       "last_seen_at": "2026-11-03T14:00:00Z",
       "count": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ReleaseManifest",
@@ -835,8 +1084,11 @@
       ],
       "live_authorized": false
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Job",
@@ -860,10 +1112,17 @@
         "mime_type": "fixture",
         "download_ticket": "fixture",
         "ticket_expires_at": "2026-11-03T14:05:00Z"
-      }
+      },
+      "fencing_token": 1,
+      "cancel_requested": false,
+      "created_at": "2026-11-03T14:00:00Z",
+      "updated_at": "2026-11-03T14:00:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "Problem",
@@ -873,8 +1132,11 @@
       "request_id": "fixture",
       "retryable": false
     },
-    "expect": "INVALID",
-    "reason": "missing required code"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "code"
+    }
   },
   {
     "schema": "Session",
@@ -885,16 +1147,22 @@
       "expires_at": "2026-11-03T14:05:00Z",
       "csrf_token": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required user_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "user_id"
+    }
   },
   {
     "schema": "LoginRequest",
     "value": {
       "password": "synthetic-test-only"
     },
-    "expect": "INVALID",
-    "reason": "missing required username"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "username"
+    }
   },
   {
     "schema": "SystemView",
@@ -906,8 +1174,11 @@
       "alerts_open": 1,
       "live_enabled": false
     },
-    "expect": "INVALID",
-    "reason": "missing required environment"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "environment"
+    }
   },
   {
     "schema": "ExperimentRequest",
@@ -917,8 +1188,11 @@
       "config_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "seed": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required hypothesis_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "hypothesis_id"
+    }
   },
   {
     "schema": "ResearchRequest",
@@ -926,8 +1200,11 @@
       "question": "fixture",
       "budget_usd": "1"
     },
-    "expect": "INVALID",
-    "reason": "missing required source_grant_ids"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_grant_ids"
+    }
   },
   {
     "schema": "PaperRequest",
@@ -936,8 +1213,11 @@
       "start_at": "2026-11-03T14:00:00Z",
       "initial_cash_usdc": "1"
     },
-    "expect": "INVALID",
-    "reason": "missing required strategy_ids"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "strategy_ids"
+    }
   },
   {
     "schema": "ExportRequest",
@@ -947,8 +1227,11 @@
       "format": "CSV",
       "environment": "paper"
     },
-    "expect": "INVALID",
-    "reason": "missing required resource"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "resource"
+    }
   },
   {
     "schema": "PromotionRequest",
@@ -960,8 +1243,11 @@
       "expected_assignment_revision": 1,
       "reason": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required strategy_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "strategy_id"
+    }
   },
   {
     "schema": "GrantRequest",
@@ -975,10 +1261,21 @@
       "expires_at": "2026-11-03T14:05:00Z",
       "retention_days": 1,
       "expected_revision": 1,
-      "action": "APPROVE"
+      "action": "APPROVE",
+      "allowed_methods": [
+        "GET"
+      ],
+      "allowed_url_prefixes": [
+        "https://example.invalid/"
+      ],
+      "allowed_processor_ids": [],
+      "storage_allowed": false
     },
-    "expect": "INVALID",
-    "reason": "missing required source_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_id"
+    }
   },
   {
     "schema": "Page",
@@ -987,8 +1284,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageAsset",
@@ -997,8 +1297,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageTraderProfile",
@@ -1007,8 +1310,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageResearchClaim",
@@ -1017,8 +1323,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageStrategyConfig",
@@ -1027,8 +1336,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageDecision",
@@ -1037,8 +1349,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageOrder",
@@ -1047,8 +1362,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageExperiment",
@@ -1057,8 +1375,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageModelArtifact",
@@ -1067,8 +1388,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageCostRecord",
@@ -1077,8 +1401,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageAuditRecord",
@@ -1087,8 +1414,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageAlert",
@@ -1097,8 +1427,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageConnectorStatus",
@@ -1107,8 +1440,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "QuoteRequest",
@@ -1117,8 +1453,11 @@
       "input_atoms": "1",
       "slippage_bps": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required input_asset_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "input_asset_id"
+    }
   },
   {
     "schema": "RiskRequest",
@@ -1135,7 +1474,11 @@
         "positions": [],
         "control_mode": "RUNNING",
         "control_epoch": 1,
-        "reconciled": false
+        "reconciled": false,
+        "wallet_id": "fixture-wallet",
+        "chain_id": "solana:devnet",
+        "active_reservation_ids": [],
+        "uncertain_order_ids": []
       },
       "quote": {
         "id": "fixture",
@@ -1169,9 +1512,9 @@
         "mint_authority_active": false,
         "freeze_authority_active": false,
         "extensions": [],
-        "top1_share": 1,
-        "top10_share": 1,
-        "holder_coverage": 1,
+        "top1_share": "0.1",
+        "top10_share": "0.2",
+        "holder_coverage": "0.95",
         "liquidation_quote_id": "fixture",
         "reasons": [],
         "evidence_ids": [
@@ -1180,17 +1523,24 @@
         "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       }
     },
-    "expect": "INVALID",
-    "reason": "missing required decision"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "decision"
+    }
   },
   {
     "schema": "SignatureResult",
     "value": {
       "signature": "fixture",
-      "bytes_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "bytes_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "signed_transaction_b64": "AQID"
     },
-    "expect": "INVALID",
-    "reason": "missing required attempt_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "attempt_id"
+    }
   },
   {
     "schema": "VenueCapabilities",
@@ -1204,14 +1554,17 @@
       "certified_at": "2026-11-03T14:00:00Z",
       "evidence_ids": []
     },
-    "expect": "INVALID",
-    "reason": "missing required venue_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "venue_id"
+    }
   },
   {
     "schema": "EventEnvelope",
     "value": {
-      "event_type": "observation.recorded.v1",
-      "schema_version": "1.0.0",
+      "event_type": "observation.recorded.v2",
+      "schema_version": "2.0.0",
       "correlation_id": "fixture",
       "causation_id": "fixture",
       "occurred_at": "2026-11-03T14:00:00Z",
@@ -1239,8 +1592,11 @@
         "parser_version": "fixture"
       }
     },
-    "expect": "INVALID",
-    "reason": "missing required event_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "event_id"
+    }
   },
   {
     "schema": "Trade",
@@ -1253,10 +1609,14 @@
       "aggressor": "BUY",
       "fee_atoms": "1",
       "fee_asset_id": "fixture",
-      "slot": 1
+      "slot": 1,
+      "trader_address": "wallet:synthetic:1"
     },
-    "expect": "INVALID",
-    "reason": "missing required asset_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
   },
   {
     "schema": "Price",
@@ -1266,8 +1626,11 @@
       "mark_kind": "MID",
       "size_atoms": "1"
     },
-    "expect": "INVALID",
-    "reason": "missing required asset_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
   },
   {
     "schema": "PoolSnapshot",
@@ -1278,8 +1641,11 @@
       "slot": 1,
       "depth_complete": false
     },
-    "expect": "INVALID",
-    "reason": "missing required pool_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "pool_id"
+    }
   },
   {
     "schema": "MintSnapshot",
@@ -1292,16 +1658,23 @@
       "extensions": [],
       "slot": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required asset_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
   },
   {
     "schema": "BookLevel",
     "value": {
-      "quantity": "1"
+      "quantity": "1",
+      "quantity_unit": "BASE_MAJOR"
     },
-    "expect": "INVALID",
-    "reason": "missing required price"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "price"
+    }
   },
   {
     "schema": "L2Snapshot",
@@ -1311,10 +1684,16 @@
       "bids": [],
       "asks": [],
       "checksum": "fixture",
-      "valid": false
+      "valid": false,
+      "available_at": "2026-11-06T12:00:00Z",
+      "event_time": "2026-11-06T12:00:00Z",
+      "instrument_revision": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required instrument_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
   },
   {
     "schema": "WalletTransaction",
@@ -1338,8 +1717,11 @@
       },
       "slot": 1
     },
-    "expect": "INVALID",
-    "reason": "missing required wallet_address"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "wallet_address"
+    }
   },
   {
     "schema": "NewsItem",
@@ -1351,8 +1733,11 @@
       "received_at": "2026-11-03T14:00:00Z",
       "origin_cluster_id": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required source_grant_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_grant_id"
+    }
   },
   {
     "schema": "CoverageInterval",
@@ -1362,8 +1747,11 @@
       "status": "COMPLETE",
       "reason": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required source_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_id"
+    }
   },
   {
     "schema": "StrategyInput",
@@ -1380,7 +1768,11 @@
         "positions": [],
         "control_mode": "RUNNING",
         "control_epoch": 1,
-        "reconciled": false
+        "reconciled": false,
+        "wallet_id": "fixture-wallet",
+        "chain_id": "solana:devnet",
+        "active_reservation_ids": [],
+        "uncertain_order_ids": []
       },
       "config": {
         "strategy_id": "S01",
@@ -1393,10 +1785,167 @@
         "required_capabilities": [
           "fixture"
         ]
+      },
+      "instrument": {
+        "id": "instrument:SOL-USDC:cpmm",
+        "revision": 1,
+        "kind": "AMM_POOL",
+        "venue_id": "venue:fixture-cpmm",
+        "chain_id": "solana:fixture",
+        "base_asset_id": "asset:SOL",
+        "quote_asset_id": "asset:USDC",
+        "settlement_asset_id": "asset:USDC",
+        "pool_id": "pool:1",
+        "quantity_unit": "BASE_ATOM",
+        "price_unit": "QUOTE_MAJOR_PER_BASE_MAJOR",
+        "quantity_step": "1",
+        "minimum_quantity": "1",
+        "price_tick": null,
+        "minimum_notional": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "base_atoms_per_contract_lot": null,
+        "margin_tiers": [],
+        "max_leverage": "1",
+        "fee_schedule": {
+          "maker_rate_bps": "0",
+          "taker_rate_bps": "10",
+          "fee_asset_id": "asset:USDC",
+          "included_in_quote": false,
+          "evidence_id": "evidence:fee:1",
+          "valid_until": "2026-11-06T13:00:00Z"
+        },
+        "expiry_at": null,
+        "leg_instrument_ids": [],
+        "capabilities": [
+          "SPOT",
+          "CPMM"
+        ],
+        "capability_evidence_ids": [
+          "evidence:fixture:1"
+        ],
+        "operational_status": "FIXTURE_ONLY",
+        "available_at": "2026-11-06T12:00:00Z"
+      },
+      "decision_at": "2026-11-06T12:00:00Z",
+      "predictions": [],
+      "cost": {
+        "instrument_id": "instrument:SOL-USDC:cpmm",
+        "size": {
+          "asset_id": "fixture",
+          "atoms": "1",
+          "decimals": 1
+        },
+        "roundtrip_bps": "30",
+        "slippage_bps": "10",
+        "network_fee": {
+          "asset_id": "asset:SOL",
+          "atoms": "5000",
+          "decimals": 9
+        },
+        "rent_cap": {
+          "asset_id": "asset:SOL",
+          "atoms": "0",
+          "decimals": 9
+        },
+        "delay_p99_ms": 500,
+        "available_at": "2026-11-06T12:00:00Z",
+        "expires_at": "2026-11-06T12:00:05Z",
+        "method_version": "cost-v1",
+        "evidence_ids": [
+          "evidence:cost:1"
+        ]
+      },
+      "model_artifacts": [],
+      "history": [],
+      "bars": [],
+      "books": [],
+      "news": [],
+      "social": [],
+      "wallet_flows": [],
+      "trader_profiles": [],
+      "derivatives": [],
+      "leg_instruments": [],
+      "leg_quotes": [],
+      "margin": null,
+      "regime": null,
+      "utilities": [],
+      "memory": {
+        "strategy_id": "S02",
+        "version": 0,
+        "position_opened_at": null,
+        "entry_price": null,
+        "peak_price": null,
+        "breakout_level": null,
+        "breakout_low": null,
+        "breakout_at": null,
+        "grid_center": null,
+        "previous_regime": null,
+        "regime_confirmations": 0,
+        "pending_order_ids": [],
+        "available_at": "2026-11-06T12:00:00Z"
+      },
+      "assessment": {
+        "id": "fixture",
+        "revision": 1,
+        "asset_id": "fixture",
+        "available_at": "2026-11-03T14:00:00Z",
+        "expires_at": "2026-11-03T14:05:00Z",
+        "eligible": false,
+        "mint_authority_active": false,
+        "freeze_authority_active": false,
+        "extensions": [],
+        "top1_share": "0.1",
+        "top10_share": "0.2",
+        "holder_coverage": "0.95",
+        "liquidation_quote_id": "fixture",
+        "reasons": [],
+        "evidence_ids": [
+          "fixture"
+        ],
+        "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "policy": {
+        "id": "policy:paper",
+        "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "universe_id": "universe:fixture",
+        "horizon_s": 300,
+        "min_lower_return": "0",
+        "min_baseline_improvement": "0",
+        "max_spread_bps": "20",
+        "approved_strategy_versions": [
+          "S02:1.2.0"
+        ],
+        "approved_model_ids": [],
+        "stressed_loss_fraction": "1",
+        "window_s": 60
+      },
+      "quote": null,
+      "exit_context": {
+        "position_id": null,
+        "available_to_sell": {
+          "asset_id": "asset:SOL",
+          "atoms": "0",
+          "decimals": 9
+        },
+        "pending_close": false,
+        "critical_risk": false,
+        "reversal_received": false,
+        "stop_loss_bps": 500,
+        "inverse_quote": null,
+        "available_at": "2026-11-06T12:00:00Z",
+        "evidence_ids": [
+          "evidence:position:1"
+        ]
       }
     },
-    "expect": "INVALID",
-    "reason": "missing required snapshot"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "snapshot"
+    }
   },
   {
     "schema": "DecisionContext",
@@ -1412,9 +1961,9 @@
         "mint_authority_active": false,
         "freeze_authority_active": false,
         "extensions": [],
-        "top1_share": 1,
-        "top10_share": 1,
-        "holder_coverage": 1,
+        "top1_share": "0.1",
+        "top10_share": "0.2",
+        "holder_coverage": "0.95",
         "liquidation_quote_id": "fixture",
         "reasons": [],
         "evidence_ids": [
@@ -1434,12 +1983,109 @@
         "positions": [],
         "control_mode": "RUNNING",
         "control_epoch": 1,
-        "reconciled": false
+        "reconciled": false,
+        "wallet_id": "fixture-wallet",
+        "chain_id": "solana:devnet",
+        "active_reservation_ids": [],
+        "uncertain_order_ids": []
       },
-      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "instrument": {
+        "id": "instrument:SOL-USDC:cpmm",
+        "revision": 1,
+        "kind": "AMM_POOL",
+        "venue_id": "venue:fixture-cpmm",
+        "chain_id": "solana:fixture",
+        "base_asset_id": "asset:SOL",
+        "quote_asset_id": "asset:USDC",
+        "settlement_asset_id": "asset:USDC",
+        "pool_id": "pool:1",
+        "quantity_unit": "BASE_ATOM",
+        "price_unit": "QUOTE_MAJOR_PER_BASE_MAJOR",
+        "quantity_step": "1",
+        "minimum_quantity": "1",
+        "price_tick": null,
+        "minimum_notional": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "base_atoms_per_contract_lot": null,
+        "margin_tiers": [],
+        "max_leverage": "1",
+        "fee_schedule": {
+          "maker_rate_bps": "0",
+          "taker_rate_bps": "10",
+          "fee_asset_id": "asset:USDC",
+          "included_in_quote": false,
+          "evidence_id": "evidence:fee:1",
+          "valid_until": "2026-11-06T13:00:00Z"
+        },
+        "expiry_at": null,
+        "leg_instrument_ids": [],
+        "capabilities": [
+          "SPOT",
+          "CPMM"
+        ],
+        "capability_evidence_ids": [
+          "evidence:fixture:1"
+        ],
+        "operational_status": "FIXTURE_ONLY",
+        "available_at": "2026-11-06T12:00:00Z"
+      },
+      "decision_at": "2026-11-06T12:00:00Z",
+      "predictions": [],
+      "cost": {
+        "instrument_id": "instrument:SOL-USDC:cpmm",
+        "size": {
+          "asset_id": "fixture",
+          "atoms": "1",
+          "decimals": 1
+        },
+        "roundtrip_bps": "30",
+        "slippage_bps": "10",
+        "network_fee": {
+          "asset_id": "asset:SOL",
+          "atoms": "5000",
+          "decimals": 9
+        },
+        "rent_cap": {
+          "asset_id": "asset:SOL",
+          "atoms": "0",
+          "decimals": 9
+        },
+        "delay_p99_ms": 500,
+        "available_at": "2026-11-06T12:00:00Z",
+        "expires_at": "2026-11-06T12:00:05Z",
+        "method_version": "cost-v1",
+        "evidence_ids": [
+          "evidence:cost:1"
+        ]
+      },
+      "model_artifacts": [],
+      "policy": {
+        "id": "policy:paper",
+        "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "universe_id": "universe:fixture",
+        "horizon_s": 300,
+        "min_lower_return": "0",
+        "min_baseline_improvement": "0",
+        "max_spread_bps": "20",
+        "approved_strategy_versions": [
+          "S02:1.2.0"
+        ],
+        "approved_model_ids": [],
+        "stressed_loss_fraction": "1",
+        "window_s": 60
+      },
+      "quote": null,
+      "recent_decisions": []
     },
-    "expect": "INVALID",
-    "reason": "missing required snapshot"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "snapshot"
+    }
   },
   {
     "schema": "SigningRequest",
@@ -1451,8 +2097,11 @@
       "simulation_evidence_id": "fixture",
       "approval_id": "fixture"
     },
-    "expect": "INVALID",
-    "reason": "missing required intent"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "intent"
+    }
   },
   {
     "schema": "FeeEvent",
@@ -1470,14 +2119,20 @@
         "fixture"
       ]
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "LogoutResult",
     "value": {},
-    "expect": "INVALID",
-    "reason": "missing required logged_out"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "logged_out"
+    }
   },
   {
     "schema": "AssetDetail",
@@ -1493,9 +2148,9 @@
         "mint_authority_active": false,
         "freeze_authority_active": false,
         "extensions": [],
-        "top1_share": 1,
-        "top10_share": 1,
-        "holder_coverage": 1,
+        "top1_share": "0.1",
+        "top10_share": "0.2",
+        "holder_coverage": "0.95",
         "liquidation_quote_id": "fixture",
         "reasons": [],
         "evidence_ids": [
@@ -1512,23 +2167,40 @@
         "schema_version": "fixture",
         "features": [
           {
-            "name": "fixture",
-            "value": "1",
-            "unit": "fixture",
+            "name": "close1",
+            "value": "101",
+            "unit": "quote_major/base_major",
             "available_at": "2026-11-03T14:00:00Z",
-            "quality": "VALID"
+            "quality": "VALID",
+            "feature_id": "F-close1",
+            "definition_version": "1.2.0",
+            "event_time": "2026-11-06T12:00:00Z",
+            "window_start": "2026-11-06T11:59:00Z",
+            "window_end": "2026-11-06T12:00:00Z",
+            "source_ids": [
+              "obs:trade:1"
+            ],
+            "expires_at": "2026-11-06T12:01:00Z",
+            "reason_code": null
           }
         ],
         "source_observation_ids": [
           "fixture"
         ],
         "quality": "VALID",
-        "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "instrument_id": "instrument:SOL-USDC:cpmm",
+        "instrument_revision": 1,
+        "catalog_version": "1.2.0",
+        "universe_id": "universe:fixture"
       },
       "quotes": []
     },
-    "expect": "INVALID",
-    "reason": "missing required asset"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset"
+    }
   },
   {
     "schema": "DecisionDetail",
@@ -1539,22 +2211,29 @@
         "revision": 1,
         "decision_id": "fixture",
         "portfolio_id": "fixture",
-        "verdict": "APPROVED",
+        "verdict": "DENIED",
         "reason_codes": [
           "fixture"
         ],
-        "approved_atoms": "1",
-        "max_fee_atoms": "1",
-        "reservation_id": "fixture",
+        "approved_atoms": "0",
+        "max_fee_atoms": "0",
+        "reservation_id": null,
         "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "assessed_at": "2026-11-03T14:00:00Z",
-        "expires_at": "2026-11-03T14:05:00Z"
+        "expires_at": "2026-11-03T14:05:00Z",
+        "input_asset_id": "solana:fixture-input",
+        "fee_asset_id": "solana:native",
+        "rent_asset_id": "asset:SOL",
+        "max_rent_atoms": "0"
       },
       "orders": [],
       "evidence_ids": []
     },
-    "expect": "INVALID",
-    "reason": "missing required decision"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "decision"
+    }
   },
   {
     "schema": "OrderDetail",
@@ -1563,8 +2242,11 @@
       "fills": [],
       "journal_entries": []
     },
-    "expect": "INVALID",
-    "reason": "missing required order"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "order"
+    }
   },
   {
     "schema": "ExperimentDetail",
@@ -1596,8 +2278,11 @@
         "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       }
     },
-    "expect": "INVALID",
-    "reason": "missing required experiment"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "experiment"
+    }
   },
   {
     "schema": "ModelDetail",
@@ -1605,8 +2290,11 @@
       "reports": [],
       "promotions": []
     },
-    "expect": "INVALID",
-    "reason": "missing required model"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "model"
+    }
   },
   {
     "schema": "StrategyView",
@@ -1615,8 +2303,11 @@
       "latest_report_id": "fixture",
       "metrics": []
     },
-    "expect": "INVALID",
-    "reason": "missing required config"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "config"
+    }
   },
   {
     "schema": "EquityPoint",
@@ -1625,8 +2316,11 @@
       "nav_usd": "1",
       "data_status": "VALID"
     },
-    "expect": "INVALID",
-    "reason": "missing required as_of"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "as_of"
+    }
   },
   {
     "schema": "PageStrategyView",
@@ -1635,8 +2329,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "PageEquityPoint",
@@ -1645,8 +2342,11 @@
       "as_of": "2026-11-03T14:00:00Z",
       "data_status": "FRESH"
     },
-    "expect": "INVALID",
-    "reason": "missing required items"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
   },
   {
     "schema": "LiveApproval",
@@ -1665,10 +2365,15 @@
       "legal_review_id": "fixture",
       "issued_at": "2026-11-03T14:00:00Z",
       "expires_at": "2026-11-03T14:05:00Z",
-      "revoked": false
+      "revoked": false,
+      "mode": "DEVNET",
+      "capital_asset_id": "solana:devnet:native"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "CexChildOrder",
@@ -1680,10 +2385,21 @@
       "requested_atoms": "1",
       "filled_atoms": "1",
       "state": "NEW",
-      "last_exchange_update": "2026-11-03T14:00:00Z"
+      "last_exchange_update": "2026-11-03T14:00:00Z",
+      "instrument_id": "instrument:cex:SOL-USDC",
+      "instrument_revision": 1,
+      "quantity_unit": "BASE_ATOM",
+      "base_asset_id": "asset:SOL",
+      "quote_asset_id": "asset:USDC",
+      "settlement_asset_id": "asset:USDC",
+      "side": "BUY",
+      "limit_price": "100"
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "MarginSnapshot",
@@ -1697,26 +2413,69 @@
       "maintenance_margin": "1",
       "funding_known_rate": "1",
       "next_funding_at": "2026-11-03T14:00:00Z",
-      "tier_evidence_id": "fixture"
+      "tier_evidence_id": "fixture",
+      "settlement_asset_id": "asset:USDC",
+      "quote_asset_id": "asset:USDC",
+      "collateral_asset_id": "asset:USDC",
+      "price_unit": "QUOTE_MAJOR_PER_BASE_MAJOR",
+      "amount_unit": "SETTLEMENT_MAJOR",
+      "position_contract_lots": "10",
+      "funding_interval_s": 28800,
+      "instrument_revision": 1,
+      "coverage": "COMPLETE"
     },
-    "expect": "INVALID",
-    "reason": "missing required venue_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "venue_id"
+    }
   },
   {
     "schema": "LegPlan",
     "value": {
       "revision": 1,
       "intent_ids": [
-        "fixture",
-        "fixture"
+        "intent:1",
+        "intent:2"
       ],
       "atomic": false,
       "worst_unhedged_loss": "1",
-      "abort_rule": "fixture",
-      "capability_evidence_id": "fixture"
+      "abort_rule": "CANCEL_RECONCILE_THEN_REDUCE",
+      "capability_evidence_id": "fixture",
+      "legs": [
+        {
+          "sequence": 0,
+          "instrument_id": "instrument:spot:1",
+          "instrument_revision": 1,
+          "intent_id": "intent:1",
+          "side": "BUY",
+          "quantity": "1000000000",
+          "quantity_unit": "BASE_ATOM",
+          "ratio_numerator": "1",
+          "ratio_denominator": "1"
+        },
+        {
+          "sequence": 1,
+          "instrument_id": "instrument:linear:1",
+          "instrument_revision": 1,
+          "intent_id": "intent:2",
+          "side": "SELL",
+          "quantity": "10",
+          "quantity_unit": "CONTRACT_LOT",
+          "ratio_numerator": "1",
+          "ratio_denominator": "1"
+        }
+      ],
+      "loss_asset_id": "asset:USDC",
+      "loss_unit": "ASSET_MAJOR",
+      "max_leg_skew_ms": 500,
+      "hedge_deadline_ms": 2000
     },
-    "expect": "INVALID",
-    "reason": "missing required id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
   },
   {
     "schema": "ExportResult",
@@ -1727,7 +2486,2022 @@
       "download_ticket": "fixture",
       "ticket_expires_at": "2026-11-03T14:05:00Z"
     },
-    "expect": "INVALID",
-    "reason": "missing required job_id"
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "job_id"
+    }
+  },
+  {
+    "schema": "MarketReadRequest",
+    "value": {
+      "asset_ids": [
+        "fixture"
+      ],
+      "cursor": null,
+      "as_of": "2026-11-03T14:00:00Z",
+      "grant_id": "fixture"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_id"
+    }
+  },
+  {
+    "schema": "TransactionReadRequest",
+    "value": {
+      "signature": "fixture",
+      "commitment": "confirmed",
+      "max_supported_version": 0,
+      "grant_id": "fixture"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "chain_id"
+    }
+  },
+  {
+    "schema": "ManifestReadRequest",
+    "value": {
+      "expected_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "artifact_id"
+    }
+  },
+  {
+    "schema": "BudgetReserveRequest",
+    "value": {
+      "job_id": "fixture",
+      "tariff_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "worst_case_usd": "1",
+      "idempotency_key": "fixture"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "provider_id"
+    }
+  },
+  {
+    "schema": "LedgerAccount",
+    "value": {
+      "portfolio_id": "portfolio:paper",
+      "asset_id": "asset:USDC",
+      "role": "AVAILABLE",
+      "custody_id": "wallet:paper",
+      "mode": "PAPER",
+      "closed": false
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "LedgerMove",
+    "value": {
+      "source_account_id": "acct:external:USDC",
+      "destination_account_id": "acct:paper:USDC:available"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "amount"
+    }
+  },
+  {
+    "schema": "ExternalFlowCommand",
+    "value": {
+      "observation_id": "obs:deposit:1",
+      "external_effect_key": "paper:deposit:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "move"
+    }
+  },
+  {
+    "schema": "RentCommand",
+    "value": {
+      "account_address": "synthetic-ata",
+      "action": "LOCK",
+      "observation_id": "obs:rent:1",
+      "approval_evidence_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "move"
+    }
+  },
+  {
+    "schema": "FeePostingCommand",
+    "value": {
+      "attempt_id": "attempt:1",
+      "category": "NETWORK",
+      "included_in_fill": false,
+      "external_effect_key": "paper:tx:1:network:0",
+      "rebate": false
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "move"
+    }
+  },
+  {
+    "schema": "AdjustmentCommand",
+    "value": {
+      "cause_evidence_id": "evidence:reconcile:1",
+      "approval_evidence_id": "approval:adjust:1",
+      "reason": "OPENING_BALANCE"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "moves"
+    }
+  },
+  {
+    "schema": "ReservationPostingCommand",
+    "value": {
+      "moves": [
+        {
+          "amount": {
+            "asset_id": "asset:USDC",
+            "atoms": "1000000",
+            "decimals": 6
+          },
+          "source_account_id": "acct:paper:USDC:available",
+          "destination_account_id": "acct:paper:USDC:reserved"
+        }
+      ],
+      "expected_reservation_revision": 0,
+      "reconciliation_evidence_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "reservation_id"
+    }
+  },
+  {
+    "schema": "InternalTransferCommand",
+    "value": {
+      "destination_custody_id": "wallet:paper"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "move"
+    }
+  },
+  {
+    "schema": "TradePostingCommand",
+    "value": {
+      "input_move": {
+        "amount": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "source_account_id": "acct:external:USDC",
+        "destination_account_id": "acct:paper:USDC:available"
+      },
+      "output_move": {
+        "amount": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "source_account_id": "acct:external:USDC",
+        "destination_account_id": "acct:paper:USDC:available"
+      },
+      "reservation_id": "reservation:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "fill"
+    }
+  },
+  {
+    "schema": "ReversalCommand",
+    "value": {
+      "correction_evidence_id": "evidence:correction:1",
+      "approval_evidence_id": "approval:correction:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "original_journal_id"
+    }
+  },
+  {
+    "schema": "DerivativeSettlementCommand",
+    "value": {
+      "position_id": "position:1",
+      "move": {
+        "amount": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "source_account_id": "acct:external:USDC",
+        "destination_account_id": "acct:paper:USDC:available"
+      },
+      "settlement_kind": "REALIZED_PNL",
+      "observation_id": "obs:settlement:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
+  },
+  {
+    "schema": "LedgerPostRequest",
+    "value": {
+      "idempotency_key": "idem:deposit:1",
+      "portfolio_id": "portfolio:paper",
+      "mode": "PAPER",
+      "expected_portfolio_revision": 0,
+      "actor_id": "reconciler:paper",
+      "occurred_at": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "evidence_ids": [
+        "evidence:deposit:1"
+      ],
+      "operation": "DEPOSIT",
+      "payload": {
+        "move": {
+          "amount": {
+            "asset_id": "asset:USDC",
+            "atoms": "1000000",
+            "decimals": 6
+          },
+          "source_account_id": "acct:external:USDC",
+          "destination_account_id": "acct:paper:USDC:available"
+        },
+        "observation_id": "obs:deposit:1",
+        "external_effect_key": "paper:deposit:1"
+      }
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "operation_id"
+    }
+  },
+  {
+    "schema": "LedgerPostResult",
+    "value": {
+      "outcome": "POSTED",
+      "journal": {
+        "id": "fixture",
+        "revision": 1,
+        "external_effect_key": "fixture",
+        "fill_id": null,
+        "lines": [
+          {
+            "account_id": "acct:external:USDC",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-1000000"
+          },
+          {
+            "account_id": "acct:paper:USDC:available",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "1000000"
+          }
+        ],
+        "recorded_at": "2026-11-03T14:00:00Z",
+        "reason": "DEPOSIT",
+        "evidence_ids": [
+          "fixture"
+        ],
+        "portfolio_id": "portfolio:paper",
+        "operation_id": "operation:deposit:1",
+        "idempotency_key": "idem:deposit:1",
+        "mode": "PAPER",
+        "reverses_entry_id": null,
+        "occurred_at": "2026-11-06T12:00:00Z"
+      },
+      "portfolio_revision": 1
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "operation_id"
+    }
+  },
+  {
+    "schema": "ReservationFinalization",
+    "value": {
+      "expected_revision": 1,
+      "target_state": "CONSUMED",
+      "evidence_ids": [
+        "evidence:finality:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "reservation_id"
+    }
+  },
+  {
+    "schema": "ReconciliationRequest",
+    "value": {
+      "portfolio_id": "portfolio:paper",
+      "expected_portfolio_revision": 0,
+      "order_id": null,
+      "expected_order_revision": null,
+      "terminal_order_state": "NOT_APPLICABLE",
+      "finality_evidence_ids": [
+        "evidence:deposit:1"
+      ],
+      "commands": [
+        {
+          "operation_id": "operation:deposit:1",
+          "idempotency_key": "idem:deposit:1",
+          "portfolio_id": "portfolio:paper",
+          "mode": "PAPER",
+          "expected_portfolio_revision": 0,
+          "actor_id": "reconciler:paper",
+          "occurred_at": "2026-11-06T12:00:00Z",
+          "available_at": "2026-11-06T12:00:00Z",
+          "evidence_ids": [
+            "evidence:deposit:1"
+          ],
+          "operation": "DEPOSIT",
+          "payload": {
+            "move": {
+              "amount": {
+                "asset_id": "asset:USDC",
+                "atoms": "1000000",
+                "decimals": 6
+              },
+              "source_account_id": "acct:external:USDC",
+              "destination_account_id": "acct:paper:USDC:available"
+            },
+            "observation_id": "obs:deposit:1",
+            "external_effect_key": "paper:deposit:1"
+          }
+        }
+      ],
+      "reservations": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "ReconciliationResult",
+    "value": {
+      "outcome": "COMMITTED",
+      "journals": [
+        {
+          "id": "fixture",
+          "revision": 1,
+          "external_effect_key": "fixture",
+          "fill_id": null,
+          "lines": [
+            {
+              "account_id": "acct:external:USDC",
+              "asset_id": "asset:USDC",
+              "signed_atoms": "-1000000"
+            },
+            {
+              "account_id": "acct:paper:USDC:available",
+              "asset_id": "asset:USDC",
+              "signed_atoms": "1000000"
+            }
+          ],
+          "recorded_at": "2026-11-03T14:00:00Z",
+          "reason": "DEPOSIT",
+          "evidence_ids": [
+            "fixture"
+          ],
+          "portfolio_id": "portfolio:paper",
+          "operation_id": "operation:deposit:1",
+          "idempotency_key": "idem:deposit:1",
+          "mode": "PAPER",
+          "reverses_entry_id": null,
+          "occurred_at": "2026-11-06T12:00:00Z"
+        }
+      ],
+      "portfolio_revision": 1,
+      "event_ids": [
+        "event:journal:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "FeeSchedule",
+    "value": {
+      "taker_rate_bps": "10",
+      "fee_asset_id": "asset:USDC",
+      "included_in_quote": false,
+      "evidence_id": "evidence:fee:1",
+      "valid_until": "2026-11-06T13:00:00Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "maker_rate_bps"
+    }
+  },
+  {
+    "schema": "MarginTier",
+    "value": {
+      "initial_margin_ratio": "0.1",
+      "maintenance_margin_ratio": "0.05"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "notional_upper_atoms"
+    }
+  },
+  {
+    "schema": "Instrument",
+    "value": {
+      "revision": 1,
+      "kind": "AMM_POOL",
+      "venue_id": "venue:fixture-cpmm",
+      "chain_id": "solana:fixture",
+      "base_asset_id": "asset:SOL",
+      "quote_asset_id": "asset:USDC",
+      "settlement_asset_id": "asset:USDC",
+      "pool_id": "pool:1",
+      "quantity_unit": "BASE_ATOM",
+      "price_unit": "QUOTE_MAJOR_PER_BASE_MAJOR",
+      "quantity_step": "1",
+      "minimum_quantity": "1",
+      "price_tick": null,
+      "minimum_notional": {
+        "asset_id": "asset:USDC",
+        "atoms": "1000000",
+        "decimals": 6
+      },
+      "base_atoms_per_contract_lot": null,
+      "margin_tiers": [],
+      "max_leverage": "1",
+      "fee_schedule": {
+        "maker_rate_bps": "0",
+        "taker_rate_bps": "10",
+        "fee_asset_id": "asset:USDC",
+        "included_in_quote": false,
+        "evidence_id": "evidence:fee:1",
+        "valid_until": "2026-11-06T13:00:00Z"
+      },
+      "expiry_at": null,
+      "leg_instrument_ids": [],
+      "capabilities": [
+        "SPOT",
+        "CPMM"
+      ],
+      "capability_evidence_ids": [
+        "evidence:fixture:1"
+      ],
+      "operational_status": "FIXTURE_ONLY",
+      "available_at": "2026-11-06T12:00:00Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "LegInstruction",
+    "value": {
+      "instrument_id": "instrument:spot:1",
+      "instrument_revision": 1,
+      "intent_id": "intent:1",
+      "side": "BUY",
+      "quantity": "1000000000",
+      "quantity_unit": "BASE_ATOM",
+      "ratio_numerator": "1",
+      "ratio_denominator": "1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "sequence"
+    }
+  },
+  {
+    "schema": "VenueExecutionIntent",
+    "value": {
+      "portfolio_id": "portfolio:paper",
+      "instrument": {
+        "id": "instrument:fixture-cex:SOL-USDC:spot",
+        "revision": 1,
+        "kind": "CEX_SPOT",
+        "venue_id": "venue:fixture-cex",
+        "chain_id": null,
+        "base_asset_id": "asset:SOL",
+        "quote_asset_id": "asset:USDC",
+        "settlement_asset_id": "asset:USDC",
+        "pool_id": null,
+        "quantity_unit": "BASE_ATOM",
+        "price_unit": "QUOTE_MAJOR_PER_BASE_MAJOR",
+        "quantity_step": "1",
+        "minimum_quantity": "1",
+        "price_tick": "0.01",
+        "minimum_notional": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "base_atoms_per_contract_lot": null,
+        "margin_tiers": [],
+        "max_leverage": "1",
+        "fee_schedule": {
+          "maker_rate_bps": "0",
+          "taker_rate_bps": "10",
+          "fee_asset_id": "asset:USDC",
+          "included_in_quote": false,
+          "evidence_id": "evidence:fee:1",
+          "valid_until": "2026-11-06T13:00:00Z"
+        },
+        "expiry_at": null,
+        "leg_instrument_ids": [],
+        "capabilities": [
+          "SPOT",
+          "CLOB"
+        ],
+        "capability_evidence_ids": [
+          "evidence:fixture:1"
+        ],
+        "operational_status": "FIXTURE_ONLY",
+        "available_at": "2026-11-06T12:00:00Z"
+      },
+      "reservation_id": "reservation:venue:1",
+      "side": "BUY",
+      "quantity": "1000000000",
+      "quantity_unit": "BASE_ATOM",
+      "limit_price": "100",
+      "time_in_force": "IOC",
+      "reduce_only": false,
+      "collateral_cap": {
+        "asset_id": "asset:USDC",
+        "atoms": "100000000",
+        "decimals": 6
+      },
+      "fee_cap": {
+        "asset_id": "asset:USDC",
+        "atoms": "1000000",
+        "decimals": 6
+      },
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "control_epoch": 0,
+      "expires_at": "2026-11-06T12:00:05Z",
+      "mode": "PAPER",
+      "intent_hash": "7f9d3a6a2b54481dd427471c10229f79401b3810280a2e8dfd3aa09fd8655da2",
+      "fencing_token": 1,
+      "decision_id": "decision:cex:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "FinancialError",
+    "value": {
+      "operation_id": "operation:1",
+      "retryable": false,
+      "evidence_ids": [],
+      "message": "Finalized evidence required"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "code"
+    }
+  },
+  {
+    "schema": "VenueReservation",
+    "value": {
+      "revision": 1,
+      "intent_id": "venue-intent:1",
+      "portfolio_id": "portfolio:paper",
+      "instrument_id": "instrument:fixture-cex:SOL-USDC:spot",
+      "instrument_revision": 1,
+      "quantity": "1000000000",
+      "quantity_unit": "BASE_ATOM",
+      "side": "BUY",
+      "limit_price": "100",
+      "time_in_force": "IOC",
+      "reduce_only": false,
+      "collateral_cap": {
+        "asset_id": "asset:USDC",
+        "atoms": "100000000",
+        "decimals": 6
+      },
+      "fee_cap": {
+        "asset_id": "asset:USDC",
+        "atoms": "1000000",
+        "decimals": 6
+      },
+      "state": "ACTIVE",
+      "intent_hash": "7f9d3a6a2b54481dd427471c10229f79401b3810280a2e8dfd3aa09fd8655da2",
+      "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "control_epoch": 0,
+      "fencing_token": 1,
+      "expires_at": "2026-11-06T12:00:05Z",
+      "mode": "PAPER",
+      "decision_id": "decision:cex:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "VenueRiskRequest",
+    "value": {
+      "portfolio": {
+        "id": "fixture",
+        "revision": 1,
+        "mode": "PAPER",
+        "as_of": "2026-11-03T14:00:00Z",
+        "nav_usdc": "1",
+        "high_water_mark_usdc": "1",
+        "daily_pnl_usdc": "1",
+        "weekly_pnl_usdc": "1",
+        "positions": [],
+        "control_mode": "RUNNING",
+        "control_epoch": 1,
+        "reconciled": false,
+        "wallet_id": "fixture-wallet",
+        "chain_id": "solana:devnet",
+        "active_reservation_ids": [],
+        "uncertain_order_ids": []
+      },
+      "margin": null,
+      "capability_evidence_ids": [
+        "evidence:fixture:cex"
+      ],
+      "decision_id": "decision:cex:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "proposal"
+    }
+  },
+  {
+    "schema": "VenueRiskResult",
+    "value": {
+      "verdict": "APPROVED",
+      "reservation": {
+        "id": "reservation:venue:1",
+        "revision": 1,
+        "intent_id": "venue-intent:1",
+        "portfolio_id": "portfolio:paper",
+        "instrument_id": "instrument:fixture-cex:SOL-USDC:spot",
+        "instrument_revision": 1,
+        "quantity": "1000000000",
+        "quantity_unit": "BASE_ATOM",
+        "side": "BUY",
+        "limit_price": "100",
+        "time_in_force": "IOC",
+        "reduce_only": false,
+        "collateral_cap": {
+          "asset_id": "asset:USDC",
+          "atoms": "100000000",
+          "decimals": 6
+        },
+        "fee_cap": {
+          "asset_id": "asset:USDC",
+          "atoms": "1000000",
+          "decimals": 6
+        },
+        "state": "ACTIVE",
+        "intent_hash": "7f9d3a6a2b54481dd427471c10229f79401b3810280a2e8dfd3aa09fd8655da2",
+        "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "control_epoch": 0,
+        "fencing_token": 1,
+        "expires_at": "2026-11-06T12:00:05Z",
+        "mode": "PAPER",
+        "decision_id": "decision:cex:1"
+      },
+      "reason_codes": [
+        "FIXTURE_LIMITS_OK"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "decision_id"
+    }
+  },
+  {
+    "schema": "LedgerOperation",
+    "value": {
+      "state": "POSTED",
+      "request_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "journal_id": "journal:deposit:1",
+      "error": null,
+      "updated_at": "2026-11-06T12:00:00Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "request"
+    }
+  },
+  {
+    "schema": "Bar",
+    "value": {
+      "instrument_revision": 1,
+      "start_at": "2026-11-06T11:59:00Z",
+      "end_at": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "resolution_s": 60,
+      "open": "100",
+      "high": "102",
+      "low": "99",
+      "close": "101",
+      "base_volume_atoms": "1000000000",
+      "quote_volume_atoms": "100000000",
+      "trade_count": 10,
+      "coverage": "COMPLETE",
+      "observation_ids": [
+        "obs:trade:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
+  },
+  {
+    "schema": "DerivativeObservation",
+    "value": {
+      "instrument_revision": 1,
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "mark_price": "100",
+      "index_price": "100",
+      "funding_rate": "0.001",
+      "funding_interval_s": 28800,
+      "next_funding_at": "2026-11-06T20:00:00Z",
+      "open_interest_lots": "1000",
+      "liquidation_lots": "0",
+      "liquidation_window_s": 300,
+      "coverage": "COMPLETE",
+      "source_grant_id": "grant:fixture",
+      "evidence_ids": [
+        "evidence:derivative:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
+  },
+  {
+    "schema": "SocialObservation",
+    "value": {
+      "message_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "author_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "origin_cluster_id": "origin:1",
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "source_grant_id": "grant:fixture",
+      "sentiment_score": "0.7",
+      "sentiment_model_id": "model:sentiment:1",
+      "coverage": "COMPLETE",
+      "evidence_ids": [
+        "evidence:social:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
+  },
+  {
+    "schema": "NewsAssessment",
+    "value": {
+      "event_class": "PROTOCOL_RELEASE",
+      "direction": "POSITIVE",
+      "primary_verified": true,
+      "independent_origin_ids": [
+        "origin:1"
+      ],
+      "entity_resolved": true,
+      "available_at": "2026-11-06T12:00:00Z",
+      "expires_at": "2026-11-06T13:00:00Z",
+      "retracted": false,
+      "source_grant_ids": [
+        "grant:fixture"
+      ],
+      "evidence_ids": [
+        "evidence:news:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
+  },
+  {
+    "schema": "WalletFlowSummary",
+    "value": {
+      "wallet_id": "wallet:synthetic:1",
+      "cluster_id": "cluster:1",
+      "window_start": "2026-11-06T11:55:00Z",
+      "window_end": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "net_base_atoms": "1000000000",
+      "buy_quote_atoms": "100000000",
+      "sell_quote_atoms": "0",
+      "leader_buy_price": "100",
+      "profile_id": "profile:1",
+      "selection_at": "2026-11-05T00:00:00Z",
+      "source_observation_ids": [
+        "obs:wallet:1"
+      ],
+      "coverage": "1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "asset_id"
+    }
+  },
+  {
+    "schema": "CostEstimate",
+    "value": {
+      "size": {
+        "asset_id": "fixture",
+        "atoms": "1",
+        "decimals": 1
+      },
+      "roundtrip_bps": "30",
+      "slippage_bps": "10",
+      "network_fee": {
+        "asset_id": "asset:SOL",
+        "atoms": "5000",
+        "decimals": 9
+      },
+      "rent_cap": {
+        "asset_id": "asset:SOL",
+        "atoms": "0",
+        "decimals": 9
+      },
+      "delay_p99_ms": 500,
+      "available_at": "2026-11-06T12:00:00Z",
+      "expires_at": "2026-11-06T12:00:05Z",
+      "method_version": "cost-v1",
+      "evidence_ids": [
+        "evidence:cost:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
+  },
+  {
+    "schema": "RegimeArtifact",
+    "value": {
+      "train_end": "2026-10-01T00:00:00Z",
+      "available_at": "2026-10-02T00:00:00Z",
+      "volatility_q25": "0.001",
+      "volatility_q75": "0.005",
+      "trend_threshold": "0.01",
+      "feature_ids": [
+        "F-vol60",
+        "F-trend"
+      ],
+      "dataset_id": "dataset:train",
+      "evidence_ids": [
+        "evidence:regime:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "StrategyUtility",
+    "value": {
+      "strategy_version": "1.2.0",
+      "regime_code": "1",
+      "lower_net_return": "0.01",
+      "available_at": "2026-11-06T12:00:00Z",
+      "train_end": "2026-10-01T00:00:00Z",
+      "oof_manifest_id": "dataset:oof",
+      "approved": false,
+      "evidence_ids": [
+        "evidence:utility:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "strategy_id"
+    }
+  },
+  {
+    "schema": "StrategyMemory",
+    "value": {
+      "version": 0,
+      "position_opened_at": null,
+      "entry_price": null,
+      "peak_price": null,
+      "breakout_level": null,
+      "breakout_low": null,
+      "breakout_at": null,
+      "grid_center": null,
+      "previous_regime": null,
+      "regime_confirmations": 0,
+      "pending_order_ids": [],
+      "available_at": "2026-11-06T12:00:00Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "strategy_id"
+    }
+  },
+  {
+    "schema": "StrategyLegProposal",
+    "value": {
+      "instrument_revision": 1,
+      "side": "BUY",
+      "quantity_ratio_numerator": "1",
+      "quantity_ratio_denominator": "1",
+      "limit_price": null,
+      "post_only": false,
+      "reduce_only": false
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
+  },
+  {
+    "schema": "DecisionPolicy",
+    "value": {
+      "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "universe_id": "universe:fixture",
+      "horizon_s": 300,
+      "min_lower_return": "0",
+      "min_baseline_improvement": "0",
+      "max_spread_bps": "20",
+      "approved_strategy_versions": [
+        "S02:1.2.0"
+      ],
+      "approved_model_ids": [],
+      "stressed_loss_fraction": "1",
+      "window_s": 60
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "ExitContext",
+    "value": {
+      "available_to_sell": {
+        "asset_id": "asset:SOL",
+        "atoms": "0",
+        "decimals": 9
+      },
+      "pending_close": false,
+      "critical_risk": false,
+      "reversal_received": false,
+      "stop_loss_bps": 500,
+      "inverse_quote": null,
+      "available_at": "2026-11-06T12:00:00Z",
+      "evidence_ids": [
+        "evidence:position:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "position_id"
+    }
+  },
+  {
+    "schema": "PortContext",
+    "value": {
+      "actor_id": "actor:fixture",
+      "correlation_id": "correlation:1",
+      "deadline_at": "2026-11-06T12:00:10Z",
+      "idempotency_key": "idem:1",
+      "uow_id": null,
+      "cancel_token_id": "cancel:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "request_id"
+    }
+  },
+  {
+    "schema": "PortFailure",
+    "value": {
+      "retryable": false,
+      "retry_after_ms": null,
+      "effect_state": "NONE",
+      "request_id": "request:1",
+      "evidence_ids": [],
+      "safe_message": "Fixture does not exist"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "code"
+    }
+  },
+  {
+    "schema": "ClockRequest",
+    "value": {},
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "clock_id"
+    }
+  },
+  {
+    "schema": "ClockReading",
+    "value": {
+      "monotonic_ns": "1000000000",
+      "epoch_id": "boot:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "utc"
+    }
+  },
+  {
+    "schema": "IdRequest",
+    "value": {
+      "causal_key": "fixture:case1",
+      "mode": "REPLAY"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "namespace"
+    }
+  },
+  {
+    "schema": "IdResult",
+    "value": {},
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "RevisionCheck",
+    "value": {
+      "expected_revision": 7
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "entity_id"
+    }
+  },
+  {
+    "schema": "UowBegin",
+    "value": {
+      "isolation": "SERIALIZABLE",
+      "lock_entity_ids": [
+        "portfolio:paper"
+      ],
+      "revision_checks": [
+        {
+          "entity_id": "portfolio:paper",
+          "expected_revision": 7
+        }
+      ],
+      "deadline_at": "2026-11-06T12:00:10Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "UowHandle",
+    "value": {
+      "state": "ACTIVE",
+      "commit_token": null,
+      "outbox_event_ids": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "UowReference",
+    "value": {},
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "id"
+    }
+  },
+  {
+    "schema": "JobEnqueue",
+    "value": {
+      "kind": "EXPERIMENT",
+      "input_manifest_id": "artifact:input:1",
+      "input_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "config_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "seed": 1,
+      "not_before": "2026-11-06T12:00:00Z",
+      "deadline_at": "2026-11-06T13:00:00Z",
+      "max_attempts": 3
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "job_id"
+    }
+  },
+  {
+    "schema": "JobClaim",
+    "value": {
+      "allowed_kinds": [
+        "EXPERIMENT"
+      ],
+      "lease_seconds": 30
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "worker_id"
+    }
+  },
+  {
+    "schema": "JobLeaseCommand",
+    "value": {
+      "worker_id": "worker:1",
+      "fencing_token": 1,
+      "expected_revision": 1,
+      "action": "HEARTBEAT",
+      "result_artifact_id": null,
+      "error_code": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "job_id"
+    }
+  },
+  {
+    "schema": "JobClaimResult",
+    "value": {},
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "job"
+    }
+  },
+  {
+    "schema": "AuditAppend",
+    "value": {
+      "actor_id": "actor:fixture",
+      "action": "fixture.verify",
+      "target_id": "job:1",
+      "result": "ACCEPTED",
+      "correlation_id": "correlation:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "record_id"
+    }
+  },
+  {
+    "schema": "EvidenceRead",
+    "value": {
+      "expected_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "purpose": "AUDIT",
+      "max_bytes": 1048576
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "artifact_id"
+    }
+  },
+  {
+    "schema": "EvidenceResult",
+    "value": {
+      "manifest": {
+        "path": "fixture",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "size_bytes": 1,
+        "rows": 1
+      },
+      "local_handle": "evidence:readonly:1",
+      "verified_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_grant_ids": [
+        "grant:fixture"
+      ],
+      "available_at": "2026-11-06T12:00:00Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "artifact_id"
+    }
+  },
+  {
+    "schema": "AuthoritativeRead",
+    "value": {
+      "expected_revision": 1
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "entity_id"
+    }
+  },
+  {
+    "schema": "OperationLookup",
+    "value": {
+      "mode": "PAPER",
+      "idempotency_key": "idem:1"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "portfolio_id"
+    }
+  },
+  {
+    "schema": "GrantRead",
+    "value": {
+      "purpose": "DERIVE",
+      "at": "2026-11-06T12:00:00Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "source_id"
+    }
+  },
+  {
+    "schema": "BudgetSettlement",
+    "value": {
+      "expected_revision": 1,
+      "state": "UNCERTAIN",
+      "actual_usd": null,
+      "evidence_ids": [
+        "evidence:provider:1"
+      ]
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "cost_record_id"
+    }
+  },
+  {
+    "schema": "TemporalHistoryQuery",
+    "value": {
+      "source_ids": [
+        "source:fixture"
+      ],
+      "event_from": "2026-11-06T11:00:00Z",
+      "event_until": "2026-11-06T12:00:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "mode": "RESEARCH",
+      "limit": 100,
+      "cursor": null,
+      "include_retracted": false,
+      "snapshot_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "entity_ids"
+    }
+  },
+  {
+    "schema": "TemporalHistoryEntry",
+    "value": {
+      "revision": 1,
+      "source_id": "source:fixture",
+      "entity_id": "instrument:SOL-USDC:cpmm",
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "retracted": false,
+      "value": {
+        "instrument_id": "instrument:SOL-USDC:cpmm",
+        "instrument_revision": 1,
+        "start_at": "2026-11-06T11:59:00Z",
+        "end_at": "2026-11-06T12:00:00Z",
+        "available_at": "2026-11-06T12:00:00Z",
+        "resolution_s": 60,
+        "open": "100",
+        "high": "102",
+        "low": "99",
+        "close": "101",
+        "base_volume_atoms": "1000000000",
+        "quote_volume_atoms": "100000000",
+        "trade_count": 10,
+        "coverage": "COMPLETE",
+        "observation_ids": [
+          "obs:trade:1"
+        ]
+      }
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "record_id"
+    }
+  },
+  {
+    "schema": "TemporalHistoryPage",
+    "value": {
+      "next_cursor": null,
+      "snapshot_id": "snapshot:history:1",
+      "snapshot_expires_at": "2026-11-06T12:15:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "coverage": "COMPLETE",
+      "coverage_intervals": [],
+      "missing_source_ids": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
+  },
+  {
+    "schema": "ObservationHistoryQuery",
+    "value": {
+      "source_ids": [
+        "source:fixture"
+      ],
+      "event_from": "2026-11-06T11:00:00Z",
+      "event_until": "2026-11-06T12:00:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "mode": "RESEARCH",
+      "limit": 100,
+      "cursor": null,
+      "include_retracted": false,
+      "snapshot_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "entity_ids"
+    }
+  },
+  {
+    "schema": "ObservationHistoryEntry",
+    "value": {
+      "revision": 1,
+      "source_id": "source:fixture",
+      "entity_id": "instrument:SOL-USDC:cpmm",
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "retracted": false,
+      "value": {
+        "id": "fixture",
+        "revision": 1,
+        "source_id": "fixture",
+        "asset_id": "fixture",
+        "kind": "TRADE",
+        "event_time": "2026-11-03T14:00:00Z",
+        "received_at": "2026-11-03T14:00:00Z",
+        "available_at": "2026-11-03T14:00:00Z",
+        "recorded_at": "2026-11-03T14:00:00Z",
+        "slot": 1,
+        "commitment": "processed",
+        "dedup_key": "fixture",
+        "payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "artifact_id": "fixture",
+        "quality": "VALID",
+        "supersedes_id": "fixture",
+        "parser_version": "fixture"
+      }
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "record_id"
+    }
+  },
+  {
+    "schema": "ObservationHistoryPage",
+    "value": {
+      "next_cursor": null,
+      "snapshot_id": "snapshot:history:1",
+      "snapshot_expires_at": "2026-11-06T12:15:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "coverage": "COMPLETE",
+      "coverage_intervals": [],
+      "missing_source_ids": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
+  },
+  {
+    "schema": "TradeHistoryQuery",
+    "value": {
+      "source_ids": [
+        "source:fixture"
+      ],
+      "event_from": "2026-11-06T11:00:00Z",
+      "event_until": "2026-11-06T12:00:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "mode": "RESEARCH",
+      "limit": 100,
+      "cursor": null,
+      "include_retracted": false,
+      "snapshot_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "entity_ids"
+    }
+  },
+  {
+    "schema": "TradeHistoryEntry",
+    "value": {
+      "revision": 1,
+      "source_id": "source:fixture",
+      "entity_id": "instrument:SOL-USDC:cpmm",
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "retracted": false,
+      "value": {
+        "asset_id": "fixture",
+        "pool_id": "fixture",
+        "transaction_id": "fixture",
+        "instruction_index": 1,
+        "base_atoms": "1",
+        "quote_atoms": "1",
+        "aggressor": "BUY",
+        "fee_atoms": "1",
+        "fee_asset_id": "fixture",
+        "slot": 1,
+        "trader_address": "wallet:synthetic:1"
+      }
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "record_id"
+    }
+  },
+  {
+    "schema": "TradeHistoryPage",
+    "value": {
+      "next_cursor": null,
+      "snapshot_id": "snapshot:history:1",
+      "snapshot_expires_at": "2026-11-06T12:15:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "coverage": "COMPLETE",
+      "coverage_intervals": [],
+      "missing_source_ids": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
+  },
+  {
+    "schema": "WalletHistoryQuery",
+    "value": {
+      "source_ids": [
+        "source:fixture"
+      ],
+      "event_from": "2026-11-06T11:00:00Z",
+      "event_until": "2026-11-06T12:00:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "mode": "RESEARCH",
+      "limit": 100,
+      "cursor": null,
+      "include_retracted": false,
+      "snapshot_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "entity_ids"
+    }
+  },
+  {
+    "schema": "WalletHistoryEntry",
+    "value": {
+      "revision": 1,
+      "source_id": "source:fixture",
+      "entity_id": "instrument:SOL-USDC:cpmm",
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "retracted": false,
+      "value": {
+        "wallet_address": "fixture",
+        "transaction_id": "fixture",
+        "kind": "SWAP",
+        "input": {
+          "asset_id": "fixture",
+          "atoms": "1",
+          "decimals": 1
+        },
+        "output": {
+          "asset_id": "fixture",
+          "atoms": "1",
+          "decimals": 1
+        },
+        "fee": {
+          "asset_id": "fixture",
+          "atoms": "1",
+          "decimals": 1
+        },
+        "slot": 1
+      }
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "record_id"
+    }
+  },
+  {
+    "schema": "WalletHistoryPage",
+    "value": {
+      "next_cursor": null,
+      "snapshot_id": "snapshot:history:1",
+      "snapshot_expires_at": "2026-11-06T12:15:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "coverage": "COMPLETE",
+      "coverage_intervals": [],
+      "missing_source_ids": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
+  },
+  {
+    "schema": "FeatureHistoryQuery",
+    "value": {
+      "source_ids": [
+        "source:fixture"
+      ],
+      "event_from": "2026-11-06T11:00:00Z",
+      "event_until": "2026-11-06T12:00:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "mode": "RESEARCH",
+      "limit": 100,
+      "cursor": null,
+      "include_retracted": false,
+      "snapshot_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "entity_ids"
+    }
+  },
+  {
+    "schema": "FeatureHistoryEntry",
+    "value": {
+      "revision": 1,
+      "source_id": "source:fixture",
+      "entity_id": "instrument:SOL-USDC:cpmm",
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "retracted": false,
+      "value": {
+        "id": "fixture",
+        "revision": 1,
+        "asset_id": "fixture",
+        "as_of": "2026-11-03T14:00:00Z",
+        "available_at": "2026-11-03T14:00:00Z",
+        "schema_version": "fixture",
+        "features": [
+          {
+            "name": "close1",
+            "value": "101",
+            "unit": "quote_major/base_major",
+            "available_at": "2026-11-03T14:00:00Z",
+            "quality": "VALID",
+            "feature_id": "F-close1",
+            "definition_version": "1.2.0",
+            "event_time": "2026-11-06T12:00:00Z",
+            "window_start": "2026-11-06T11:59:00Z",
+            "window_end": "2026-11-06T12:00:00Z",
+            "source_ids": [
+              "obs:trade:1"
+            ],
+            "expires_at": "2026-11-06T12:01:00Z",
+            "reason_code": null
+          }
+        ],
+        "source_observation_ids": [
+          "fixture"
+        ],
+        "quality": "VALID",
+        "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "instrument_id": "instrument:SOL-USDC:cpmm",
+        "instrument_revision": 1,
+        "catalog_version": "1.2.0",
+        "universe_id": "universe:fixture"
+      }
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "record_id"
+    }
+  },
+  {
+    "schema": "FeatureHistoryPage",
+    "value": {
+      "next_cursor": null,
+      "snapshot_id": "snapshot:history:1",
+      "snapshot_expires_at": "2026-11-06T12:15:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "coverage": "COMPLETE",
+      "coverage_intervals": [],
+      "missing_source_ids": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
+  },
+  {
+    "schema": "PredictionHistoryQuery",
+    "value": {
+      "source_ids": [
+        "source:fixture"
+      ],
+      "event_from": "2026-11-06T11:00:00Z",
+      "event_until": "2026-11-06T12:00:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "mode": "RESEARCH",
+      "limit": 100,
+      "cursor": null,
+      "include_retracted": false,
+      "snapshot_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "entity_ids"
+    }
+  },
+  {
+    "schema": "PredictionHistoryEntry",
+    "value": {
+      "revision": 1,
+      "source_id": "source:fixture",
+      "entity_id": "instrument:SOL-USDC:cpmm",
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "retracted": false,
+      "value": {
+        "id": "fixture",
+        "revision": 1,
+        "asset_id": "fixture",
+        "model_id": "fixture",
+        "feature_snapshot_id": "fixture",
+        "issued_at": "2026-11-03T14:00:00Z",
+        "expires_at": "2026-11-03T14:05:00Z",
+        "horizon_s": 1,
+        "probability_net_positive": "0.6",
+        "q05": null,
+        "q50": null,
+        "q95": null,
+        "expected_net_return": null,
+        "cost_basis": "NET_TRADE",
+        "uncertainty": "0.02",
+        "instrument_id": "instrument:SOL-USDC:cpmm",
+        "instrument_revision": 1,
+        "prediction_kind": "CLASSIFICATION",
+        "model_version": "1.2.0",
+        "model_state": "SHADOW",
+        "universe_id": "universe:fixture",
+        "available_at": "2026-11-06T12:00:00Z",
+        "target": "NET_POSITIVE",
+        "calibration_method": "PLATT",
+        "calibration_state": "VALID",
+        "calibration_artifact_id": "calibration:1",
+        "calibration_valid_until": "2026-12-01T00:00:00Z",
+        "raw_score": null,
+        "feature_ids": [
+          "F-close1"
+        ],
+        "data_quality": "VALID",
+        "evidence_ids": [
+          "evidence:model:1"
+        ],
+        "rejection_codes": [],
+        "baseline_improvement_lower": null
+      }
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "record_id"
+    }
+  },
+  {
+    "schema": "PredictionHistoryPage",
+    "value": {
+      "next_cursor": null,
+      "snapshot_id": "snapshot:history:1",
+      "snapshot_expires_at": "2026-11-06T12:15:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "coverage": "COMPLETE",
+      "coverage_intervals": [],
+      "missing_source_ids": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
+  },
+  {
+    "schema": "DecisionHistoryQuery",
+    "value": {
+      "source_ids": [
+        "source:fixture"
+      ],
+      "event_from": "2026-11-06T11:00:00Z",
+      "event_until": "2026-11-06T12:00:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "mode": "RESEARCH",
+      "limit": 100,
+      "cursor": null,
+      "include_retracted": false,
+      "snapshot_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "entity_ids"
+    }
+  },
+  {
+    "schema": "DecisionHistoryEntry",
+    "value": {
+      "revision": 1,
+      "source_id": "source:fixture",
+      "entity_id": "instrument:SOL-USDC:cpmm",
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "retracted": false,
+      "value": {
+        "id": "fixture",
+        "revision": 1,
+        "asset_id": "fixture",
+        "decided_at": "2026-11-03T14:00:00Z",
+        "outcome": "CANDIDATE",
+        "reason_codes": [
+          "fixture"
+        ],
+        "signal_ids": [],
+        "feature_snapshot_id": "fixture",
+        "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "model_ids": [],
+        "risk_assessment_id": "fixture",
+        "instrument_id": "instrument:SOL-USDC:cpmm",
+        "instrument_revision": 1,
+        "prediction_ids": [],
+        "cost_estimate_id": "evidence:cost:1",
+        "universe_id": "universe:fixture",
+        "input_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "record_id"
+    }
+  },
+  {
+    "schema": "DecisionHistoryPage",
+    "value": {
+      "next_cursor": null,
+      "snapshot_id": "snapshot:history:1",
+      "snapshot_expires_at": "2026-11-06T12:15:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "coverage": "COMPLETE",
+      "coverage_intervals": [],
+      "missing_source_ids": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
+  },
+  {
+    "schema": "EvidenceHistoryQuery",
+    "value": {
+      "source_ids": [
+        "source:fixture"
+      ],
+      "event_from": "2026-11-06T11:00:00Z",
+      "event_until": "2026-11-06T12:00:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "mode": "RESEARCH",
+      "limit": 100,
+      "cursor": null,
+      "include_retracted": false,
+      "snapshot_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "entity_ids"
+    }
+  },
+  {
+    "schema": "EvidenceHistoryEntry",
+    "value": {
+      "revision": 1,
+      "source_id": "source:fixture",
+      "entity_id": "instrument:SOL-USDC:cpmm",
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "retracted": false,
+      "value": {
+        "path": "fixture",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "size_bytes": 1,
+        "rows": 1
+      }
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "record_id"
+    }
+  },
+  {
+    "schema": "EvidenceHistoryPage",
+    "value": {
+      "next_cursor": null,
+      "snapshot_id": "snapshot:history:1",
+      "snapshot_expires_at": "2026-11-06T12:15:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "coverage": "COMPLETE",
+      "coverage_intervals": [],
+      "missing_source_ids": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
+  },
+  {
+    "schema": "JournalHistoryQuery",
+    "value": {
+      "source_ids": [
+        "source:fixture"
+      ],
+      "event_from": "2026-11-06T11:00:00Z",
+      "event_until": "2026-11-06T12:00:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "mode": "RESEARCH",
+      "limit": 100,
+      "cursor": null,
+      "include_retracted": false,
+      "snapshot_id": null
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "entity_ids"
+    }
+  },
+  {
+    "schema": "JournalHistoryEntry",
+    "value": {
+      "revision": 1,
+      "source_id": "source:fixture",
+      "entity_id": "instrument:SOL-USDC:cpmm",
+      "event_time": "2026-11-06T12:00:00Z",
+      "available_at": "2026-11-06T12:00:00Z",
+      "retracted": false,
+      "value": {
+        "id": "fixture",
+        "revision": 1,
+        "external_effect_key": "fixture",
+        "fill_id": null,
+        "lines": [
+          {
+            "account_id": "acct:external:USDC",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "-1000000"
+          },
+          {
+            "account_id": "acct:paper:USDC:available",
+            "asset_id": "asset:USDC",
+            "signed_atoms": "1000000"
+          }
+        ],
+        "recorded_at": "2026-11-03T14:00:00Z",
+        "reason": "DEPOSIT",
+        "evidence_ids": [
+          "fixture"
+        ],
+        "portfolio_id": "portfolio:paper",
+        "operation_id": "operation:deposit:1",
+        "idempotency_key": "idem:deposit:1",
+        "mode": "PAPER",
+        "reverses_entry_id": null,
+        "occurred_at": "2026-11-06T12:00:00Z"
+      }
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "record_id"
+    }
+  },
+  {
+    "schema": "JournalHistoryPage",
+    "value": {
+      "next_cursor": null,
+      "snapshot_id": "snapshot:history:1",
+      "snapshot_expires_at": "2026-11-06T12:15:00Z",
+      "as_of": "2026-11-06T12:00:00Z",
+      "coverage": "COMPLETE",
+      "coverage_intervals": [],
+      "missing_source_ids": []
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "items"
+    }
+  },
+  {
+    "schema": "InstrumentRead",
+    "value": {
+      "revision": 1,
+      "as_of": "2026-11-06T12:00:00Z"
+    },
+    "expected": {
+      "validator": "required",
+      "instance_path": [],
+      "missing_field": "instrument_id"
+    }
   }
 ]

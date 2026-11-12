@@ -1,0 +1,18 @@
+{
+  "started_at": "2026-11-06T13:01:45.163225+00:00",
+  "base_sha": "fa502e57437f7a141ae7f97938cd0fcefb98f1af",
+  "main_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+  "branch": "audit/g-design-blueprint-finalization",
+  "pr": "https://github.com/SaintWyss/td/pull/1",
+  "foreign_changes": false,
+  "prior_ci": "https://github.com/SaintWyss/td/actions/runs/41945191051",
+  "prior_ci_conclusion": "success",
+  "scope": "Documentation/contracts/validation only",
+  "order": [
+    "GD-09",
+    "GD-11",
+    "GD-12",
+    "GD-17",
+    "GD-10"
+  ]
+}

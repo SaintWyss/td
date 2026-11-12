@@ -4,139 +4,645 @@
     "schema": "Observation",
     "rule": "available_at >= received_at; recorded_at >= received_at; event_time may be null or clock-skewed",
     "negative_case": "future availability blocks decision",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "source_id",
+      "asset_id",
+      "kind",
+      "event_time",
+      "received_at",
+      "available_at",
+      "recorded_at",
+      "slot",
+      "commitment",
+      "dedup_key",
+      "payload_hash",
+      "artifact_id",
+      "quality",
+      "supersedes_id",
+      "parser_version"
+    ],
+    "valid_case": "recepción<=disponibilidad y persistencia; source time separado",
+    "implementation_tasks": [
+      "T-019"
+    ],
+    "implementation_phases": [
+      "V1"
+    ],
+    "test_id": "SEM-01-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-02",
     "schema": "FeatureSnapshot",
     "rule": "every feature.available_at <= snapshot.available_at <= decision time",
     "negative_case": "one future feature rejects whole critical snapshot",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "asset_id",
+      "as_of",
+      "available_at",
+      "schema_version",
+      "features",
+      "source_observation_ids",
+      "quality",
+      "hash"
+    ],
+    "valid_case": "todas las features disponibles en t",
+    "implementation_tasks": [
+      "T-028",
+      "T-030"
+    ],
+    "implementation_phases": [
+      "V3"
+    ],
+    "test_id": "SEM-02-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-03",
     "schema": "RiskAssessment",
     "rule": "APPROVED requires approved_atoms>0 and reservation_id; DENIED requires0 and null",
     "negative_case": "denied with amount is invalid",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "decision_id",
+      "portfolio_id",
+      "verdict",
+      "reason_codes",
+      "approved_atoms",
+      "max_fee_atoms",
+      "reservation_id",
+      "policy_hash",
+      "assessed_at",
+      "expires_at",
+      "input_asset_id",
+      "fee_asset_id"
+    ],
+    "valid_case": "APPROVED 1 atom con reserva / DENIED 0 sin reserva",
+    "implementation_tasks": [
+      "T-050"
+    ],
+    "implementation_phases": [
+      "V5"
+    ],
+    "test_id": "SEM-03-RUNTIME",
+    "documentary_check": "JSON Schema conditional/boundaries only",
+    "runtime_verified": false
   },
   {
     "id": "SEM-04",
     "schema": "Reservation",
     "rule": "unique active decision and exposure includes pending; expired attempted reservation is not released blindly",
     "negative_case": "concurrent limit conflict must deny one",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "decision_id",
+      "portfolio_id",
+      "asset_id",
+      "input_asset_id",
+      "max_input_atoms",
+      "max_fee_atoms",
+      "state",
+      "expires_at",
+      "policy_hash",
+      "control_epoch",
+      "fencing_token",
+      "quote_hash",
+      "chain_id",
+      "wallet_id",
+      "output_asset_id",
+      "fee_asset_id",
+      "mode",
+      "reduce_only",
+      "allowed_program_ids",
+      "min_output_atoms",
+      "intent_hash"
+    ],
+    "valid_case": "reserva activa cabe incluyendo pendientes bajo lock",
+    "implementation_tasks": [
+      "T-051"
+    ],
+    "implementation_phases": [
+      "V5"
+    ],
+    "test_id": "SEM-04-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-05",
     "schema": "Prediction",
     "rule": "q05<=q50<=q95; issued_at<expires_at; cost_basis explicit",
     "negative_case": "unordered quantiles invalid",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "asset_id",
+      "model_id",
+      "feature_snapshot_id",
+      "issued_at",
+      "expires_at",
+      "horizon_s",
+      "probability_net_positive",
+      "q05",
+      "q50",
+      "q95",
+      "expected_net_return",
+      "cost_basis",
+      "uncertainty"
+    ],
+    "valid_case": "q05<=q50<=q95 y expiración posterior",
+    "implementation_tasks": [
+      "T-040"
+    ],
+    "implementation_phases": [
+      "V4"
+    ],
+    "test_id": "SEM-05-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-06",
     "schema": "Order",
     "rule": "filled_atoms<=requested_atoms; all transitions in order-machine",
     "negative_case": "PENDING to CANCELLED forbidden for Solana",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "portfolio_id",
+      "decision_id",
+      "reservation_id",
+      "asset_id",
+      "side",
+      "requested_atoms",
+      "filled_atoms",
+      "state",
+      "mode",
+      "created_at",
+      "updated_at"
+    ],
+    "valid_case": "fill acumulado <= solicitado y transición permitida",
+    "implementation_tasks": [
+      "T-053",
+      "T-101"
+    ],
+    "implementation_phases": [
+      "V6",
+      "V9"
+    ],
+    "test_id": "SEM-06-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-07",
     "schema": "JournalEntry",
     "rule": "sum signed_atoms per asset=0; effect key unique",
     "negative_case": "unbalanced entry rollback",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "external_effect_key",
+      "fill_id",
+      "lines",
+      "recorded_at",
+      "reason",
+      "evidence_ids"
+    ],
+    "valid_case": "+10/-10 en el mismo activo; suma cero por activo",
+    "implementation_tasks": [
+      "T-031"
+    ],
+    "implementation_phases": [
+      "V3"
+    ],
+    "test_id": "SEM-07-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-08",
     "schema": "SourceGrant",
     "rule": "purpose requested is allowed and status approved and not expired; evidence verified",
     "negative_case": "public URL without grant denied",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "source_id",
+      "url",
+      "status",
+      "purposes",
+      "evidence_ids",
+      "retention_days",
+      "expires_at",
+      "reviewer_id",
+      "allowed_methods",
+      "allowed_url_prefixes",
+      "allowed_processor_ids",
+      "storage_allowed"
+    ],
+    "valid_case": "grant vigente autoriza finalidad y procesador",
+    "implementation_tasks": [
+      "T-003",
+      "T-058"
+    ],
+    "implementation_phases": [
+      "V0",
+      "V7"
+    ],
+    "test_id": "SEM-08-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-09",
     "schema": "ExtractionResult",
     "rule": "every evidence_id belongs to authorized request; abstain cannot emit actionable claims",
     "negative_case": "fabricated reference quarantined",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "request_id",
+      "model_id",
+      "prompt_hash",
+      "schema_hash",
+      "abstain",
+      "claims",
+      "input_tokens",
+      "output_tokens",
+      "cost_usd",
+      "reason_codes"
+    ],
+    "valid_case": "claims sólo de evidence_ids autorizados; abstain sin claims",
+    "implementation_tasks": [
+      "T-060",
+      "T-061",
+      "T-062"
+    ],
+    "implementation_phases": [
+      "V7"
+    ],
+    "test_id": "SEM-09-RUNTIME",
+    "documentary_check": "JSON Schema conditional/boundaries only",
+    "runtime_verified": false
   },
   {
     "id": "SEM-10",
     "schema": "ExecutionIntent",
     "rule": "reservation/policy/epoch/wallet chain binding and quote expiry checked before signing",
     "negative_case": "stale permission rejected",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "order_id",
+      "decision_id",
+      "reservation_id",
+      "portfolio_id",
+      "mode",
+      "input_asset_id",
+      "output_asset_id",
+      "input_atoms",
+      "min_output_atoms",
+      "max_fee_atoms",
+      "fee_asset_id",
+      "reduce_only",
+      "expires_at",
+      "policy_hash",
+      "control_epoch",
+      "fencing_token",
+      "quote_hash",
+      "allowed_program_ids",
+      "chain_id",
+      "wallet_id",
+      "intent_hash"
+    ],
+    "valid_case": "wallet/chain/epoch/quote/policy/cantidades coinciden",
+    "implementation_tasks": [
+      "T-051",
+      "T-093"
+    ],
+    "implementation_phases": [
+      "V12",
+      "V5"
+    ],
+    "test_id": "SEM-10-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-11",
     "schema": "SigningRequest",
     "rule": "transaction message, accounts, programs, amounts and fees match intent; no unknown instruction",
     "negative_case": "hidden transfer rejected",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "intent",
+      "attempt_id",
+      "unsigned_transaction_b64",
+      "message_hash",
+      "resolved_accounts_hash",
+      "simulation_evidence_id",
+      "approval_id"
+    ],
+    "valid_case": "cada instrucción y cuenta coincide con permiso",
+    "implementation_tasks": [
+      "T-094"
+    ],
+    "implementation_phases": [
+      "V12"
+    ],
+    "test_id": "SEM-11-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-12",
     "schema": "DatasetManifest",
     "rule": "all files hash match; point-in-time join; failed tokens and gaps represented",
     "negative_case": "revised file invalidates run",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "created_at",
+      "files",
+      "universe_hash",
+      "split_hash",
+      "query_hash",
+      "feature_schema_hash",
+      "coverage_ratio",
+      "includes_failed_tokens",
+      "time_basis",
+      "grant_ids",
+      "seed",
+      "hash"
+    ],
+    "valid_case": "hashes coinciden y fila PIT conserva fracasos/gaps",
+    "implementation_tasks": [
+      "T-029",
+      "T-030"
+    ],
+    "implementation_phases": [
+      "V3"
+    ],
+    "test_id": "SEM-12-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-13",
     "schema": "Promotion",
     "rule": "human authorized actor, reports pass, model compatible, assignment CAS",
     "negative_case": "self-approval by training job rejected",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "strategy_id",
+      "candidate_model_id",
+      "previous_model_id",
+      "report_ids",
+      "approver_id",
+      "approved_at",
+      "expected_assignment_revision",
+      "state",
+      "environment"
+    ],
+    "valid_case": "actor humano autorizado, revision esperada y gates válidos",
+    "implementation_tasks": [
+      "T-074"
+    ],
+    "implementation_phases": [
+      "V10"
+    ],
+    "test_id": "SEM-13-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-14",
     "schema": "CostRecord",
     "rule": "reserve >= worst-case price*usage; sum reserved+actual <=cap under lock",
     "negative_case": "two near-cap calls cannot overspend",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "provider_id",
+      "job_id",
+      "tariff_hash",
+      "reserved_usd",
+      "actual_usd",
+      "state",
+      "occurred_at"
+    ],
+    "valid_case": "reserva de peor costo antes de llamada, sin exceder cap",
+    "implementation_tasks": [
+      "T-011"
+    ],
+    "implementation_phases": [
+      "V1"
+    ],
+    "test_id": "SEM-14-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-15",
     "schema": "TraderProfile",
     "rule": "unknown cost or incomplete flows => PnL/score limitations; selection_window_end<=as_of",
     "negative_case": "ranking uses no future winners",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "wallet_address",
+      "as_of",
+      "coverage_ratio",
+      "observed_days",
+      "realized_pnl_usdc",
+      "unrealized_pnl_usdc",
+      "twr",
+      "drawdown",
+      "unknown_cost_lots",
+      "score",
+      "selection_window_end",
+      "cluster_id",
+      "evidence_ids"
+    ],
+    "valid_case": "costo desconocido conserva null y selección sólo pasado",
+    "implementation_tasks": [
+      "T-068",
+      "T-069"
+    ],
+    "implementation_phases": [
+      "V8"
+    ],
+    "test_id": "SEM-15-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-16",
     "schema": "TokenAssessment",
     "rule": "unknown authority/extension/coverage critical => ineligible; route inverse not guarantee",
     "negative_case": "unknown cannot be mapped to false",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "asset_id",
+      "available_at",
+      "expires_at",
+      "eligible",
+      "mint_authority_active",
+      "freeze_authority_active",
+      "extensions",
+      "top1_share",
+      "top10_share",
+      "holder_coverage",
+      "liquidation_quote_id",
+      "reasons",
+      "evidence_ids",
+      "policy_hash"
+    ],
+    "valid_case": "autoridades/extensiones/coverage conocidos y criterios cumplidos",
+    "implementation_tasks": [
+      "T-026"
+    ],
+    "implementation_phases": [
+      "V2"
+    ],
+    "test_id": "SEM-16-RUNTIME",
+    "documentary_check": "JSON Schema conditional/boundaries only",
+    "runtime_verified": false
   },
   {
     "id": "SEM-17",
     "schema": "Quote",
     "rule": "min_output_atoms<=output_atoms; input/output positive; fees accounted once; ttl valid",
     "negative_case": "zero output or stale quote denied",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "venue_id",
+      "input_asset_id",
+      "output_asset_id",
+      "input_atoms",
+      "output_atoms",
+      "min_output_atoms",
+      "impact_bps",
+      "slippage_bps",
+      "fees_included",
+      "extra_fee_atoms",
+      "fee_asset_id",
+      "received_at",
+      "expires_at",
+      "route_hash",
+      "program_ids",
+      "raw_hash"
+    ],
+    "valid_case": "input/output positivos, min<=output y TTL vigente",
+    "implementation_tasks": [
+      "T-018",
+      "T-034"
+    ],
+    "implementation_phases": [
+      "V1",
+      "V3"
+    ],
+    "test_id": "SEM-17-RUNTIME",
+    "documentary_check": "JSON Schema conditional/boundaries only",
+    "runtime_verified": false
   },
   {
     "id": "SEM-18",
     "schema": "Outcome",
     "rule": "observed_at>=matured_at; censored => net_return null",
     "negative_case": "future outcome withheld",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "id",
+      "revision",
+      "prediction_id",
+      "matured_at",
+      "observed_at",
+      "net_return",
+      "state",
+      "evidence_ids"
+    ],
+    "valid_case": "outcome maduro; censurado net_return=null",
+    "implementation_tasks": [
+      "T-072"
+    ],
+    "implementation_phases": [
+      "V10"
+    ],
+    "test_id": "SEM-18-RUNTIME",
+    "documentary_check": "JSON Schema conditional/boundaries only",
+    "runtime_verified": false
   },
   {
     "id": "SEM-19",
     "schema": "StrategyConfig",
     "rule": "only parameters of selected strategy; numeric domain/ordered windows as catalog",
     "negative_case": "fast_bars>=slow_bars rejected",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [],
+    "valid_case": "parámetros propios y ventanas ordenadas",
+    "implementation_tasks": [
+      "T-107",
+      "T-139"
+    ],
+    "implementation_phases": [
+      "V3",
+      "V5"
+    ],
+    "test_id": "SEM-19-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   },
   {
     "id": "SEM-20",
     "schema": "PoolSnapshot",
     "rule": "reserves positive for eligibility; decimals from mint; fee current",
     "negative_case": "missing reserve not zero liquidity claim",
-    "verification": "PRODUCT_TEST_REQUIRED"
+    "verification": "PRODUCT_TEST_REQUIRED",
+    "contract_fields": [
+      "pool_id",
+      "base_reserve_atoms",
+      "quote_reserve_atoms",
+      "fee_bps",
+      "slot",
+      "depth_complete"
+    ],
+    "valid_case": "reservas conocidas positivas para elegibilidad; fee vigente",
+    "implementation_tasks": [
+      "T-022",
+      "T-026"
+    ],
+    "implementation_phases": [
+      "V2"
+    ],
+    "test_id": "SEM-20-RUNTIME",
+    "documentary_check": "Specification review only; executable scenario oracle pending GD-17",
+    "runtime_verified": false
   }
 ]

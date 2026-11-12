@@ -10,70 +10,112 @@
     "UNKNOWN"
   ],
   "transitions": [
-    [
-      "NEW",
-      "ACCEPTED"
-    ],
-    [
-      "NEW",
-      "REJECTED"
-    ],
-    [
-      "NEW",
-      "UNKNOWN"
-    ],
-    [
-      "ACCEPTED",
-      "PARTIALLY_FILLED"
-    ],
-    [
-      "ACCEPTED",
-      "FILLED"
-    ],
-    [
-      "ACCEPTED",
-      "CANCEL_REQUESTED"
-    ],
-    [
-      "PARTIALLY_FILLED",
-      "PARTIALLY_FILLED"
-    ],
-    [
-      "PARTIALLY_FILLED",
-      "FILLED"
-    ],
-    [
-      "PARTIALLY_FILLED",
-      "CANCEL_REQUESTED"
-    ],
-    [
-      "CANCEL_REQUESTED",
-      "PARTIALLY_FILLED"
-    ],
-    [
-      "CANCEL_REQUESTED",
-      "FILLED"
-    ],
-    [
-      "CANCEL_REQUESTED",
-      "CANCELLED"
-    ],
-    [
-      "UNKNOWN",
-      "ACCEPTED"
-    ],
-    [
-      "UNKNOWN",
-      "PARTIALLY_FILLED"
-    ],
-    [
-      "UNKNOWN",
-      "FILLED"
-    ],
-    [
-      "UNKNOWN",
-      "CANCELLED"
-    ]
+    {
+      "source": "NEW",
+      "target": "ACCEPTED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "NEW",
+      "target": "REJECTED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "NEW",
+      "target": "UNKNOWN",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "ACCEPTED",
+      "target": "PARTIALLY_FILLED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "ACCEPTED",
+      "target": "FILLED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "ACCEPTED",
+      "target": "CANCEL_REQUESTED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "PARTIALLY_FILLED",
+      "target": "PARTIALLY_FILLED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "PARTIALLY_FILLED",
+      "target": "FILLED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "PARTIALLY_FILLED",
+      "target": "CANCEL_REQUESTED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "CANCEL_REQUESTED",
+      "target": "PARTIALLY_FILLED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "CANCEL_REQUESTED",
+      "target": "FILLED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "CANCEL_REQUESTED",
+      "target": "CANCELLED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "UNKNOWN",
+      "target": "ACCEPTED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "UNKNOWN",
+      "target": "PARTIALLY_FILLED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "UNKNOWN",
+      "target": "FILLED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "UNKNOWN",
+      "target": "CANCELLED",
+      "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+    },
+    {
+      "source": "ACCEPTED",
+      "target": "UNKNOWN",
+      "guard": "timeout/disconnect; retain reserve"
+    },
+    {
+      "source": "PARTIALLY_FILLED",
+      "target": "UNKNOWN",
+      "guard": "timeout/disconnect; retain unfilled reserve"
+    },
+    {
+      "source": "CANCEL_REQUESTED",
+      "target": "UNKNOWN",
+      "guard": "cancel response unknown; retain reserve"
+    },
+    {
+      "source": "UNKNOWN",
+      "target": "REJECTED",
+      "guard": "authoritative rejection AND no fills confirmed"
+    }
   ],
-  "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation"
+  "guard": "Every fill deduplicates by venue trade id; cancel request does not free reservation; cumulative filled<=requested; terminal late updates require reconciliation",
+  "initial": "NEW",
+  "terminal": [
+    "FILLED",
+    "CANCELLED",
+    "REJECTED"
+  ]
 }

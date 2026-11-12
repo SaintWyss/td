@@ -1,51 +1,46 @@
 # Estado del proyecto
 
-Actualización: 2026-11-04 (Argentina). Estado: **base de desarrollo y diseño en borrador**.
+Actualización: 2026-11-04 (Argentina). **G-DESIGN: NOT_READY**. Bootstrap T-001 completado;
+no se implementaron T-002–T-144. Trading real: **LIVE_NOT_AUTHORIZED**.
 
-## Incorporado en este bootstrap
+## Evidencia y alcance
 
-- Repositorio privado, estructura hexagonal Python y workspace TypeScript.
-- Dependencias de desarrollo fijadas, comandos Make y CI con permisos de lectura.
-- Validador offline de contratos, ejemplos, referencias y trazabilidad.
-- Pruebas que introducen errores para comprobar que el gate los detecta.
-- Sincronización reproducible del backlog, requisitos y matriz desde sus JSON.
-- Corrección de discrepancias del informe previo en T-054, T-056, T-106,
-  T-123, T-125 y T-141; fase R-106 sincronizada con el catálogo.
-- README y plan de pruebas corregidos: ya no afirman que existen SVG,
-  un manifiesto de release o verificaciones de producto todavía ausentes.
+El [informe de auditoría](../../audit/G-DESIGN-FINAL-REPORT.md) registra alcance, SHA base,
+contenido auditado y resultados. [Hallazgos](../../audit/g-design/findings.json) es el registro
+de defectos; [delegabilidad](../../audit/g-design/delegability.json) contiene las 144 revisiones
+individuales. Los checks estructurales pueden pasar mientras G-DESIGN permanece NOT_READY.
 
-Los resultados estructurales están en [audit/validation.json](../../audit/validation.json).
-Los logs de bootstrap y su alcance están en [evidence/T-001](../../evidence/T-001/README.md).
-La existencia de una ficha o esquema no equivale a implementación.
+Se corrigieron precisión/unidades, binding de riesgo/firma, durabilidad y máquinas de estados,
+permisos antes de almacenar, separación de calibración, negativos con motivo esperado y rutas
+por dominio. Contratos 1.1.0-draft: 106 definiciones; 18 ADR; 12 diagramas renderizados y revisados.
 
-Bootstrap T-001 cerrado con [CI aprobada](https://github.com/SaintWyss/td/actions/runs/41832903531) para el commit `2594a2bb1cca31f245d502d7e074aca81c4e9549`. T-002, T-004 y T-005 quedan READY; las restantes tareas siguen pendientes.
+## Bloqueos de diseño
 
-## Pendiente, en orden recomendado
+- GD-09: comandos contables de depósitos, rent y ajustes; instrumentos y unidades de margen/legs.
+- GD-11: catálogo de features y entradas suficientes para las 20 estrategias y Prediction/Decision.
+- GD-12: puertos auxiliares y solicitudes de historial todavía insuficientes.
+- GD-17: escenarios semánticos enlazados con oracles contables/temporales independientes.
+- GD-10: 140 fichas requieren especificación concreta; corregir rutas no las vuelve delegables.
 
-1. Revisar el detalle semántico de contratos y fichas: unidades, relaciones entre
-   campos, nombres de archivos definitivos y casos negativos específicos.
-2. Completar V0 por dependencias: cantidades exactas (T-002), configuración y
-   permisos (T-003), generación del cliente tipado (T-004), límites de importación
-   (T-005), identidad, auditoría y migraciones (T-006 a T-009).
-3. Incorporar proveedores con fixtures y permisos comprobados; después, ingesta
-   temporal, cobertura y decodificación Solana. Sin claves o llamadas reales en CI.
-4. Construir replay, contabilidad, costos y evaluación estadística antes de paper.
-5. Implementar UI y operaciones conforme al backlog; probar restauración,
-   consumo de RAM y ejecución intermitente en el hardware objetivo.
+Son trabajo documental pendiente, no dependencias de APIs. No se difieren a implementadores.
+T-002, T-004 y T-005 tienen **DESIGN_READY local**, pero **TASK_READY=false** por el gate global.
+No interpretar el READY del historial de bootstrap como autorización vigente.
 
-## Límites de la revisión
+## Continuidad
 
-- Las 20 reglas semánticas son especificaciones pendientes de pruebas de producto.
-- Los diagramas no tienen renders verificados. Los enlaces se comprueban por
-  existencia de archivo, no por anchor ni vigencia de páginas externas.
-- El borrador puede conservar problemas editoriales y decisiones por revisar.
-- Los originales y el informe histórico no se reescriben como si sus comprobaciones
-  hubieran ocurrido antes. Consultar la fecha y el alcance de cada evidencia.
-- No se probaron estrategias con datos adecuados ni se demostró alpha.
-- No están implementados controles de riesgo, sesiones, ledger, firmas o servicios.
-- Escaneo de dependencias/secretos automatizado, SBOM, integración, E2E, chaos,
-  protección de rama y releases quedan pendientes. CI es un check, no una regla
-  de protección de rama obligatoria.
+Cerrar primero GD-09/GD-11 y sus consumidores; después GD-12/GD-17 y fichas GD-10.
+Volver a auditar cada criterio de G-DESIGN. Tras su aprobación y autorización de implementación,
+la primera tarea es T-002: sólo depende de T-001 DONE y no necesita red, DB ni credenciales.
+T-004/T-005 también dependen sólo de T-001; pueden planificarse después del gate.
 
-Este repositorio no activa live ni habilita acceso de terceros. La política y los
-permisos descritos son requisitos que deberá cumplir una implementación futura.
+## Verificaciones posteriores
+
+ED-01–ED-12 mantienen sus procedimientos, owners y gates: cuentas/proveedores, permisos por
+finalidad, fixtures on-chain, datos prospectivos, licencias y capacidad real del hardware.
+Experimentos: **EXPERIMENT_PENDING**; no hay alpha probado. Integraciones: no VERIFIED_RUNTIME.
+No existen motor de riesgo, ledger, sesiones, signer ni dashboard funcionales. CI sólo verifica
+bootstrap y documentación; no acredita seguridad operativa, integración, E2E, chaos, restore,
+SBOM ni protección obligatoria de rama.
+
+La evidencia original [T-001](../../evidence/T-001/README.md) y
+[audit/validation.json](../../audit/validation.json) se preserva sin reescribir su historia.

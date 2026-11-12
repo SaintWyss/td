@@ -3,8 +3,9 @@
 ```mermaid
 flowchart TD
   DS["Dataset congelado"] --> SPL["Folds / purging"]
-  SPL --> TR["Train y calibración interna"]
-  TR --> REG["Artefacto challenger"]
+  SPL --> TR["Fit y selección temporal"]
+  TR --> CAL["Calibración en bloque disjunto"]
+  CAL --> REG["Artefacto challenger"]
   REG --> VAL["Test / holdout único"]
   VAL --> G{"Gates científicos"}
   G -->|"falla"| REJ["Rechazado o inconcluso"]

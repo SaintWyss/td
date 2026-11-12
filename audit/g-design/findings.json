@@ -1,0 +1,367 @@
+[
+  {
+    "id": "GD-01",
+    "severity": "BLOCKER",
+    "file": "docs/contracts/domain.schema.json",
+    "location": "$defs/Money, Prediction, TokenAssessment, MarginSnapshot",
+    "evidence": "Decimal signed sin límite entero SQL; shares de Risk number; enteros JSON sin límite seguro.",
+    "impact": "Overflow/rounding y comparación financiera inconsistente.",
+    "correction": "Acotar decimal SQL; strings exactos de shares; límites enteros TS; reglas de redondeo y rango u8 observable vs Money soportado.",
+    "dependencies": [
+      "T-002",
+      "T-023",
+      "T-050"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "adversarial money/derived/holder/slot + revisión doc08",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-02",
+    "severity": "BLOCKER",
+    "file": "docs/contracts/domain.schema.json",
+    "location": "$defs/Reservation, ExecutionIntent, RiskAssessment",
+    "evidence": "Reserva no tenía output/fee asset, min_output, mode/programs ni hash de intención completo.",
+    "impact": "Firmar efectos que Risk no autorizó o reservar activo equivocado.",
+    "correction": "Binding inmutable completo, unidades de RiskAssessment, lectura autoritativa bajo lock y denegación condicional.",
+    "dependencies": [
+      "T-050",
+      "T-051",
+      "T-093"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "test_missing_binding + approved/denied vectors; runtime T-050/T-051/T-093",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-03",
+    "severity": "BLOCKER",
+    "file": "docs/contracts/domain.schema.json",
+    "location": "$defs/SignatureResult, Attempt",
+    "evidence": "Firma devolvía sólo hash/firma; no bytes ni referencia durable; PREPARED exigía hash firmado.",
+    "impact": "No poder persistir payload antes de envío; duplicación tras crash.",
+    "correction": "signed_transaction_b64, artifact ID nullable antes de firma y condicionado después; reserva ATTEMPTED antes de solicitar firma.",
+    "dependencies": [
+      "T-093",
+      "T-097"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "binding check y estados; fault injection futuro T-097",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-04",
+    "severity": "MAJOR",
+    "file": "tools/validate_spec.py",
+    "location": "check_example / negative examples",
+    "evidence": "Negativo era aceptado como evidencia por cualquier error.",
+    "impact": "PASS incidental oculta contratos o fixtures incorrectos.",
+    "correction": "Oracle de omisión única exacta y 24 fronteras adversariales con keyword/path.",
+    "dependencies": [
+      "T-004"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "test_negative_rejected_for_incidental_error_is_not_evidence",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-05",
+    "severity": "BLOCKER",
+    "file": "docs/contracts/order-machine.json",
+    "location": "transiciones; doc21 reconciliación",
+    "evidence": "Faltaban máquinas de attempt/reservation/control/job; CEX no modelaba desconexiones de órdenes aceptadas.",
+    "impact": "Liberación prematura, estados inalcanzables, ambigüedad de recuperación.",
+    "correction": "Cuatro máquinas complementarias, guards, reachability, CEX recovery y transacción de journal+reserva+RECONCILED.",
+    "dependencies": [
+      "T-010",
+      "T-051",
+      "T-053",
+      "T-055",
+      "T-098",
+      "T-101"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "test_unknown_cannot_release_through_cancel; test_attempted_reservation_requires_reconciliation; máquina no es runtime",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-06",
+    "severity": "BLOCKER",
+    "file": "docs/contracts/domain.schema.json",
+    "location": "$defs/SourceGrant, GrantRequest; diagrams/05",
+    "evidence": "Permisos de almacenamiento, prefijos/métodos y procesadores prometidos en prosa faltaban del schema; diagrama persistía antes del control.",
+    "impact": "Guardar/enviar texto sin autorización o permitir URL por prefijo engañoso.",
+    "correction": "Campos explícitos, revalidación por etapa, revocación/tombstones y permiso previo a raw.",
+    "dependencies": [
+      "T-003",
+      "T-058",
+      "T-059"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "schemas/examples + revisión doc15/diagrama05; runtime T-003/T-058/T-059",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-07",
+    "severity": "MAJOR",
+    "file": "docs/tasks/T-040.md",
+    "location": "calibración y doc14/doc23",
+    "evidence": "Se mezclaba Platt con cuantiles sin estimadores definidos; train-only ambiguo.",
+    "impact": "Distribución ficticia o calibración sobre datos de selección/test.",
+    "correction": "Clasificador, regresores cuantílicos y media separados; calibración temporal disjunta; rechazo de cruces.",
+    "dependencies": [
+      "T-038",
+      "T-039",
+      "T-040"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "revisión coherencia doc14/doc23/T-040; estimadores/alpha aún no ensayados",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-08",
+    "severity": "MAJOR",
+    "file": "docs/tasks/index.json",
+    "location": "files; T-002/T-004/T-005; dependencies",
+    "evidence": "Rutas t_NNN.py de producción; I/O y tests genéricos en herramientas; sesiones/audit sin DB prerequisite.",
+    "impact": "Estructura por tarea y agentes inventando arquitectura.",
+    "correction": "144 mappings; reescribir tres fundaciones, corregir dependencias T-006/T-008/T-005 y scope replay/decision.",
+    "dependencies": [
+      "T-002",
+      "T-004",
+      "T-005",
+      "T-006",
+      "T-008"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "DAG + path check + tres fichas concretas; delegabilidad general sigue GD-10",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-09",
+    "severity": "BLOCKER",
+    "file": "docs/contracts/ports.json",
+    "location": "LedgerWriter; domain $defs/MarginSnapshot, LegPlan, CexChildOrder",
+    "evidence": "LedgerWriter sólo acepta Fill, falta comando para depósito/retiro/rent/corrección. No hay Instrument con tick/lot/settlement; margen/legs carecen de unidad completa.",
+    "impact": "No se puede implementar contabilidad y sandbox multi-leg sin inventar contratos.",
+    "correction": "Diseñar LedgerPostRequest por efecto/actor/portfolio, catálogo Instrument y certificado de capacidades; actualizar consumidores y golden de rent/fees/margen.",
+    "dependencies": [
+      "T-031",
+      "T-032",
+      "T-055",
+      "T-068",
+      "T-098",
+      "T-101",
+      "T-102",
+      "T-103"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "Entradas/salidas tipadas completas, casos numéricos independientes para cada efecto, coherencia de todos los consumidores",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false,
+    "r2_resolution": {
+      "base_sha": "fa502e57437f7a141ae7f97938cd0fcefb98f1af",
+      "date": "2026-11-06",
+      "contracts": "docs/contracts/financial-operations.md",
+      "oracles": [
+        "docs/contracts/scenarios/financial.json",
+        "docs/contracts/scenarios/instruments.md"
+      ],
+      "evidence": "audit/g-design-r2/evidence/gd09-check.json",
+      "limits": "Documentary contracts and oracle arithmetic only. Runtime unimplemented; auxiliary port policies completed in GD-12 and task consumers expanded in GD-10. R1 state preserved under audit/g-design-r2/history."
+    }
+  },
+  {
+    "id": "GD-10",
+    "severity": "MAJOR",
+    "file": "docs/tasks",
+    "location": "140 fichas NEEDS_SPEC en delegability.json",
+    "evidence": "Tras corregir rutas siguen I/O «fixtures y contexto del contrato» y AC genéricos; negativo a veces es riesgo narrativo sin salida verificable.",
+    "impact": "Un agente de menor capacidad debe decidir interfaces, scopes y oracles.",
+    "correction": "Reescribir por ficha interfaces y casos de aceptación con valores/errores; subdividir sólo responsabilidades demostrablemente grandes y registrar mapping.",
+    "dependencies": [
+      "T-003",
+      "T-006",
+      "T-144"
+    ],
+    "status": "OPEN",
+    "resolution_test": "144 revisiones con razón individual; toda ficha no DONE suficientemente concreta y sin decisiones de arquitectura pendientes",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-11",
+    "severity": "BLOCKER",
+    "file": "docs/contracts/domain.schema.json",
+    "location": "$defs/FeatureValue, StrategyInput, DecisionContext, Prediction; strategies/",
+    "evidence": "FeatureValue.name/unit libres sin diccionario de features ni política de barras; StrategyInput no modela libros/news/wallets/legs. DecisionContext no enlaza Prediction explícitamente.",
+    "impact": "Features incompatibles, leakage o estrategia que no puede recibir los datos que su algoritmo consume.",
+    "correction": "Cerrar catálogo versionado con fórmula/unidad/ventana/disponibilidad/null y bindings por S01–S20; inputs por capacidad; unión Prediction/Signal con horizonte/costos.",
+    "dependencies": [
+      "T-028",
+      "T-049",
+      "T-070",
+      "T-105",
+      "T-144"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "Fixture de cada estrategia calculado independientemente desde observaciones PIT, schema de input completo y consumidor explícito",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false,
+    "r2_resolution": {
+      "date": "2026-11-06",
+      "contracts": [
+        "docs/contracts/features-and-strategies.md",
+        "docs/contracts/feature-catalog.json",
+        "docs/contracts/strategy-specs.json"
+      ],
+      "counts": {
+        "features": 62,
+        "strategies_individually_specified": 20
+      },
+      "evidence": "audit/g-design-r2/evidence/gd11-check.json",
+      "limits": "Input definitions and synthetic rules/oracles; no evaluated product strategies, licensed sources or alpha. Runtime gates remain."
+    }
+  },
+  {
+    "id": "GD-12",
+    "severity": "MAJOR",
+    "file": "docs/07-system-components.md",
+    "location": "interfaces vs contracts/ports.json",
+    "evidence": "Clock, IdGenerator, UoW, JobQueue, AuditSink, EvidenceReader prometidos sin métodos tipados; TraderProfiler recibe una Observation, prosa exige WalletHistory/ValuationPolicy.",
+    "impact": "I/O inventado por agentes y transacciones inconsistentes.",
+    "correction": "Fijar protocolos de contexto/error/transaction/lease y requests de historial/hipótesis; cuatro requests de lectura/budget ya corregidos, resto pendiente.",
+    "dependencies": [
+      "T-010",
+      "T-065",
+      "T-067",
+      "T-068",
+      "T-069"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "Todos los puertos citados con métodos/errores/contexto y tareas productoras/consumidoras, revisión del DAG",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false,
+    "r2_resolution": {
+      "date": "2026-11-06",
+      "contracts": [
+        "docs/contracts/auxiliary-ports.md",
+        "docs/contracts/ports.json"
+      ],
+      "counts": {
+        "port_methods": 50,
+        "typed_history_readers": 9
+      },
+      "evidence": "audit/g-design-r2/evidence/gd12-check.json",
+      "limits": "Interface, recovery and pagination specification only; runtime/adapters unimplemented."
+    }
+  },
+  {
+    "id": "GD-13",
+    "severity": "MAJOR",
+    "file": "docs/diagrams",
+    "location": "12 fuentes Mermaid",
+    "evidence": "No existía evidencia de render y revisión visual de los 12.",
+    "impact": "Flujos contradictorios o ilegibles pasan auditoría textual.",
+    "correction": "Renderizar con versiones/logs, inspeccionar los 12 y registrar correspondencia/hash.",
+    "dependencies": [
+      "G-DESIGN"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "12 renders y 12 revisiones visuales reales, no sólo parse",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false,
+    "resolution_evidence": "audit/g-design/diagrams-final/render.json; audit/g-design/visual-review.json: 12 successful renders and individual visual reviews"
+  },
+  {
+    "id": "GD-14",
+    "severity": "MINOR",
+    "file": "docs/evidence/sources.json",
+    "location": "S08/S37 y fechas/niveles",
+    "evidence": "URL Birdeye antigua 404; NBER open 403; registro no separaba licencias ni alcance de consulta.",
+    "impact": "Citas no recuperables y sobreafirmación de acceso/licencia.",
+    "correction": "URL oficial Birdeye actualizada; NBER recuperado por búsqueda primaria; fechas, límites y licencias por finalidad.",
+    "dependencies": [
+      "ED-01",
+      "ED-07"
+    ],
+    "status": "RESOLVED_DOCUMENTARY",
+    "resolution_test": "Consulta 2026-11-04 con referencias y URLs; ninguna prueba runtime atribuida",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-15",
+    "severity": "EXTERNAL_DEPENDENCY",
+    "file": "docs/external-dependencies.json",
+    "location": "ED-01–ED-12",
+    "evidence": "Sin cuentas autorizadas probadas, dataset prospectivo, layout on-chain cotejado, permisos sociales ni hardware medido.",
+    "impact": "Integraciones reales no certificadas.",
+    "correction": "Ejecutar los procedimientos por owner/gate antes de habilitar cada servicio; no bloquea por sí solo diseño local completo.",
+    "dependencies": [
+      "ED-01",
+      "ED-02",
+      "ED-03",
+      "ED-04",
+      "ED-05",
+      "ED-06",
+      "ED-07",
+      "ED-08",
+      "ED-09",
+      "ED-10",
+      "ED-11",
+      "ED-12"
+    ],
+    "status": "OPEN",
+    "resolution_test": "Evidencia saneada de la verificación específica y consentimiento pertinente",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-16",
+    "severity": "RESEARCH_GATE",
+    "file": "docs/23-statistical-validation.md",
+    "location": "G-LAB/G-PAPER y umbrales",
+    "evidence": "No existen datos/experimentos que calibren umbrales o demuestren ventaja.",
+    "impact": "Confundir software aprobado con alpha.",
+    "correction": "Preregistrar, recolectar, medir poder, ejecutar folds/holdout/paper; aceptar REJECTED/INCONCLUSIVE.",
+    "dependencies": [
+      "T-036",
+      "T-037",
+      "T-056",
+      "T-074"
+    ],
+    "status": "OPEN",
+    "resolution_test": "Ensayos reproducibles prospectivos con costos, cobertura, incertidumbre y selección múltiple",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  },
+  {
+    "id": "GD-17",
+    "severity": "MAJOR",
+    "file": "docs/contracts/examples/valid.json",
+    "location": "ejemplos de entidades financieras y relaciones",
+    "evidence": "Ejemplos positivos sintácticos no son un escenario coherente: timestamps iguales y journal con líneas genéricas no acreditan invariantes entre registros.",
+    "impact": "Se implementa contra ejemplos que sólo validan forma y no economía.",
+    "correction": "Separar fixtures de forma de escenarios semánticos y agregar goldens enlazados con tiempo, signos/unidades/fees y valores manuales; no atribuir cumplimiento a validación JSON.",
+    "dependencies": [
+      "T-002",
+      "T-030",
+      "T-031",
+      "T-050",
+      "T-055"
+    ],
+    "status": "OPEN",
+    "resolution_test": "Escenarios nominal/adversarial enlazados para SEM-01–SEM-20 con oracles independientes y fases de prueba runtime",
+    "base_sha": "155f8064417f4d62541d247abe56024cb6b9e165",
+    "runtime_verified": false
+  }
+]
