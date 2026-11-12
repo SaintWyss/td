@@ -11,6 +11,12 @@ de contratos es `1.1.0-draft`; los documentos sin cambios conservan su fecha his
 No hay motor de trading, API, dashboard, conectores, modelos entrenados ni ejecución
 de órdenes implementados. No se requiere ninguna credencial para los checks locales.
 
+## Tecnologías y arquitectura prevista
+
+La base de trabajo usa **Python 3.12**, **uv**, **TypeScript**, **Node.js** y **pnpm**; Make coordina las comprobaciones. El repositorio incluye contratos, documentación y herramientas para validar el blueprint.
+
+El diseño separa dominio, casos de uso, puertos y adaptadores; `backend/src/td/` contiene las fronteras iniciales y `docs/` describe los componentes propuestos. Esta estructura es un punto de partida, no una implementación de los servicios proyectados. El estado vigente y los bloqueos están en [Estado actual y pendientes](docs/status/current.md).
+
 ## Empezar
 
 Requisitos: Python 3.12, uv 0.13.5, Node 24, pnpm 11.25.0 y GNU Make.
